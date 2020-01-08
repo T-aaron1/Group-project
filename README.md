@@ -11,6 +11,10 @@ mkdir src # this is where all python code is going to be
 
 cd src
 ```
+
+# requirements.txt
+add in that file any library we need to install
+
 # Inside src directory: install requirements
 - activate virtual environment
 ```  source bin/activate```
