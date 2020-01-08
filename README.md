@@ -12,9 +12,13 @@ mkdir src # this is where all python code is going to be
 cd src
 ```
 # Inside src directory: install requirements
-- clone repository
-```  git clone (url) ```
 - activate virtual environment
 ```  source bin/activate```
+- clone repository, inside src
+```  git clone (url) ```
 - install required packages
 ```  pip install -r requirements.txt ```
+
+# To start development server: 
+- go to flask directory
+```  python flask_script.py```
