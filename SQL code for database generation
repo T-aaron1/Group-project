@@ -34,8 +34,8 @@ CREATE TABLE phosposite_list (
 
 
 # Table 4 - isoforms of the kinases 
-CREATE TABLE Isoform_list (
-  uiprot_entry VARCHAR(300) NOT NULL,  
+CREATE TABLE isoform_list (
+  uniprot_entry VARCHAR(300) NOT NULL,  
   entry_name VARCHAR(300) NOT NULL, 
   seq_length INT,
   PRIMARY KEY (uniprot_entry),
