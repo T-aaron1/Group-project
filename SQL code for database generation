@@ -1,0 +1,18 @@
+# Table 1 - kinase list 
+CREATE TABLE kinase_list (
+  accession_number VARCHAR(300) NOT NULL,
+  gene_symbol VARCHAR(300) NOT NULL,
+  mass_in_da INT,
+  family VARCHAR(300) NOT NULL,
+  name_human VARCHAR(300) NOT NULL,
+  PRIMARY KEY (accession_number),
+  FOREIGN KEY (family) REFERENCES family(family_name)
+  );
+  
+  # Table 2 - Family list
+  CREATE TABLE family_list (
+  family_name VARCHAR(300) NOT NULL,
+  family_abbreviation VARCHAR(300) NOT NULL,
+  PRIMARY KEY (family_abbreviation),
+  FOREIGN KEY (family_abbreviation) REFERENCES kinase_list(family)
+);
