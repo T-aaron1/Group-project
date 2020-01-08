@@ -17,4 +17,4 @@ cd src
 - activate virtual environment
 ```  source bin/activate```
 - install required packages
-```  pip install -r requirements ```
+```  pip install -r requirements.txt ```
