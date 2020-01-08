@@ -16,3 +16,18 @@ CREATE TABLE kinase_list (
   PRIMARY KEY (family_abbreviation),
   FOREIGN KEY (family_abbreviation) REFERENCES kinase_list(family)
 );
+
+
+# Table 3 - Phosposite 
+# NB - "row_id" is a placeholder name and is subject to change 
+CREATE TABLE phosposite_list (
+  row_id INT, 
+  position INT,
+  genome_loc_start INT,
+  genome_loc_end  INT,
+  residue VARCHAR(300) NOT NULL,
+  description VARCHAR(300) NOT NULL,
+  neighbouring_seq VARCHAR(300) NOT NULL, 
+  PRIMARY KEY (row_id),
+  FOREIGN KEY (position) REFERENCES kinase_list(accession_number)
+);
