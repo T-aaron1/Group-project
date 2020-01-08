@@ -1,0 +1,17 @@
+family_abbreviation,residue,family_name
+AGC,Ser/Thr,AGC Ser/Thr protein kinase family
+CAMK,Ser/Thr,CAMK (Calcium/Calmodulin-dependent) Ser/Thr protein kinase family
+CK1,Ser/Thr,CK1 (Casein Kinase 1) Ser/Thr protein kinase family
+CMGC,Ser/Thr,CMGC Ser/Thr protein kinase family
+NEK,Ser/Thr,NEK Ser/Thr protein kinase family
+RGC,RGC (Receptor Guanylate Cyclases) kinase: adenylyl cyclase class-4/guanylyl cyclase
+STE,Ser/Thr,STE Ser/Thr protein kinase family
+TKL,Ser/Thr,TKL (Tyrosine Protein Kinase-like) Ser/Thr protein kinase family
+Tyr,Tyr (Tyrosine Protein Kinase) protein kinase family
+Other,,Other
+ADCK,Atypical: ADCK protein kinase family
+Alpha-type,Atypical: Alpha-type protein kinase family
+FAST,Atypical: FAST protein kinase family
+PDK/BCKDK,Atypical: PDK/BCKDK protein kinase family
+PI3/PI4-kinase,Atypical: PI3/PI4-kinase family
+RIO-type Ser/Thr,Atypical: RIO-type Ser/Thr kinase family
