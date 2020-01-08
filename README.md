@@ -11,7 +11,7 @@ mkdir src # this is where all python code is going to be
 
 cd src
 ```
-# install requirements
+# Inside src directory: install requirements
 - clone repository
 ```  git clone (url) ```
 - activate virtual environment
