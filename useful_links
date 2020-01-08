@@ -13,3 +13,6 @@ http://www.icoa.fr/pkidb/
 #Protein cross references from ChEMBL - to find further information on the kinases
 #example of what links are given regarding the RAF1 protein kinase
 https://www.ebi.ac.uk/chembl/target_report_card/CHEMBL1906/
+
+# list of kinases
+https://www.uniprot.org/docs/pkinfam
