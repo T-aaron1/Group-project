@@ -2,8 +2,9 @@ data:
 	- sequence
 	- alternative names
 	- synonym
-	- 
- https://www.ebi.ac.uk/proteins/api/doc/#!/coordinates/search
+
+#how to find genomic location with an example
+https://www.ebi.ac.uk/proteins/api/doc/#!/coordinates/search
 	 eg: https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749
 
 #Protein inhibitors from PKIDB
