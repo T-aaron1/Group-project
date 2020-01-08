@@ -1,4 +1,4 @@
-Family,name,name_human,uniprot
+Family,gene,name_human,uniprot_access_number
 AGC Ser/Thr,AKT1,AKT1_HUMAN,P31749
 AGC Ser/Thr,AKT2,AKT2_HUMAN,P31751
 AGC Ser/Thr,AKT3,AKT3_HUMAN,Q9Y243
