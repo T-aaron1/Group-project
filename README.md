@@ -21,6 +21,7 @@ add in that file any library we need to install
 - clone repository, inside src
 ```  git clone (url) ```
 - install required packages
+```  pip install --upgrade pip```
 ```  pip install -r requirements.txt ```
 
 # To start development server: 
