@@ -8,7 +8,7 @@ RGC,RGC (Receptor Guanylate Cyclases) kinase: adenylyl cyclase class-4/guanylyl 
 STE,Ser/Thr,STE Ser/Thr protein kinase family
 TKL,Ser/Thr,TKL (Tyrosine Protein Kinase-like) Ser/Thr protein kinase family
 Tyr,Tyr (Tyrosine Protein Kinase) protein kinase family
-Other,Other
+Other,,Other
 ADCK,Atypical: ADCK protein kinase family
 Alpha-type,Atypical: Alpha-type protein kinase family
 FAST,Atypical: FAST protein kinase family
