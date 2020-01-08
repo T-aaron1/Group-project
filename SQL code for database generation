@@ -31,3 +31,13 @@ CREATE TABLE phosposite_list (
   PRIMARY KEY (row_id),
   FOREIGN KEY (position) REFERENCES kinase_list(accession_number)
 );
+
+
+# Table 4 - isoforms of the kinases 
+CREATE TABLE Isoform_list (
+  uiprot_entry VARCHAR(300) NOT NULL,  
+  entry_name VARCHAR(300) NOT NULL, 
+  seq_length INT,
+  PRIMARY KEY (uniprot_entry),
+  FOREIGN KEY (entry_name) REFERENCES kinase_list(accession_number)
+);
