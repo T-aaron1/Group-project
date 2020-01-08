@@ -1,0 +1,7 @@
+data:
+	- sequence
+	- alternative names
+	- synonym
+	- 
+ https://www.ebi.ac.uk/proteins/api/doc/#!/coordinates/search
+	 ej: https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749
