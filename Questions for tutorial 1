@@ -4,3 +4,7 @@
 should we change this or leave it as it is? (ubiquitin-like?), tyr family is not written as ‘other’. 
 
 3. Sites the kinases are known to phosphorylate? Cant find a site that shows this 
+
+4. What should we do with the uncorrected p-values in the sample file? should we leave them unadjusted and statistically analyse them 
+
+
