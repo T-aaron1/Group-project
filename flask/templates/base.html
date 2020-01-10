@@ -3,20 +3,22 @@
   <head>
     <meta charset="UTF-8"/>
     <title>COOL_NAME</title>
+    <!-- font awesome for icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap for fonts -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>
 
     <!-- begin navbar -->
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a href="/" class="navbar-brand">COOL_NAME/ICON</a> <!-- change this -->
       <button class="navbar-toggler" type="button" data-toggle="colapse" data-target="#NAVBAR">
 	<span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="NAVBAR">
-	<ul class="navbar-nav">
+	<ul class="navbar-nav mr-auto">
 	  <li class="navbar-item">
 	    <a class="nav-link" href="/kinase">Kinases</a>
 	  </li>
@@ -32,7 +34,9 @@
 	      <a class="dropdown-item" href="/documentation/stats">Statistics</a>
 	    </div>
 	  </li>
-	  <form class="form-inline" action=""> <!-- align right -->
+	</ul>
+	
+	  <form class="form-inline mt-2 mt-md-0" action=""> <!-- align right -->
 	    <input class="form-control" name="" type="text" placeholder="Kinase name, eg: RAF1"/>
 	    <div class="btn-group" role="group">
 	      <div class="nav-link dropdown-toggle btn" data-toggle="dropdown"></div>
@@ -44,7 +48,7 @@
 	    <submit class="btn btn-outline-success"><i class="fa fa-search"></i></submit>
 	  </form>
 	  
-	</ul>
+
       </div>
     </nav>
 
@@ -61,22 +65,25 @@
 
 
     <!-- begin footer-->
-    <footer class="page-footer fixed-bottom bg-light text-center">
+    <div class="row">
+    <footer class="page-footer fixed-bottom bg-dark text-center">
       <div class="container">
       <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-6 text-light">
 	  <p>text1</p>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6 text-light">
 	  <p>text2</p>
 	</div>
       </div>
       </div>
 
     </footer>
+    </div>
     <!-- end footer-->
     
   </body>
+  <!-- bootstrap -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

@@ -1,11 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
+import forms
 
 app = Flask(__name__)
 
 #### home
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def home():
-    return render_template('home.html')
+    form =  forms.UploadPhosphoproteomics()
+    context = {'form': form}
+
+    data_form = forms.UploadPhosphoproteomics(request.form)
+
+    if request.method == 'POST' and data_form.validate():
+        print(data_form.uploaded_file.data)
+        render_template('phosphoproteomics.html')
+    return render_template('home.html', context = context)
+   
+
 
 #### kinases
 
@@ -21,7 +32,12 @@ def kinase_search_result():
 @app.route('/kinase/<kin_name>')
 def kinase_data(kin_name):
     # method: post, add filter
-    return render_template('kinase_data.html')
+    kin_name = kin_name
+    context = {'kin_name':kin_name}
+    try:
+        return render_template('kinase_data.html', context = context)
+    except:
+        return 'not found'
 
 
 
@@ -40,6 +56,15 @@ def inhibitor_data(inhib_name):
     # method: post, add filter
     return render_template('inhibitor_data.html')
 
+
+### phosphoproteomics
+@app.route('/phosphoproteomics', methods = ['GET','POST'])
+def phosphoproteomics():
+    data_form = forms.UploadPhosphoproteomics(request.form)
+
+    if request.method == 'POST' and data_form.validate():
+        print(data_form.uploaded_file.data )
+        return render_template('phosphoproteomics.html')
 
 ### Documentation
 
