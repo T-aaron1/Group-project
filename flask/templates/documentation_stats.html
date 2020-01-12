@@ -1,8 +1,143 @@
 {%extends 'base.html'%}
 
-{%block content%}
 
-<p>Documentation</p>
-<p>Here the statistics<p>
+<!-- begin head -->
+{%block head%}
+
+<!-- plotly js -->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 
 {%endblock%}
+
+<!-- end  head -->
+
+
+
+
+<!-- body: content -->
+{%block content%}
+
+<h2> Lines </h2>
+<div id="graph_lines"></div>
+
+
+<h2>Barplot</h2>
+<div id="graph_barplot"></div>
+
+
+
+<h2>Histogram</h2>
+<div id="graph_histogram"></div>
+
+<h2>Points</h2>
+<div id="graph_points"></div>
+
+
+{%endblock%}
+<!-- end body: content -->
+
+
+
+
+
+<!-- begin scripts -->
+{%block scripts%}
+
+
+<script id="Barplot">
+// barplot
+
+ var bardata = [
+     {
+	 x: ['giraffes', 'orangutans', 'monkeys'],
+	 y: [20, 14, 23],
+	 type: 'bar'
+     }
+ ];
+
+ Plotly.newPlot('graph_barplot', bardata);
+
+
+</script>
+
+<script id="lines"> 
+// lines
+ var trace1 = {
+     x: [1, 2, 3, 4],
+     y: [10, 15, 13, 17],
+     type: 'scatter'
+ };
+
+ var trace2 = {
+     x: [1, 2, 3, 4],
+     y: [16, 5, 11, 9],
+     type: 'scatter'
+ };
+
+ var data = [trace1, trace2];
+
+ Plotly.newPlot('graph_lines', data);
+
+</script>
+
+
+
+<script id="histogram">
+// histogram
+ var x = [];
+ for (var i = 0; i < 500; i ++) {
+     x[i] = Math.random();
+ }
+
+ var trace = {
+     x: x,
+     type: 'histogram',
+ };
+ var data = [trace];
+ Plotly.newPlot('graph_histogram', data);
+ 
+</script>
+
+
+<script id="graph_points">
+// graph of points
+ var trace1 = {
+     x: [1, 2, 3, 4, 5],
+     y: [1, 6, 3, 6, 1],
+     mode: 'markers',
+     type: 'scatter',
+     name: 'Team A',
+     text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
+     marker: { size: 12, color:'rgb(84, 216, 36)' }
+ };
+
+ var trace2 = {
+     x: [1.5, 2.5, 3.5, 4.5, 5.5],
+     y: [4, 1, 7, 1, 4],
+     mode: 'markers',
+     type: 'scatter',
+     name: 'Team B',
+     text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
+     marker: { size: 12 , color:'rgb(24,14,169)'}
+ };
+
+ var data = [ trace1, trace2 ];
+
+ var layout = {
+     xaxis: {
+	 range: [ 0.75, 5.25 ]
+     },
+     yaxis: {
+	 range: [0, 8]
+     },
+     title:'Title add here'
+ };
+
+ Plotly.newPlot('graph_points', data, layout);
+
+
+</script>
+{%endblock%}
+
+
+<!-- end: begin scripts -->
