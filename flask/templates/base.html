@@ -11,60 +11,25 @@
   <body>
 
     <!-- begin navbar -->
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a href="/" class="navbar-brand">COOL_NAME/ICON</a> <!-- change this -->
-      <button class="navbar-toggler" type="button" data-toggle="colapse" data-target="#NAVBAR">
-	<span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="NAVBAR">
-	<ul class="navbar-nav mr-auto">
-	  <li class="navbar-item">
-	    <a class="nav-link" href="/kinase">Kinases</a>
-	  </li>
-	  <li class="navbar-item">
-	    <a class="nav-link" href="/inhibitor" >Inhibitors</a>
-	  </li>
-	  
-	  <li class="nav-item dropdown">
-	    <a class="nav-link dopdown-toggle" data-toggle="dropdown" href="/documentation/general">Documentation</a>
-	    <div class="dropdown-menu dropdown-primary">
-	      <a class="dropdown-item" href="/documentation/general">General</a>
-	      <a class="dropdown-item" href="/documentation/api">API</a>
-	      <a class="dropdown-item" href="/documentation/stats">Statistics</a>
-	    </div>
-	  </li>
-	</ul>
-	
-	  <form class="form-inline mt-2 mt-md-0" action=""> <!-- align right -->
-	    <input class="form-control" name="" type="text" placeholder="Kinase name, eg: RAF1"/>
-	    <div class="btn-group" role="group">
-	      <div class="nav-link dropdown-toggle btn" data-toggle="dropdown"></div>
-	      <div class="dropdown-menu dropdown-primary"> 
-		<input class="dropdown-item btn" type="button" name="data" value="Kinases">
-		<input class="dropdown-item btn" type="button" name="data" value="Inhibitor"> 
-	    </div>
-	    </div>
-	    <submit class="btn btn-outline-success"><i class="fa fa-search"></i></submit>
-	  </form>
-	  
 
-      </div>
-    </nav>
+    {% include 'navbar.html' %}
 
     <!-- end navbar -->
 
     <!-- begin content -->
 
     <div class="container">
+
       {%block content%}
       {%endblock%}
+
     </div>
 
     <!-- end content -->
 
 
     <!-- begin footer-->
+
     <div class="row">
     <footer class="page-footer fixed-bottom bg-dark text-center">
       <div class="container">
