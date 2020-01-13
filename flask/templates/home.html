@@ -10,9 +10,11 @@
 {% from '_macros.html' import render_form_field%}
 
 <form name="sent_data" method="POST" >
-  {{render_form_field(context.form.uploaded_file)}}
+
+  <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+  {{render_form_field(context.uploadfile_form.uploaded_file)}}
   <input class="btn btn-primary" type="submit" value="Send"/>
 
-  </form>
+</form>
 
 {%endblock%}
