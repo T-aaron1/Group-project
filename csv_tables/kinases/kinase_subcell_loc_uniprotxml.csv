@@ -1,0 +1,1221 @@
+uniprot|subcell_location|subcell_refs
+P31749|Cytoplasm|11
+P31749|Nucleus|
+P31749|Cell membrane|11
+P31751|Cytoplasm|
+P31751|Nucleus|
+P31751|Cell membrane|
+P31751|Early endosome|17
+Q9Y243|Nucleus|19
+Q9Y243|Cytoplasm|19
+Q9Y243|Membrane|19
+Q5VT25|Cytoplasm|5
+Q5VT25|Lamellipodium|7
+Q9Y5S2|Cytoplasm|13
+Q9Y5S2|Cell membrane|32
+Q9Y5S2|Cell junction|32
+Q9Y5S2|Lamellipodium|16
+Q6DT37|Cytoplasm|12
+O14578|Cytoplasm|8
+Q09013|Endoplasmic reticulum membrane|3
+Q09013|Nucleus outer membrane|33
+Q09013|Mitochondrion outer membrane|33
+Q09013|Sarcoplasmic reticulum membrane|3
+Q09013|Cell membrane|3
+Q09013|Cytosol|3
+Q09013|Mitochondrion membrane|
+Q09013|Mitochondrion membrane|
+Q15835|Membrane|3
+Q15835|Photoreceptor outer segment|4
+P25098|Cytoplasm|12
+P25098|Cell membrane|12
+P32298|Cytoplasm|
+P32298|Cell cortex|
+P34947|Cytoplasm|
+P34947|Nucleus|
+P34947|Cell membrane|
+P43250|Membrane|
+Q8WTQ7|Membrane|2
+O95835|Centrosome|10
+Q9NRM7|Centrosome|
+Q9NRM7|Cytoplasm|
+Q9NRM7|Spindle pole|
+Q9NRM7|Nucleus|
+Q9Y2H9|Cell membrane|5
+Q9Y2H9|Cytoskeleton|5
+Q9Y2H9|Axon|5
+Q9Y2H9|Dendrite|5
+Q6P0Q8|Cytoskeleton|17
+Q6P0Q8|Cell membrane|23
+O15021|Cytoplasm|15
+Q96GX5|Centrosome|18
+Q96GX5|Nucleus|14 18
+Q96GX5|Cleavage furrow|18
+O15530|Cytoplasm|
+O15530|Nucleus|
+O15530|Cell membrane|
+O15530|Focal adhesion|
+Q6A1A2|Cytoplasm|1
+Q6A1A2|Membrane|1
+Q16512|Cytoplasm|35 50
+Q16512|Nucleus|29
+Q16512|Endosome|50
+Q16512|Cell membrane|22
+Q16512|Cleavage furrow|35
+Q16512|Midbody|35
+Q16513|Cytoplasm|20 25
+Q16513|Nucleus|20
+Q16513|Membrane|11
+Q16513|Lamellipodium|20
+Q16513|Cytoskeleton|20
+Q16513|Cleavage furrow|25
+Q16513|Midbody|25
+Q16513|Cell junction|28
+Q6P5Z2|Nucleus|9
+Q6P5Z2|Perinuclear region|9
+P17612|Cytoplasm|
+P17612|Cell membrane|
+P17612|Nucleus|9
+P17612|Mitochondrion|9
+P17612|Membrane|47
+P17612|Flagellum|13
+P17612|Acrosome|10
+P22694|Cytoplasm|10
+P22694|Cell membrane|10
+P22694|Membrane|18
+P22694|Nucleus|1
+P17252|Cytoplasm|42
+P17252|Cell membrane|42
+P17252|Mitochondrion membrane|45
+P17252|Nucleus|17
+P05771|Cytoplasm|5
+P05771|Nucleus|20
+P05771|Membrane|5
+Q05655|Cytoplasm|22 26 28
+Q05655|Perinuclear region|22 26
+Q05655|Nucleus|22 26 28
+Q05655|Cell membrane|26
+Q02156|Cytoplasm|19
+Q02156|Cytoskeleton|19
+Q02156|Cell membrane|19
+Q02156|Perinuclear region|4
+Q02156|Nucleus|4
+P05129|Cytoplasm|4
+P05129|Perinuclear region|3
+P05129|Cell membrane|15
+P05129|Synaptosome|4
+P05129|Dendrite|5
+P24723|Cytoplasm|5
+P41743|Cytoplasm|26 34 50
+P41743|Membrane|37
+P41743|Endosome|50
+P41743|Nucleus|26 34
+Q04759|Cytoplasm|
+Q04759|Cell membrane|
+Q05513|Cytoplasm|24 32
+Q05513|Endosome|32
+Q05513|Cell junction|30
+Q05513|Membrane|4
+Q05513|Cytoplasm|4
+Q13976|Cytoplasm|13
+Q13237|Apical cell membrane|12
+P51817|Cytoplasm|
+P51817|Nucleus|
+Q13464|Cytoplasm|
+Q13464|Centriole|17
+Q13464|Golgi apparatus membrane|
+Q13464|Bleb|
+Q13464|Cytoskeleton|17
+Q13464|Cell membrane|17
+Q13464|Lamellipodium|17
+Q13464|Ruffle|17
+O75116|Cytoplasm|
+O75116|Cell membrane|9
+O75116|Nucleus|
+O75116|Centrosome|
+Q15418|Nucleus|
+Q15418|Cytoplasm|
+Q15349|Nucleus|8
+Q15349|Cytoplasm|8
+P51812|Nucleus|32
+P51812|Cytoplasm|32
+O75676|Nucleus|8 11
+O75582|Nucleus|
+O75582|Cytoplasm|
+Q9UK32|Cytosol|7
+Q9UK32|Nucleus|7
+P23443|Synaptosome|12
+P23443|Mitochondrion outer membrane|
+P23443|Mitochondrion|
+P23443|Nucleus|
+P23443|Cytoplasm|
+P23443|Cytoplasm|
+Q9UBS0|Cytoplasm|
+Q9UBS0|Nucleus|
+O00141|Cytoplasm|
+O00141|Nucleus|
+O00141|Endoplasmic reticulum membrane|
+O00141|Cell membrane|
+O00141|Mitochondrion|
+O00141|Cell membrane|
+Q9HBY8|Cytoplasm|14
+Q9HBY8|Nucleus|14
+Q96BR1|Cytoplasmic vesicle|2
+Q96BR1|Early endosome|
+Q96BR1|Recycling endosome|
+Q15208|Nucleus|
+Q15208|Cytoplasm|
+Q9Y2H1|Cytoplasm|
+Q9Y2H1|Cytoskeleton|
+Q9Y2H1|Membrane|
+Q8TDC3|Cytoplasm|9
+Q8TDC3|Nucleus|9
+Q8TDC3|Centrosome|2
+Q8TDC3|Synapse|3
+Q8TDC3|Presynaptic active zone|3
+Q8TDC3|Synaptic vesicle|3
+Q8IWQ3|Centrosome|
+Q8IWQ3|Perinuclear region|
+Q8IWQ3|Endoplasmic reticulum|
+Q14012|Cytoplasm|5
+Q14012|Nucleus|5
+Q8IU85|Cytoplasm|14
+Q8IU85|Nucleus|14
+Q96NX5|Cytoplasm|2
+Q96NX5|Golgi apparatus membrane|2
+Q96NX5|Cell membrane|2
+Q9UQM7|Synapse|5
+Q9UQM7|Postsynaptic density|5
+Q9UQM7|Dendritic spine|12
+Q9UQM7|Dendrite|12
+Q13554|Cytoskeleton|12
+Q13554|Centrosome|3
+Q13554|Sarcoplasmic reticulum membrane|12
+Q13554|Synapse|4
+Q13557|Sarcolemma|20
+Q13557|Sarcoplasmic reticulum membrane|20
+Q13555|Sarcoplasmic reticulum membrane|22
+Q16566|Cytoplasm|
+Q16566|Nucleus|
+Q8NCB2|Cell membrane|1
+Q8NCB2|Cytoplasmic vesicle membrane|1
+O14936|Nucleus|12
+O14936|Cytoplasm|12
+O14936|Cell membrane|12
+O14757|Nucleus|
+O14757|Cytoplasm|
+O14757|Centrosome|
+O96017|Nucleus|
+O96017|Nucleus|
+O96017|Nucleus|
+O96017|Nucleus|
+O96017|Nucleus|
+O96017|PML body|
+O96017|Nucleoplasm|
+P53355|Cytoplasm|
+P53355|Cytoskeleton|
+P53355|Cytoplasm|
+P53355|Cytoskeleton|
+Q9UIK4|Cytoplasm|
+Q9UIK4|Autophagosome lumen|
+O43293|Nucleus|15 17 26
+O43293|Cytoplasm|15 16 22 26
+O43293|Nucleus|19
+O43293|Cytoplasm|19
+O43293|Nucleus|19
+O43293|Cytoplasm|19
+Q8N568|Cytoskeleton|
+Q9C098|Cytoplasm|1
+Q9C098|Nucleus|1
+O60229|Cytoplasm|15
+O60229|Cytoskeleton|15
+P49137|Cytoplasm|35
+P49137|Nucleus|35
+Q16644|Nucleus|12 19
+Q16644|Cytoplasm|12 19
+Q8IW41|Cytoplasm|
+Q8IW41|Nucleus|
+Q9P0L2|Cell membrane|18
+Q9P0L2|Cytoskeleton|5
+Q9P0L2|Cytoplasm|19
+Q9P0L2|Dendrite|19
+Q7KZI7|Cell membrane|
+Q7KZI7|Cytoplasm|
+Q7KZI7|Lateral cell membrane|
+Q7KZI7|Cytoskeleton|
+Q7KZI7|Dendrite|35
+Q7KZI7|Cytoplasm|35
+P27448|Cell membrane|18
+P27448|Dendrite|19
+P27448|Cytoplasm|19
+Q96L34|Centrosome|9
+Q96L34|Microtubule organizing center|9
+Q96L34|Cilium basal body|16
+Q96L34|Cilium axoneme|16
+Q96L34|Cytoplasm|16 17
+Q96L34|Dendrite|17
+Q14680|Cell membrane|22 28
+Q9BUB5|Cytoplasm|
+Q9BUB5|Cytoplasm|
+Q9BUB5|Nucleus|
+Q9HBH9|PML body|
+Q9HBH9|Cytoplasm|
+Q15746|Cytoplasm|32
+Q15746|Lamellipodium|32
+Q15746|Cleavage furrow|20
+Q15746|Stress fiber|20
+Q9H1R3|Cytoplasm|
+Q32MK0|Cytoplasm|2
+O60285|Nucleus|15
+O60285|Cytoplasm|15
+Q5VST9|M line|32
+Q5VST9|Z line|32
+Q5VST9|M line|21
+Q5VST9|Z line|21
+Q5VST9|Sarcolemma|21
+Q5VST9|Nucleus|21
+Q96RG2|Cytoplasm|13
+Q96RG2|Nucleus|13
+P11309|Cytoplasm|
+P11309|Nucleus|
+P11309|Cell membrane|
+Q86V86|Cytoplasm|8
+Q6P2M8|Cytoplasm|1
+Q6P2M8|Nucleus|1
+Q13131|Cytoplasm|23
+Q13131|Nucleus|23
+P54646|Cytoplasm|7
+P54646|Nucleus|17
+Q15139|Cytoplasm|23
+Q15139|Cell membrane|23
+Q15139|trans-Golgi network|3
+Q9BZL6|Cytoplasm|23
+Q9BZL6|Cell membrane|9
+Q9BZL6|Nucleus|23
+Q9BZL6|trans-Golgi network|25
+O94806|Cytoplasm|18
+O94806|Membrane|18
+P11801|Golgi apparatus|
+P11801|Centrosome|
+P11801|Nucleus speckle|
+P11801|Endoplasmic reticulum membrane|
+P11801|Cell membrane|
+P11801|Cytoplasm|
+P57059|Cytoplasm|10 15
+P57059|Nucleus|10 15
+Q9H0K1|Cytoplasm|6
+Q9Y2K2|Cytoplasm|14
+Q9NRH2|Nucleus|4
+Q15772|Nucleus|
+Q15831|Nucleus|
+Q15831|Cytoplasm|
+Q15831|Membrane|4
+Q15831|Mitochondrion|
+Q15831|Nucleus|33
+Q15831|Cytoplasm|33
+Q9UEE5|Nucleus|11
+O94768|Nucleus|8
+O94768|Cell membrane|4
+O94768|Endoplasmic reticulum-Golgi intermediate compartment|4
+Q9BYT3|Perinuclear region|1
+Q8N2I9|Nucleus|4
+Q8N2I9|Cytoplasm|4
+Q92519|Cytoplasm|1
+Q92519|Cytoskeleton|1
+Q96RU7|Nucleus|12
+O75962|Cytoplasm|31
+O75962|Cell projection|9
+Q9BXA7|Cytoplasm|1
+Q9BXA7|Acrosome|1
+Q9BXA7|Flagellum|1
+Q96PF2|Cytoplasm|1
+Q96PF2|Centriole|7
+Q6SA08|Acrosome|1
+Q6SA08|Flagellum|1
+Q8WZ42|Cytoplasm|65
+Q8WZ42|Nucleus|49
+P48729|Cytoplasm|12
+P48729|Centrosome|12
+P48729|Kinetochore|12
+P48729|Nucleus speckle|18
+P48729|Cilium basal body|8
+Q8N752|Cytoplasm|1
+P48730|Cytoplasm|
+P48730|Nucleus|
+P48730|Centrosome|20
+P48730|Perinuclear region|
+P48730|Cell membrane|
+P48730|Spindle|
+P48730|Golgi apparatus|
+P49674|Cytoplasm|9
+P49674|Nucleus|9
+Q9HCP0|Cytoplasm|
+P78368|Cytoplasm|5
+Q9Y6M4|Cytoplasm|
+Q5TCY1|Cytoplasm|9
+Q6IQ55|Cilium|3
+Q6IQ55|Cilium basal body|3
+Q6IQ55|Centriole|
+Q6IQ55|Cytosol|
+Q6IQ55|Nucleus|
+Q99986|Cytoplasm|
+Q99986|Nucleus|
+Q99986|Spindle|11
+Q86Y07|Cytoplasm|
+Q86Y07|Endoplasmic reticulum membrane|11
+Q86Y07|Mitochondrion membrane|11
+Q86Y07|Nucleus envelope|6
+Q86Y07|Cytoplasm|11
+Q86Y07|Nucleus|11
+Q8IV63|Nucleus|9
+P06493|Nucleus|
+P06493|Cytoplasm|
+P06493|Mitochondrion|
+P06493|Centrosome|20
+P06493|Spindle|
+Q15131|Cilium basal body|7
+Q9UQ88|Cytoplasm|
+Q9UQ88|Nucleus|
+P21127|Cytoplasm|
+P21127|Nucleus|
+Q9NYV4|Nucleus|
+Q9NYV4|Nucleus speckle|
+Q14004|Nucleus speckle|16
+O94921|Cell membrane|
+O94921|Cytoplasm|
+O94921|Nucleus|
+Q00536|Cytoplasm|
+Q00536|Secretory vesicle|
+Q00536|Cell membrane|
+Q00536|Synaptosome|9
+P24941|Centrosome|
+P24941|Cajal body|
+P24941|Cytoplasm|
+P24941|Endosome|
+Q8IZL9|Nucleus|4
+Q8IZL9|Cytoplasm|1
+Q8IZL9|Cilium|1
+P11802|Cytoplasm|17
+P11802|Nucleus|17 23 29
+P11802|Nucleus membrane|17
+Q00535|Cytoplasm|
+Q00535|Cell membrane|
+Q00535|Perikaryon|
+Q00535|Lamellipodium|7
+Q00535|Growth cone|7
+Q00535|Postsynaptic density|7
+Q00535|Nucleus|
+Q00534|Cytoplasm|
+Q00534|Nucleus|
+Q00534|Ruffle|
+Q00534|Centrosome|31
+P50613|Nucleus|
+P50613|Cytoplasm|
+P50613|Perinuclear region|
+P49336|Nucleus|16
+P50750|Nucleus|
+P50750|Cytoplasm|
+P50750|PML body|
+Q00532|Cytoplasm|7
+Q00532|Nucleus|7
+Q92772|Cytoplasm|6
+Q92772|Nucleus|6
+Q8IVW4|Cytoplasm|2
+Q5MAI5|Cytoplasm|5
+O76039|Nucleus|16
+O76039|Cilium basal body|30
+O76039|Centrosome|30
+P49759|Nucleus|
+P49760|Nucleus|18
+P49760|Nucleus|20
+P49760|Nucleus speckle|20
+P49760|Nucleus speckle|20
+P49761|Nucleus|
+P49761|Cytoplasm|12
+P49761|Acrosome|12
+P49761|Nucleus speckle|
+Q9HAZ1|Nucleus|7
+Q13627|Nucleus|21 28
+Q13627|Nucleus speckle|11
+Q9Y463|Nucleus|
+Q92630|Cytoplasm|
+Q92630|Nucleus|
+O43781|Nucleus|5 7 10
+O43781|Cytoplasm|10
+O43781|Nucleus speckle|10
+O43781|Cytoplasmic granule|7 8 10
+O43781|Centrosome|10
+Q9NR20|Cytoplasm|5
+Q9NR20|Cytoplasm|7
+Q9NR20|Nucleus|7
+P49841|Cytoplasm|47
+P49841|Nucleus|
+P49841|Cell membrane|
+Q86Z02|Nucleus|11 12 14 15 17
+Q86Z02|Cytoplasm|11 14 15 17
+Q86Z02|Nucleus speckle|12
+Q9H2X6|PML body|39
+Q9H2X6|Cytoplasm|
+Q9H422|Cytoplasm|7
+Q9H422|Nucleus|7
+Q8NE63|Cytoplasm|1
+Q9UPZ9|Nucleus|7 10
+Q9UPZ9|Cytosol|2
+Q9UPZ9|Cilium|11
+Q9UPZ9|Cilium basal body|3
+Q9UPZ9|Cytoplasm|8
+P20794|Nucleus|
+P20794|Centrosome|
+P20794|Spindle|
+P20794|Midbody|
+P20794|Photoreceptor outer segment|1
+P20794|Photoreceptor inner segment|
+P28482|Spindle|20
+P28482|Nucleus|
+P28482|Centrosome|
+P28482|Cytoplasm|
+P28482|Caveola|22
+P53779|Cytoplasm|17
+P53779|Membrane|17
+P53779|Nucleus|17
+P53779|Mitochondrion|17
+Q15759|Cytoplasm|4
+Q15759|Nucleus|4
+P53778|Cytoplasm|
+P53778|Nucleus|
+P53778|Mitochondrion|
+Q16539|Cytoplasm|60
+Q16539|Nucleus|60
+Q8TD08|Cilium basal body|19
+Q8TD08|Tight junction|19
+Q8TD08|Centriole|19
+Q8TD08|Autophagosome|15
+Q8TD08|Golgi apparatus|16
+Q8TD08|Nucleus|11 13
+Q8TD08|Cytoplasm|11 13
+Q8TD08|Spindle|3
+P27361|Cytoplasm|
+P27361|Nucleus|
+P27361|Caveola|11
+P31152|Cytoplasm|3
+P31152|Nucleus|3
+Q16659|Cytoplasm|5
+Q16659|Nucleus|5
+Q13164|Cytoplasm|
+Q13164|Nucleus|
+Q13164|PML body|
+P45983|Cytoplasm|33
+P45983|Nucleus|33
+P45984|Cytoplasm|14
+P45984|Nucleus|14
+Q9UQ07|Cytoplasm|2
+Q9UQ07|Cilium|2
+Q9UQ07|Nucleus|2
+Q9UBE8|Nucleus|4
+Q9UBE8|Cytoplasm|4
+Q13523|Nucleus|
+Q96SB4|Cytoplasm|
+Q96SB4|Nucleus|
+Q96SB4|Nucleus matrix|
+Q96SB4|Microsome|
+Q96SB4|Cytoplasm|
+Q96SB4|Nucleus matrix|
+Q96SB4|Microsome|
+P78362|Cytoplasm|
+P78362|Nucleus|
+Q96PY6|Nucleus|9 24
+Q96PY6|Centrosome|6
+Q96PY6|Cytoplasm|12
+Q8NG66|Nucleus|5
+Q8NG66|Nucleolus|7
+P51955|Nucleus|
+P51955|Nucleolus|17
+P51955|Cytoplasm|
+P51955|Centrosome|15 36
+P51955|Spindle pole|
+P51955|Kinetochore|
+P51955|Centromere|8
+P51955|Cytoplasm|
+P51955|Nucleus|
+P51955|Centrosome|
+P51956|Cytoplasm|3
+P51956|Axon|3
+P51957|Cilium|10
+P51957|Cytoplasm|10
+Q9HC98|Cytoplasm|
+Q9HC98|Nucleus|
+Q9HC98|Nucleus speckle|
+Q9HC98|Centrosome|
+Q9HC98|Spindle pole|
+Q8TDX7|Nucleus|5
+Q8TDX7|Cytoplasm|12
+Q8TDX7|Spindle pole|13
+Q8TDX7|Centrosome|10 12
+Q86SG6|Cytoplasm|6
+Q86SG6|Cytoskeleton|2
+Q86SG6|Cilium|6
+Q86SG6|Centrosome|6
+Q8TD19|Cytoplasm|16
+Q8TD19|Nucleus|16
+P25092|Cell membrane|12
+P25092|Endoplasmic reticulum membrane|12
+Q02846|Photoreceptor outer segment membrane|29
+Q02846|Endoplasmic reticulum membrane|28
+P51841|Photoreceptor outer segment membrane|2
+P16066|Membrane|
+P20594|Cell membrane|14 18
+Q02750|Centrosome|14
+Q02750|Spindle pole body|14
+Q02750|Cytoplasm|12 19
+Q02750|Nucleus|19
+Q02750|Membrane|12
+P36507|Cytoplasm|14
+P36507|Membrane|14
+P45985|Cytoplasm|9
+P45985|Nucleus|9
+P52564|Nucleus|23
+P52564|Cytoplasm|23
+P52564|Cytoskeleton|23
+O14733|Nucleus|
+O14733|Cytoplasm|7
+Q16584|Centrosome|17
+Q12852|Cytoplasm|2
+Q12852|Cell membrane|2
+O43283|Cytoplasm|9
+O43283|Membrane|9
+Q99558|Cytoplasm|
+Q9Y2U5|Cytoplasm|16
+Q9Y2U5|Nucleus|16
+Q9NYL2|Cytoplasm|22
+Q9NYL2|Nucleus|22
+Q9Y6R4|Perinuclear region|4
+Q99683|Cytoplasm|
+Q99683|Endoplasmic reticulum|
+O43318|Cytoplasm|24
+O43318|Cell membrane|24
+P41279|Cytoplasm|16 20
+Q12851|Cytoplasm|5
+Q12851|Basolateral cell membrane|5
+Q12851|Golgi apparatus membrane|5
+O95819|Cytoplasm|23
+Q9Y4K4|Cytoplasm|6
+Q8N4C8|Cytoplasm|20 24
+Q8N4C8|Postsynaptic density|14
+Q8N4C8|Axon|14
+Q8N4C8|Dendrite|14
+Q8N4C8|Golgi apparatus|
+Q8NEV4|Cytoskeleton|
+Q8NEV4|Cytoplasm|9
+Q8NEV4|Filopodium tip|9
+Q8NEV4|Stereocilium|2
+Q8WXR4|Cytoskeleton|
+Q8WXR4|Stereocilium|1
+O95747|Cytoplasm|22
+Q13153|Cytoplasm|42 45
+Q13153|Focal adhesion|45
+Q13153|Cell membrane|45
+Q13153|Ruffle membrane|45
+Q13153|Invadopodium|45
+Q13153|Nucleoplasm|42
+Q13153|Chromosome|42
+Q13177|Cytoplasm|
+Q13177|Nucleus|
+Q13177|Perinuclear region|
+Q13177|Membrane|
+O75914|Cytoplasm|2
+O96013|Cytoplasm|24
+Q9P286|Mitochondrion|
+Q9P286|Cytoplasm|
+Q9P286|Nucleus|
+Q9NQU5|Cytoplasm|
+Q9NQU5|Nucleus|
+Q9H2G2|Cytoplasm|11
+O94804|Cell membrane|22
+Q9Y6E0|Cytoplasm|
+Q9Y6E0|Nucleus|
+Q9Y6E0|Membrane|
+O00506|Cytoplasm|5
+O00506|Golgi apparatus|5
+Q9P289|Cytoplasm|20 25
+Q9P289|Golgi apparatus|18 25
+Q13188|Cytoplasm|14
+Q13188|Nucleus|14
+Q9UEW8|Cytoplasm|14
+Q9UEW8|Nucleus|14
+Q13043|Cytoplasm|
+Q13043|Nucleus|
+Q7RTN6|Nucleus|6 7
+Q7RTN6|Cytoplasm|6 7
+Q9C0K7|Nucleus|5
+Q9C0K7|Cytoplasm|5
+Q7L7X3|Cytoplasm|14
+Q9UL54|Cytoplasmic vesicle membrane|26
+Q9UL54|Cytoskeleton|
+Q9UL54|Nucleus|
+Q9UL54|Dendrite|
+Q9H2K8|Cytoplasm|16
+Q9H2K8|Cell membrane|16
+Q9UKE5|Nucleus|
+Q9UKE5|Cytoplasm|
+Q9UKE5|Recycling endosome|
+Q9UKE5|Cytoskeleton|
+Q04771|Membrane|
+P36896|Cell membrane|1
+Q8NER5|Membrane|8
+P27037|Membrane|
+P37023|Cell membrane|23
+Q16671|Membrane|
+P36894|Cell membrane|5
+P36894|Cell surface|4
+O00238|Cell membrane|3
+O00238|Membrane|
+Q13873|Cell membrane|21
+P15056|Nucleus|19
+P15056|Cytoplasm|40
+P15056|Cell membrane|40
+Q13418|Focal adhesion|11 12
+Q13418|Cell membrane|
+Q13418|Lamellipodium|9
+Q13418|Sarcomere|11
+P51617|Cytoplasm|21
+P51617|Nucleus|21
+P51617|Lipid droplet|4
+Q9NWZ3|Cytoplasm|29
+Q8IVT5|Cytoplasm|17
+Q8IVT5|Membrane|17
+Q8IVT5|Cell membrane|9
+Q8IVT5|Ruffle membrane|9
+Q8IVT5|Endoplasmic reticulum membrane|17
+Q6VAB6|Cytoplasm|2
+Q6VAB6|Membrane|2
+P53667|Cytoplasm|26
+P53667|Nucleus|26
+P53667|Cytoskeleton|11 21
+P53667|Lamellipodium|7
+P53671|Cytoplasm|17
+P53671|Nucleus|17
+P53671|Spindle|15
+P53671|Cytoplasm|17
+P53671|Nucleus|17
+P53671|Cytoplasm|17
+P53671|Nucleus|17
+Q38SD2|Cytoplasm|4
+Q5S007|Cytoplasmic vesicle|37 39 59
+Q5S007|Perikaryon|44
+Q5S007|Golgi apparatus membrane|37 56
+Q5S007|Axon|44
+Q5S007|Dendrite|44 51
+Q5S007|Endoplasmic reticulum membrane|37 58
+Q5S007|Synaptic vesicle membrane|57
+Q5S007|Endosome|6
+Q5S007|Lysosome|44
+Q5S007|Mitochondrion outer membrane|33 37 44 65
+P04049|Cytoplasm|
+P04049|Cell membrane|
+P04049|Mitochondrion|
+P04049|Nucleus|
+Q13546|Cytoplasm|14
+Q13546|Cell membrane|15
+O43353|Cytoplasm|36
+Q9Y572|Cytosol|15
+Q9Y572|Cell membrane|2
+Q9Y572|Mitochondrion|21
+P57078|Cytoplasm|
+P57078|Membrane|1
+Q96S53|Nucleus|8
+P36897|Cell membrane|39 47
+P36897|Tight junction|24
+P36897|Cell surface|39
+P36897|Membrane raft|39
+P37173|Cell membrane|22 40
+P37173|Membrane raft|40
+Q59H18|Nucleus|4
+Q59H18|Cytoplasm|4
+Q6ZMQ8|Membrane|2
+Q6ZMQ8|Cytoplasm|7
+Q6ZMQ8|Perinuclear region|7
+P00519|Cytoskeleton|
+P00519|Nucleus|
+P00519|Mitochondrion|25
+P00519|Nucleus membrane|
+P42684|Cytoskeleton|
+Q9UM73|Cell membrane|25 39
+P30530|Cell membrane|31
+P51451|Cell membrane|1
+P51813|Cytoplasm|17
+Q06187|Cytoplasm|
+Q06187|Cell membrane|
+Q06187|Nucleus|
+P07333|Cell membrane|
+P41240|Cytoplasm|6
+P41240|Cell membrane|6
+Q08345|Cell membrane|
+Q08345|Cell membrane|
+Q08345|Secreted|41
+Q08345|Cell membrane|
+Q16832|Cell membrane|15 18 24
+P00533|Cell membrane|101 127 132 133
+P00533|Endoplasmic reticulum membrane|132
+P00533|Golgi apparatus membrane|
+P00533|Nucleus membrane|
+P00533|Endosome|101 132
+P00533|Endosome membrane|
+P00533|Nucleus|100 116 117
+P00533|Secreted|
+P21709|Cell membrane|16
+Q5JZY3|Cell membrane|10
+Q5JZY3|Cell membrane|10
+Q5JZY3|Secreted|10
+P29317|Cell membrane|32 37 39 42
+P29317|Ruffle membrane|37
+P29317|Lamellipodium membrane|37
+P29317|Focal adhesion|25
+P29320|Cell membrane|16
+P29320|Secreted|27
+P54764|Cell membrane|6
+P54764|Axon|6
+P54764|Dendrite|6
+P54764|Postsynaptic density membrane|6
+P54764|Early endosome|6
+P54764|Adherens junction|7
+P54756|Cell membrane|12
+P54756|Axon|4
+P54756|Dendrite|12 14
+Q9UF33|Membrane|1
+Q15375|Cell membrane|19
+P29322|Cell membrane|5
+P29322|Cell projection|5
+P29322|Early endosome membrane|5
+P54762|Cell membrane|20
+P54762|Early endosome membrane|20
+P54762|Dendrite|8
+P29323|Cell membrane|
+P29323|Axon|5
+P29323|Dendrite|5
+P54753|Cell membrane|11
+P54753|Dendrite|4
+P54760|Cell membrane|27 31
+O15197|Membrane|
+O15197|Secreted|18
+P04626|Cell membrane|56
+P04626|Early endosome|56
+P04626|Perinuclear region|
+P04626|Nucleus|
+P04626|Cytoplasm|
+P04626|Nucleus|
+P04626|Cytoplasm|
+P04626|Nucleus|
+P21860|Cell membrane|
+P21860|Secreted|
+Q15303|Cell membrane|11 20 22 26 27 29 33 34 39 41 46 52
+Q15303|Nucleus|33
+Q15303|Mitochondrion|33
+P16591|Cytoplasm|
+P16591|Cytoskeleton|
+P16591|Cell membrane|
+P16591|Cell projection|
+P16591|Cell junction|
+P16591|Membrane|
+P16591|Nucleus|
+P16591|Cell cortex|
+P07332|Cytosol|
+P07332|Cytoskeleton|
+P07332|Cell membrane|
+P07332|Cytoplasmic vesicle|
+P07332|Golgi apparatus|
+P07332|Focal adhesion|
+P11362|Cell membrane|
+P11362|Nucleus|
+P11362|Cytosol|
+P11362|Cytoplasmic vesicle|
+P21802|Cell membrane|
+P21802|Golgi apparatus|
+P21802|Cytoplasmic vesicle|
+P21802|Cell membrane|
+P21802|Cell membrane|
+P21802|Secreted|
+P21802|Secreted|
+P22607|Cell membrane|
+P22607|Cytoplasmic vesicle|
+P22607|Endoplasmic reticulum|
+P22607|Cell membrane|4
+P22607|Secreted|
+P22607|Cell membrane|4
+P22455|Cell membrane|
+P22455|Endosome|
+P22455|Endoplasmic reticulum|
+P22455|Secreted|
+P22455|Cytoplasm|18
+P09769|Cell membrane|18
+P09769|Cell membrane|
+P09769|Ruffle membrane|
+P09769|Cytosol|
+P09769|Cytoskeleton|
+P09769|Mitochondrion inner membrane|2
+P09769|Mitochondrion intermembrane space|2
+P17948|Cell membrane|
+P17948|Endosome|
+P17948|Secreted|37
+P17948|Secreted|
+P17948|Secreted|
+P17948|Cytoplasm|50
+P17948|Cytoplasm|50
+P17948|Cytoplasm|50
+P36888|Membrane|
+P36888|Endoplasmic reticulum lumen|
+P35916|Cell membrane|31 37
+P35916|Cytoplasm|19 31
+P35916|Nucleus|19
+P35916|Cell membrane|
+P35916|Cell membrane|
+P35916|Secreted|
+P35916|Cytoplasm|
+P42685|Cytoplasm|11
+P42685|Nucleus|11
+P06241|Cytoplasm|
+P06241|Nucleus|
+P06241|Cell membrane|
+P08631|Lysosome|
+P08631|Membrane|
+P08631|Podosome membrane|
+P08631|Cytosol|
+P08631|Cell membrane|29
+P08631|Caveola|29
+P08631|Focal adhesion|29
+P08631|Cytoskeleton|29
+P08631|Golgi apparatus|29
+P08631|Cytoplasmic vesicle|29
+P08631|Lysosome|29
+P08631|Nucleus|29
+P08631|Secretory vesicle|
+P08631|Cytosol|
+P08069|Cell membrane|33
+P06213|Cell membrane|20
+P06213|Late endosome|20
+P06213|Lysosome|20
+P14616|Membrane|
+Q08881|Cytoplasm|24
+Q08881|Nucleus|11
+P23458|Endomembrane system|
+O60674|Endomembrane system|14
+O60674|Cytoplasm|34
+O60674|Nucleus|34
+P52333|Endomembrane system|4
+P52333|Cytoplasm|4
+P35968|Cell junction|14
+P35968|Endoplasmic reticulum|57
+P35968|Cell membrane|
+P35968|Cytoplasm|
+P35968|Nucleus|
+P35968|Cytoplasmic vesicle|
+P35968|Early endosome|
+P35968|Secreted|66
+P35968|Secreted|
+P10721|Cell membrane|
+P10721|Cell membrane|
+P10721|Cytoplasm|
+P06239|Cytoplasm|26
+P06239|Cell membrane|26
+Q8IWU2|Membrane|10
+Q96Q04|Membrane|1
+Q96Q04|Axon|1
+Q96Q04|Dendrite|1
+Q96Q04|Golgi apparatus membrane|1
+P29376|Membrane|
+P07948|Cell membrane|
+P07948|Nucleus|
+P07948|Cytoplasm|
+P07948|Perinuclear region|
+P07948|Golgi apparatus|
+P07948|Membrane|62
+P42679|Cytoplasm|12
+P42679|Membrane|12
+Q12866|Membrane|6
+P08581|Membrane|
+P08581|Secreted|
+Q04912|Membrane|
+O15146|Postsynaptic cell membrane|13
+P04629|Cell membrane|34 36 37 47 51
+P04629|Early endosome membrane|16
+P04629|Late endosome membrane|16
+P04629|Recycling endosome membrane|16
+Q16620|Cell membrane|19
+Q16620|Endosome membrane|9
+Q16620|Early endosome membrane|9
+Q16620|Axon|10
+Q16620|Dendrite|10
+Q16620|Perinuclear region|10
+Q16620|Postsynaptic density|9
+Q16288|Membrane|
+P16234|Cell membrane|18 34 39
+P16234|Cilium|5
+P16234|Golgi apparatus|5
+P09619|Cell membrane|
+P09619|Cytoplasmic vesicle|
+P09619|Lysosome lumen|
+Q05397|Focal adhesion|
+Q05397|Cell membrane|
+Q05397|Cell cortex|
+Q05397|Cytoskeleton|
+Q05397|Centrosome|14
+Q05397|Nucleus|
+Q14289|Cytoplasm|
+Q14289|Perinuclear region|
+Q14289|Cell membrane|
+Q14289|Focal adhesion|
+Q14289|Lamellipodium|
+Q14289|Cell cortex|
+Q14289|Nucleus|
+Q13882|Cytoplasm|
+Q13882|Nucleus|
+Q13882|Ruffle|
+Q13882|Membrane|8
+Q13308|Membrane|11
+Q13308|Cell junction|11
+P07949|Cell membrane|40 52 54 59
+P07949|Endosome membrane|40 54
+Q01973|Membrane|12
+Q01973|Axon|3
+Q01974|Cell membrane|2
+P08922|Cell membrane|15
+P34925|Membrane|1
+P34925|Nucleus|1
+P34925|Cytoplasm|1
+P12931|Cell membrane|64
+P12931|Mitochondrion inner membrane|26
+P12931|Nucleus|65
+P12931|Cytoskeleton|64
+P12931|Perinuclear region|43
+Q9H3Y6|Cytoplasm|6 7
+Q6J9G0|Membrane|13
+P43405|Cell membrane|41
+P43405|Cytosol|41
+P42680|Cytoplasm|
+P42680|Cell membrane|
+P42680|Cytoskeleton|
+Q02763|Cell membrane|31 32 33 41
+Q02763|Cell junction|31 32 41
+Q02763|Focal adhesion|50
+Q02763|Cytoskeleton|
+Q02763|Secreted|16
+P35590|Cell membrane|9 11
+Q13470|Cytoplasm|11
+Q13470|Membrane|11
+Q07912|Cell membrane|
+Q07912|Nucleus|
+Q07912|Endosome|
+Q07912|Adherens junction|9
+Q07912|Cytoplasmic vesicle membrane|
+Q07912|Clathrin-coated vesicle|
+Q07912|Clathrin-coated pit|
+Q07912|Perinuclear region|33
+P42681|Cytoplasm|12
+P42681|Nucleus|12
+P42681|Cell membrane|12
+Q06418|Cell membrane|
+P07947|Cell membrane|
+P07947|Centrosome|
+P07947|Cytosol|
+P43403|Cytoplasm|47
+P43403|Cell membrane|47
+Q2M2I8|Cell membrane|16
+Q2M2I8|Clathrin-coated pit|17
+Q2M2I8|Presynapse|17
+O14965|Centrosome|25 26 43 48 54 62 64 66 67 73
+O14965|Spindle pole|25 26 48 53 67 69 73 75
+O14965|Cilium basal body|15
+O14965|Centriole|15
+O14965|Neuron projection|15
+Q96GD4|Nucleus|
+Q96GD4|Chromosome|
+Q96GD4|Centromere|
+Q96GD4|Spindle|
+Q96GD4|Midbody|
+Q9UQB9|Nucleus|
+Q9UQB9|Chromosome|
+Q9UQB9|Centromere|15
+Q9UQB9|Spindle|9
+Q9NSY1|Nucleus|15
+O43683|Nucleus|
+O43683|Kinetochore|
+O60566|Cytoplasm|
+O60566|Nucleus|
+O60566|Kinetochore|
+O60566|Centrosome|
+Q8N5S9|Cytoplasm|6
+Q8N5S9|Nucleus|6
+Q96RR4|Nucleus|16
+Q96RR4|Cytoplasm|16
+Q96RR4|Neuron projection|16
+O00311|Nucleus|
+O15111|Cytoplasm|9
+O15111|Nucleus|9
+P68400|Nucleus|20
+Q6XUX3|Cytoplasm|6 7
+Q6XUX3|Cell membrane|1
+Q6XUX3|Apical cell membrane|7
+Q6XUX3|Basolateral cell membrane|7
+Q6XUX3|Cell junction|1
+Q9BQI3|Cytoplasm|1
+P19525|Cytoplasm|
+P19525|Nucleus|
+P19525|Perinuclear region|
+Q9NZJ5|Endoplasmic reticulum membrane|
+Q9P2K8|Cytoplasm|11
+O75460|Endoplasmic reticulum membrane|28
+Q76MJ5|Endoplasmic reticulum membrane|6
+O14976|Perinuclear region|19
+O14976|trans-Golgi network|19
+O14976|Focal adhesion|23
+Q8TF76|Nucleus|14
+Q8TF76|Chromosome|14
+Q8TF76|Spindle|14
+O14920|Cytoplasm|44
+O14920|Nucleus|44
+O14920|Membrane raft|35
+Q14164|Cytoplasm|22
+Q14164|Nucleus|
+Q14164|PML body|15
+Q8NB16|Cytoplasm|18
+Q8NB16|Cell membrane|18 20
+Q9UHY1|Cell cortex|13
+Q9UHY1|Endomembrane system|13
+Q9UHY1|Lamellipodium|13
+Q9NSY0|Cytoplasm|2
+Q58A45|P-body|3 4 7
+Q8N165|Nucleus|3
+Q9H792|Cytoskeleton|9 10
+Q9H792|Focal adhesion|9 10
+Q99570|Late endosome|7
+Q99570|Autophagosome|18
+Q99570|Membrane|18
+Q9BXM7|Mitochondrion outer membrane|9 29 30 33 40
+Q9BXM7|Mitochondrion inner membrane|2
+Q9BXM7|Mitochondrion|35
+Q9BXM7|Cytosol|30 33 35
+Q504Y2|Secreted|4
+Q504Y2|Golgi apparatus|1
+Q99640|Endoplasmic reticulum membrane|15
+Q99640|Golgi apparatus membrane|15
+P53350|Nucleus|
+P53350|Kinetochore|
+P53350|Centrosome|31 80
+P53350|Spindle|63 84
+P53350|Midbody|84
+Q9NYY3|Centriole|12 15
+Q9NYY3|Dendrite|5
+Q9H4B4|Cytoplasm|
+Q9H4B4|Nucleus|
+Q9H4B4|Nucleolus|
+Q9H4B4|Golgi apparatus|
+Q9H4B4|Centrosome|
+O00444|Centriole|26 28 29
+O00444|Nucleolus|9
+O00444|Cleavage furrow|
+Q496M5|Nucleolus|1
+Q496M5|Cytoplasm|3
+Q9H5K3|Endoplasmic reticulum membrane|9
+Q86YV5|Cytoplasm|7
+Q86YV5|Focal adhesion|12
+Q86YV5|Nucleus|8
+Q7Z7A4|Cytoplasm|6
+Q7Z7A4|Cell membrane|6
+Q05823|Cytoplasm|9
+Q05823|Mitochondrion|9
+Q96S38|Cytoplasm|7 8
+Q96S38|Membrane|7
+Q96S38|Early endosome|8
+Q52WX2|Cytoplasm|1
+Q96KG9|Centrosome|10
+Q96KG9|Endoplasmic reticulum-Golgi intermediate compartment|10
+Q96KG9|cis-Golgi network|10
+Q96KG9|Cytoplasm|
+Q96KG9|Cytoplasm|
+Q96KG9|Cytoplasm|
+Q96KG9|Centrosome|
+Q96KG9|Nucleus|7
+Q6P3W7|Perinuclear region|
+Q6P3W7|Clathrin-coated vesicle|
+Q6P3W7|trans-Golgi network membrane|
+Q6P3W7|Endosome membrane|
+Q8IZE3|Cytoplasm|4
+Q8IZE3|Golgi apparatus|4
+Q8IZE3|Lamellipodium|4
+O75716|Perinuclear region|
+O75716|Membrane|2
+Q8WU08|Cell membrane|
+Q8TDR2|Nucleus|
+Q8TDR2|Nucleolus|
+Q8TDR2|Cytoplasm|
+Q9NRP7|Cytoplasm|6
+Q9NRP7|Nucleus|6
+Q8TEA7|Cytoplasm|10 11
+Q8TEA7|Spindle|11
+Q8TEA7|Midbody|11
+Q9UHD2|Cytoplasm|26 48 67
+Q8IWB6|Cytoplasm|2
+Q8IWB6|Midbody|2
+Q8IWB6|Kinetochore|2
+Q9UKI8|Nucleus|9 10 11 16
+Q86UE8|Nucleus|
+Q86UE8|Perinuclear region|
+Q86UE8|Cytoskeleton|
+Q96S44|Cytoplasm|13
+Q96S44|Nucleus|11 12 13
+Q8TAS1|Nucleus|7
+O75385|Cytosol|10
+O75385|Preautophagosomal structure|10
+Q8IYT8|Cytoplasmic vesicle membrane|9
+Q6PHR2|Cytoplasm|7 8
+P30291|Nucleus|
+P0C1S8|Nucleus|8 10
+Q9H4A3|Cytoplasm|17
+Q9Y3S1|Cytoplasm|11 12
+Q9Y3S1|Cell membrane|12
+Q9BYP7|Cytoplasm|20
+Q96J92|Tight junction|4
+Q86TW2|Secreted|7
+Q7Z695|Membrane|4
+Q3MIX3|Membrane|3
+Q8NI60|Mitochondrion|4 14
+Q8NI60|Membrane|3
+Q96D53|Mitochondrion membrane|4
+Q96D53|Cytosol|4
+Q96D53|Cell membrane|4
+Q96QP1|Cytosol|11
+Q86TB3|Basolateral cell membrane|8
+Q96L96|Nucleus|1
+Q9BX84|Cell membrane|8
+Q96QT4|Membrane|15
+Q14296|Mitochondrion matrix|4
+O14874|Mitochondrion matrix|
+O14874|Mitochondrion|7
+Q15118|Mitochondrion matrix|12
+Q15119|Mitochondrion matrix|
+Q15120|Mitochondrion matrix|
+Q16654|Mitochondrion matrix|
+Q13315|Nucleus|70 71
+Q13315|Cytoplasmic vesicle|70 71
+Q13535|Nucleus|12 16 17 23 27 34 37 46
+Q13535|PML body|4
+Q13535|Chromosome|4
+P42345|Endoplasmic reticulum membrane|29
+P42345|Golgi apparatus membrane|29
+P42345|Mitochondrion outer membrane|22 29
+P42345|Lysosome|39 45 71
+P42345|Cytoplasm|22 39
+P42345|PML body|16
+P42345|Microsome membrane|76
+P42345|Lysosome membrane|73
+P42338|Cytoplasm|12
+P42338|Nucleus|12
+O00329|Cytoplasm|17
+P48736|Cytoplasm|23
+P48736|Cell membrane|23
+P78527|Nucleus|21 27 43
+P78527|Nucleolus|43
+Q96Q15|Nucleus|15
+Q96Q15|Cytoplasm|15
+Q9BRS2|Cytosol|6
+Q9BVS4|Cytoplasm|15 17
+O14730|Cytoplasm|8
