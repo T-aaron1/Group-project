@@ -31,26 +31,97 @@ bs_data.uniprot.entry.findAll('comment')[0].findAll('text')[0]['evidence']
 bs_data.uniprot.entry.findAll('comment')[0].findAll('text')[0].text
 
 
+
+
+
+
+
+##########################
+# ensembl
+
+import requests
+
+direction = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/'
+file_csv = 'kinase_ensembl.csv'
+file_gene_sequence = 'kinase_gene_information.csv'
+
+INFILE = open(direction + file_csv, 'r')
+INFILE.readline()
+#uniprot_id|ensembl_gene_id|ensembl_transcript_id|ensembl_translation_id\n
+OUTFILE_GENE = open(direction + file_gene_sequence, 'w')
+
+OUTFILE_GENE.write('uniprot|ensembl_id|genome_starts|genome_ends|genome_sequence\n')
+
+separator = '|'
+ensembl_id_list  = []
+
+for line in INFILE :
+    line = line.strip().split('|')
+    ensembl_id = line[1]
+    if ensembl_id not in ensembl_id_list:
+        ddict = {}
+        ddict[line[0]] = line[1]
+        ensembl_id_list.append(ddict)
+
+
+for entry in ensembl_id_list:
+    uniprot = [*entry][0]
+    ensembl_id = entry[uniprot]
+    print(ensembl_id)
+    server = "https://rest.ensembl.org/sequence/id/{}".format(ensembl_id)
+    fasta = requests.get(server, headers={ "Content-Type" : "text/x-fasta"})
+    header = fasta.text.split('\n')[0]
+    genome_starts = header.split(':')[3]
+    genome_ends = header.split(':')[4]
+    genome_sequence_request = requests.get(server+ext, headers={ "Content-Type" : "text/plain"})
+    genome_sequence = genome_sequence_request.text.rstrip()
+    text_out_list = [uniprot,ensembl_id, genome_starts, genome_ends, genome_sequence]
+    text_output = '|'.join(text_out_list) + '\n'
+    OUTFILE_GENE.write(text_output)
+
+OUTFILE_GENE.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ############################################################################
 
-data = get_uniprot_data('P31749')
+###################################################################################
+###################################################################################
+###################################################################################
+###################################################################################
+###################################################################################
+###  KINASE_FUNCTION_REFS, KINASE_FUNCTION, REACTIONS_ID NOT CHANGING
 
-uniprot = data.uniprot.entry.findAll('accession')[0].text
-data.uniprot.entry.findAll('name').findAll('')
-bla = data.findAll('comment')[0]
-bla
-data.findAll('reaction')[0]['type']
-data.findAll('comment')[1].findAll('text')[0].text
-[0]['evidence']
-
-
-###################################################################################
-###################################################################################
-###################################################################################
-###################################################################################
-###################################################################################
-### KINASE_UNIPROT_FULL_REF, KINASE_FUNCTION_REFS, KINASE_FUNCTION, REACTIONS_ID NOT CHANGING
-
+# files to create
 file_kinase_function = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_function_uniprotxml.csv'
 file_kinase_function_refs = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_function_refs_uniprotxml.csv'
 file_kinase_reactions = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_reactions_uniprotxml.csv'
@@ -61,8 +132,7 @@ file_kinase_diseases = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/c
 file_kinase_subcell_loc = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_subcell_loc_uniprotxml.csv'
 file_kinase_subcell_loc_text = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_subcell_loc_text_uniprotxml.csv'
 
-
-
+# open all files
 OUTFILE_FUNCTION = open(file_kinase_function, 'w')
 OUTFILE_FUNCTION_REFS = open(file_kinase_function_refs, 'w')
 OUTFILE_DISEASES = open(file_kinase_diseases, 'w')
@@ -75,12 +145,13 @@ OUTFILE_kinase_subcell_loc_text = open(file_kinase_subcell_loc_text, 'w')
 
 
 ## test
-csvFile =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_list_uniprotxml.csv'
+csvFile =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_list.csv'
 INFILE = open(csvFile, 'r')
 counter = 1
 
 print(INFILE.readline())
 
+# list of errors
 error_get_prot_function = []
 error_get_diseases= []
 error_get_kinase_isoforms= []
@@ -88,6 +159,20 @@ error_get_reactions= []
 error_get_full_references= []
 error_get_subcell_loc= []
 
+# write the headers
+OUTFILE_FUNCTION.write('uniprot|prot_function' +'\n')
+OUTFILE_FUNCTION_REFS.write('uniprot|item' + '\n')
+OUTFILE_DISEASES.write('uniprot|tmp_refs|disease_id|disease_name|eheaderect_text|disease_description' + '\n')
+OUTFILE_kinase_isoforms.write('uniprot|tmp_iso_id' + '\n')
+OUTFILE_kinase_reactions.write('id_react_refs|reaction_text' + '\n')
+OUTFILE_kinase_reactions_refs.write('ref_item|ref_id' + '\n')
+OUTFILE_kinase_references.write('uniprot|reference_id|pub_type|pub_date|pub_name|pub_vol|pub_pages_first|pub_pages_last|pub_title|aut_text|pub_dbref_text' + '\n')
+OUTFILE_kinase_subcell_loc.write('uniprot|subcell_location|subcell_refs' + '\n')
+OUTFILE_kinase_subcell_loc_text.write('uniprot|subcell_aditional_text|subcell_aditional_text_refs' + '\n')
+
+# run all the functions defined bellow to
+#  get and extract the data
+# try/except to handle non-existent information
 for line in INFILE:
     line = line.rstrip()
     tmp_list = line.split(',')
@@ -131,9 +216,7 @@ for line in INFILE:
     counter += 1
 
 
-
-
-
+# close files
 OUTFILE_FUNCTION_REFS.close()
 OUTFILE_FUNCTION.close()
 OUTFILE_DISEASES.close()
@@ -146,24 +229,6 @@ OUTFILE_kinase_subcell_loc_text.close()
 
 
 
-### muchos errores, especialmente en get_full_references,
-###   algunas veces en: get_subcell_loc, get_prot_function, get_reactions
-### Q8TD19:
-# 218:  Q8TD19
-# !! issue: Q8TD19: get_reactions
-# !! issue: Q8TD19: get_full_references
-# !! issue: Q8TD19: get_subcell_loc
-# 204:  Q13523
-# !! issue: Q13523: get_prot_function
-# !! issue: Q13523: get_reactions
-# !! issue: Q13523: get_full_references
-# !! issue: Q13523: get_subcell_loc
-# 202:  Q9UQ07
-# !! issue: Q9UQ07: get_full_references
-# !! issue: Q9UQ07: get_subcell_loc
-# 292:  P15056
-# !! issue: P15056: get_full_references
-
 
 ###################################################################################
 ###################################################################################
@@ -171,8 +236,7 @@ OUTFILE_kinase_subcell_loc_text.close()
 ###################################################################################
 ###################################################################################
 # functions
-
-
+# comments in all functions to point output_file, run the function, close_output_file
 
 def get_uniprot_data(accession):
     ''' get data from uniprot api. The data is in xml. This uses bs4 BeautifulSoup to parse it
@@ -193,15 +257,9 @@ def get_uniprot_data(accession):
     bs_data = BeautifulSoup(requested_xml.content)
     return bs_data
 
-
-
-
-
-# @@@@@@
 # unique values per prot
 ###########################################
 ## function
-
 
 #file_kinase_function = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_function_uniprotxml.csv'
 #file_kinase_function_refs = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_function_refs_uniprotxml.csv'
@@ -217,9 +275,11 @@ def get_prot_function(bs_data, OUTFILE_FUNCTION, OUTFILE_FUNCTION_REFS):
             prot_function = comment.findAll('text')[0].text
             text_out_list = [uniprot, prot_function]
             function_text_output = '|'.join(text_out_list) + '\n'
-            print(function_text_output)
             OUTFILE_FUNCTION.write(function_text_output)
-            prot_function_refs = comment.findAll('text')[0]['evidence']
+            try:
+                prot_function_refs = comment.findAll('text')[0]['evidence']
+            except:
+                prot_function_refs = ''
             prot_function_refs_list += prot_function_refs.split()
     for item in prot_function_refs_list:
         uniprot = data.uniprot.entry.findAll('accession')[0].text
@@ -232,13 +292,9 @@ def get_prot_function(bs_data, OUTFILE_FUNCTION, OUTFILE_FUNCTION_REFS):
 #OUTFILE_FUNCTION_REFS.close()
 #OUTFILE_FUNCTION.close()
 
-# @@@@@@@@@@@@
 # several
-
-
 ###########################################
 ## diseases
-
 
 #file_kinase_diseases = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_diseases_uniprotxml.csv'
 
@@ -266,20 +322,22 @@ def get_diseases(bs_data, OUTFILE):
             except:
                 disease_name = ''
             try:
-                effect_text = comment.findAll('text')[0].text
+                eheaderect_text = comment.findAll('text')[0].text
             except:
-                effect_text = ''
+                eheaderect_text = ''
             try:
                 disease_description = disease_info.findAll('description')[0].text
             except:
                 disease_description = ''
-            text_out_list = [uniprot, tmp_refs, disease_id, disease_name, effect_text, disease_description]
+            text_out_list = [uniprot, tmp_refs, disease_id, disease_name, eheaderect_text, disease_description]
             text_output = '|'.join(text_out_list) + '\n'
             OUTFILE.write(text_output)
 
 #get_diseases(data, OUTFILE = OUTFILE_DISEASES)
 
 #OUTFILE_DISEASES.close()
+
+
 
 ###########################################
 ## isoforms
@@ -304,6 +362,8 @@ def get_kinase_isoforms(bs_data, OUTFILE):
 #
 # OUTFILE_kinase_isoforms.close()
 
+
+
 ###########################################
 ## catalytic activity
 
@@ -315,6 +375,7 @@ def get_kinase_isoforms(bs_data, OUTFILE):
 
 
 def get_reactions(bs_data, OUTFILE, OUTFILE_REFS):
+    counter = 1
     reaction_text_refs_list = []
     reaction_list = data.findAll('reaction')
     reaction_refs_ids = []
@@ -323,17 +384,22 @@ def get_reactions(bs_data, OUTFILE, OUTFILE_REFS):
         id_react_refs = uniprot + '_' +str(counter)
         reaction_refs_ids.append(id_react_refs)
         reaction_text = item.findAll('text')[0].text
-        tmp_refs_list = item['evidence']
+        try:
+            tmp_refs_list = item['evidence']
+        except:
+            tmp_refs_list = ''
         reaction_text_refs_list.append(tmp_refs_list.split())
         text_out_list = [id_react_refs, reaction_text]
         text_output = '|'.join(text_out_list) + '\n'
         OUTFILE.write(text_output)
+        counter += 1
     for i in range(len(reaction_refs_ids)):
         ref_id = reaction_refs_ids[i]
         refs_list = reaction_text_refs_list[i]
         for ref_item in refs_list:
             text_out = ref_item + '|' + ref_id + '\n'
             OUTFILE_REFS.write(text_out)
+
 
 # get_reactions(data, OUTFILE_kinase_reactions, OUTFILE_kinase_reactions_refs)
 #
@@ -344,13 +410,12 @@ def get_reactions(bs_data, OUTFILE, OUTFILE_REFS):
 ###########################################
 ## references
 
-
 # file_kinase_references = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_uniprot_full_references_uniprotxml.csv'
 #
 # OUTFILE_kinase_references = open(file_kinase_references, 'w')
 
 def get_full_references(bs_data, OUTFILE):
-    for reference in daaata: #data.findAll('reference'):
+    for reference in data.findAll('reference'):
         uniprot = data.uniprot.entry.findAll('accession')[0].text
         reference_id = reference['key']
         ref_data = reference.findAll('citation')[0]
@@ -409,20 +474,8 @@ def get_full_references(bs_data, OUTFILE):
 # OUTFILE_kinase_references.close()
 
 
-
-
-
-
-
-
-
-
-
-
 ###########################################
 ## subcellular location
-
-
 
 # file_kinase_subcell_loc = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_subcell_loc_uniprotxml.csv'
 # file_kinase_subcell_loc_text = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_subcell_loc_text_uniprotxml.csv'
@@ -435,21 +488,30 @@ def get_subcell_loc(bs_data, OUTFILE, OUTFILE_TEXT):
         uniprot = data.uniprot.entry.findAll('accession')[0].text
         if comment['type'] == 'subcellular location':
             subcell_list = comment.findAll('subcellularlocation')
+#            print(subcell_list)
             for item in subcell_list:
-                info = item.findAll('location')[0]
-                try:
-                    subcell_refs = info['evidence']
-                except:
-                    subcell_refs = ''
-                subcell_location = info.text
-                text_out_list = [uniprot, subcell_location, subcell_refs]
-                text_output = '|'.join(text_out_list) +'\n'
+                info_list = item.findAll('location')
+                for info in info_list:
+                    try:
+                        subcell_refs = info['evidence']
+                    except:
+                        subcell_refs = ''
+                    subcell_location = info.text
+                    text_out_list = [uniprot, subcell_location, subcell_refs]
+                    text_output = '|'.join(text_out_list) +'\n'
+#                    print(text_output)
                 OUTFILE.write(text_output)
-            subcell_aditional_text = comment.findAll('text')[0].text
-            subcell_aditional_text_refs = comment.findAll('text')[0]['evidence']
+            try:
+                subcell_aditional_text = comment.findAll('text')[0].text
+            except:
+                subcell_aditional_text = ''
+            try:
+                subcell_aditional_text_refs = comment.findAll('text')[0]['evidence']
+            except:
+                subcell_aditional_text_refs = ''
             text_out_list = [uniprot, subcell_aditional_text, subcell_aditional_text_refs]
             text_output = '|'.join(text_out_list) + '\n'
-            print(text_output)
+#            print(text_output)
             OUTFILE_TEXT.write(text_output)
 
 # get_subcell_loc(data, OUTFILE_kinase_subcell_loc, OUTFILE_kinase_subcell_loc_text)
