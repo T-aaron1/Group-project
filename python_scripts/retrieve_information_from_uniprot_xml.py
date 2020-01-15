@@ -1,16 +1,20 @@
 # python3
 
+#####################################################################
+#
 
 # files to create
-file_kinase_function = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_function_uniprotxml.csv'
-file_kinase_function_refs = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_function_refs_uniprotxml.csv'
-file_kinase_reactions = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_reactions_uniprotxml.csv'
-file_kinase_reactions_refs = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_reactions_refs_uniprotxml.csv'
-file_kinase_references = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_uniprot_full_references_uniprotxml.csv'
-file_kinase_isoforms = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_isoforms_uniprotxml.csv'
-file_kinase_diseases = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_diseases_uniprotxml.csv'
-file_kinase_subcell_loc = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_subcell_loc_uniprotxml.csv'
-file_kinase_subcell_loc_text = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_subcell_loc_text_uniprotxml.csv'
+
+place = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/isoforms/'
+file_kinase_function =place + 'kinase_function_uniprotxml.csv'
+file_kinase_function_refs =place + 'kinase_function_refs_uniprotxml.csv'
+file_kinase_reactions =place + 'kinase_reactions_uniprotxml.csv'
+file_kinase_reactions_refs =place + 'kinase_reactions_refs_uniprotxml.csv'
+file_kinase_references =place + 'kinase_uniprot_full_references_uniprotxml.csv'
+file_kinase_isoforms =place + 'kinase_isoforms_uniprotxml.csv'
+file_kinase_diseases =place + 'kinase_diseases_uniprotxml.csv'
+file_kinase_subcell_loc =place + 'kinase_subcell_loc_uniprotxml.csv'
+file_kinase_subcell_loc_text =place + 'kinase_subcell_loc_text_uniprotxml.csv'
 
 # open all files
 OUTFILE_FUNCTION = open(file_kinase_function, 'w')
@@ -25,11 +29,14 @@ OUTFILE_kinase_subcell_loc_text = open(file_kinase_subcell_loc_text, 'w')
 
 
 ## test
-csvFile =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_list.csv'
+csvFile = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_isoforms_uniprotxml.csv'
 INFILE = open(csvFile, 'r')
 counter = 1
 
 print(INFILE.readline())
+#uniprot|tmp_iso_id
+separator = '|'
+column_of_interest = 1
 
 # list of errors
 error_get_prot_function = []
@@ -55,8 +62,8 @@ OUTFILE_kinase_subcell_loc_text.write('uniprot|subcell_aditional_text|subcell_ad
 # try/except to handle non-existent information
 for line in INFILE:
     line = line.rstrip()
-    tmp_list = line.split(',')
-    uniprot = tmp_list[3]
+    tmp_list = line.split(separator)
+    uniprot = tmp_list[column_of_interest]
     text = str(counter)+ ':  '+ uniprot
     print(text)
     ## get data
