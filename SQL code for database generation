@@ -5,6 +5,9 @@ CREATE TABLE kinase_list (
   mass_in_da INT,
   family VARCHAR(300) NOT NULL,
   name_human VARCHAR(300) NOT NULL,
+  gemome_starts VARCHAR(300) NOT NULL,
+  gemome_ends_protein VARCHAR(300) NOT NULL,
+  gemome_ends_protein VARCHAR(10000) NOT NULL,
   PRIMARY KEY (accession_number),
   FOREIGN KEY (family) REFERENCES family(family_name)
   );
