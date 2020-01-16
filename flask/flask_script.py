@@ -87,7 +87,8 @@ def documentation_api():
 
 @app.route('/documentation/stats')
 def documentation_stats():
-    return render_template('documentation_stats.html')
+    x = [1,2,3]
+    return render_template('documentation_stats.html', x = x, y = x)
 
 
 
@@ -100,7 +101,7 @@ def documentation_stats():
 # this could be done also to generate a csv
 
 @app.route('/kinase/<kin_name>.fasta')
-def ajax_ddl(kin_name):
+def fasta_protein(kin_name):
     sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
     divide_each = 10  # modify: change size !!
     seq_size = len(sequence)
@@ -116,7 +117,7 @@ def ajax_ddl(kin_name):
 
 
 @app.route('/kinase/gene/<kin_name>.fasta')
-def ajax_ddl(kin_name):
+def fasta_gene(kin_name):
     sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
     divide_each = 10  # modify: change size !!
     seq_size = len(sequence)
