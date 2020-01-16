@@ -3,4 +3,5 @@ requests
 notebook==6.0.2
 bs4
 Flask-WTF
-
+sqlite3
+pandas
