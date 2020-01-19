@@ -1,29 +1,40 @@
 # lines to change signaled with "modify:   !!"
 
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, url_for, session
 import forms
 #from flask_csv import send_csv
 from flask import Response # for api: fasta , csv and so on
 from flask import jsonify
 from flask_wtf import CsrfProtect
+from werkzeug.utils import secure_filename
+import os
+import pandas as pd
+import numpy as np
 
+
+UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
 
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 csrf = CsrfProtect(app)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-
+#
+ 
 #### home
 @app.route('/', methods=['GET','POST'])
 def home():
-    uploadfile_form = forms.UploadPhosphoproteomics(request.form)
+    uploadfile_form = forms.UploadForm()
     context = {'uploadfile_form': uploadfile_form}
-
-    if request.method == 'POST' and uploadfile_form.validate():
-        print(uploadfile_form.uploaded_file.data)
-        return redirect('/phosphoproteomics')
+    if request.method == 'POST' and uploadfile_form.validate_on_submit():
+        file = request.files['upload']
+        #print(secure_filename(file.filename))
+        filename = 'test.tsv' #!!! change this line
+        session['tmp_upload_file'] = filename
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        return redirect(url_for('phosphoproteomics'), code = 307)
     return render_template('home.html', context = context)
 
 
@@ -70,10 +81,47 @@ def inhibitor_data(inhib_name):
 
 
 ### phosphoproteomics
+
+
+def volcano(file_path): #!! change this, mod threshold (from request), put in dif file, get min, and max for axis
+    df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
+    df.dropna(axis= 1, how='all', inplace = True)
+    list_nulls = list(df[df.AZ20_fold_change.isnull()].Substrate)
+    list_control_zero = list(df[df.control_mean == 0].Substrate)
+    df = df[(df.AZ20_fold_change.notnull()) & (df.control_mean != 0) & (df.AZ20_fold_change != 0)]
+    df['log_foldchange'] = np.log2(df['AZ20_fold_change'])
+    df['log_pval'] = -np.log10(df['AZ20_p-value'])
+
+    df =df[~(np.isinf(np.abs(df.log_foldchange)))& ~(np.isinf(np.abs(df.log_pval))) & ~np.isnan(df.log_foldchange) & ~np.isnan(df.log_pval)]
+    
+    pval_threshold = 1.5
+    fold_threshold = 1.5
+
+    df_negfold_pval = df[(df.log_pval > pval_threshold)  & (df.log_foldchange < -fold_threshold) ]
+    df_posfold_pval = df[(df.log_pval > pval_threshold)  & (df.log_foldchange > fold_threshold) ]
+    df_above_threshold = df[((df.log_pval <= pval_threshold)) | ((np.abs(df.log_foldchange) < fold_threshold)  )]
+    
+    out_dict = {}
+    negfold_pval = {'substrate': list(df_negfold_pval.Substrate), 'foldchange': list(df_negfold_pval.log_foldchange), 'pval': list(df_negfold_pval.log_pval)}
+    posfold_pval = {'substrate': list(df_posfold_pval.Substrate), 'foldchange': list(df_posfold_pval.log_foldchange), 'pval': list(df_posfold_pval.log_pval)}
+    above_pval = {'substrate': list(df_above_threshold.Substrate), 'foldchange': list(df_above_threshold.log_foldchange), 'pval': list(df_above_threshold.log_pval)}
+    out_dict['negfold_pval'] = negfold_pval
+    out_dict['posfold_pval'] = posfold_pval
+    out_dict['above_pval'] = above_pval
+    os.remove(file_path)
+    return out_dict
+
 @app.route('/phosphoproteomics', methods = ['GET','POST'])
 def phosphoproteomics():
-    data_form = forms.UploadPhosphoproteomics(request.form)
-    return render_template('phosphoproteomics.html')
+    context = {}
+    if request.method == 'POST':
+        tmp_file_name = session['tmp_upload_file'] # get something from request
+        session['tmp_upload_file'] = ''
+        tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
+        print(tmp_file_path)
+        results_volcano = volcano(tmp_file_path)
+        context['volcano'] = results_volcano
+    return render_template('phosphoproteomics.html', context = context)
 
 ### Documentation
 

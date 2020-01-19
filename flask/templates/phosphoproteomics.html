@@ -1,6 +1,19 @@
 {%extends 'base.html'%}
 
 
+
+<!-- begin head -->
+{%block head%}
+
+<!-- plotly js -->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+{%endblock%}
+
+<!-- end  head -->
+
+
+
 {%block content%}
 
 
@@ -8,5 +21,139 @@
 <p>possibly a pdf?</p>
 
 
+{%if context.get('volcano')%}
+<h2>Volcano plot</h2>
+<div id="graph_volcano"></div>
 
+{%endif%}
+
+
+{%endblock%}
+
+
+{%block scripts%}
+
+
+<script id="lines">
+
+ var  trace1= {
+     x: {{context.volcano.posfold_pval.foldchange}},
+     y:  {{context.volcano.posfold_pval.pval}},
+     mode: 'markers',
+     type: 'scatter',
+     name: 'p+log2FC increase',
+     text:{{context.volcano.posfold_pval.substrate| safe}},
+     textposition: 'top center',
+     textfont: {
+	 family:  'Times New Roman'
+     },
+     textposition: 'bottom center',
+     marker: {size:9, color:"blue"}
+ };
+
+ var trace2 = {
+     x: {{context.volcano.negfold_pval.foldchange}},
+     y:  {{context.volcano.negfold_pval.pval}},
+     mode: 'markers',
+     type: 'scatter',
+     name: 'p+log2FC decrease',
+     text:{{context.volcano.negfold_pval.substrate| safe}},
+     textposition: 'top center',
+     textfont: {
+	 family:  'Times New Roman'
+     },
+     textposition: 'bottom center',
+     marker: {size:9, color:"red"}
+ };
+ var trace3 = {
+     x: {{context.volcano.above_pval.foldchange}},
+     y:  {{context.volcano.above_pval.pval}},
+     mode: 'markers',
+     opacity: 0.5,
+     type: 'scatter',
+     name: 'p+log2FC Not changed',
+     text:{{context.volcano.above_pval.substrate| safe}},
+     textfont: {
+	 family:  'Times New Roman'
+     },
+     textposition: 'bottom center',
+     marker: {size:8, color:"gray"}
+ };
+ 
+ var data = [trace1, trace2, trace3];
+
+ var layout = {
+     title: {
+	 text:'Volcano plot',
+	 font: {
+             family: 'Courier New, monospace',
+             size: 24
+	 },
+	 xref: 'paper',
+	 x: 0.05,
+     },
+     xaxis: {
+	 title: {
+             text: '-Log Fold Change',
+             font: {
+		 family: 'Courier New, monospace',
+		 size: 18,
+		 color: '#140D0C'
+             }
+	 },
+	 range: [-2,2] 
+     },
+     yaxis: {
+	 title: {
+             text: '-Log P-value',
+             font: {
+		 family: 'Courier New, monospace',
+		 size: 18,
+		 color: '#140D0C'
+             }
+	 },
+	 range:[0,5]
+     },
+     shapes: [
+	 {
+	     type: 'line',
+	     x0: -10,
+	     y0: 1.5,
+	     x1: 10,
+	     y1: 1.5,
+	     line: {
+		 color: 'gray',
+		 width: 1,
+		 dash:'dot'
+	     }
+	 }, 
+	 {
+	     type: 'line',
+	     x0: -1.5,
+	     y0: 0,
+	     x1: -1.50,
+	     y1: 10,
+	     line: {
+		 color: 'gray',
+		 width: 1,
+		 dash:'dot'
+	     }
+	 },
+	 {
+	     type: 'line',
+	     x0: 1.5,
+	     y0: 0,
+	     x1: 1.50,
+	     y1: 10,
+	     line: {
+		 color: 'gray',
+		 width: 1,
+		 dash:'dot'
+	     }
+     }]
+ };
+
+ Plotly.newPlot('graph_volcano', data, layout);
+
+</script>
 {%endblock%}
