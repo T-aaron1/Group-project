@@ -9,7 +9,7 @@
 
 {% from '_macros.html' import render_form_field%}
 
-<form name="sent_data" method="POST" >
+<form name="sent_data" method="POST" enctype="multipart/form-data"  >
 
   <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
   {{render_form_field(context.uploadfile_form.uploaded_file)}}

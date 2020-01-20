@@ -12,8 +12,8 @@ import pandas as pd
 import numpy as np
 
 
-UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
-
+#UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
+UPLOAD_FOLDER = '/homes/dtg30/Desktop/group_proj_2/'
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
@@ -21,14 +21,14 @@ csrf = CsrfProtect(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #
- 
+
 #### home
 @app.route('/', methods=['GET','POST'])
 def home():
     uploadfile_form = forms.UploadForm()
     context = {'uploadfile_form': uploadfile_form}
     if request.method == 'POST' and uploadfile_form.validate_on_submit():
-        file = request.files['upload']
+        file = request.files['uploaded_file']
         #print(secure_filename(file.filename))
         filename = 'test.tsv' #!!! change this line
         session['tmp_upload_file'] = filename
@@ -93,14 +93,14 @@ def volcano(file_path): #!! change this, mod threshold (from request), put in di
     df['log_pval'] = -np.log10(df['AZ20_p-value'])
 
     df =df[~(np.isinf(np.abs(df.log_foldchange)))& ~(np.isinf(np.abs(df.log_pval))) & ~np.isnan(df.log_foldchange) & ~np.isnan(df.log_pval)]
-    
+
     pval_threshold = 1.5
     fold_threshold = 1.5
 
     df_negfold_pval = df[(df.log_pval > pval_threshold)  & (df.log_foldchange < -fold_threshold) ]
     df_posfold_pval = df[(df.log_pval > pval_threshold)  & (df.log_foldchange > fold_threshold) ]
     df_above_threshold = df[((df.log_pval <= pval_threshold)) | ((np.abs(df.log_foldchange) < fold_threshold)  )]
-    
+
     out_dict = {}
     negfold_pval = {'substrate': list(df_negfold_pval.Substrate), 'foldchange': list(df_negfold_pval.log_foldchange), 'pval': list(df_negfold_pval.log_pval)}
     posfold_pval = {'substrate': list(df_posfold_pval.Substrate), 'foldchange': list(df_posfold_pval.log_foldchange), 'pval': list(df_posfold_pval.log_pval)}
