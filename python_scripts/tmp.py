@@ -33,6 +33,33 @@ bs_data.uniprot.entry.findAll('comment')[0].findAll('text')[0].text
 
 
 
+###################################
+# sequence divide
+sequence = "MEHIQGAWKTISNGFGFKDAVFDGSSCISPTIVQQFGYQRRASDDGKLTDPSKTSNTIRVFLPNKQRTVVNVRNGMSLHDCLMKALKVRGLQPECCAVFRLLHEHKGKKARLDWNTDAASLIGEELQVDFLDHVPLTTHNFARKTFLKLAFCDICQKFLLNGFRCQTCGYKFHEHCSTKVPTMCVDWSNIRQLLLFPNSTIGDSGVPALPSLTMRRMRESVSRMPVSSQHRYSTPHAFTFNTSSPSSEGSLSQRQRSTSTPNVHMVSTTLPVDSRMIEDAIRSHSESASPSALSSSPNNLSPTGWSQPKTPVPAQRERAPVSGTQEKNKIRPRGQRDSSYYWEIEASEVMLSTRIGSGSFGTVYKGKWHGDVAVKILKVVDPTPEQFQAFRNEVAVLRKTRHVNILLFMGYMTKDNLAIVTQWCEGSSLYKHLHVQETKFQMFQLIDIARQTAQGMDYLHAKNIIHRDMKSNNIFLHEGLTVKIGDFGLATVKSRWSGSQQVEQPTGSVLWMAPEVIRMQDNNPFSFQSDVYSYGIVLYELMTGELPYSHINNRDQIIFMVGRGYASPDLSKLYKNCPKAMKRLVADCVKKVKEERPLFPQILSSIELLQHSLPKINRSASEPSLHRAAHTEDINACTLTTSPRLPVF"
+
+seq_out = []
+for i in range(0,len(sequence),10):
+    seq_out.append(sequence[i:i+10])
+
+cada = 6
+seq_out_final = []
+for i in range(0,len(seq_out), cada):
+    seq_out_final.append(seq_out[i:i+cada])
+
+seq_out_final
+
+'{:9} YES votes  {:2.2%}'.format(yes_votes, percentage)
+
+seq_by_10s = range(0,len(sequence), 10)
+
+'{:-10}{:-10}{:-10}{:-10}{:-10}'.format('1','2','3','4','5')
+
+counter = 10
+for entry in seq_out_final:
+    str(counter).rjust(10)+str(counter+10).rjust(10)+str(counter+20).rjust(10)+str(counter+30).rjust(10)+str(counter+40).rjust(10)
+    print(' '.join(entry))
+    counter +=50
+
 
 
 
