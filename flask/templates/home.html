@@ -3,18 +3,35 @@
 
 {%block content%}
 
-<p>home page</p>
+<p>{{context.sql}}</p>
 
-<p><a href="/phosphoproteomics">phosphoproteomics</a></p>
+<div class="row justify-content-around">
+  <div class="col-md-5 bg-light round">
+	<p>Kinases</p>
+  </div>
+  <div class="col-md-5 bg-light round">
+	<p>Inhibitors</p>
+  </div>
+</div>
 
-{% from '_macros.html' import render_form_field%}
+<br/>
+<div class="col-md-6 bg-light mb-2">
+  <p>Phosphoproteomics</p>
 
-<form name="sent_data" method="POST" enctype="multipart/form-data"  >
+  <p>Upload a ".tsv" file</p>
+  <p></p>
+  {% from '_macros.html' import render_form_field%}
 
-  <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-  {{render_form_field(context.uploadfile_form.uploaded_file)}}
-  <input class="btn btn-primary" type="submit" value="Send"/>
+  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
 
-</form>
+	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+	<p>{{render_form_field(context.inhibitor_form.inhibitor)}}</p>
+	<p>{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p>
+	<p>{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p>
+	<p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
+	<input class="btn btn-primary" type="submit" value="Send"/>
 
+  </form>
+
+</div>
 {%endblock%}
