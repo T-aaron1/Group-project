@@ -15,7 +15,7 @@ for line in INFILE:
     text = 'https://www.uniprot.org/uniprot/?query={}&columns=mass&format=tab'.format(name)
     data = requests.get(text).text
     mass = data.split('\n')[1]
-    mass = mass.replace(',','.')
+    mass = mass.replace(',','')
     new_line = line + ',' + mass +'\n'
     OUTFILE.write(new_line)
 
