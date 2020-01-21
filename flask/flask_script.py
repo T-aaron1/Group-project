@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 import numpy as np
-
+import volcano
 
 #UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
 UPLOAD_FOLDER = '/homes/dtg30/Desktop/group_proj_2/'
@@ -26,24 +26,30 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/', methods=['GET','POST'])
 def home():
     uploadfile_form = forms.UploadForm()
-    context = {'uploadfile_form': uploadfile_form}
+    inhibitor_form = forms.Inhibitor_used()
+    threshold_pval_form = forms.Threshold_pval()
+    threshold_foldchange_form = forms.Threshold_foldchange()
+    context = {'uploadfile_form': uploadfile_form, 'inhibitor_form': inhibitor_form,
+               'threshold_foldchange_form': threshold_foldchange_form,
+               'threshold_pval_form':threshold_pval_form}
     if request.method == 'POST' and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
+        p_val_threshold = request.values['threshold_pval']
+        threshold_foldchange = request.values['threshold_foldchange']
+        inhibitor = request.values['inhibitor']
+        print(inhibitor)
         #print(secure_filename(file.filename))
         filename = 'test.tsv' #!!! change this line
         session['tmp_upload_file'] = filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        return redirect(url_for('phosphoproteomics'), code = 307)
+        return redirect(url_for('phosphoproteomics',inh=inhibitor,fc=threshold_foldchange,pv=p_val_threshold, ), code = 307)
     return render_template('home.html', context = context)
 
 
 
 #### kinases
 
-@app.route('/kinase')
-def kinase_general():
-    return render_template('kinase_general.html')
 
 @app.route('/kinase/results')
 def kinase_search_result():
@@ -65,9 +71,7 @@ def kinase_data(kin_name):
 
 
 #### inhibitors
-@app.route('/inhibitor')
-def inhibitor_general():
-    return render_template('inhibitor_general.html')
+
 
 @app.route('/inhibitor/search')
 def inhibitor_search_result():
@@ -83,44 +87,23 @@ def inhibitor_data(inhib_name):
 ### phosphoproteomics
 
 
-def volcano(file_path): #!! change this, mod threshold (from request), put in dif file, get min, and max for axis
-    df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
-    df.dropna(axis= 1, how='all', inplace = True)
-    list_nulls = list(df[df.AZ20_fold_change.isnull()].Substrate)
-    list_control_zero = list(df[df.control_mean == 0].Substrate)
-    df = df[(df.AZ20_fold_change.notnull()) & (df.control_mean != 0) & (df.AZ20_fold_change != 0)]
-    df['log_foldchange'] = np.log2(df['AZ20_fold_change'])
-    df['log_pval'] = -np.log10(df['AZ20_p-value'])
-
-    df =df[~(np.isinf(np.abs(df.log_foldchange)))& ~(np.isinf(np.abs(df.log_pval))) & ~np.isnan(df.log_foldchange) & ~np.isnan(df.log_pval)]
-
-    pval_threshold = 1.5
-    fold_threshold = 1.5
-
-    df_negfold_pval = df[(df.log_pval > pval_threshold)  & (df.log_foldchange < -fold_threshold) ]
-    df_posfold_pval = df[(df.log_pval > pval_threshold)  & (df.log_foldchange > fold_threshold) ]
-    df_above_threshold = df[((df.log_pval <= pval_threshold)) | ((np.abs(df.log_foldchange) < fold_threshold)  )]
-
-    out_dict = {}
-    negfold_pval = {'substrate': list(df_negfold_pval.Substrate), 'foldchange': list(df_negfold_pval.log_foldchange), 'pval': list(df_negfold_pval.log_pval)}
-    posfold_pval = {'substrate': list(df_posfold_pval.Substrate), 'foldchange': list(df_posfold_pval.log_foldchange), 'pval': list(df_posfold_pval.log_pval)}
-    above_pval = {'substrate': list(df_above_threshold.Substrate), 'foldchange': list(df_above_threshold.log_foldchange), 'pval': list(df_above_threshold.log_pval)}
-    out_dict['negfold_pval'] = negfold_pval
-    out_dict['posfold_pval'] = posfold_pval
-    out_dict['above_pval'] = above_pval
-    os.remove(file_path)
-    return out_dict
-
 @app.route('/phosphoproteomics', methods = ['GET','POST'])
-def phosphoproteomics():
+def phosphoproteomics():  #~~~
     context = {}
     if request.method == 'POST':
         tmp_file_name = session['tmp_upload_file'] # get something from request
         session['tmp_upload_file'] = ''
+        inhibitor = request.values['inh']
+        fold_threshold = request.values['fc']
+        pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
-        print(tmp_file_path)
-        results_volcano = volcano(tmp_file_path)
+        try:
+            results_volcano = volcano.volcano(tmp_file_path, inhibitor,pval_threshold, fold_threshold )
+        except:
+            return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
+        context['fold_threshold'] = fold_threshold
+        context['pval_threshold'] = pval_threshold
     return render_template('phosphoproteomics.html', context = context)
 
 ### Documentation
@@ -166,17 +149,18 @@ def fasta_protein(kin_name):
 
 @app.route('/kinase/gene/<kin_name>.fasta')
 def fasta_gene(kin_name):
-    sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
-    divide_each = 10  # modify: change size !!
-    seq_size = len(sequence)
-    list_range = range(0,seq_size,divide_each)
-    tmp_text= ''
-    for i in list_range:
-        tmp_text += sequence[i:i+divide_each] + '\n'
-        seq_out = tmp_text.rstrip()
-    header = '> '+ kin_name + '|' + str(seq_size) #modify: create header !!
-    text_out = '\n'.join([header, seq_out])
-    return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+    if kin_name == '1': # modify: get list of kinases
+        sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
+        divide_each = 10  # modify: change size !!
+        seq_size = len(sequence)
+        list_range = range(0,seq_size,divide_each)
+        tmp_text= ''
+        for i in list_range:
+            tmp_text += sequence[i:i+divide_each] + '\n'
+            seq_out = tmp_text.rstrip()
+            header = '> '+ kin_name + '|' + str(seq_size) #modify: create header !!
+            text_out = '\n'.join([header, seq_out])
+        return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 
 # return
