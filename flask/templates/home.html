@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+
+<p>home page</p>
+
+<p><a href="/phosphoproteomics">phosphoproteomics</a></p>
+
+{% from '_macros.html' import render_form_field%}
+
+<form name="sent_data" method="POST" enctype="multipart/form-data"  >
+
+  <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+  {{render_form_field(context.uploadfile_form.uploaded_file)}}
+  <input class="btn btn-primary" type="submit" value="Send"/>
+
+</form>
+
+{%endblock%}

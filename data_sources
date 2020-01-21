@@ -1,0 +1,32 @@
+Information retrieved from:
+  
+  Kinases:
+    - kinase list (kinase_list.csv)
+    https://www.uniprot.org/docs/pkinfam
+    
+    - https://www.uniprot.org/uniprot/P04049.xml
+         python_scripts/retrieve_information_from_uniprot_xml.py
+            kinase_diseases_uniprotxml.csv
+          	kinase_function_refs_uniprotxml.csv
+            kinase_function_uniprotxml.csv
+            kinase_isoforms_uniprotxml.csv
+            kinase_reactions_refs_uniprotxml.csv
+            kinase_reactions_uniprotxml.csv
+            kinase_subcell_loc_text_uniprotxml.csv
+            kinase_uniprot_full_references_uniprotxml.csv
+
+    
+    - https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749 
+    python_scripts/retrieve_from_xml_uniprotapi.py
+       kinase_alternative_names.csv
+       kinase_ensembl.csv
+       kinase_gral_info.csv
+ 	     kinase_modified_residues_gral_info.csv
+	     kinase_modified_residues_references.csv
+       phosphosite_table.csv
+
+
+    
+    - http://kinase.com/web/current/kinbase/genes/SpeciesID/9606/
+       - families.csv
+       -	gene-sequences.fasta

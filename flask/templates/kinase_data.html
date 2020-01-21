@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+
+<div class='container-fluid'>
+  <div class='row'>
+    <nav class='col-md-2 bg-primary  sidebar'>
+      <ul class='nav flex-column text-light'>
+	<li class='nav-item'><a class='nav-link text-light' href="#section1">section 1</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section2">section 2</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section3">section 3</a></li>
+
+      </ul>
+      
+    </nav>
+    <div id='content' class='col-md-10'>
+      <div>
+      <h2 id='section1'>section 1</h2>
+      <hr/>
+      a particular kinase: {{context.kin_name}}
+    </div>
+    <div>
+      <h2 id='section2'>section 2</h2>
+      <hr/>
+      
+Lorem ipsum dolor sit amet consectetur adipiscing elit nascetur ullamcorper hendrerit etiam, non tempus nam vulputate curae interdum erat aenean augue. Nam dis felis tristique nunc molestie libero nostra nisl, phasellus tortor ultricies quam cras himenaeos fermentum sodales dictumst, parturient platea aliquam eu aenean turpis scelerisque. Quis morbi conubia ullamcorper tristique tincidunt egestas, cubilia ut vel purus eros, tempus aptent venenatis cum pellentesque.
+
+Eget cum ante accumsan non mus nisi euismod, aptent rhoncus sed tellus pharetra per cubilia, aliquam cursus iaculis neque lacus sagittis. Platea rhoncus accumsan senectus torquent sociosqu placerat integer, litora sem nulla tempus mus fermentum, vehicula habitant pretium dui imperdiet cubilia. Ullamcorper scelerisque duis cras nostra egestas orci convallis dapibus, suspendisse dictum ligula congue non vehicula velit per tortor, arcu mattis hac felis est pulvinar metus.
+
+</div>
+	    <div>
+      <h2 id='section3'>section 3</h2>
+      <hr/>
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit nascetur ullamcorper hendrerit etiam, non tempus nam vulputate curae interdum erat aenean augue. Nam dis felis tristique nunc molestie libero nostra nisl, phasellus tortor ultricies quam cras himenaeos fermentum sodales dictumst, parturient platea aliquam eu aenean turpis scelerisque. Quis morbi conubia ullamcorper tristique tincidunt egestas, cubilia ut vel purus eros, tempus aptent venenatis cum pellentesque.
+
+Eget cum ante accumsan non mus nisi euismod, aptent rhoncus sed tellus pharetra per cubilia, aliquam cursus iaculis neque lacus sagittis. Platea rhoncus accumsan senectus torquent sociosqu placerat integer, litora sem nulla tempus mus fermentum, vehicula habitant pretium dui imperdiet cubilia. Ullamcorper scelerisque duis cras nostra egestas orci convallis dapibus, suspendisse dictum ligula congue non vehicula velit per tortor, arcu mattis hac felis est pulvinar metus.
+    </div>
+
+
+  </div>
+
+</div>
+
+
+{%endblock%}
