@@ -5,6 +5,10 @@ from wtforms.validators import DataRequired
 
 from wtforms.fields import IntegerField
 
+class Search_string(FlaskForm):
+    search_string = StringField('', validators=[DataRequired()])
+
+
 
 class Inhibitor_used(FlaskForm):
     inhibitor = StringField('Used Inhibitor', validators=[DataRequired()])

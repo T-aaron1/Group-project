@@ -25,13 +25,22 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #### home
 @app.route('/', methods=['GET','POST'])
 def home():
+    search_form = forms.Search_string()
     uploadfile_form = forms.UploadForm()
     inhibitor_form = forms.Inhibitor_used()
     threshold_pval_form = forms.Threshold_pval()
     threshold_foldchange_form = forms.Threshold_foldchange()
     context = {'uploadfile_form': uploadfile_form, 'inhibitor_form': inhibitor_form,
                'threshold_foldchange_form': threshold_foldchange_form,
-               'threshold_pval_form':threshold_pval_form}
+               'threshold_pval_form':threshold_pval_form,
+               'search_form': search_form}
+
+    if request.method == 'POST' and search_form.validate_on_submit():
+        requested_uniprot = request.values['search_string']
+        # modify: if clause
+        url = '/kinase/' + requested_uniprot
+        print(url)
+        return redirect(url)
     if request.method == 'POST' and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
@@ -100,7 +109,7 @@ def phosphoproteomics():  #~~~
         try:
             ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-
+#            tims_function = phosphoproteomics_script.name(ddf, ...) # modify
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
@@ -135,6 +144,7 @@ def documentation_stats():
 
 @app.route('/kinase/<kin_name>.fasta')
 def fasta_protein(kin_name):
+#    if kin_name in   : kinase  list of the database
     sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
     divide_each = 10  # modify: change size !!
     seq_size = len(sequence)
