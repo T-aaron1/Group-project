@@ -2,15 +2,19 @@ import os
 import pandas as pd
 import numpy as np
 
-def volcano(file_path, inhibitor, p_val_threshold, fold_threshold): #!! change this, put in dif file
+def change_column_names(file_path, inhibitor): #!! change this, put in dif file
     df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
-    inhibitor = inhibitor + '_'
+    os.remove(file_path)
+    inhibitor = inhibitor.rstrip() + '_'
     col_names = df.columns
     for name in col_names:
         if inhibitor in name:
             df.rename(columns = {name: name.replace(inhibitor,'')}, inplace = True)
-
     df.dropna(axis= 1, how='all', inplace = True)
+    return df
+
+#df instead of file_path...
+def volcano(df, p_val_threshold, fold_threshold): #!! change this, put in dif file
     list_nulls = list(df[df.fold_change.isnull()].Substrate)
     list_control_zero = list(df[df.control_mean == 0].Substrate)
     df = df[(df.fold_change.notnull()) & (df.control_mean != 0) & (df.fold_change != 0)]
@@ -38,5 +42,9 @@ def volcano(file_path, inhibitor, p_val_threshold, fold_threshold): #!! change t
     out_dict['posfold_pval'] = posfold_pval
     out_dict['above_pval'] = above_pval
     out_dict['plot_layout'] = plot_layout
-    os.remove(file_path)
     return out_dict
+
+
+#####
+# Tim function: the colum names are: Substrate  control_mean          mean  fold_change   p-value    ctrlCV   treatCV
+# shhould use the output of the 'change_column_names' function

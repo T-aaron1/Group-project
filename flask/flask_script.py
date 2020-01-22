@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 import numpy as np
-import volcano
+import phosphoproteomics_script
 
 #UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
 UPLOAD_FOLDER = '/homes/dtg30/Desktop/group_proj_2/'
@@ -98,7 +98,9 @@ def phosphoproteomics():  #~~~
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
         try:
-            results_volcano = volcano.volcano(tmp_file_path, inhibitor,pval_threshold, fold_threshold )
+            ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
+            results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
+
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
