@@ -1,3 +1,9 @@
+-- get schema: https://dbdiagram.io/d
+-- check autoincrement stuff
+-- possibly not all tables where populated
+-- run again the comands to populate the tables
+
+
 -- sqlite3 commands
 
 -- families.csv
@@ -51,7 +57,7 @@ FOREIGN KEY(uniprot_id) REFERENCES kinase_info(uniprot_id)
 );
 
 
-uniprot|tmp_refs|disease_id|disease_name|effect_text|disease_description
+-- uniprot|tmp_refs|disease_id|disease_name|effect_text|disease_description
 
 -- diseases.csv
 CREATE TABLE diseases (
@@ -87,12 +93,14 @@ PRIMARY KEY(uniprot, react_id),
 FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
 );
 
+--
 -- kinase_reactions_refs_uniprotxml.csv
 CREATE TABLE reactions_refences (
 ref_item INTEGER,
 uniprot TEXT,
 react_id INTEGER,
-FOREIGN KEY (uniprot, react_id) REFERENCES reactions(uniprot, react_id)
+FOREIGN KEY (uniprot, react_id) REFERENCES reactions(uniprot, react_id),
+FOREIGN KEY(uniprot,ref_item ) REFERENCES references_full(uniprot, reference_id)
 );
 
 
@@ -148,7 +156,7 @@ site_grp_id INTEGER,
 site_7_aa TEXT,
 prot_domain TEXT,
 in_vivo_rxn TEXT,
-in_vitro_rxn TEXT
+in_vitro_rxn TEXT,
 FOREIGN KEY (sub_acc_id) REFERENCES kinase_info(uniprot_id)
 );
 
