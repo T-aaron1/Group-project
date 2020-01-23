@@ -86,3 +86,40 @@ final.to_csv(OUTPUT_FILE, index= False)
 # different table
 final  = final.join(function.set_index(['uniprot']), on = ['uniprot_id'] , how='')
 final.shape
+
+
+#########################
+# clean kin_subcell_loc.csv
+
+OUTPUT_FILE = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc_not_dupl.csv'
+kin_subcell_loc_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc.csv'
+
+kin_subcell_loc = pd.read_csv(kin_subcell_loc_csv)
+
+kin_subcell_loc.drop_duplicates(inplace=True)
+kin_subcell_loc.to_csv(OUTPUT_FILE)
+
+
+#########################
+# clean kin_subcell_loc_text.csv
+
+OUTPUT_FILE = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc_text_non_duplicates.csv'
+kin_subcell_loc_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc_text.csv'
+
+kin_subcell_loc = pd.read_csv(kin_subcell_loc_csv)
+kin_subcell_loc.shape
+kin_subcell_loc.drop_duplicates(inplace=True)
+kin_subcell_loc.shape
+kin_subcell_loc.to_csv(OUTPUT_FILE)
+
+
+
+#############################
+# add ref numbers kinase_modified_residues_references.csv
+mod_res_refs_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_modified_residues_references.csv'
+OUTPUT_FILE = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_modified_residues_references_ref_numbers.csv'
+fullrefs_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_references.csv'
+
+
+mod_res_refs = pd.read_csv(mod_res_refs_csv)
+fullrefs = pd.read_csv(fullrefs_csv, sep='\t')
