@@ -47,15 +47,25 @@
 <script id="Barplot">
 // barplot
 
- var bardata = [
-     {
-	 x: ['giraffes', 'orangutans', 'monkeys'],
-	 y: [20, 14, 23],
-	 type: 'bar'
-     }
- ];
+var trace1 = {
+ x: ['kinaseA', 'kinaseB', 'KinaseC'],
+ y: [0.9, 1.1, 23],
+ name: 'High',
+ type: 'bar'
+};
 
- Plotly.newPlot('graph_barplot', bardata);
+var trace2 = {
+ x: ['KinaseD', 'KinaseE', 'KinaseF'], #ordered by p-value
+ y: [-1.1, -0.9, -0.3],
+ name: 'Low',
+ type: 'bar'
+};
+
+var bardata = [trace1, trace2];
+
+var layout = {barmode: 'group'};
+
+ Plotly.newPlot('graph_barplot', bardata, layout);
 
 
 </script>
