@@ -1,549 +1,549 @@
-,uniprot,subcell_aditional_text_refs,subcell_aditional_text
-0,P31749,41.0,Nucleus after activation by integrin-linked protein kinase 1 (ILK1). Nuclear translocation is enhanced by interaction with TCL1A. Phosphorylation on Tyr-176 by TNK2 results in its localization to the cell membrane where it is targeted for further phosphorylations on Thr-308 and Ser-473 leading to its activation and the activated form translocates to the nucleus. Colocalizes with WDFY2 in intracellular vesicles (PubMed:16792529).
-1,P31751,17.0,"Localizes within both nucleus and cytoplasm of proliferative primary myoblasts and mostly within the nucleus of differentiated primary myoblasts. By virtue of the N-terminal PH domain, is recruited to sites of the plasma membrane containing increased PI(3,4,5)P3 or PI(3,4)P2, cell membrane targeting is also facilitared by interaction with CLIP3. Colocalizes with WDFY2 in early endosomes (By similarity)."
-2,Q9Y243,,Membrane-associated after cell stimulation leading to its translocation.
-3,Q5VT25,5.0,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent. Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner."
-4,Q5VT25,7.0,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent. Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner."
-5,Q9Y5S2,14.0,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent (By similarity). Detected at the leading edge of migrating cells. Localization at the leading edge of migrating cells requires interaction with catalytically active CDC42 (PubMed:21240187). Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner (By similarity)."
-6,Q9Y5S2,16.0,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent (By similarity). Detected at the leading edge of migrating cells. Localization at the leading edge of migrating cells requires interaction with catalytically active CDC42 (PubMed:21240187). Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner (By similarity)."
-7,Q9Y5S2,32.0,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent (By similarity). Detected at the leading edge of migrating cells. Localization at the leading edge of migrating cells requires interaction with catalytically active CDC42 (PubMed:21240187). Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner (By similarity)."
-8,Q6DT37,,Concentrates at the leading edge of cells.
-9,O14578,,
-10,Q09013,3.0,Localizes to sarcoplasmic reticulum membranes of cardiomyocytes.
-11,Q09013,,
-13,Q15835,4.0,Subcellular location is not affected by light or dark conditions.
-14,P25098,,
-15,P32298,,"Both at the cell surface and dispersed in the cytoplasm under basal conditions. Receptor stimulation results in the internalization of GRK4 to the perinuclear area, where colocalization with DRD3 is observed strongly at 5 and 15 minutes. DRD3 and GRK4 colocalize in lipid rafts of renal proximal tubule cells."
-16,P34947,,Predominantly localized at the plasma membrane; targeted to the cell surface through the interaction with phospholipids. Nucleus localization is regulated in a GPCR and Ca(2+)/calmodulin-dependent fashion.
-17,P43250,,
-18,Q8WTQ7,,
-19,O95835,,"Localizes to the centrosomes throughout interphase but migrates to the mitotic apparatus, including spindle pole bodies, mitotic spindle, and midbody, during mitosis."
-20,Q9NRM7,,"Colocalizes with AURKA at the centrosomes during interphase, early prophase and cytokinesis. Migrates to the spindle poles during mitosis, and to the midbody during cytokinesis. Translocates to the nucleus upon mitotic stress by nocodazole treatment."
-21,Q9Y2H9,5.0,Also localized in the soma of neurons. Observed as punctate clusters in the processes of interneurons and along the cell body periphery. Colocalizes with syntrophins at the cell membrane.
-22,Q6P0Q8,,Recruited to the sub-membranous area on interaction with CDHR2.
-23,O15021,,
-24,Q96GX5,18.0,"During interphase is mainly nuclear, upon nuclear envelope breakdown localizes at the cytoplasm and during mitosis at the centrosomes. Upon mitotic exit moves to the cleavage furrow."
-25,O15530,,"Tyrosine phosphorylation seems to occur only at the cell membrane. Translocates to the cell membrane following insulin stimulation by a mechanism that involves binding to GRB14 and INSR. SRC and HSP90 promote its localization to the cell membrane. Its nuclear localization is dependent on its association with PTPN6 and its phosphorylation at Ser-396. Restricted to the nucleus in neuronal cells while in non-neuronal cells it is found in the cytoplasm. The Ser-241 phosphorylated form is distributed along the perinuclear region in neuronal cells while in non-neuronal cells it is found in both the nucleus and the cytoplasm. IGF1 transiently increases phosphorylation at Ser-241 of neuronal PDPK1, resulting in its translocation to other cellular compartments. The tyrosine-phosphorylated form colocalizes with PTK2B in focal adhesions after angiotensin II stimulation."
-26,Q6A1A2,,
-27,Q16512,22.0,Associates with chromatin in a ligand-dependent manner. Localization to endosomes is mediated via its interaction with RHOB. Association to the cell membrane is dependent on Ser-377 phosphorylation. Accumulates during telophase at the cleavage furrow and finally concentrates around the midbody in cytokinesis.
-28,Q16512,35.0,Associates with chromatin in a ligand-dependent manner. Localization to endosomes is mediated via its interaction with RHOB. Association to the cell membrane is dependent on Ser-377 phosphorylation. Accumulates during telophase at the cleavage furrow and finally concentrates around the midbody in cytokinesis.
-29,Q16513,20.0,"Colocalizes with PTPN13 in lamellipodia-like structures, regions of large actin turnover. Accumulates during telophase at the cleavage furrow and concentrates finally around the midbody in cytokinesis. Recruited to nascent cell-cell contacts at the apical surface of cells. In the course of viral infection, colocalizes with HCV NS5B at perinuclear region in the cytoplasm."
-30,Q16513,25.0,"Colocalizes with PTPN13 in lamellipodia-like structures, regions of large actin turnover. Accumulates during telophase at the cleavage furrow and concentrates finally around the midbody in cytokinesis. Recruited to nascent cell-cell contacts at the apical surface of cells. In the course of viral infection, colocalizes with HCV NS5B at perinuclear region in the cytoplasm."
-31,Q6P5Z2,,Nuclear and perinuclear Golgi region.
-32,P17612,9.0,Translocates into the nucleus (monomeric catalytic subunit). The inactive holoenzyme is found in the cytoplasm. Distributed throughout the cytoplasm in meiotically incompetent oocytes. Associated to mitochondrion as meiotic competence is acquired. Aggregates around the germinal vesicles (GV) at the immature GV stage oocytes (By similarity). Colocalizes with HSF1 in nuclear stress bodies (nSBs) upon heat shock (PubMed:21085490).
-33,P17612,32.0,Translocates into the nucleus (monomeric catalytic subunit). The inactive holoenzyme is found in the cytoplasm. Distributed throughout the cytoplasm in meiotically incompetent oocytes. Associated to mitochondrion as meiotic competence is acquired. Aggregates around the germinal vesicles (GV) at the immature GV stage oocytes (By similarity). Colocalizes with HSF1 in nuclear stress bodies (nSBs) upon heat shock (PubMed:21085490).
-34,P17612,10.0,Expressed in the midpiece region of the sperm flagellum (PubMed:10906071). Colocalizes with MROH2B and TCP11 on the acrosome and tail regions in round spermatids and spermatozoa regardless of the capacitation status of the sperm (By similarity).
-35,P17612,13.0,Expressed in the midpiece region of the sperm flagellum (PubMed:10906071). Colocalizes with MROH2B and TCP11 on the acrosome and tail regions in round spermatids and spermatozoa regardless of the capacitation status of the sperm (By similarity).
-36,P22694,1.0,Translocates into the nucleus (monomeric catalytic subunit). The inactive holoenzyme is found in the cytoplasm.
-37,P17252,,
-38,P05771,,
-39,Q05655,,
-40,Q02156,4.0,"Translocated to plasma membrane in epithelial cells stimulated by HGF. Associated with the Golgi at the perinuclear site in pre-passage fibroblasts (By similarity). In passaging cells, translocated to the cell periphery (By similarity). Translocated to the nucleus in PMA-treated cells (By similarity)."
-41,P05129,4.0,Translocates to synaptic membranes on stimulation.
-42,P24723,,
-43,P41743,34.0,"Transported into the endosome through interaction with SQSTM1/p62. After phosphorylation by SRC, transported into the nucleus through interaction with KPNB1. Colocalizes with CDK7 in the cytoplasm and nucleus. Transported to vesicular tubular clusters (VTCs) through interaction with RAB2A."
-44,P41743,50.0,"Transported into the endosome through interaction with SQSTM1/p62. After phosphorylation by SRC, transported into the nucleus through interaction with KPNB1. Colocalizes with CDK7 in the cytoplasm and nucleus. Transported to vesicular tubular clusters (VTCs) through interaction with RAB2A."
-45,Q04759,,"In resting T-cells, mostly localized in cytoplasm. In response to TCR stimulation, associates with lipid rafts and then localizes in the immunological synapse."
-46,Q05513,4.0,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
-47,Q05513,24.0,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
-48,Q05513,30.0,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
-49,Q05513,32.0,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
-50,Q05513,,
-51,Q13976,13.0,Colocalized with TRPC7 in the plasma membrane.
-52,Q13237,,
-53,P51817,,cAMP induces nuclear translocation.
-54,Q13464,17.0,"Associated with the mother centriole and an intercentriolar linker. Colocalizes with ITGB1BP1 and ITGB1 at the cell membrane predominantly in lamellipodia and membrane ruffles, but also in retraction fibers. Localizes at the cell membrane in an ITGB1BP1-dependent manner (By similarity). A small proportion is associated with Golgi membranes."
-55,O75116,9.0,"Cytoplasmic, and associated with actin microfilaments and the plasma membrane."
-56,Q15418,,
-57,Q15349,,
-58,P51812,,
-59,O75676,,
-60,O75582,,Predominantly nuclear. Exported into cytoplasm in response to glucocorticoid.
-61,Q9UK32,,Predominantly cytosolic.
-62,P23443,,Colocalizes with URI1 at mitochondrion.
-63,P23443,,
-65,Q9UBS0,,
-66,O00141,,"The subcellular localization is controlled by the cell cycle, as well as by exposure to specific hormones and environmental stress stimuli. In proliferating cells, it shuttles between the nucleus and cytoplasm in synchrony with the cell cycle, and in serum/growth factor-stimulated cells it resides in the nucleus. In contrast, after exposure to environmental stress or treatment with glucocorticoids, it is detected in the cytoplasm and with certain stress conditions is associated with the mitochondria. In osmoregulation through the epithelial sodium channel, it can be localized to the cytoplasmic surface of the cell membrane. Nuclear, upon phosphorylation."
-67,O00141,,
-68,Q9HBY8,,
-69,Q96BR1,,Endosomal localization is a prerequisite for complete kinase activity. It is essential for its colocalization with the kinase responsible for phosphorylating Ser-486 thus allowing PDPK1 phosphorylation of Thr-320 resulting in complete activation of SGK3. Localized in vesicle-like structures and in the early endosome. Colocalizes with SLC9A3/NHE3 in the recycling endosomes.
-70,Q15208,,
-71,Q9Y2H1,,Associated with the actin cytoskeleton. Co-localizes with STK24/MST3 in the membrane.
-72,Q8TDC3,2.0,Nuclear in the absence of DNA damage. Translocated to the nucleus in response to UV- or MMS-induced DNA damage (By similarity).
-73,Q8IWQ3,,Detected at centrosomes during mitosis. Localizes to the endoplasmic reticulum in response to stress caused by tunicamycin.
-74,Q14012,5.0,Predominantly cytoplasmic.
-75,Q8IU85,,Predominantly cytoplasmic. Nuclear localization increases upon activation by KCl treatment in hippocampal neurons.
-76,Q96NX5,,
-77,Q9UQM7,5.0,Postsynaptic lipid rafts.
-78,Q13554,,"In slow-twitch muscle, evenly distributed between longitudinal SR and junctional SR."
-79,Q13557,,
-80,Q13555,,
-81,Q16566,3.0,"Localized in hippocampal neuron nuclei. In spermatids, associated with chromatin and nuclear matrix (By similarity)."
-82,Q8NCB2,1.0,"Predominantly observed in association with the plasma membrane of soma and in neurites, both axons and dendrites. May be associated with vesicular structures (By similarity)."
-83,O14936,,
-84,O14757,,"Nuclear export is mediated at least in part by XPO1/CRM1. Also localizes to the centrosome specifically during interphase, where it may protect centrosomal CDC2 kinase from inappropriate activation by cytoplasmic CDC25B."
-85,O96017,,Isoform 10 is present throughout the cell.
-86,O96017,,
-90,O96017,,Recruited into PML bodies together with TP53.
-91,P53355,,Colocalizes with MAP1B in the microtubules and cortical actin fibers.
-92,P53355,,
-93,Q9UIK4,,
-94,O43293,22.0,Predominantly localizes to the cytoplasm but can shuttle between the nucleus and cytoplasm; cytoplasmic localization is promoted by phosphorylation at Thr-299 and involves Rho/Rock signaling.
-95,O43293,26.0,Predominantly localizes to the cytoplasm but can shuttle between the nucleus and cytoplasm; cytoplasmic localization is promoted by phosphorylation at Thr-299 and involves Rho/Rock signaling.
-96,O43293,,
-98,Q8N568,2.0,Colocalizes with microtubules.
-99,Q9C098,,
-100,O60229,,Associated with the cytoskeleton.
-101,P49137,,"Phosphorylation and subsequent activation releases the autoinhibitory helix, resulting in the export from the nucleus into the cytoplasm."
-102,Q16644,,"Predominantly located in the nucleus, when activated it translocates to the cytoplasm."
-103,Q8IW41,,"Translocates to the cytoplasm following phosphorylation and activation. Interaction with ERK3/MAPK6 or ERK4/MAPK4 and phosphorylation at Thr-182, activates the protein kinase activity, followed by translocation to the cytoplasm. Phosphorylation by PKA/PRKACA at Ser-115 also induces nuclear export."
-104,Q9P0L2,5.0,Appears to localize to an intracellular network.
-105,Q7KZI7,,Phosphorylation at Thr-596 by PRKCZ/aPKC and subsequent interaction with 14-3-3 protein YWHAZ promotes relocation from the cell membrane to the cytoplasm.
-106,P27448,,
-107,Q96L34,9.0,Localized at the tips of neurite-like processes in differentiated neuroblast cells. Detected in the cytoplasm and neuropil of the hippocampus.
-108,Q96L34,17.0,Localized at the tips of neurite-like processes in differentiated neuroblast cells. Detected in the cytoplasm and neuropil of the hippocampus.
-109,Q14680,,
-110,Q9BUB5,,
-112,Q9HBH9,,
-114,Q15746,20.0,Localized to stress fibers during interphase and to the cleavage furrow during mitosis.
-115,Q9H1R3,,Colocalizes with phosphorylated myosin light chain (RLCP) at filaments of the myofibrils.
-116,Q32MK0,,
-117,O60285,,
-118,Q5VST9,,"In differentiating skeletal muscle cells, isoform 3 primarily localizes to the sarcomeric M-line and less frequently to the Z-disk (PubMed:12527750). Isoform 3 colocalizes with ANK1 isoform Mu17/ank1.5 at the M-line in differentiated skeletal muscle cells (PubMed:12527750)."
-119,Q5VST9,21.0,Colocalizes with CDH2 and ATP1B1 to the sarcolemma and to intercalating disks in cardiac muscles. Colocalizes with ATP1B1 to M line and Z line in cardiac muscles.
-120,Q96RG2,,Localizes in the nucleus of testis germ cells and in the midpiece of sperm tails.
-121,P11309,,
-123,Q86V86,,
-124,Q6P2M8,,
-125,Q13131,,"In response to stress, recruited by p53/TP53 to specific promoters."
-126,P54646,,"In response to stress, recruited by p53/TP53 to specific promoters."
-127,Q15139,,Translocation to the cell membrane is required for kinase activation.
-128,Q9BZL6,23.0,Translocation to the cell membrane is required for kinase activation. Accumulates in the nucleus upon CK1-mediated phosphorylation after activation of G-protein-coupled receptors. Nuclear accumulation is regulated by blocking nuclear export of active PRKD2 rather than by increasing import.
-129,O94806,,Translocation to the cell membrane is required for kinase activation.
-130,P11801,,"Localized in the brefeldin A-sensitive Golgi compartment, at centrosomes, in the nucleus with a somewhat speckle-like presence, membrane-associated to the endoplasmic reticulum (ER) and the plasma membrane (PM), and more diffusely in the cytoplasm. Found to concentrate in splicing factor compartments (SFCs) within the nucleus of interphase cells. The acylation-negative form may be only cytoplasmic and nuclear. Acylation seems to allow the sequestering to the intracellular membranes. Myristoylation may mediate targeting to the intracellular non-Golgi membranes and palmitoylation may mediate the targeting to the Golgi membranes. Dual acylation is required to stabilize the interaction with Golgi membranes."
-131,P57059,,"Locates to cytoplasm when inactive following cAMP-induced phosphorylation, probably by PKA (PubMed:29211348)."
-132,Q9H0K1,,
-133,Q9Y2K2,14.0,Locates to punctate structures within the cytoplasm on binding to YWHAZ.
-134,Q9NRH2,,
-135,Q15772,,
-136,Q15831,4.0,A small fraction localizes at membranes (By similarity). Relocates to the cytoplasm when bound to STRAD (STRADA or STRADB) and CAB39/MO25 (CAB39/MO25alpha or CAB39L/MO25beta). Translocates to the mitochondrion during apoptosis. Translocates to the cytoplasm in response to metformin or peroxynitrite treatment. PTEN promotes cytoplasmic localization.
-137,Q15831,,"Predominantly nuclear, but translocates to the cytoplasm in response to metformin or peroxynitrite treatment."
-138,Q9UEE5,,
-139,O94768,4.0,Colocalizes with STK17B at the plasma membrane.
-140,Q9BYT3,,
-141,Q8N2I9,,
-142,Q92519,1.0,May associate with the cytoskeleton.
-143,Q96RU7,,
-144,O75962,,
-145,Q9BXA7,1.0,"In spermatozoa, present in the sperm head and in the flagellum."
-146,Q96PF2,1.0,"Present in the cytoplasm of elongating spermatids. In spermatozoa, localizes in the equatorial segment, neck, the midpiece and in a specific sperm head compartment (By similarity). In spermatids, concentrates in centrioles during flagellogenesis."
-147,Q6SA08,1.0,"In spermatozoa, present in the sperm head and in the flagellum."
-148,Q8WZ42,,
-149,P48729,12.0,"Localizes to the centrosome in interphase cells, and to kinetochore fibers during mitosis. Also recruited to the keratin cytoskeleton (PubMed:23902688)."
-150,P48729,15.0,"Localizes to the centrosome in interphase cells, and to kinetochore fibers during mitosis. Also recruited to the keratin cytoskeleton (PubMed:23902688)."
-151,Q8N752,,
-152,P48730,,"Localized at mitotic spindle microtubules, and at the centrosomes and interphase in interphase cells. Recruited to the spindle apparatus and the centrosomes in response to DNA-damage. Correct subcellular localization requires kinase activity."
-153,P49674,,
-154,Q9HCP0,,
-155,P78368,,
-156,Q9Y6M4,,
-157,Q5TCY1,,
-158,Q6IQ55,3.0,"Localizes to the transition zone in primary cilia in response to cell cycle signals that promote ciliogenesis (By similarity). May also be present in cytosol and, at lower level in the nucleus."
-159,Q99986,,Dispersed throughout the cell but not located on mitotic spindle or chromatids during mitosis.
-160,Q86Y07,,
-162,Q8IV63,,
-163,P06493,,Cytoplasmic during the interphase. Colocalizes with SIRT2 on centrosome during prophase and on splindle fibers during metaphase of the mitotic cell cycle. Reversibly translocated from cytoplasm to nucleus when phosphorylated before G2-M transition when associated with cyclin-B1. Accumulates in mitochondria in G2-arrested cells upon DNA-damage.
-164,Q15131,,
-165,Q9UQ88,,
-166,P21127,,
-167,Q9NYV4,,Colocalized with nuclear speckles throughout interphase.
-168,Q14004,,
-169,O94921,,Recruited to the cell membrane by CCNY.
-170,Q00536,,Colocalizes with insulin in pancreas islets. Recruited to the cell membrane by CCNY.
-171,P24941,,"Localized at the centrosomes in late G2 phase after separation of the centrosomes but before the start of prophase. Nuclear-cytoplasmic trafficking is mediated during the inhibition by 1,25-(OH)(2)D(3)."
-172,Q8IZL9,,
-173,P11802,17.0,Cytoplasmic when non-complexed. Forms a cyclin D-CDK4 complex in the cytoplasm as cells progress through G(1) phase. The complex accumulates on the nuclear membrane and enters the nucleus on transition from G(1) to S phase. Also present in nucleoli and heterochromatin lumps. Colocalizes with RB1 after release into the nucleus.
-174,Q00535,7.0,"In axonal growth cone with extension to the peripheral lamellipodia (By similarity). Under neurotoxic stress and neuronal injury conditions, CDK5R (p35) is cleaved by calpain to generate CDK5R1 (p25) in response to increased intracellular calcium. The elevated level of p25, when in complex with CDK5, leads to its subcellular misallocation as well as its hyperactivation. Colocalizes with CTNND2 in the cell body of neuronal cells, and with CTNNB1 in the cell-cell contacts and plasma membrane of undifferentiated and differentiated neuroblastoma cells. Reversibly attached to the plasma membrane in an inactive form when complexed to dephosphorylated p35 or CDK5R2 (p39), p35 phosphorylation releases this attachment and activates CDK5."
-175,Q00535,,
-176,Q00534,12.0,Localized to the ruffling edge of spreading fibroblasts. Kinase activity only in nucleus. Localized to the cytosol of neurons and showed prominent staining around either side of the nucleus (By similarity). Present in the cytosol and in the nucleus in interphase cells and at the centrosome during mitosis from prophase to telophase (PubMed:23918663).
-177,Q00534,31.0,Localized to the ruffling edge of spreading fibroblasts. Kinase activity only in nucleus. Localized to the cytosol of neurons and showed prominent staining around either side of the nucleus (By similarity). Present in the cytosol and in the nucleus in interphase cells and at the centrosome during mitosis from prophase to telophase (PubMed:23918663).
-178,P50613,,Colocalizes with PRKCI in the cytoplasm and nucleus. Translocates from the nucleus to cytoplasm and perinuclear region in response to DNA-bound peptides.
-179,P49336,,
-180,P50750,,"Accumulates on chromatin in response to replication stress. Complexed with CCNT1 in nuclear speckles, but uncomplexed form in the cytoplasm. The translocation from nucleus to cytoplasm is XPO1/CRM1-dependent. Associates with PML body when acetylated."
-181,Q00532,,
-182,Q92772,,
-183,Q8IVW4,,
-184,Q5MAI5,,
-185,O76039,,
-186,P49759,,
-187,P49760,,
-188,P49760,10.0,Inhibition of phosphorylation at Ser-142 results in accumulation in the nuclear speckle.
-189,P49760,20.0,Co-localizes with serine- and arginine-rich (SR) proteins in the nuclear speckles.
-190,P49761,,
-191,P49761,,Co-localizes with serine- and arginine-rich (SR) proteins in the nuclear speckles.
-192,Q9HAZ1,,
-193,Q13627,,
-194,Q9Y463,,
-195,Q92630,,Translocates into the nucleus following DNA damage.
-196,O43781,7.0,"Associates with membraneless organelles in the cytoplasm and nucleus (PubMed:29973724). Shuttles between cytoplasm and stress granules (PubMed:20167603). Localized predominantly on distinct speckles distributed throughout the cytoplasm of the cell (PubMed:20167603). At low concentration, showns a homogeneous distribution throughout the cytoplasm and does not condense in speckles. During oxidative and osmotic stress, localizes to stress granules (PubMed:20167603)."
-197,O43781,10.0,"Associates with membraneless organelles in the cytoplasm and nucleus (PubMed:29973724). Shuttles between cytoplasm and stress granules (PubMed:20167603). Localized predominantly on distinct speckles distributed throughout the cytoplasm of the cell (PubMed:20167603). At low concentration, showns a homogeneous distribution throughout the cytoplasm and does not condense in speckles. During oxidative and osmotic stress, localizes to stress granules (PubMed:20167603)."
-198,Q9NR20,,
-200,P49841,,The phosphorylated form shows localization to cytoplasm and cell membrane. The MEMO1-RHOA-DIAPH1 signaling pathway controls localization of the phosphorylated form to the cell membrane.
-201,Q86Z02,11.0,Predominantly nuclear. Translocates from nucleus to cytoplasm in response to stress stimuli via SENP1-mediated desumoylation.
-202,Q86Z02,14.0,Predominantly nuclear. Translocates from nucleus to cytoplasm in response to stress stimuli via SENP1-mediated desumoylation.
-203,Q9H2X6,,Concentrated in PML/POD/ND10 nuclear bodies. Small amounts are cytoplasmic.
-204,Q9H422,,
-205,Q8NE63,,
-206,Q9UPZ9,7.0,"Also found at the ciliary tip (PubMed:24797473). Nuclear localization has been observed with a GFP-tagged construct in transfected HeLa cells (PubMed:12103360, PubMed:19185282)."
-207,Q9UPZ9,10.0,"Also found at the ciliary tip (PubMed:24797473). Nuclear localization has been observed with a GFP-tagged construct in transfected HeLa cells (PubMed:12103360, PubMed:19185282)."
-208,Q9UPZ9,11.0,"Also found at the ciliary tip (PubMed:24797473). Nuclear localization has been observed with a GFP-tagged construct in transfected HeLa cells (PubMed:12103360, PubMed:19185282)."
-209,Q9UPZ9,8.0,Predominant cytoplasmic localization has been observed with a N-terminally GFP-tagged construct.
-210,P20794,1.0,"Localized in both the connecting cilia and the outer segment axonemes (By similarity). Localized uniformly in nuclei during interphase, to the mitotic spindle and centrosomes during metaphase and anaphase, and also to midbody at anaphase until telophase."
-211,P28482,20.0,Associated with the spindle during prometaphase and metaphase (By similarity). PEA15-binding and phosphorylated DAPK1 promote its cytoplasmic retention. Phosphorylation at Ser- 246 and Ser-248 as well as autophosphorylation at Thr-190 promote nuclear localization.
-212,P53779,7.0,Palmitoylation regulates MAPK10 trafficking to cytoskeleton. Recruited to the mitochondria in the presence of SARM1 (By similarity).
-213,Q15759,,
-214,P53778,3.0,Mitochondrial when associated with SH3BP5. In skeletal muscle colocalizes with SNTA1 at the neuromuscular junction and throughout the sarcolemma (By similarity).
-215,Q16539,,
-216,Q8TD08,3.0,"Co-localizes to the cytoplasm only in presence of ESRRA (PubMed:21190936). Translocates to the nucleus upon activation (PubMed:20638370). At prometaphase I, metaphase I (MI), anaphase I, telophase I, and metaphase II (MII) stages, is stably detected at the spindle (By similarity)."
-217,Q8TD08,11.0,"Co-localizes to the cytoplasm only in presence of ESRRA (PubMed:21190936). Translocates to the nucleus upon activation (PubMed:20638370). At prometaphase I, metaphase I (MI), anaphase I, telophase I, and metaphase II (MII) stages, is stably detected at the spindle (By similarity)."
-218,Q8TD08,13.0,"Co-localizes to the cytoplasm only in presence of ESRRA (PubMed:21190936). Translocates to the nucleus upon activation (PubMed:20638370). At prometaphase I, metaphase I (MI), anaphase I, telophase I, and metaphase II (MII) stages, is stably detected at the spindle (By similarity)."
-219,P27361,,Autophosphorylation at Thr-207 promotes nuclear localization.
-220,P31152,3.0,Translocates to the cytoplasm following interaction with MAPKAPK5.
-221,Q16659,5.0,Translocates to the cytoplasm following interaction with MAPKAPK5.
-222,Q13164,,Translocates to the nucleus upon activation.
-223,P45983,14.0,Colocalizes with POU5F1 in the nucleus.
-224,P45984,4.0,Colocalizes with POU5F1 in the nucleus.
-225,Q9UQ07,,
-226,Q9UBE8,4.0,Predominantly nuclear. A smaller fraction is cytoplasmic (By similarity).
-227,Q13523,,
-228,Q96SB4,,"Shuttles between the nucleus and the cytoplasm. Inhibition of the Hsp90 ATPase activity, osmotic stress and interaction with HHV-1 ICP27 protein can induce its translocation to the nucleus. KAT5/TIP60 inhibits its nuclear translocation."
-229,Q96SB4,,"Mainly localized in the microsomal fraction and the cytoplasm, and to a lesser extent in the nuclear matrix."
-230,P78362,,Shuttles between the nucleus and the cytoplasm. KAT5/TIP60 inhibits its nuclear translocation. Phosphorylation at Thr-492 by PKB/AKT1 promotes nuclear translocation.
-231,Q96PY6,6.0,Associated with the pericentriolar material (PubMed:21211617). Localizes to centrosome during interphase and mitosis (By similarity). Translocated from cytoplasm to discrete nuclear foci at sites of DNA damage (PubMed:15604234).
-232,Q96PY6,9.0,Associated with the pericentriolar material (PubMed:21211617). Localizes to centrosome during interphase and mitosis (By similarity). Translocated from cytoplasm to discrete nuclear foci at sites of DNA damage (PubMed:15604234).
-233,Q96PY6,14.0,Associated with the pericentriolar material (PubMed:21211617). Localizes to centrosome during interphase and mitosis (By similarity). Translocated from cytoplasm to discrete nuclear foci at sites of DNA damage (PubMed:15604234).
-234,Q8NG66,5.0,Nuclear during interphase but moves to the polar microtubules during prometaphase and metaphase (PubMed:12154088). Accumulates in the nucleolus in G1/S-arrested cells (PubMed:15161910).
-235,Q8NG66,7.0,Nuclear during interphase but moves to the polar microtubules during prometaphase and metaphase (PubMed:12154088). Accumulates in the nucleolus in G1/S-arrested cells (PubMed:15161910).
-236,P51955,,STK3/MST2 and SAV1 are required for its targeting to the centrosome. Colocalizes with SGO1 and MAD1L1 at the kinetochore. Not associated with kinetochore in the interphase but becomes associated with it upon the breakdown of the nuclear envelope. Has a nucleolar targeting/ retention activity via a coiled-coil domain at the C-terminal end.
-237,P51955,,Predominantly cytoplasmic.
-238,P51955,,Predominantly nuclear.
-239,P51956,,
-240,P51957,,
-241,Q9HC98,,"Colocalizes with APBB1 at the nuclear speckles. Colocalizes with PIN1 in the nucleus. Colocalizes with ATF4, CIR1, ARHGAP33, ANKRA2, CDC42, NEK9, RAD26L, RBBP6, RPS7, TRIP4, RELB and PHF1 in the centrosome. Localizes to spindle microtubules in metaphase and anaphase and to the midbody during cytokinesis."
-242,Q8TDX7,5.0,Present at centrosome throughout the cell cycle (PubMed:17586473). Also detected at spindle midzone of the anaphase cells and eventually concentrates at the midbody (PubMed:17586473). Interaction with ANKS3 prevents its translocation to the nucleus (By similarity).
-243,Q8TDX7,12.0,Present at centrosome throughout the cell cycle (PubMed:17586473). Also detected at spindle midzone of the anaphase cells and eventually concentrates at the midbody (PubMed:17586473). Interaction with ANKS3 prevents its translocation to the nucleus (By similarity).
-244,Q86SG6,2.0,Predominantly cytoplasmic. Localizes to the proximal region of the primary cilium and is not observed in dividing cells.
-245,Q8TD19,,
-246,P25092,,"The 145 kDa plasma membrane form of GC-C contains sialic acid and galactose residues, while a differencially glycosylated 130 Kda form is a high mannose form that is resident in the endoplasmic reticulum and may serve as the precursor for the cell surface form."
-247,Q02846,,
-248,P51841,,
-249,P16066,,
-250,P20594,,
-251,Q02750,12.0,"Localizes at centrosomes during prometaphase, midzone during anaphase and midbody during telophase/cytokinesis (PubMed:14737111). Membrane localization is probably regulated by its interaction with KSR1 (PubMed:10409742)."
-252,Q02750,14.0,"Localizes at centrosomes during prometaphase, midzone during anaphase and midbody during telophase/cytokinesis (PubMed:14737111). Membrane localization is probably regulated by its interaction with KSR1 (PubMed:10409742)."
-253,P36507,14.0,Membrane localization is probably regulated by its interaction with KSR1.
-254,P45985,,
-255,P52564,,Binds to microtubules.
-256,O14733,,
-257,Q16584,,Location is cell cycle dependent.
-258,Q12852,2.0,Behaves essentially as an integral membrane protein.
-259,O43283,,
-260,Q99558,,
-261,Q9Y2U5,,"Upon EGF stimulation, translocates into the nucleus."
-262,Q9NYL2,22.0,Translocates to the nucleus upon ultraviolet B irradiation.
-263,Q9Y6R4,4.0,"Localized in perinuclear vesicular-like structures, probably Golgi-associated vesicles."
-264,Q99683,,Interaction with 14-3-3 proteins alters the distribution of MAP3K5/ASK1 and restricts it to the perinuclear endoplasmic reticulum region.
-265,O43318,,"Although the majority of MAP3K7/TAK1 is found in the cytosol, when complexed with TAB1/MAP3K7IP1 and TAB2/MAP3K7IP2, it is also localized at the cell membrane."
-266,P41279,,
-267,Q12851,,
-268,O95819,,
-269,Q9Y4K4,,
-270,Q8N4C8,,
-272,Q8NEV4,9.0,Increased localization at the filodium tip seen in the presence of MORN4.
-273,Q8WXR4,,
-274,O95747,,
-275,Q13153,17.0,"Colocalizes with RUFY3, F-actin and other core migration components in invadopodia at the cell periphery (PubMed:25766321). Recruited to the cell membrane by interaction with CDC42 and RAC1. Recruited to focal adhesions upon activation. Colocalized with CIB1 within membrane ruffles during cell spreading upon readhesion to fibronectin. Upon DNA damage, translocates to the nucleoplasm when phosphorylated at Thr-212 where is co-recruited with MORC2 on damaged chromatin (PubMed:23260667)."
-276,Q13153,42.0,"Colocalizes with RUFY3, F-actin and other core migration components in invadopodia at the cell periphery (PubMed:25766321). Recruited to the cell membrane by interaction with CDC42 and RAC1. Recruited to focal adhesions upon activation. Colocalized with CIB1 within membrane ruffles during cell spreading upon readhesion to fibronectin. Upon DNA damage, translocates to the nucleoplasm when phosphorylated at Thr-212 where is co-recruited with MORC2 on damaged chromatin (PubMed:23260667)."
-277,Q13153,45.0,"Colocalizes with RUFY3, F-actin and other core migration components in invadopodia at the cell periphery (PubMed:25766321). Recruited to the cell membrane by interaction with CDC42 and RAC1. Recruited to focal adhesions upon activation. Colocalized with CIB1 within membrane ruffles during cell spreading upon readhesion to fibronectin. Upon DNA damage, translocates to the nucleoplasm when phosphorylated at Thr-212 where is co-recruited with MORC2 on damaged chromatin (PubMed:23260667)."
-278,Q13177,,MYO18A mediates the cellular distribution of the PAK2-ARHGEF7-GIT1 complex to the inner surface of the cell membrane.
-279,Q13177,,Interaction with ARHGAP10 probably changes PAK-2p34 location to cytoplasmic perinuclear region. Myristoylation changes PAK-2p34 location to the membrane.
-280,O75914,,
-281,O96013,24.0,"Seems to shuttle between cytoplasmic compartments depending on the activating effector. For example, can be found on the cell periphery after activation of growth-factor or integrin-mediated signaling pathways."
-282,Q9P286,,"Shuttles between the nucleus and the mitochondria, and mitochondrial localization is essential for the role in cell survival."
-283,Q9NQU5,,Cotranslocates into nucleus with AR in response to androgen induction.
-284,Q9H2G2,,
-285,O94804,,
-286,Q9Y6E0,,The truncated form (MST3/N) translocates to the nucleus. Colocalizes with STK38L in the membrane.
-287,O00506,,Localizes to the Golgi apparatus.
-288,Q9P289,25.0,"Colocalized with RIPOR1 in the Golgi of serum-starved cells and relocated to cytoplasmic punctae, probably vesicular compartments, along with RIPOR1 upon serum stimulation in a Rho- and PDCD10-dependent manner (PubMed:27807006)."
-289,Q13188,14.0,The caspase-cleaved form cycles between nucleus and cytoplasm (By similarity). Phosphorylation at Thr-117 leads to inhibition of nuclear translocation.
-290,Q13188,29.0,The caspase-cleaved form cycles between nucleus and cytoplasm (By similarity). Phosphorylation at Thr-117 leads to inhibition of nuclear translocation.
-291,Q9UEW8,14.0,Nucleus when caspase-cleaved.
-292,Q13043,,The caspase-cleaved form cycles between the nucleus and cytoplasm.
-293,Q7RTN6,,
-294,Q9C0K7,,
-295,Q7L7X3,,
-296,Q9UL54,,"Catalytically active full-length phosphorylated isoform 1 localizes to microtubules in the cytoplasm predominantly on microtubule cables positioned around the nucleus. A C-terminally truncated form of isoform 1 is present in the nucleus; isoform 2 and kinase-defective, as well as full-length isoform 1 are excluded from the nucleus."
-297,Q9UL54,6.0,"In dendrites, colocalizes with PCDH8."
-298,Q9H2K8,,Also localized to the peripheral cell membrane.
-299,Q9UKE5,,Associated with recycling endosomes and the cytoskeletal fraction upon RAP2A overexpression.
-300,Q04771,,
-301,P36896,,
-302,Q8NER5,,
-303,P27037,,
-304,P37023,,
-305,Q16671,,
-306,P36894,,
-307,O00238,,
-308,Q13873,,
-309,P15056,19.0,Colocalizes with RGS14 and RAF1 in both the cytoplasm and membranes.
-310,Q13418,,
-311,P51617,4.0,Translocates to the nucleus when sumoylated. RSAD2/viperin recruits it to the lipid droplet (By similarity).
-312,Q9NWZ3,,
-313,Q8IVT5,23.0,"In unstimulated cells, where the phosphorylated form is bound to a 14-3-3 protein, sequestration in the cytoplasm occurs. Following growth factor treatment, the protein is free for membrane translocation, and it moves from the cytoplasm to the cell periphery."
-314,Q6VAB6,,
-315,P53667,7.0,"Predominantly found in the cytoplasm. Localizes in the lamellipodium in a CDC42BPA, CDC42BPB and FAM89B/LRAP25-dependent manner."
-316,P53671,,
-317,P53671,17.0,Isoform LIMK2a is distributed in the cytoplasm and the nucleus.
-318,P53671,17.0,Isoform LIMK2b occurs mainly in the cytoplasm and is scarcely translocated to the nucleus.
-319,Q38SD2,,
-320,Q5S007,56.0,"Colocalized with RAB29 along tubular structures emerging from Golgi apparatus (PubMed:23395371). Localizes to endoplasmic reticulum exit sites (ERES), also known as transitional endoplasmic reticulum (tER) (PubMed:25201882)."
-321,Q5S007,58.0,"Colocalized with RAB29 along tubular structures emerging from Golgi apparatus (PubMed:23395371). Localizes to endoplasmic reticulum exit sites (ERES), also known as transitional endoplasmic reticulum (tER) (PubMed:25201882)."
-322,P04049,,Colocalizes with RGS14 and BRAF in both the cytoplasm and membranes. Phosphorylation at Ser-259 impairs its membrane accumulation. Recruited to the cell membrane by the active Ras protein. Phosphorylation at Ser-338 and Ser-339 by PAK1 is required for its mitochondrial localization. Retinoic acid-induced Ser-621 phosphorylated form of RAF1 is predominantly localized at the nucleus.
-323,Q13546,,
-324,O43353,,
-325,Q9Y572,,
-326,P57078,,
-327,Q96S53,,
-328,P36897,,
-329,P37173,,
-330,Q59H18,,Expressed at lower levels in the cytoplasm.
-331,Q6ZMQ8,,Predominantly perinuclear.
-332,P00519,25.0,Shuttles between the nucleus and cytoplasm depending on environmental signals. Sequestered into the cytoplasm through interaction with 14-3-3 proteins. Localizes to mitochondria in response to oxidative stress (By similarity).
-333,P00519,,The myristoylated c-ABL protein is reported to be nuclear.
-334,P42684,,
-335,Q9UM73,,Membrane attachment was crucial for promotion of neuron-like differentiation and cell proliferation arrest through specific activation of the MAP kinase pathway.
-336,P30530,,
-337,P51451,1.0,Present and active in lipid rafts. Membrane location is required for the phosphorylation of CD79A and CD79B (By similarity).
-338,P51813,,Localizes to the edges of spreading cells when complexed with BCAR1.
-339,Q06187,,"In steady state, BTK is predominantly cytosolic. Following B-cell receptor (BCR) engagement by antigen, translocates to the plasma membrane through its PH domain. Plasma membrane localization is a critical step in the activation of BTK. A fraction of BTK also shuttles between the nucleus and the cytoplasm, and nuclear export is mediated by the nuclear export receptor CRM1."
-340,P07333,,
-341,P41240,6.0,"Mainly cytoplasmic, also present in lipid rafts."
-342,Q08345,,
-346,Q16832,,
-347,P00533,101.0,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
-348,P00533,117.0,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
-349,P00533,132.0,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
-350,P00533,133.0,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
-351,P00533,,
-352,P21709,,
-353,Q5JZY3,,
-356,P29317,32.0,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
-357,P29317,37.0,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
-358,P29317,42.0,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
-359,P29317,50.0,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
-360,P29320,,
-362,P54764,6.0,Clustered upon activation and targeted to early endosome.
-363,P54756,,
-364,Q9UF33,,
-365,Q15375,,
-366,P29322,5.0,Undergoes clathrin-mediated endocytosis upon EFNA5-binding and is targeted to early endosomes.
-367,P54762,,
-368,P29323,,
-369,P54753,,
-370,P54760,,
-371,O15197,,
-373,P04626,56.0,"Translocation to the nucleus requires endocytosis, probably endosomal sorting and is mediated by importin beta-1/KPNB1. Also detected in VPS35-positive endosome-to-TGN retrograde vesicles (PubMed:31138794)."
-374,P04626,,
-376,P21860,,
-378,Q15303,,"In response to NRG1 treatment, the activated receptor is internalized."
-379,Q15303,,Following proteolytical processing E4ICD (E4ICD1 or E4ICD2 generated from the respective isoforms) is translocated to the nucleus. Significantly more E4ICD2 than E4ICD1 is found in the nucleus. E4ICD2 colocalizes with YAP1 in the nucleus.
-380,P16591,,Associated with the chromatin. Detected on microtubules in polarized and motile vascular endothelial cells. Colocalizes with F-actin at the cell cortex. Colocalizes with PECAM1 and CTNND1 at nascent cell-cell contacts.
-381,P07332,,Distributed throughout the cytosol when the kinase is not activated. Association with microtubules requires activation of the kinase activity. Shuttles between focal adhesions and cell-cell contacts in epithelial cells. Recruited to the lateral cell membrane in polarized epithelial cells by interaction with phosphorylated EZR. Detected at tubular membrane structures in the cytoplasm and at the cell periphery.
-382,P11362,,"After ligand binding, both receptor and ligand are rapidly internalized. Can translocate to the nucleus after internalization, or by translocation from the endoplasmic reticulum or Golgi apparatus to the cytosol, and from there to the nucleus."
-383,P21802,,"Detected on osteoblast plasma membrane lipid rafts. After ligand binding, the activated receptor is rapidly internalized and degraded."
-384,P21802,,"After ligand binding, the activated receptor is rapidly internalized and degraded."
-386,P21802,,
-388,P22607,,The activated receptor is rapidly internalized and degraded. Detected in intracellular vesicles after internalization of the autophosphorylated receptor.
-389,P22607,,
-392,P22455,,"Internalized from the cell membrane to recycling endosomes, and from there back to the cell membrane."
-393,P22455,,
-395,P09769,2.0,Detected in mitochondrial intermembrane space and at inner membranes (By similarity). Colocalizes with actin fibers at membrane ruffles. Detected at plasma membrane lipid rafts.
-396,P17948,,Autophosphorylation promotes ubiquitination and endocytosis.
-397,P17948,,
-403,P36888,,Constitutively activated mutant forms with internal tandem duplications are less efficiently transported to the cell surface and a significant proportion is retained in an immature form in the endoplasmic reticulum lumen. The activated kinase is rapidly targeted for degradation.
-404,P35916,31.0,Ligand-mediated autophosphorylation leads to rapid internalization.
-405,P35916,,Ligand-mediated autophosphorylation leads to rapid internalization.
-406,P35916,,
-408,P42685,,"Predominantly found in the nucleus, with a small fraction found in the cell periphery."
-409,P06241,,Present and active in lipid rafts. Palmitoylation is crucial for proper trafficking.
-410,P08631,,"Associated with specialized secretory lysosomes called azurophil granules. At least half of this isoform is found in the cytoplasm, some of this fraction is myristoylated."
-411,P08631,,20% of this isoform is associated with caveolae. Localization at the cell membrane and at caveolae requires palmitoylation at Cys-3. Colocalizes with the actin cytoskeleton at focal adhesions.
-412,P08631,,
-413,P08069,,
-414,P06213,20.0,"Binding of insulin to INSR induces internalization and lysosomal degradation of the receptor, a means for downregulating this signaling pathway after stimulation. In the presence of SORL1, internalized INSR molecules are redirected back to the cell surface, thereby preventing their lysosomal catabolism and strengthening insulin signal reception."
-415,P14616,,
-416,Q08881,,Localizes in the vicinity of cell surface receptors in the plasma membrane after receptor stimulation.
-417,P23458,,"Wholly intracellular, possibly membrane associated."
-418,O60674,,
-419,P52333,,
-420,P35968,14.0,Localized with RAP1A at cell-cell junctions (By similarity). Colocalizes with ERN1 and XBP1 in the endoplasmic reticulum in endothelial cells in a vascular endothelial growth factor (VEGF)-dependent manner (PubMed:23529610).
-421,P35968,57.0,Localized with RAP1A at cell-cell junctions (By similarity). Colocalizes with ERN1 and XBP1 in the endoplasmic reticulum in endothelial cells in a vascular endothelial growth factor (VEGF)-dependent manner (PubMed:23529610).
-422,P35968,,Detected on caveolae-enriched lipid rafts at the cell surface. Is recycled from the plasma membrane to endosomes and back again. Phosphorylation triggered by VEGFA binding promotes internalization and subsequent degradation. VEGFA binding triggers internalization and translocation to the nucleus.
-423,P35968,,
-425,P10721,,
-427,P10721,,"Detected in the cytoplasm of spermatozoa, especially in the equatorial and subacrosomal region of the sperm head."
-428,P06239,,Present in lipid rafts in an inactive form.
-429,Q8IWU2,,
-430,Q96Q04,,Punctate pattern in cell projections.
-431,P29376,,
-432,P07948,,Accumulates in the nucleus by inhibition of CRM1-mediated nuclear export. Nuclear accumulation is increased by inhibition of its kinase activity. The trafficking from the Golgi apparatus to the plasma membrane occurs in a kinase domain-dependent but kinase activity independent manner and is mediated by exocytic vesicular transport. Detected on plasma membrane lipid rafts.
-433,P42679,,"In platelets, 90% of MATK localizes to the membrane fraction, and translocates to the cytoskeleton upon thrombin stimulation."
-434,Q12866,,
-435,P08581,,
-437,Q04912,,
-438,O15146,13.0,Colocalizes with acetylcholine receptors (AChR) to the postsynaptic cell membrane of the neuromuscular junction.
-439,P04629,16.0,Rapidly internalized after NGF binding (PubMed:1281417). Internalized to endosomes upon binding of NGF or NTF3 and further transported to the cell body via a retrograde axonal transport. Localized at cell membrane and early endosomes before nerve growth factor (NGF) stimulation. Recruited to late endosomes after NGF stimulation. Colocalized with RAPGEF2 at late endosomes.
-440,P04629,34.0,Rapidly internalized after NGF binding (PubMed:1281417). Internalized to endosomes upon binding of NGF or NTF3 and further transported to the cell body via a retrograde axonal transport. Localized at cell membrane and early endosomes before nerve growth factor (NGF) stimulation. Recruited to late endosomes after NGF stimulation. Colocalized with RAPGEF2 at late endosomes.
-441,Q16620,9.0,Internalized to endosomes upon ligand-binding.
-442,Q16288,,
-443,P16234,,
-444,P09619,,"After ligand binding, the autophosphorylated receptor is ubiquitinated and internalized, leading to its degradation."
-445,Q05397,,Constituent of focal adhesions. Detected at microtubules.
-446,Q14289,,Interaction with NPHP1 induces the membrane-association of the kinase. Colocalizes with integrins at the cell periphery.
-447,Q13882,,"Colocalizes with KHDRBS1, KHDRBS2 or KHDRBS3, within the nucleus. Nuclear localization in epithelial cells of normal prostate but cytoplasmic localization in cancer prostate."
-448,Q13308,,Colocalizes with MMP14 at cell junctions. Also localizes at the leading edge of migrating cells.
-449,P07949,54.0,"Predominantly located on the plasma membrane. In the presence of SORL1 and GFRA1, directed to endosomes."
-450,Q01973,,
-451,Q01974,,
-452,P08922,,
-453,P34925,1.0,"In cells that have undergone neuronal differentiation, the C-terminal cleaved part is translocated from the cytoplasm to the nucleus."
-454,P12931,43.0,"Localizes to focal adhesion sites following integrin engagement. Localization to focal adhesion sites requires myristoylation and the SH3 domain (PubMed:7525268). Colocalizes with PDLIM4 at the perinuclear region, but not at focal adhesions (PubMed:19307596)."
-455,P12931,64.0,"Localizes to focal adhesion sites following integrin engagement. Localization to focal adhesion sites requires myristoylation and the SH3 domain (PubMed:7525268). Colocalizes with PDLIM4 at the perinuclear region, but not at focal adhesions (PubMed:19307596)."
-456,Q9H3Y6,6.0,Localizes to punctate cytoplasmic structures.
-457,Q9H3Y6,7.0,Localizes to punctate cytoplasmic structures.
-458,Q6J9G0,,
-459,P43405,,
-460,P42680,4.0,"Following B-cell or T-cell receptors activation by antigen, translocates to the plasma membrane through its PH domain. Thrombin and integrin engagement induces translocation of TEC to the cytoskeleton during platelet activation. In cardiac myocytes, assumes a diffuse intracellular localization under basal conditions but is recruited to striated structures upon various stimuli, including ATP (By similarity)."
-461,Q02763,16.0,"Recruited to cell-cell contacts in quiescent endothelial cells (PubMed:18425120, PubMed:18425119). Colocalizes with the actin cytoskeleton and at actin stress fibers during cell spreading. Recruited to the lower surface of migrating cells, especially the rear end of the cell. Proteolytic processing gives rise to a soluble extracellular domain that is secreted (PubMed:11806244)."
-462,Q02763,31.0,"Recruited to cell-cell contacts in quiescent endothelial cells (PubMed:18425120, PubMed:18425119). Colocalizes with the actin cytoskeleton and at actin stress fibers during cell spreading. Recruited to the lower surface of migrating cells, especially the rear end of the cell. Proteolytic processing gives rise to a soluble extracellular domain that is secreted (PubMed:11806244)."
-463,Q02763,32.0,"Recruited to cell-cell contacts in quiescent endothelial cells (PubMed:18425120, PubMed:18425119). Colocalizes with the actin cytoskeleton and at actin stress fibers during cell spreading. Recruited to the lower surface of migrating cells, especially the rear end of the cell. Proteolytic processing gives rise to a soluble extracellular domain that is secreted (PubMed:11806244)."
-464,P35590,,
-465,Q13470,,
-466,Q07912,,The Tyr-284 phosphorylated form is found both in the membrane and nucleus. Colocalizes with EGFR on endosomes. Nuclear translocation is CDC42-dependent.
-467,P42681,,Localizes in the vicinity of cell surface receptors in the plasma membrane after receptor stimulation. Translocates into the nucleus and enhances IFN-gamma gene transcription in T-cells.
-468,Q06418,,
-469,P07947,,Newly synthesized protein initially accumulates in the Golgi region and traffics to the plasma membrane through the exocytic pathway.
-470,P43403,11.0,"In quiescent T-lymphocytes, it is cytoplasmic. Upon TCR activation, it is recruited at the plasma membrane by interacting with CD247/CD3Z. Colocalizes together with RHOH in the immunological synapse. RHOH is required for its proper localization to the cell membrane and cytoskeleton fractions in the thymocytes (By similarity)."
-471,Q2M2I8,17.0,"Active when found in clathrin-coated pits at the plasma membrane. In neuronal cells, enriched at presynaptic terminals. In non-neuronal cells, enriched at leading edge of migrating cells."
-472,O14965,15.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-473,O14965,43.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-474,O14965,48.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-475,O14965,62.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-476,O14965,64.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-477,O14965,69.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-478,O14965,75.0,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
-479,Q96GD4,36.0,"Localizes on chromosome arms and inner centromeres from prophase through metaphase and then transferring to the spindle midzone and midbody from anaphase through cytokinesis. Colocalized with gamma tubulin in the midbody. Proper localization of the active, Thr-232-phosphorylated form during metaphase may be dependent upon interaction with SPDYC. Colocalized with SIRT2 during cytokinesis with the midbody. Localization (and probably targeting of the CPC) to the inner centromere occurs predominantly in regions with overlapping mitosis-specific histone phosphorylations H3pT3 and H2ApT12."
-480,Q9UQB9,13.0,"Distributes in the condensed chromosomes during prophase to metaphase. After entering anaphase, there is a dissociation from separated chromosomes and a redistribution to midzone microtubules, and finally remains in the midbody during cytokinesis."
-481,Q9NSY1,,
-482,O43683,13.0,"Nuclear in interphase cells. Accumulates gradually during G1 and S phase of the cell cycle, peaks at G2/M, and drops dramatically after mitosis. Localizes to the outer kinetochore. Kinetochore localization is required for normal mitotic timing and checkpoint response to spindle damage and occurs very early in prophase. AURKB, KNL1 and INCENP are required for kinetochore localization (By similarity)."
-483,O60566,,"Cytoplasmic in interphase cells. Associates with the kinetochores in early prophase. Kinetochore localization requires BUB1, PLK1 and KNL1."
-484,Q8N5S9,,
-485,Q96RR4,16.0,"Predominantly nuclear in unstimulated cells, relocalizes into cytoplasm and neurites after forskolin induction."
-486,O00311,,
-487,O15111,,Shuttles between the cytoplasm and the nucleus.
-488,P68400,,
-489,Q6XUX3,1.0,Detected at apical cell-cell junctions. Colocalized with FGF receptors to the cell membrane (By similarity). Detected in basolateral and apical membranes of all tubular epithelia.
-490,Q6XUX3,7.0,Detected at apical cell-cell junctions. Colocalized with FGF receptors to the cell membrane (By similarity). Detected in basolateral and apical membranes of all tubular epithelia.
-491,Q9BQI3,,
-492,P19525,,"Nuclear localization is elevated in acute leukemia, myelodysplastic syndrome (MDS), melanoma, breast, colon, prostate and lung cancer patient samples or cell lines as well as neurocytes from advanced Creutzfeldt-Jakob disease patients."
-493,Q9NZJ5,,
-494,Q9P2K8,,
-495,O75460,,
-496,Q76MJ5,,
-497,O14976,,"Localizes to the perinuclear area and to the trans-Golgi network. Also seen on the plasma membrane, probably at focal adhesions."
-498,Q8TF76,,Nuclear during interphase and associates with the chromosomes and spindle apparatus during mitosis.
-499,O14920,35.0,Colocalized with DPP4 in membrane rafts.
-500,Q14164,15.0,Targeting to PML nuclear bodies upon DNA damage is TOPORS-dependent (PubMed:20188669). Located diffusely throughout the cytoplasm but locates to punctate cytoplasmic bodies when coexpressed with TRIM6 (PubMed:24882218).
-501,Q14164,22.0,Targeting to PML nuclear bodies upon DNA damage is TOPORS-dependent (PubMed:20188669). Located diffusely throughout the cytoplasm but locates to punctate cytoplasmic bodies when coexpressed with TRIM6 (PubMed:24882218).
-502,Q8NB16,,Localizes to the cytoplasm and translocates to the plasma membrane on necroptosis induction.
-503,Q9UHY1,,Colocalizes with activated RAC3 to endomembranes and at the cell periphery in lamellipodia.
-504,Q9NSY0,,
-505,Q58A45,,
-506,Q8N165,,
-507,Q9H792,9.0,Colocalizes with F-actin in serum-rich medium (PubMed:20534451). Actin colocalization is reduced during serum starvation (PubMed:20534451).
-508,Q99570,4.0,As component of the PI3K complex I localized to pre-autophagosome structures. As component of the PI3K complex II localized predominantly to endosomes. Localizes also to discrete punctae along the ciliary axoneme (By similarity).
-509,Q99570,18.0,As component of the PI3K complex I localized to pre-autophagosome structures. As component of the PI3K complex II localized predominantly to endosomes. Localizes also to discrete punctae along the ciliary axoneme (By similarity).
-510,Q9BXM7,30.0,Localizes mostly in mitochondrion and the 2 proteolytic processed fragments of 55 kDa and 48 kDa localize mainly in cytosol.
-511,Q504Y2,,
-512,Q99640,,
-513,P53350,63.0,"localization at the centrosome starts at the G1/S transition (PubMed:24018379). During early stages of mitosis, the phosphorylated form is detected on centrosomes and kinetochores. Localizes to the outer kinetochore. Presence of SGO1 and interaction with the phosphorylated form of BUB1 is required for the kinetochore localization. Localizes onto the central spindle by phosphorylating and docking at midzone proteins KIF20A/MKLP2 and PRC1. Colocalizes with FRY to separating centrosomes and spindle poles from prophase to metaphase in mitosis, but not in other stages of the cell cycle. Localization to the centrosome is required for S phase progression (PubMed:24018379). Colocalizes with HSF1 at the spindle poles during prometaphase (PubMed:18794143)."
-514,P53350,80.0,"localization at the centrosome starts at the G1/S transition (PubMed:24018379). During early stages of mitosis, the phosphorylated form is detected on centrosomes and kinetochores. Localizes to the outer kinetochore. Presence of SGO1 and interaction with the phosphorylated form of BUB1 is required for the kinetochore localization. Localizes onto the central spindle by phosphorylating and docking at midzone proteins KIF20A/MKLP2 and PRC1. Colocalizes with FRY to separating centrosomes and spindle poles from prophase to metaphase in mitosis, but not in other stages of the cell cycle. Localization to the centrosome is required for S phase progression (PubMed:24018379). Colocalizes with HSF1 at the spindle poles during prometaphase (PubMed:18794143)."
-515,Q9NYY3,,Localizes to centrosomes during early G1 phase where it only associates to the mother centriole and then distributes equally to both mother and daughter centrioles at the onset of S phase.
-516,Q9H4B4,19.0,"Translocates to the nucleus upon cisplatin treatment. Localizes to the Golgi apparatus during interphase. According to a report, PLK3 localizes only in the nucleolus and not in the centrosome, or in any other location in the cytoplasm (PubMed:17264206). The discrepancies in results may be explained by the PLK3 antibody specificity, by cell line-specific expression or post-translational modifications."
-517,O00444,,"Component of the deuterosome, a structure that promotes de novo centriole amplification in multiciliated cells that can generate more than 100 centrioles. Associates with centrioles throughout the cell cycle. According to PubMed:16244668, it is not present at cleavage furrows."
-518,Q496M5,,
-519,Q9H5K3,,
-520,Q86YV5,8.0,Colocalized with NOTCH1 in the nucleus.
-521,Q7Z7A4,,Also associates with the plasma membrane. Isoform 3 is present throughout the cell.
-522,Q05823,,
-523,Q96S38,,
-524,Q52WX2,,
-525,Q96KG9,,Localized to the Endoplasmic reticulum-Golgi intermediate and cis-Golgi in an ARF1-independent manner.
-526,Q96KG9,,Cytoplasmic throughout the cell cycle.
-528,Q96KG9,,"Cytoplasmic during interphase and centrosomal during mitosis, it localizes to the centrosomes in a microtubule-independent manner."
-529,Q96KG9,,
-530,Q6P3W7,,"According to PubMed:15809293, plasma membrane-associated in clathrin-coated vesicles. According to PubMed:16914521, colocalizes to the trans-Golgi network (TGN) and to endosomal membranes with clathrin, transferrin and plasma membrane adapter AP1 and AP3 complexes."
-531,Q8IZE3,,"Colocalized with EZR/VIL2, actin and CD44 in lamellipodia."
-532,O75716,2.0,Associates with Golgi and Golgi-derived vesicles.
-533,Q8WU08,,
-534,Q8TDR2,3.0,"When associated with PDLIM1, it is mostly found in cytoplasm, localized to actin stress fibers (PubMed:11973348). However, PubMed:19756140 detected STK35 only in the nucleus, and the presence of PDLIM1 had no influence on its location."
-535,Q9NRP7,6.0,Low levels also present in the nucleus.
-536,Q8TEA7,11.0,"Mainly localized in the cytoplasm during interphase. During metaphase, TBCK accumulates at the mitotic spindle. At the end of mitosis, it is detected at the midbody."
-537,Q9UHD2,32.0,"Upon mitogen stimulation or triggering of the immune system, TBK1 is recruited to the exocyst by EXOC2."
-538,Q8IWB6,2.0,Detected in the intercellular bridges that connect male germ cell daughter cells after cell division.
-539,Q9UKI8,,
-540,Q86UE8,,Colocalizes with the cytoplasmic intermediate filament system during the G1 phase of the cell cycle. Present in the perinuclear region at S phase and in the nucleus at late G2.
-541,Q96S44,,
-542,Q8TAS1,,
-543,O75385,10.0,"Under starvation conditions, is localized to puncate structures primarily representing the isolation membrane that sequesters a portion of the cytoplasm resulting in the formation of an autophagosome."
-544,Q8IYT8,,Localizes to pre-autophagosomal membrane.
-545,Q6PHR2,,Localizes to pre-autophagosomal structure during cellular senescence.
-546,P30291,,
-547,P0C1S8,,
-548,Q9H4A3,,
-549,Q9Y3S1,,
-550,Q9BYP7,,
-551,Q96J92,4.0,Present exclusively in intercellular junctions in the distal convoluted tubule and in both the cytoplasm and intercellular junctions in the cortical collecting duct. WNK4 is part of the tight junction complex.
-552,Q86TW2,,
-553,Q7Z695,,
-554,Q3MIX3,,
-555,Q8NI60,,
-556,Q96D53,,
-557,Q96QP1,,
-558,Q86TB3,,
-559,Q96L96,,
-560,Q9BX84,,
-561,Q96QT4,,
-562,Q14296,4.0,Colocalizes with mitochondrial RNA granules.
-563,O14874,,
-564,Q15118,,
-565,Q15119,,
-566,Q15120,,
-567,Q16654,,
-568,Q13315,70.0,Primarily nuclear. Found also in endocytic vesicles in association with beta-adaptin.
-569,Q13315,71.0,Primarily nuclear. Found also in endocytic vesicles in association with beta-adaptin.
-570,Q13535,,"Depending on the cell type, it can also be found in PML nuclear bodies. Recruited to chromatin during S-phase. Redistributes to discrete nuclear foci upon DNA damage, hypoxia or replication fork stalling."
-571,P42345,16.0,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
-572,P42345,39.0,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
-573,P42345,45.0,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
-574,P42345,71.0,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
-575,P42345,73.0,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
-576,P42338,,Interaction with PIK3R2 is required for nuclear localization and export.
-577,O00329,,
-578,P48736,,
-579,P78527,,
-580,Q96Q15,,
-581,Q9BRS2,,
-582,Q9BVS4,17.0,Exported out of the nucleus via its NES in a XPO1-dependent manner.
-583,O14730,,
+uniprot,subcell_aditional_text_refs,subcell_aditional_text
+P31749,41,Nucleus after activation by integrin-linked protein kinase 1 (ILK1). Nuclear translocation is enhanced by interaction with TCL1A. Phosphorylation on Tyr-176 by TNK2 results in its localization to the cell membrane where it is targeted for further phosphorylations on Thr-308 and Ser-473 leading to its activation and the activated form translocates to the nucleus. Colocalizes with WDFY2 in intracellular vesicles (PubMed:16792529).
+P31751,17,"Localizes within both nucleus and cytoplasm of proliferative primary myoblasts and mostly within the nucleus of differentiated primary myoblasts. By virtue of the N-terminal PH domain, is recruited to sites of the plasma membrane containing increased PI(3,4,5)P3 or PI(3,4)P2, cell membrane targeting is also facilitared by interaction with CLIP3. Colocalizes with WDFY2 in early endosomes (By similarity)."
+Q9Y243,,Membrane-associated after cell stimulation leading to its translocation.
+Q5VT25,5,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent. Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner."
+Q5VT25,7,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent. Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner."
+Q9Y5S2,14,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent (By similarity). Detected at the leading edge of migrating cells. Localization at the leading edge of migrating cells requires interaction with catalytically active CDC42 (PubMed:21240187). Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner (By similarity)."
+Q9Y5S2,16,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent (By similarity). Detected at the leading edge of migrating cells. Localization at the leading edge of migrating cells requires interaction with catalytically active CDC42 (PubMed:21240187). Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner (By similarity)."
+Q9Y5S2,32,"Displays a dispersed punctate distribution and concentrates along the cell periphery, especially at the leading edge and cell-cell junction. This concentration is PH-domain dependent (By similarity). Detected at the leading edge of migrating cells. Localization at the leading edge of migrating cells requires interaction with catalytically active CDC42 (PubMed:21240187). Localizes in the lamellipodium in a FAM89B/LRAP25-dependent manner (By similarity)."
+Q6DT37,,Concentrates at the leading edge of cells.
+O14578,,
+Q09013,3,Localizes to sarcoplasmic reticulum membranes of cardiomyocytes.
+Q09013,,
+Q15835,4,Subcellular location is not affected by light or dark conditions.
+P25098,,
+P32298,,"Both at the cell surface and dispersed in the cytoplasm under basal conditions. Receptor stimulation results in the internalization of GRK4 to the perinuclear area, where colocalization with DRD3 is observed strongly at 5 and 15 minutes. DRD3 and GRK4 colocalize in lipid rafts of renal proximal tubule cells."
+P34947,,Predominantly localized at the plasma membrane; targeted to the cell surface through the interaction with phospholipids. Nucleus localization is regulated in a GPCR and Ca(2+)/calmodulin-dependent fashion.
+P43250,,
+Q8WTQ7,,
+O95835,,"Localizes to the centrosomes throughout interphase but migrates to the mitotic apparatus, including spindle pole bodies, mitotic spindle, and midbody, during mitosis."
+Q9NRM7,,"Colocalizes with AURKA at the centrosomes during interphase, early prophase and cytokinesis. Migrates to the spindle poles during mitosis, and to the midbody during cytokinesis. Translocates to the nucleus upon mitotic stress by nocodazole treatment."
+Q9Y2H9,5,Also localized in the soma of neurons. Observed as punctate clusters in the processes of interneurons and along the cell body periphery. Colocalizes with syntrophins at the cell membrane.
+Q6P0Q8,,Recruited to the sub-membranous area on interaction with CDHR2.
+O15021,,
+Q96GX5,18,"During interphase is mainly nuclear, upon nuclear envelope breakdown localizes at the cytoplasm and during mitosis at the centrosomes. Upon mitotic exit moves to the cleavage furrow."
+O15530,,"Tyrosine phosphorylation seems to occur only at the cell membrane. Translocates to the cell membrane following insulin stimulation by a mechanism that involves binding to GRB14 and INSR. SRC and HSP90 promote its localization to the cell membrane. Its nuclear localization is dependent on its association with PTPN6 and its phosphorylation at Ser-396. Restricted to the nucleus in neuronal cells while in non-neuronal cells it is found in the cytoplasm. The Ser-241 phosphorylated form is distributed along the perinuclear region in neuronal cells while in non-neuronal cells it is found in both the nucleus and the cytoplasm. IGF1 transiently increases phosphorylation at Ser-241 of neuronal PDPK1, resulting in its translocation to other cellular compartments. The tyrosine-phosphorylated form colocalizes with PTK2B in focal adhesions after angiotensin II stimulation."
+Q6A1A2,,
+Q16512,22,Associates with chromatin in a ligand-dependent manner. Localization to endosomes is mediated via its interaction with RHOB. Association to the cell membrane is dependent on Ser-377 phosphorylation. Accumulates during telophase at the cleavage furrow and finally concentrates around the midbody in cytokinesis.
+Q16512,35,Associates with chromatin in a ligand-dependent manner. Localization to endosomes is mediated via its interaction with RHOB. Association to the cell membrane is dependent on Ser-377 phosphorylation. Accumulates during telophase at the cleavage furrow and finally concentrates around the midbody in cytokinesis.
+Q16513,20,"Colocalizes with PTPN13 in lamellipodia-like structures, regions of large actin turnover. Accumulates during telophase at the cleavage furrow and concentrates finally around the midbody in cytokinesis. Recruited to nascent cell-cell contacts at the apical surface of cells. In the course of viral infection, colocalizes with HCV NS5B at perinuclear region in the cytoplasm."
+Q16513,25,"Colocalizes with PTPN13 in lamellipodia-like structures, regions of large actin turnover. Accumulates during telophase at the cleavage furrow and concentrates finally around the midbody in cytokinesis. Recruited to nascent cell-cell contacts at the apical surface of cells. In the course of viral infection, colocalizes with HCV NS5B at perinuclear region in the cytoplasm."
+Q6P5Z2,,Nuclear and perinuclear Golgi region.
+P17612,9,Translocates into the nucleus (monomeric catalytic subunit). The inactive holoenzyme is found in the cytoplasm. Distributed throughout the cytoplasm in meiotically incompetent oocytes. Associated to mitochondrion as meiotic competence is acquired. Aggregates around the germinal vesicles (GV) at the immature GV stage oocytes (By similarity). Colocalizes with HSF1 in nuclear stress bodies (nSBs) upon heat shock (PubMed:21085490).
+P17612,32,Translocates into the nucleus (monomeric catalytic subunit). The inactive holoenzyme is found in the cytoplasm. Distributed throughout the cytoplasm in meiotically incompetent oocytes. Associated to mitochondrion as meiotic competence is acquired. Aggregates around the germinal vesicles (GV) at the immature GV stage oocytes (By similarity). Colocalizes with HSF1 in nuclear stress bodies (nSBs) upon heat shock (PubMed:21085490).
+P17612,10,Expressed in the midpiece region of the sperm flagellum (PubMed:10906071). Colocalizes with MROH2B and TCP11 on the acrosome and tail regions in round spermatids and spermatozoa regardless of the capacitation status of the sperm (By similarity).
+P17612,13,Expressed in the midpiece region of the sperm flagellum (PubMed:10906071). Colocalizes with MROH2B and TCP11 on the acrosome and tail regions in round spermatids and spermatozoa regardless of the capacitation status of the sperm (By similarity).
+P22694,1,Translocates into the nucleus (monomeric catalytic subunit). The inactive holoenzyme is found in the cytoplasm.
+P17252,,
+P05771,,
+Q05655,,
+Q02156,4,"Translocated to plasma membrane in epithelial cells stimulated by HGF. Associated with the Golgi at the perinuclear site in pre-passage fibroblasts (By similarity). In passaging cells, translocated to the cell periphery (By similarity). Translocated to the nucleus in PMA-treated cells (By similarity)."
+P05129,4,Translocates to synaptic membranes on stimulation.
+P24723,,
+P41743,34,"Transported into the endosome through interaction with SQSTM1/p62. After phosphorylation by SRC, transported into the nucleus through interaction with KPNB1. Colocalizes with CDK7 in the cytoplasm and nucleus. Transported to vesicular tubular clusters (VTCs) through interaction with RAB2A."
+P41743,50,"Transported into the endosome through interaction with SQSTM1/p62. After phosphorylation by SRC, transported into the nucleus through interaction with KPNB1. Colocalizes with CDK7 in the cytoplasm and nucleus. Transported to vesicular tubular clusters (VTCs) through interaction with RAB2A."
+Q04759,,"In resting T-cells, mostly localized in cytoplasm. In response to TCR stimulation, associates with lipid rafts and then localizes in the immunological synapse."
+Q05513,4,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
+Q05513,24,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
+Q05513,30,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
+Q05513,32,"In the retina, localizes in the terminals of the rod bipolar cells (By similarity). Associates with endosomes (PubMed:9566925). Presence of KRIT1, CDH5 and RAP1B is required for its localization to the cell junction (PubMed:7597083). Colocalizes with VAMP2 and WDFY2 in intracellular vesicles (PubMed:17313651). Transiently translocates to the membrane of CA1 hippocampal cells in response to the induction of long term potentiation (By similarity)."
+Q05513,,
+Q13976,13,Colocalized with TRPC7 in the plasma membrane.
+Q13237,,
+P51817,,cAMP induces nuclear translocation.
+Q13464,17,"Associated with the mother centriole and an intercentriolar linker. Colocalizes with ITGB1BP1 and ITGB1 at the cell membrane predominantly in lamellipodia and membrane ruffles, but also in retraction fibers. Localizes at the cell membrane in an ITGB1BP1-dependent manner (By similarity). A small proportion is associated with Golgi membranes."
+O75116,9,"Cytoplasmic, and associated with actin microfilaments and the plasma membrane."
+Q15418,,
+Q15349,,
+P51812,,
+O75676,,
+O75582,,Predominantly nuclear. Exported into cytoplasm in response to glucocorticoid.
+Q9UK32,,Predominantly cytosolic.
+P23443,,Colocalizes with URI1 at mitochondrion.
+P23443,,
+Q9UBS0,,
+O00141,,"The subcellular localization is controlled by the cell cycle, as well as by exposure to specific hormones and environmental stress stimuli. In proliferating cells, it shuttles between the nucleus and cytoplasm in synchrony with the cell cycle, and in serum/growth factor-stimulated cells it resides in the nucleus. In contrast, after exposure to environmental stress or treatment with glucocorticoids, it is detected in the cytoplasm and with certain stress conditions is associated with the mitochondria. In osmoregulation through the epithelial sodium channel, it can be localized to the cytoplasmic surface of the cell membrane. Nuclear, upon phosphorylation."
+O00141,,
+Q9HBY8,,
+Q96BR1,,Endosomal localization is a prerequisite for complete kinase activity. It is essential for its colocalization with the kinase responsible for phosphorylating Ser-486 thus allowing PDPK1 phosphorylation of Thr-320 resulting in complete activation of SGK3. Localized in vesicle-like structures and in the early endosome. Colocalizes with SLC9A3/NHE3 in the recycling endosomes.
+Q15208,,
+Q9Y2H1,,Associated with the actin cytoskeleton. Co-localizes with STK24/MST3 in the membrane.
+Q8TDC3,2,Nuclear in the absence of DNA damage. Translocated to the nucleus in response to UV- or MMS-induced DNA damage (By similarity).
+Q8IWQ3,,Detected at centrosomes during mitosis. Localizes to the endoplasmic reticulum in response to stress caused by tunicamycin.
+Q14012,5,Predominantly cytoplasmic.
+Q8IU85,,Predominantly cytoplasmic. Nuclear localization increases upon activation by KCl treatment in hippocampal neurons.
+Q96NX5,,
+Q9UQM7,5,Postsynaptic lipid rafts.
+Q13554,,"In slow-twitch muscle, evenly distributed between longitudinal SR and junctional SR."
+Q13557,,
+Q13555,,
+Q16566,3,"Localized in hippocampal neuron nuclei. In spermatids, associated with chromatin and nuclear matrix (By similarity)."
+Q8NCB2,1,"Predominantly observed in association with the plasma membrane of soma and in neurites, both axons and dendrites. May be associated with vesicular structures (By similarity)."
+O14936,,
+O14757,,"Nuclear export is mediated at least in part by XPO1/CRM1. Also localizes to the centrosome specifically during interphase, where it may protect centrosomal CDC2 kinase from inappropriate activation by cytoplasmic CDC25B."
+O96017,,Isoform 10 is present throughout the cell.
+O96017,,
+O96017,,Recruited into PML bodies together with TP53.
+P53355,,Colocalizes with MAP1B in the microtubules and cortical actin fibers.
+P53355,,
+Q9UIK4,,
+O43293,22,Predominantly localizes to the cytoplasm but can shuttle between the nucleus and cytoplasm; cytoplasmic localization is promoted by phosphorylation at Thr-299 and involves Rho/Rock signaling.
+O43293,26,Predominantly localizes to the cytoplasm but can shuttle between the nucleus and cytoplasm; cytoplasmic localization is promoted by phosphorylation at Thr-299 and involves Rho/Rock signaling.
+O43293,,
+Q8N568,2,Colocalizes with microtubules.
+Q9C098,,
+O60229,,Associated with the cytoskeleton.
+P49137,,"Phosphorylation and subsequent activation releases the autoinhibitory helix, resulting in the export from the nucleus into the cytoplasm."
+Q16644,,"Predominantly located in the nucleus, when activated it translocates to the cytoplasm."
+Q8IW41,,"Translocates to the cytoplasm following phosphorylation and activation. Interaction with ERK3/MAPK6 or ERK4/MAPK4 and phosphorylation at Thr-182, activates the protein kinase activity, followed by translocation to the cytoplasm. Phosphorylation by PKA/PRKACA at Ser-115 also induces nuclear export."
+Q9P0L2,5,Appears to localize to an intracellular network.
+Q7KZI7,,Phosphorylation at Thr-596 by PRKCZ/aPKC and subsequent interaction with 14-3-3 protein YWHAZ promotes relocation from the cell membrane to the cytoplasm.
+P27448,,
+Q96L34,9,Localized at the tips of neurite-like processes in differentiated neuroblast cells. Detected in the cytoplasm and neuropil of the hippocampus.
+Q96L34,17,Localized at the tips of neurite-like processes in differentiated neuroblast cells. Detected in the cytoplasm and neuropil of the hippocampus.
+Q14680,,
+Q9BUB5,,
+Q9HBH9,,
+Q15746,20,Localized to stress fibers during interphase and to the cleavage furrow during mitosis.
+Q9H1R3,,Colocalizes with phosphorylated myosin light chain (RLCP) at filaments of the myofibrils.
+Q32MK0,,
+O60285,,
+Q5VST9,,"In differentiating skeletal muscle cells, isoform 3 primarily localizes to the sarcomeric M-line and less frequently to the Z-disk (PubMed:12527750). Isoform 3 colocalizes with ANK1 isoform Mu17/ank1.5 at the M-line in differentiated skeletal muscle cells (PubMed:12527750)."
+Q5VST9,21,Colocalizes with CDH2 and ATP1B1 to the sarcolemma and to intercalating disks in cardiac muscles. Colocalizes with ATP1B1 to M line and Z line in cardiac muscles.
+Q96RG2,,Localizes in the nucleus of testis germ cells and in the midpiece of sperm tails.
+P11309,,
+Q86V86,,
+Q6P2M8,,
+Q13131,,"In response to stress, recruited by p53/TP53 to specific promoters."
+P54646,,"In response to stress, recruited by p53/TP53 to specific promoters."
+Q15139,,Translocation to the cell membrane is required for kinase activation.
+Q9BZL6,23,Translocation to the cell membrane is required for kinase activation. Accumulates in the nucleus upon CK1-mediated phosphorylation after activation of G-protein-coupled receptors. Nuclear accumulation is regulated by blocking nuclear export of active PRKD2 rather than by increasing import.
+O94806,,Translocation to the cell membrane is required for kinase activation.
+P11801,,"Localized in the brefeldin A-sensitive Golgi compartment, at centrosomes, in the nucleus with a somewhat speckle-like presence, membrane-associated to the endoplasmic reticulum (ER) and the plasma membrane (PM), and more diffusely in the cytoplasm. Found to concentrate in splicing factor compartments (SFCs) within the nucleus of interphase cells. The acylation-negative form may be only cytoplasmic and nuclear. Acylation seems to allow the sequestering to the intracellular membranes. Myristoylation may mediate targeting to the intracellular non-Golgi membranes and palmitoylation may mediate the targeting to the Golgi membranes. Dual acylation is required to stabilize the interaction with Golgi membranes."
+P57059,,"Locates to cytoplasm when inactive following cAMP-induced phosphorylation, probably by PKA (PubMed:29211348)."
+Q9H0K1,,
+Q9Y2K2,14,Locates to punctate structures within the cytoplasm on binding to YWHAZ.
+Q9NRH2,,
+Q15772,,
+Q15831,4,A small fraction localizes at membranes (By similarity). Relocates to the cytoplasm when bound to STRAD (STRADA or STRADB) and CAB39/MO25 (CAB39/MO25alpha or CAB39L/MO25beta). Translocates to the mitochondrion during apoptosis. Translocates to the cytoplasm in response to metformin or peroxynitrite treatment. PTEN promotes cytoplasmic localization.
+Q15831,,"Predominantly nuclear, but translocates to the cytoplasm in response to metformin or peroxynitrite treatment."
+Q9UEE5,,
+O94768,4,Colocalizes with STK17B at the plasma membrane.
+Q9BYT3,,
+Q8N2I9,,
+Q92519,1,May associate with the cytoskeleton.
+Q96RU7,,
+O75962,,
+Q9BXA7,1,"In spermatozoa, present in the sperm head and in the flagellum."
+Q96PF2,1,"Present in the cytoplasm of elongating spermatids. In spermatozoa, localizes in the equatorial segment, neck, the midpiece and in a specific sperm head compartment (By similarity). In spermatids, concentrates in centrioles during flagellogenesis."
+Q6SA08,1,"In spermatozoa, present in the sperm head and in the flagellum."
+Q8WZ42,,
+P48729,12,"Localizes to the centrosome in interphase cells, and to kinetochore fibers during mitosis. Also recruited to the keratin cytoskeleton (PubMed:23902688)."
+P48729,15,"Localizes to the centrosome in interphase cells, and to kinetochore fibers during mitosis. Also recruited to the keratin cytoskeleton (PubMed:23902688)."
+Q8N752,,
+P48730,,"Localized at mitotic spindle microtubules, and at the centrosomes and interphase in interphase cells. Recruited to the spindle apparatus and the centrosomes in response to DNA-damage. Correct subcellular localization requires kinase activity."
+P49674,,
+Q9HCP0,,
+P78368,,
+Q9Y6M4,,
+Q5TCY1,,
+Q6IQ55,3,"Localizes to the transition zone in primary cilia in response to cell cycle signals that promote ciliogenesis (By similarity). May also be present in cytosol and, at lower level in the nucleus."
+Q99986,,Dispersed throughout the cell but not located on mitotic spindle or chromatids during mitosis.
+Q86Y07,,
+Q8IV63,,
+P06493,,Cytoplasmic during the interphase. Colocalizes with SIRT2 on centrosome during prophase and on splindle fibers during metaphase of the mitotic cell cycle. Reversibly translocated from cytoplasm to nucleus when phosphorylated before G2-M transition when associated with cyclin-B1. Accumulates in mitochondria in G2-arrested cells upon DNA-damage.
+Q15131,,
+Q9UQ88,,
+P21127,,
+Q9NYV4,,Colocalized with nuclear speckles throughout interphase.
+Q14004,,
+O94921,,Recruited to the cell membrane by CCNY.
+Q00536,,Colocalizes with insulin in pancreas islets. Recruited to the cell membrane by CCNY.
+P24941,,"Localized at the centrosomes in late G2 phase after separation of the centrosomes but before the start of prophase. Nuclear-cytoplasmic trafficking is mediated during the inhibition by 1,25-(OH)(2)D(3)."
+Q8IZL9,,
+P11802,17,Cytoplasmic when non-complexed. Forms a cyclin D-CDK4 complex in the cytoplasm as cells progress through G(1) phase. The complex accumulates on the nuclear membrane and enters the nucleus on transition from G(1) to S phase. Also present in nucleoli and heterochromatin lumps. Colocalizes with RB1 after release into the nucleus.
+Q00535,7,"In axonal growth cone with extension to the peripheral lamellipodia (By similarity). Under neurotoxic stress and neuronal injury conditions, CDK5R (p35) is cleaved by calpain to generate CDK5R1 (p25) in response to increased intracellular calcium. The elevated level of p25, when in complex with CDK5, leads to its subcellular misallocation as well as its hyperactivation. Colocalizes with CTNND2 in the cell body of neuronal cells, and with CTNNB1 in the cell-cell contacts and plasma membrane of undifferentiated and differentiated neuroblastoma cells. Reversibly attached to the plasma membrane in an inactive form when complexed to dephosphorylated p35 or CDK5R2 (p39), p35 phosphorylation releases this attachment and activates CDK5."
+Q00535,,
+Q00534,12,Localized to the ruffling edge of spreading fibroblasts. Kinase activity only in nucleus. Localized to the cytosol of neurons and showed prominent staining around either side of the nucleus (By similarity). Present in the cytosol and in the nucleus in interphase cells and at the centrosome during mitosis from prophase to telophase (PubMed:23918663).
+Q00534,31,Localized to the ruffling edge of spreading fibroblasts. Kinase activity only in nucleus. Localized to the cytosol of neurons and showed prominent staining around either side of the nucleus (By similarity). Present in the cytosol and in the nucleus in interphase cells and at the centrosome during mitosis from prophase to telophase (PubMed:23918663).
+P50613,,Colocalizes with PRKCI in the cytoplasm and nucleus. Translocates from the nucleus to cytoplasm and perinuclear region in response to DNA-bound peptides.
+P49336,,
+P50750,,"Accumulates on chromatin in response to replication stress. Complexed with CCNT1 in nuclear speckles, but uncomplexed form in the cytoplasm. The translocation from nucleus to cytoplasm is XPO1/CRM1-dependent. Associates with PML body when acetylated."
+Q00532,,
+Q92772,,
+Q8IVW4,,
+Q5MAI5,,
+O76039,,
+P49759,,
+P49760,,
+P49760,10,Inhibition of phosphorylation at Ser-142 results in accumulation in the nuclear speckle.
+P49760,20,Co-localizes with serine- and arginine-rich (SR) proteins in the nuclear speckles.
+P49761,,
+P49761,,Co-localizes with serine- and arginine-rich (SR) proteins in the nuclear speckles.
+Q9HAZ1,,
+Q13627,,
+Q9Y463,,
+Q92630,,Translocates into the nucleus following DNA damage.
+O43781,7,"Associates with membraneless organelles in the cytoplasm and nucleus (PubMed:29973724). Shuttles between cytoplasm and stress granules (PubMed:20167603). Localized predominantly on distinct speckles distributed throughout the cytoplasm of the cell (PubMed:20167603). At low concentration, showns a homogeneous distribution throughout the cytoplasm and does not condense in speckles. During oxidative and osmotic stress, localizes to stress granules (PubMed:20167603)."
+O43781,10,"Associates with membraneless organelles in the cytoplasm and nucleus (PubMed:29973724). Shuttles between cytoplasm and stress granules (PubMed:20167603). Localized predominantly on distinct speckles distributed throughout the cytoplasm of the cell (PubMed:20167603). At low concentration, showns a homogeneous distribution throughout the cytoplasm and does not condense in speckles. During oxidative and osmotic stress, localizes to stress granules (PubMed:20167603)."
+Q9NR20,,
+P49841,,The phosphorylated form shows localization to cytoplasm and cell membrane. The MEMO1-RHOA-DIAPH1 signaling pathway controls localization of the phosphorylated form to the cell membrane.
+Q86Z02,11,Predominantly nuclear. Translocates from nucleus to cytoplasm in response to stress stimuli via SENP1-mediated desumoylation.
+Q86Z02,14,Predominantly nuclear. Translocates from nucleus to cytoplasm in response to stress stimuli via SENP1-mediated desumoylation.
+Q9H2X6,,Concentrated in PML/POD/ND10 nuclear bodies. Small amounts are cytoplasmic.
+Q9H422,,
+Q8NE63,,
+Q9UPZ9,7,"Also found at the ciliary tip (PubMed:24797473). Nuclear localization has been observed with a GFP-tagged construct in transfected HeLa cells (PubMed:12103360, PubMed:19185282)."
+Q9UPZ9,10,"Also found at the ciliary tip (PubMed:24797473). Nuclear localization has been observed with a GFP-tagged construct in transfected HeLa cells (PubMed:12103360, PubMed:19185282)."
+Q9UPZ9,11,"Also found at the ciliary tip (PubMed:24797473). Nuclear localization has been observed with a GFP-tagged construct in transfected HeLa cells (PubMed:12103360, PubMed:19185282)."
+Q9UPZ9,8,Predominant cytoplasmic localization has been observed with a N-terminally GFP-tagged construct.
+P20794,1,"Localized in both the connecting cilia and the outer segment axonemes (By similarity). Localized uniformly in nuclei during interphase, to the mitotic spindle and centrosomes during metaphase and anaphase, and also to midbody at anaphase until telophase."
+P28482,20,Associated with the spindle during prometaphase and metaphase (By similarity). PEA15-binding and phosphorylated DAPK1 promote its cytoplasmic retention. Phosphorylation at Ser- 246 and Ser-248 as well as autophosphorylation at Thr-190 promote nuclear localization.
+P53779,7,Palmitoylation regulates MAPK10 trafficking to cytoskeleton. Recruited to the mitochondria in the presence of SARM1 (By similarity).
+Q15759,,
+P53778,3,Mitochondrial when associated with SH3BP5. In skeletal muscle colocalizes with SNTA1 at the neuromuscular junction and throughout the sarcolemma (By similarity).
+Q16539,,
+Q8TD08,3,"Co-localizes to the cytoplasm only in presence of ESRRA (PubMed:21190936). Translocates to the nucleus upon activation (PubMed:20638370). At prometaphase I, metaphase I (MI), anaphase I, telophase I, and metaphase II (MII) stages, is stably detected at the spindle (By similarity)."
+Q8TD08,11,"Co-localizes to the cytoplasm only in presence of ESRRA (PubMed:21190936). Translocates to the nucleus upon activation (PubMed:20638370). At prometaphase I, metaphase I (MI), anaphase I, telophase I, and metaphase II (MII) stages, is stably detected at the spindle (By similarity)."
+Q8TD08,13,"Co-localizes to the cytoplasm only in presence of ESRRA (PubMed:21190936). Translocates to the nucleus upon activation (PubMed:20638370). At prometaphase I, metaphase I (MI), anaphase I, telophase I, and metaphase II (MII) stages, is stably detected at the spindle (By similarity)."
+P27361,,Autophosphorylation at Thr-207 promotes nuclear localization.
+P31152,3,Translocates to the cytoplasm following interaction with MAPKAPK5.
+Q16659,5,Translocates to the cytoplasm following interaction with MAPKAPK5.
+Q13164,,Translocates to the nucleus upon activation.
+P45983,14,Colocalizes with POU5F1 in the nucleus.
+P45984,4,Colocalizes with POU5F1 in the nucleus.
+Q9UQ07,,
+Q9UBE8,4,Predominantly nuclear. A smaller fraction is cytoplasmic (By similarity).
+Q13523,,
+Q96SB4,,"Shuttles between the nucleus and the cytoplasm. Inhibition of the Hsp90 ATPase activity, osmotic stress and interaction with HHV-1 ICP27 protein can induce its translocation to the nucleus. KAT5/TIP60 inhibits its nuclear translocation."
+Q96SB4,,"Mainly localized in the microsomal fraction and the cytoplasm, and to a lesser extent in the nuclear matrix."
+P78362,,Shuttles between the nucleus and the cytoplasm. KAT5/TIP60 inhibits its nuclear translocation. Phosphorylation at Thr-492 by PKB/AKT1 promotes nuclear translocation.
+Q96PY6,6,Associated with the pericentriolar material (PubMed:21211617). Localizes to centrosome during interphase and mitosis (By similarity). Translocated from cytoplasm to discrete nuclear foci at sites of DNA damage (PubMed:15604234).
+Q96PY6,9,Associated with the pericentriolar material (PubMed:21211617). Localizes to centrosome during interphase and mitosis (By similarity). Translocated from cytoplasm to discrete nuclear foci at sites of DNA damage (PubMed:15604234).
+Q96PY6,14,Associated with the pericentriolar material (PubMed:21211617). Localizes to centrosome during interphase and mitosis (By similarity). Translocated from cytoplasm to discrete nuclear foci at sites of DNA damage (PubMed:15604234).
+Q8NG66,5,Nuclear during interphase but moves to the polar microtubules during prometaphase and metaphase (PubMed:12154088). Accumulates in the nucleolus in G1/S-arrested cells (PubMed:15161910).
+Q8NG66,7,Nuclear during interphase but moves to the polar microtubules during prometaphase and metaphase (PubMed:12154088). Accumulates in the nucleolus in G1/S-arrested cells (PubMed:15161910).
+P51955,,STK3/MST2 and SAV1 are required for its targeting to the centrosome. Colocalizes with SGO1 and MAD1L1 at the kinetochore. Not associated with kinetochore in the interphase but becomes associated with it upon the breakdown of the nuclear envelope. Has a nucleolar targeting/ retention activity via a coiled-coil domain at the C-terminal end.
+P51955,,Predominantly cytoplasmic.
+P51955,,Predominantly nuclear.
+P51956,,
+P51957,,
+Q9HC98,,"Colocalizes with APBB1 at the nuclear speckles. Colocalizes with PIN1 in the nucleus. Colocalizes with ATF4, CIR1, ARHGAP33, ANKRA2, CDC42, NEK9, RAD26L, RBBP6, RPS7, TRIP4, RELB and PHF1 in the centrosome. Localizes to spindle microtubules in metaphase and anaphase and to the midbody during cytokinesis."
+Q8TDX7,5,Present at centrosome throughout the cell cycle (PubMed:17586473). Also detected at spindle midzone of the anaphase cells and eventually concentrates at the midbody (PubMed:17586473). Interaction with ANKS3 prevents its translocation to the nucleus (By similarity).
+Q8TDX7,12,Present at centrosome throughout the cell cycle (PubMed:17586473). Also detected at spindle midzone of the anaphase cells and eventually concentrates at the midbody (PubMed:17586473). Interaction with ANKS3 prevents its translocation to the nucleus (By similarity).
+Q86SG6,2,Predominantly cytoplasmic. Localizes to the proximal region of the primary cilium and is not observed in dividing cells.
+Q8TD19,,
+P25092,,"The 145 kDa plasma membrane form of GC-C contains sialic acid and galactose residues, while a differencially glycosylated 130 Kda form is a high mannose form that is resident in the endoplasmic reticulum and may serve as the precursor for the cell surface form."
+Q02846,,
+P51841,,
+P16066,,
+P20594,,
+Q02750,12,"Localizes at centrosomes during prometaphase, midzone during anaphase and midbody during telophase/cytokinesis (PubMed:14737111). Membrane localization is probably regulated by its interaction with KSR1 (PubMed:10409742)."
+Q02750,14,"Localizes at centrosomes during prometaphase, midzone during anaphase and midbody during telophase/cytokinesis (PubMed:14737111). Membrane localization is probably regulated by its interaction with KSR1 (PubMed:10409742)."
+P36507,14,Membrane localization is probably regulated by its interaction with KSR1.
+P45985,,
+P52564,,Binds to microtubules.
+O14733,,
+Q16584,,Location is cell cycle dependent.
+Q12852,2,Behaves essentially as an integral membrane protein.
+O43283,,
+Q99558,,
+Q9Y2U5,,"Upon EGF stimulation, translocates into the nucleus."
+Q9NYL2,22,Translocates to the nucleus upon ultraviolet B irradiation.
+Q9Y6R4,4,"Localized in perinuclear vesicular-like structures, probably Golgi-associated vesicles."
+Q99683,,Interaction with 14-3-3 proteins alters the distribution of MAP3K5/ASK1 and restricts it to the perinuclear endoplasmic reticulum region.
+O43318,,"Although the majority of MAP3K7/TAK1 is found in the cytosol, when complexed with TAB1/MAP3K7IP1 and TAB2/MAP3K7IP2, it is also localized at the cell membrane."
+P41279,,
+Q12851,,
+O95819,,
+Q9Y4K4,,
+Q8N4C8,,
+Q8NEV4,9,Increased localization at the filodium tip seen in the presence of MORN4.
+Q8WXR4,,
+O95747,,
+Q13153,17,"Colocalizes with RUFY3, F-actin and other core migration components in invadopodia at the cell periphery (PubMed:25766321). Recruited to the cell membrane by interaction with CDC42 and RAC1. Recruited to focal adhesions upon activation. Colocalized with CIB1 within membrane ruffles during cell spreading upon readhesion to fibronectin. Upon DNA damage, translocates to the nucleoplasm when phosphorylated at Thr-212 where is co-recruited with MORC2 on damaged chromatin (PubMed:23260667)."
+Q13153,42,"Colocalizes with RUFY3, F-actin and other core migration components in invadopodia at the cell periphery (PubMed:25766321). Recruited to the cell membrane by interaction with CDC42 and RAC1. Recruited to focal adhesions upon activation. Colocalized with CIB1 within membrane ruffles during cell spreading upon readhesion to fibronectin. Upon DNA damage, translocates to the nucleoplasm when phosphorylated at Thr-212 where is co-recruited with MORC2 on damaged chromatin (PubMed:23260667)."
+Q13153,45,"Colocalizes with RUFY3, F-actin and other core migration components in invadopodia at the cell periphery (PubMed:25766321). Recruited to the cell membrane by interaction with CDC42 and RAC1. Recruited to focal adhesions upon activation. Colocalized with CIB1 within membrane ruffles during cell spreading upon readhesion to fibronectin. Upon DNA damage, translocates to the nucleoplasm when phosphorylated at Thr-212 where is co-recruited with MORC2 on damaged chromatin (PubMed:23260667)."
+Q13177,,MYO18A mediates the cellular distribution of the PAK2-ARHGEF7-GIT1 complex to the inner surface of the cell membrane.
+Q13177,,Interaction with ARHGAP10 probably changes PAK-2p34 location to cytoplasmic perinuclear region. Myristoylation changes PAK-2p34 location to the membrane.
+O75914,,
+O96013,24,"Seems to shuttle between cytoplasmic compartments depending on the activating effector. For example, can be found on the cell periphery after activation of growth-factor or integrin-mediated signaling pathways."
+Q9P286,,"Shuttles between the nucleus and the mitochondria, and mitochondrial localization is essential for the role in cell survival."
+Q9NQU5,,Cotranslocates into nucleus with AR in response to androgen induction.
+Q9H2G2,,
+O94804,,
+Q9Y6E0,,The truncated form (MST3/N) translocates to the nucleus. Colocalizes with STK38L in the membrane.
+O00506,,Localizes to the Golgi apparatus.
+Q9P289,25,"Colocalized with RIPOR1 in the Golgi of serum-starved cells and relocated to cytoplasmic punctae, probably vesicular compartments, along with RIPOR1 upon serum stimulation in a Rho- and PDCD10-dependent manner (PubMed:27807006)."
+Q13188,14,The caspase-cleaved form cycles between nucleus and cytoplasm (By similarity). Phosphorylation at Thr-117 leads to inhibition of nuclear translocation.
+Q13188,29,The caspase-cleaved form cycles between nucleus and cytoplasm (By similarity). Phosphorylation at Thr-117 leads to inhibition of nuclear translocation.
+Q9UEW8,14,Nucleus when caspase-cleaved.
+Q13043,,The caspase-cleaved form cycles between the nucleus and cytoplasm.
+Q7RTN6,,
+Q9C0K7,,
+Q7L7X3,,
+Q9UL54,,"Catalytically active full-length phosphorylated isoform 1 localizes to microtubules in the cytoplasm predominantly on microtubule cables positioned around the nucleus. A C-terminally truncated form of isoform 1 is present in the nucleus; isoform 2 and kinase-defective, as well as full-length isoform 1 are excluded from the nucleus."
+Q9UL54,6,"In dendrites, colocalizes with PCDH8."
+Q9H2K8,,Also localized to the peripheral cell membrane.
+Q9UKE5,,Associated with recycling endosomes and the cytoskeletal fraction upon RAP2A overexpression.
+Q04771,,
+P36896,,
+Q8NER5,,
+P27037,,
+P37023,,
+Q16671,,
+P36894,,
+O00238,,
+Q13873,,
+P15056,19,Colocalizes with RGS14 and RAF1 in both the cytoplasm and membranes.
+Q13418,,
+P51617,4,Translocates to the nucleus when sumoylated. RSAD2/viperin recruits it to the lipid droplet (By similarity).
+Q9NWZ3,,
+Q8IVT5,23,"In unstimulated cells, where the phosphorylated form is bound to a 14-3-3 protein, sequestration in the cytoplasm occurs. Following growth factor treatment, the protein is free for membrane translocation, and it moves from the cytoplasm to the cell periphery."
+Q6VAB6,,
+P53667,7,"Predominantly found in the cytoplasm. Localizes in the lamellipodium in a CDC42BPA, CDC42BPB and FAM89B/LRAP25-dependent manner."
+P53671,,
+P53671,17,Isoform LIMK2a is distributed in the cytoplasm and the nucleus.
+P53671,17,Isoform LIMK2b occurs mainly in the cytoplasm and is scarcely translocated to the nucleus.
+Q38SD2,,
+Q5S007,56,"Colocalized with RAB29 along tubular structures emerging from Golgi apparatus (PubMed:23395371). Localizes to endoplasmic reticulum exit sites (ERES), also known as transitional endoplasmic reticulum (tER) (PubMed:25201882)."
+Q5S007,58,"Colocalized with RAB29 along tubular structures emerging from Golgi apparatus (PubMed:23395371). Localizes to endoplasmic reticulum exit sites (ERES), also known as transitional endoplasmic reticulum (tER) (PubMed:25201882)."
+P04049,,Colocalizes with RGS14 and BRAF in both the cytoplasm and membranes. Phosphorylation at Ser-259 impairs its membrane accumulation. Recruited to the cell membrane by the active Ras protein. Phosphorylation at Ser-338 and Ser-339 by PAK1 is required for its mitochondrial localization. Retinoic acid-induced Ser-621 phosphorylated form of RAF1 is predominantly localized at the nucleus.
+Q13546,,
+O43353,,
+Q9Y572,,
+P57078,,
+Q96S53,,
+P36897,,
+P37173,,
+Q59H18,,Expressed at lower levels in the cytoplasm.
+Q6ZMQ8,,Predominantly perinuclear.
+P00519,25,Shuttles between the nucleus and cytoplasm depending on environmental signals. Sequestered into the cytoplasm through interaction with 14-3-3 proteins. Localizes to mitochondria in response to oxidative stress (By similarity).
+P00519,,The myristoylated c-ABL protein is reported to be nuclear.
+P42684,,
+Q9UM73,,Membrane attachment was crucial for promotion of neuron-like differentiation and cell proliferation arrest through specific activation of the MAP kinase pathway.
+P30530,,
+P51451,1,Present and active in lipid rafts. Membrane location is required for the phosphorylation of CD79A and CD79B (By similarity).
+P51813,,Localizes to the edges of spreading cells when complexed with BCAR1.
+Q06187,,"In steady state, BTK is predominantly cytosolic. Following B-cell receptor (BCR) engagement by antigen, translocates to the plasma membrane through its PH domain. Plasma membrane localization is a critical step in the activation of BTK. A fraction of BTK also shuttles between the nucleus and the cytoplasm, and nuclear export is mediated by the nuclear export receptor CRM1."
+P07333,,
+P41240,6,"Mainly cytoplasmic, also present in lipid rafts."
+Q08345,,
+Q16832,,
+P00533,101,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
+P00533,117,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
+P00533,132,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
+P00533,133,"In response to EGF, translocated from the cell membrane to the nucleus via Golgi and ER (PubMed:20674546). Endocytosed upon activation by ligand (PubMed:2790960, PubMed:17182860, PubMed:27153536). Colocalized with GPER1 in the nucleus of estrogen agonist-induced cancer-associated fibroblasts (CAF) (PubMed:20551055)."
+P00533,,
+P21709,,
+Q5JZY3,,
+P29317,32,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
+P29317,37,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
+P29317,42,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
+P29317,50,"Present at regions of cell-cell contacts but also at the leading edge of migrating cells (PubMed:19573808, PubMed:20861311). Relocates from the plasma membrane to the cytoplasmic and perinuclear regions in cancer cells (PubMed:18794797)."
+P29320,,
+P54764,6,Clustered upon activation and targeted to early endosome.
+P54756,,
+Q9UF33,,
+Q15375,,
+P29322,5,Undergoes clathrin-mediated endocytosis upon EFNA5-binding and is targeted to early endosomes.
+P54762,,
+P29323,,
+P54753,,
+P54760,,
+O15197,,
+P04626,56,"Translocation to the nucleus requires endocytosis, probably endosomal sorting and is mediated by importin beta-1/KPNB1. Also detected in VPS35-positive endosome-to-TGN retrograde vesicles (PubMed:31138794)."
+P04626,,
+P21860,,
+Q15303,,"In response to NRG1 treatment, the activated receptor is internalized."
+Q15303,,Following proteolytical processing E4ICD (E4ICD1 or E4ICD2 generated from the respective isoforms) is translocated to the nucleus. Significantly more E4ICD2 than E4ICD1 is found in the nucleus. E4ICD2 colocalizes with YAP1 in the nucleus.
+P16591,,Associated with the chromatin. Detected on microtubules in polarized and motile vascular endothelial cells. Colocalizes with F-actin at the cell cortex. Colocalizes with PECAM1 and CTNND1 at nascent cell-cell contacts.
+P07332,,Distributed throughout the cytosol when the kinase is not activated. Association with microtubules requires activation of the kinase activity. Shuttles between focal adhesions and cell-cell contacts in epithelial cells. Recruited to the lateral cell membrane in polarized epithelial cells by interaction with phosphorylated EZR. Detected at tubular membrane structures in the cytoplasm and at the cell periphery.
+P11362,,"After ligand binding, both receptor and ligand are rapidly internalized. Can translocate to the nucleus after internalization, or by translocation from the endoplasmic reticulum or Golgi apparatus to the cytosol, and from there to the nucleus."
+P21802,,"Detected on osteoblast plasma membrane lipid rafts. After ligand binding, the activated receptor is rapidly internalized and degraded."
+P21802,,"After ligand binding, the activated receptor is rapidly internalized and degraded."
+P21802,,
+P22607,,The activated receptor is rapidly internalized and degraded. Detected in intracellular vesicles after internalization of the autophosphorylated receptor.
+P22607,,
+P22455,,"Internalized from the cell membrane to recycling endosomes, and from there back to the cell membrane."
+P22455,,
+P09769,2,Detected in mitochondrial intermembrane space and at inner membranes (By similarity). Colocalizes with actin fibers at membrane ruffles. Detected at plasma membrane lipid rafts.
+P17948,,Autophosphorylation promotes ubiquitination and endocytosis.
+P17948,,
+P36888,,Constitutively activated mutant forms with internal tandem duplications are less efficiently transported to the cell surface and a significant proportion is retained in an immature form in the endoplasmic reticulum lumen. The activated kinase is rapidly targeted for degradation.
+P35916,31,Ligand-mediated autophosphorylation leads to rapid internalization.
+P35916,,Ligand-mediated autophosphorylation leads to rapid internalization.
+P35916,,
+P42685,,"Predominantly found in the nucleus, with a small fraction found in the cell periphery."
+P06241,,Present and active in lipid rafts. Palmitoylation is crucial for proper trafficking.
+P08631,,"Associated with specialized secretory lysosomes called azurophil granules. At least half of this isoform is found in the cytoplasm, some of this fraction is myristoylated."
+P08631,,20% of this isoform is associated with caveolae. Localization at the cell membrane and at caveolae requires palmitoylation at Cys-3. Colocalizes with the actin cytoskeleton at focal adhesions.
+P08631,,
+P08069,,
+P06213,20,"Binding of insulin to INSR induces internalization and lysosomal degradation of the receptor, a means for downregulating this signaling pathway after stimulation. In the presence of SORL1, internalized INSR molecules are redirected back to the cell surface, thereby preventing their lysosomal catabolism and strengthening insulin signal reception."
+P14616,,
+Q08881,,Localizes in the vicinity of cell surface receptors in the plasma membrane after receptor stimulation.
+P23458,,"Wholly intracellular, possibly membrane associated."
+O60674,,
+P52333,,
+P35968,14,Localized with RAP1A at cell-cell junctions (By similarity). Colocalizes with ERN1 and XBP1 in the endoplasmic reticulum in endothelial cells in a vascular endothelial growth factor (VEGF)-dependent manner (PubMed:23529610).
+P35968,57,Localized with RAP1A at cell-cell junctions (By similarity). Colocalizes with ERN1 and XBP1 in the endoplasmic reticulum in endothelial cells in a vascular endothelial growth factor (VEGF)-dependent manner (PubMed:23529610).
+P35968,,Detected on caveolae-enriched lipid rafts at the cell surface. Is recycled from the plasma membrane to endosomes and back again. Phosphorylation triggered by VEGFA binding promotes internalization and subsequent degradation. VEGFA binding triggers internalization and translocation to the nucleus.
+P35968,,
+P10721,,
+P10721,,"Detected in the cytoplasm of spermatozoa, especially in the equatorial and subacrosomal region of the sperm head."
+P06239,,Present in lipid rafts in an inactive form.
+Q8IWU2,,
+Q96Q04,,Punctate pattern in cell projections.
+P29376,,
+P07948,,Accumulates in the nucleus by inhibition of CRM1-mediated nuclear export. Nuclear accumulation is increased by inhibition of its kinase activity. The trafficking from the Golgi apparatus to the plasma membrane occurs in a kinase domain-dependent but kinase activity independent manner and is mediated by exocytic vesicular transport. Detected on plasma membrane lipid rafts.
+P42679,,"In platelets, 90% of MATK localizes to the membrane fraction, and translocates to the cytoskeleton upon thrombin stimulation."
+Q12866,,
+P08581,,
+Q04912,,
+O15146,13,Colocalizes with acetylcholine receptors (AChR) to the postsynaptic cell membrane of the neuromuscular junction.
+P04629,16,Rapidly internalized after NGF binding (PubMed:1281417). Internalized to endosomes upon binding of NGF or NTF3 and further transported to the cell body via a retrograde axonal transport. Localized at cell membrane and early endosomes before nerve growth factor (NGF) stimulation. Recruited to late endosomes after NGF stimulation. Colocalized with RAPGEF2 at late endosomes.
+P04629,34,Rapidly internalized after NGF binding (PubMed:1281417). Internalized to endosomes upon binding of NGF or NTF3 and further transported to the cell body via a retrograde axonal transport. Localized at cell membrane and early endosomes before nerve growth factor (NGF) stimulation. Recruited to late endosomes after NGF stimulation. Colocalized with RAPGEF2 at late endosomes.
+Q16620,9,Internalized to endosomes upon ligand-binding.
+Q16288,,
+P16234,,
+P09619,,"After ligand binding, the autophosphorylated receptor is ubiquitinated and internalized, leading to its degradation."
+Q05397,,Constituent of focal adhesions. Detected at microtubules.
+Q14289,,Interaction with NPHP1 induces the membrane-association of the kinase. Colocalizes with integrins at the cell periphery.
+Q13882,,"Colocalizes with KHDRBS1, KHDRBS2 or KHDRBS3, within the nucleus. Nuclear localization in epithelial cells of normal prostate but cytoplasmic localization in cancer prostate."
+Q13308,,Colocalizes with MMP14 at cell junctions. Also localizes at the leading edge of migrating cells.
+P07949,54,"Predominantly located on the plasma membrane. In the presence of SORL1 and GFRA1, directed to endosomes."
+Q01973,,
+Q01974,,
+P08922,,
+P34925,1,"In cells that have undergone neuronal differentiation, the C-terminal cleaved part is translocated from the cytoplasm to the nucleus."
+P12931,43,"Localizes to focal adhesion sites following integrin engagement. Localization to focal adhesion sites requires myristoylation and the SH3 domain (PubMed:7525268). Colocalizes with PDLIM4 at the perinuclear region, but not at focal adhesions (PubMed:19307596)."
+P12931,64,"Localizes to focal adhesion sites following integrin engagement. Localization to focal adhesion sites requires myristoylation and the SH3 domain (PubMed:7525268). Colocalizes with PDLIM4 at the perinuclear region, but not at focal adhesions (PubMed:19307596)."
+Q9H3Y6,6,Localizes to punctate cytoplasmic structures.
+Q9H3Y6,7,Localizes to punctate cytoplasmic structures.
+Q6J9G0,,
+P43405,,
+P42680,4,"Following B-cell or T-cell receptors activation by antigen, translocates to the plasma membrane through its PH domain. Thrombin and integrin engagement induces translocation of TEC to the cytoskeleton during platelet activation. In cardiac myocytes, assumes a diffuse intracellular localization under basal conditions but is recruited to striated structures upon various stimuli, including ATP (By similarity)."
+Q02763,16,"Recruited to cell-cell contacts in quiescent endothelial cells (PubMed:18425120, PubMed:18425119). Colocalizes with the actin cytoskeleton and at actin stress fibers during cell spreading. Recruited to the lower surface of migrating cells, especially the rear end of the cell. Proteolytic processing gives rise to a soluble extracellular domain that is secreted (PubMed:11806244)."
+Q02763,31,"Recruited to cell-cell contacts in quiescent endothelial cells (PubMed:18425120, PubMed:18425119). Colocalizes with the actin cytoskeleton and at actin stress fibers during cell spreading. Recruited to the lower surface of migrating cells, especially the rear end of the cell. Proteolytic processing gives rise to a soluble extracellular domain that is secreted (PubMed:11806244)."
+Q02763,32,"Recruited to cell-cell contacts in quiescent endothelial cells (PubMed:18425120, PubMed:18425119). Colocalizes with the actin cytoskeleton and at actin stress fibers during cell spreading. Recruited to the lower surface of migrating cells, especially the rear end of the cell. Proteolytic processing gives rise to a soluble extracellular domain that is secreted (PubMed:11806244)."
+P35590,,
+Q13470,,
+Q07912,,The Tyr-284 phosphorylated form is found both in the membrane and nucleus. Colocalizes with EGFR on endosomes. Nuclear translocation is CDC42-dependent.
+P42681,,Localizes in the vicinity of cell surface receptors in the plasma membrane after receptor stimulation. Translocates into the nucleus and enhances IFN-gamma gene transcription in T-cells.
+Q06418,,
+P07947,,Newly synthesized protein initially accumulates in the Golgi region and traffics to the plasma membrane through the exocytic pathway.
+P43403,11,"In quiescent T-lymphocytes, it is cytoplasmic. Upon TCR activation, it is recruited at the plasma membrane by interacting with CD247/CD3Z. Colocalizes together with RHOH in the immunological synapse. RHOH is required for its proper localization to the cell membrane and cytoskeleton fractions in the thymocytes (By similarity)."
+Q2M2I8,17,"Active when found in clathrin-coated pits at the plasma membrane. In neuronal cells, enriched at presynaptic terminals. In non-neuronal cells, enriched at leading edge of migrating cells."
+O14965,15,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+O14965,43,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+O14965,48,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+O14965,62,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+O14965,64,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+O14965,69,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+O14965,75,"Detected at the neurite hillock in developing neurons (By similarity). Localizes at the centrosome in mitotic cells from early prophase until telophase, but also localizes to the spindle pole MTs from prophase to anaphase (PubMed:9606188, PubMed:17229885, PubMed:21225229). Colocalized with SIRT2 at centrosome (PubMed:22014574). Moves to the midbody during both telophase and cytokinesis (PubMed:17726514). Associates with both the pericentriolar material (PCM) and centrioles (PubMed:22014574). The localization to the spindle poles is regulated by AAAS (PubMed:26246606)."
+Q96GD4,36,"Localizes on chromosome arms and inner centromeres from prophase through metaphase and then transferring to the spindle midzone and midbody from anaphase through cytokinesis. Colocalized with gamma tubulin in the midbody. Proper localization of the active, Thr-232-phosphorylated form during metaphase may be dependent upon interaction with SPDYC. Colocalized with SIRT2 during cytokinesis with the midbody. Localization (and probably targeting of the CPC) to the inner centromere occurs predominantly in regions with overlapping mitosis-specific histone phosphorylations H3pT3 and H2ApT12."
+Q9UQB9,13,"Distributes in the condensed chromosomes during prophase to metaphase. After entering anaphase, there is a dissociation from separated chromosomes and a redistribution to midzone microtubules, and finally remains in the midbody during cytokinesis."
+Q9NSY1,,
+O43683,13,"Nuclear in interphase cells. Accumulates gradually during G1 and S phase of the cell cycle, peaks at G2/M, and drops dramatically after mitosis. Localizes to the outer kinetochore. Kinetochore localization is required for normal mitotic timing and checkpoint response to spindle damage and occurs very early in prophase. AURKB, KNL1 and INCENP are required for kinetochore localization (By similarity)."
+O60566,,"Cytoplasmic in interphase cells. Associates with the kinetochores in early prophase. Kinetochore localization requires BUB1, PLK1 and KNL1."
+Q8N5S9,,
+Q96RR4,16,"Predominantly nuclear in unstimulated cells, relocalizes into cytoplasm and neurites after forskolin induction."
+O00311,,
+O15111,,Shuttles between the cytoplasm and the nucleus.
+P68400,,
+Q6XUX3,1,Detected at apical cell-cell junctions. Colocalized with FGF receptors to the cell membrane (By similarity). Detected in basolateral and apical membranes of all tubular epithelia.
+Q6XUX3,7,Detected at apical cell-cell junctions. Colocalized with FGF receptors to the cell membrane (By similarity). Detected in basolateral and apical membranes of all tubular epithelia.
+Q9BQI3,,
+P19525,,"Nuclear localization is elevated in acute leukemia, myelodysplastic syndrome (MDS), melanoma, breast, colon, prostate and lung cancer patient samples or cell lines as well as neurocytes from advanced Creutzfeldt-Jakob disease patients."
+Q9NZJ5,,
+Q9P2K8,,
+O75460,,
+Q76MJ5,,
+O14976,,"Localizes to the perinuclear area and to the trans-Golgi network. Also seen on the plasma membrane, probably at focal adhesions."
+Q8TF76,,Nuclear during interphase and associates with the chromosomes and spindle apparatus during mitosis.
+O14920,35,Colocalized with DPP4 in membrane rafts.
+Q14164,15,Targeting to PML nuclear bodies upon DNA damage is TOPORS-dependent (PubMed:20188669). Located diffusely throughout the cytoplasm but locates to punctate cytoplasmic bodies when coexpressed with TRIM6 (PubMed:24882218).
+Q14164,22,Targeting to PML nuclear bodies upon DNA damage is TOPORS-dependent (PubMed:20188669). Located diffusely throughout the cytoplasm but locates to punctate cytoplasmic bodies when coexpressed with TRIM6 (PubMed:24882218).
+Q8NB16,,Localizes to the cytoplasm and translocates to the plasma membrane on necroptosis induction.
+Q9UHY1,,Colocalizes with activated RAC3 to endomembranes and at the cell periphery in lamellipodia.
+Q9NSY0,,
+Q58A45,,
+Q8N165,,
+Q9H792,9,Colocalizes with F-actin in serum-rich medium (PubMed:20534451). Actin colocalization is reduced during serum starvation (PubMed:20534451).
+Q99570,4,As component of the PI3K complex I localized to pre-autophagosome structures. As component of the PI3K complex II localized predominantly to endosomes. Localizes also to discrete punctae along the ciliary axoneme (By similarity).
+Q99570,18,As component of the PI3K complex I localized to pre-autophagosome structures. As component of the PI3K complex II localized predominantly to endosomes. Localizes also to discrete punctae along the ciliary axoneme (By similarity).
+Q9BXM7,30,Localizes mostly in mitochondrion and the 2 proteolytic processed fragments of 55 kDa and 48 kDa localize mainly in cytosol.
+Q504Y2,,
+Q99640,,
+P53350,63,"localization at the centrosome starts at the G1/S transition (PubMed:24018379). During early stages of mitosis, the phosphorylated form is detected on centrosomes and kinetochores. Localizes to the outer kinetochore. Presence of SGO1 and interaction with the phosphorylated form of BUB1 is required for the kinetochore localization. Localizes onto the central spindle by phosphorylating and docking at midzone proteins KIF20A/MKLP2 and PRC1. Colocalizes with FRY to separating centrosomes and spindle poles from prophase to metaphase in mitosis, but not in other stages of the cell cycle. Localization to the centrosome is required for S phase progression (PubMed:24018379). Colocalizes with HSF1 at the spindle poles during prometaphase (PubMed:18794143)."
+P53350,80,"localization at the centrosome starts at the G1/S transition (PubMed:24018379). During early stages of mitosis, the phosphorylated form is detected on centrosomes and kinetochores. Localizes to the outer kinetochore. Presence of SGO1 and interaction with the phosphorylated form of BUB1 is required for the kinetochore localization. Localizes onto the central spindle by phosphorylating and docking at midzone proteins KIF20A/MKLP2 and PRC1. Colocalizes with FRY to separating centrosomes and spindle poles from prophase to metaphase in mitosis, but not in other stages of the cell cycle. Localization to the centrosome is required for S phase progression (PubMed:24018379). Colocalizes with HSF1 at the spindle poles during prometaphase (PubMed:18794143)."
+Q9NYY3,,Localizes to centrosomes during early G1 phase where it only associates to the mother centriole and then distributes equally to both mother and daughter centrioles at the onset of S phase.
+Q9H4B4,19,"Translocates to the nucleus upon cisplatin treatment. Localizes to the Golgi apparatus during interphase. According to a report, PLK3 localizes only in the nucleolus and not in the centrosome, or in any other location in the cytoplasm (PubMed:17264206). The discrepancies in results may be explained by the PLK3 antibody specificity, by cell line-specific expression or post-translational modifications."
+O00444,,"Component of the deuterosome, a structure that promotes de novo centriole amplification in multiciliated cells that can generate more than 100 centrioles. Associates with centrioles throughout the cell cycle. According to PubMed:16244668, it is not present at cleavage furrows."
+Q496M5,,
+Q9H5K3,,
+Q86YV5,8,Colocalized with NOTCH1 in the nucleus.
+Q7Z7A4,,Also associates with the plasma membrane. Isoform 3 is present throughout the cell.
+Q05823,,
+Q96S38,,
+Q52WX2,,
+Q96KG9,,Localized to the Endoplasmic reticulum-Golgi intermediate and cis-Golgi in an ARF1-independent manner.
+Q96KG9,,Cytoplasmic throughout the cell cycle.
+Q96KG9,,"Cytoplasmic during interphase and centrosomal during mitosis, it localizes to the centrosomes in a microtubule-independent manner."
+Q96KG9,,
+Q6P3W7,,"According to PubMed:15809293, plasma membrane-associated in clathrin-coated vesicles. According to PubMed:16914521, colocalizes to the trans-Golgi network (TGN) and to endosomal membranes with clathrin, transferrin and plasma membrane adapter AP1 and AP3 complexes."
+Q8IZE3,,"Colocalized with EZR/VIL2, actin and CD44 in lamellipodia."
+O75716,2,Associates with Golgi and Golgi-derived vesicles.
+Q8WU08,,
+Q8TDR2,3,"When associated with PDLIM1, it is mostly found in cytoplasm, localized to actin stress fibers (PubMed:11973348). However, PubMed:19756140 detected STK35 only in the nucleus, and the presence of PDLIM1 had no influence on its location."
+Q9NRP7,6,Low levels also present in the nucleus.
+Q8TEA7,11,"Mainly localized in the cytoplasm during interphase. During metaphase, TBCK accumulates at the mitotic spindle. At the end of mitosis, it is detected at the midbody."
+Q9UHD2,32,"Upon mitogen stimulation or triggering of the immune system, TBK1 is recruited to the exocyst by EXOC2."
+Q8IWB6,2,Detected in the intercellular bridges that connect male germ cell daughter cells after cell division.
+Q9UKI8,,
+Q86UE8,,Colocalizes with the cytoplasmic intermediate filament system during the G1 phase of the cell cycle. Present in the perinuclear region at S phase and in the nucleus at late G2.
+Q96S44,,
+Q8TAS1,,
+O75385,10,"Under starvation conditions, is localized to puncate structures primarily representing the isolation membrane that sequesters a portion of the cytoplasm resulting in the formation of an autophagosome."
+Q8IYT8,,Localizes to pre-autophagosomal membrane.
+Q6PHR2,,Localizes to pre-autophagosomal structure during cellular senescence.
+P30291,,
+P0C1S8,,
+Q9H4A3,,
+Q9Y3S1,,
+Q9BYP7,,
+Q96J92,4,Present exclusively in intercellular junctions in the distal convoluted tubule and in both the cytoplasm and intercellular junctions in the cortical collecting duct. WNK4 is part of the tight junction complex.
+Q86TW2,,
+Q7Z695,,
+Q3MIX3,,
+Q8NI60,,
+Q96D53,,
+Q96QP1,,
+Q86TB3,,
+Q96L96,,
+Q9BX84,,
+Q96QT4,,
+Q14296,4,Colocalizes with mitochondrial RNA granules.
+O14874,,
+Q15118,,
+Q15119,,
+Q15120,,
+Q16654,,
+Q13315,70,Primarily nuclear. Found also in endocytic vesicles in association with beta-adaptin.
+Q13315,71,Primarily nuclear. Found also in endocytic vesicles in association with beta-adaptin.
+Q13535,,"Depending on the cell type, it can also be found in PML nuclear bodies. Recruited to chromatin during S-phase. Redistributes to discrete nuclear foci upon DNA damage, hypoxia or replication fork stalling."
+P42345,16,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
+P42345,39,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
+P42345,45,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
+P42345,71,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
+P42345,73,"Shuttles between cytoplasm and nucleus. Accumulates in the nucleus in response to hypoxia (By similarity). Targeting to lysosomes depends on amino acid availability and RRAGA and RRAGB (PubMed:18497260, PubMed:20381137). Lysosome targeting also depends on interaction with MEAK7. Translocates to the lysosome membrane in the presence of TM4SF5 (PubMed:30956113)."
+P42338,,Interaction with PIK3R2 is required for nuclear localization and export.
+O00329,,
+P48736,,
+P78527,,
+Q96Q15,,
+Q9BRS2,,
+Q9BVS4,17,Exported out of the nucleus via its NES in a XPO1-dependent manner.
+O14730,,

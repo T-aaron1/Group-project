@@ -120,6 +120,5 @@ mod_res_refs_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinas
 OUTPUT_FILE = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_modified_residues_references_ref_numbers.csv'
 fullrefs_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_references.csv'
 
-
 mod_res_refs = pd.read_csv(mod_res_refs_csv)
 fullrefs = pd.read_csv(fullrefs_csv, sep='\t')
