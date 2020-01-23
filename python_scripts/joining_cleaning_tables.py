@@ -122,3 +122,20 @@ fullrefs_csv = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/k
 
 mod_res_refs = pd.read_csv(mod_res_refs_csv)
 fullrefs = pd.read_csv(fullrefs_csv, sep='\t')
+
+tmp_df = fullrefs[['uniprot', 'reference_id', 'pubmedid']]
+tmp_df = tmp_df[~np.isnan(tmp_df.pubmedid)  ]
+
+tmp_df = tmp_df.astype({'pubmedid':int})
+tmp_df = tmp_df.astype({'pubmedid':str})
+
+mod_res_refs = mod_res_refs.astype({'ref_id': str})
+
+
+mod_res_refs = mod_res_refs.join(tmp_df.set_index('pubmedid'), on = ['ref_id'])
+
+mod_res_refs = tmp_df[~np.isnan(mod_res_refs.reference_id)]
+mod_res_refs = mod_res_refs.astype({'reference_id':int})
+mod_res_refs.drop(['uniprot','ref_type','ref_id'],axis=1, inplace=True)
+mod_res_refs.columns
+mod_res_refs.to_csv(OUTPUT_FILE, index = False)
