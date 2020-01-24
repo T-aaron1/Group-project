@@ -31,3 +31,10 @@ pd.read_sql_query(query, db).shape[0]
 q_prot_seq = "SELECT prot_sequence FROM kinase_info WHERE uniprot_id LIKE '{}'".format('P31749')
 text = pd.read_sql_query(q_prot_seq, db)
 text.loc[0,'prot_sequence']
+
+
+q_prot_seq = "SELECT uniprot_id FROM kinase_info WHERE uniprot_id LIKE '{}'".format('P31749')
+text = pd.read_sql_query(q_prot_seq, db)
+text.loc[0,'prot_sequence']
+
+dd = text.to_dict('')[0]
