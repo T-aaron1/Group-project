@@ -27,3 +27,5 @@ add in that file any library we need to install
 # To start development server: 
 - go to flask directory
 ```  python flask_script.py```
+
+
