@@ -45,7 +45,7 @@
      text:{{context.volcano.posfold_pval.substrate| safe}},
      textposition: 'top center',
      textfont: {
-	 family:  'Times New Roman'
+		 family:  'Times New Roman'
      },
      textposition: 'bottom center',
      marker: {size:9, color:"blue"}
@@ -60,7 +60,7 @@
      text:{{context.volcano.negfold_pval.substrate| safe}},
      textposition: 'top center',
      textfont: {
-	 family:  'Times New Roman'
+		 family:  'Times New Roman'
      },
      textposition: 'bottom center',
      marker: {size:9, color:"red"}
@@ -74,82 +74,82 @@
      name: 'p+log2FC Not changed',
      text:{{context.volcano.above_pval.substrate| safe}},
      textfont: {
-	 family:  'Times New Roman'
+		 family:  'Times New Roman'
      },
      textposition: 'bottom center',
      marker: {size:8, color:"gray"}
  };
- 
+
  var data = [trace1, trace2, trace3];
 
  var layout = {
      title: {
-	 text:'Volcano plot',
-	 font: {
+		 text:'Volcano plot',
+		 font: {
              family: 'Courier New, monospace',
              size: 24
-	 },
-	 xref: 'paper',
-	 x: 0.05,
+		 },
+		 xref: 'paper',
+		 x: 0.05,
      },
      xaxis: {
-	 title: {
+		 title: {
              text: '-Log Fold Change',
              font: {
-		 family: 'Courier New, monospace',
-		 size: 18,
-		 color: '#140D0C'
+				 family: 'Courier New, monospace',
+				 size: 18,
+				 color: '#140D0C'
              }
-	 },
-	 range: [-2,2] 
+		 },
+		 range: [{{context.volcano.plot_layout.x_min - 1}},{{context.volcano.plot_layout.x_max  + 1}}]
      },
      yaxis: {
-	 title: {
+		 title: {
              text: '-Log P-value',
              font: {
-		 family: 'Courier New, monospace',
-		 size: 18,
-		 color: '#140D0C'
+				 family: 'Courier New, monospace',
+				 size: 18,
+				 color: '#140D0C'
              }
-	 },
-	 range:[0,5]
+		 },
+		 range:[0,{{context.volcano.plot_layout.y_max + 1}}]
      },
      shapes: [
-	 {
-	     type: 'line',
-	     x0: -10,
-	     y0: 1.5,
-	     x1: 10,
-	     y1: 1.5,
-	     line: {
-		 color: 'gray',
-		 width: 1,
-		 dash:'dot'
-	     }
-	 }, 
-	 {
-	     type: 'line',
-	     x0: -1.5,
-	     y0: 0,
-	     x1: -1.50,
-	     y1: 10,
-	     line: {
-		 color: 'gray',
-		 width: 1,
-		 dash:'dot'
-	     }
-	 },
-	 {
-	     type: 'line',
-	     x0: 1.5,
-	     y0: 0,
-	     x1: 1.50,
-	     y1: 10,
-	     line: {
-		 color: 'gray',
-		 width: 1,
-		 dash:'dot'
-	     }
+		 {
+			 type: 'line',
+			 x0: -1000,
+			 y0: {{context.pval_threshold}},
+			 x1: 1000,
+			 y1: {{context.pval_threshold}},
+			 line: {
+				 color: 'gray',
+				 width: 1,
+				 dash:'dot'
+			 }
+		 },
+		 {
+			 type: 'line',
+			 x0: -{{context.fold_threshold}},
+			 y0: 0,
+			 x1: -{{context.fold_threshold}},
+			 y1: 1000,
+			 line: {
+				 color: 'gray',
+				 width: 1,
+				 dash:'dot'
+			 }
+		 },
+		 {
+			 type: 'line',
+			 x0: {{context.fold_threshold}},
+			 y0: 0,
+			 x1: {{context.fold_threshold}},
+			 y1: 1000,
+			 line: {
+				 color: 'gray',
+				 width: 1,
+				 dash:'dot'
+			 }
      }]
  };
 

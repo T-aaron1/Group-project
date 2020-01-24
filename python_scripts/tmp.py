@@ -1,3 +1,33 @@
+import pandas as pd
+
+tsv_file = '~/Desktop/conrad.tsv'
+
+data = pd.read_csv(tsv_file, sep = '\t')
+
+data.dropna(axis= 1, how='all', inplace = True)
+
+inhibitor = 'AZ20' + '_'
+col_names = data.columns
+for name in col_names:
+    if inhibitor in name:
+       data.rename(columns = {name: name.replace(inhibitor,'')}, inplace = True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #for retrieve1
 import retrieve_from_xml_uniprotapi as xmluniprot
 
