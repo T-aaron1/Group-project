@@ -90,3 +90,31 @@ SELECT COUNT(*) FROM references_full;
 .import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kin_subcell_loc_text.csv subcell_location_text
 
 SELECT COUNT(*) FROM subcell_location_text;
+
+
+
+
+--x kin_subcell_loc.csv
+-- P31749,Cytoplasm,11
+.separator ","
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kin_subcell_loc.csv  subcell_location
+
+SELECT COUNT(*) FROM subcell_location;
+
+
+--x Kinase_Substrate_Dataset.csv
+-- EIF2AK1,HRI,Q9BQI3,eIF2-alpha,1965,P05198,EIF2S1,S52,447635,MILLsELsRRRIRsI,S1, ,X
+.separator ","
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/Kinase_Substrate_Dataset.csv  kinase_substrate
+
+SELECT COUNT(*) FROM kinase_substrate;
+
+
+
+-- kinase_modified_residues_references_ref_numbers.csv
+-- P31749,450,73
+.separator ","
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kinase_modified_residues_references_ref_numbers.csv  phosphosites_references
+
+SELECT COUNT(*) FROM phosphosites_references;
+

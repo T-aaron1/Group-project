@@ -1,6 +1,5 @@
 -- get schema: https://dbdiagram.io/d
--- check autoincrement stuff
--- possibly not all tables where populated
+-- possibly not all tables were populated
 -- run again the comands to populate the tables
 
 
@@ -23,7 +22,7 @@ CREATE TABLE kinase_info (
     reverse TEXT,
     chromosome TEXT,
     prot_sequence TEXT,
-    fasd_name TEXT,
+    family TEXT,
     prot_name TEXT,
     name_human TEXT,
     mass INTEGER,
@@ -31,7 +30,7 @@ CREATE TABLE kinase_info (
     genome_starts INTEGER,
     genome_ends INTEGER,
     genome_sequence TEXT,
-    FOREIGN KEY(fasd_name) REFERENCES families(family_abbreviation)
+    FOREIGN KEY(family) REFERENCES families(family_abbreviation)
 );
 
 
@@ -66,7 +65,8 @@ tmp_refs INTEGER,
 disease_name TEXT,
 effect_text TEXT,
 disease_description TEXT,
-FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
+FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id),
+FOREIGN KEY(uniprot,tmp_refs ) REFERENCES references_full(uniprot, reference_id)
 );
 
 -- kinase_function_uniprotxml.csv
@@ -80,7 +80,8 @@ FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
 CREATE TABLE function_references (
 uniprot TEXT,
 item INTEGER,
-FOREIGN KEY(uniprot) REFERENCES kin_function(uniprot)
+FOREIGN KEY(uniprot) REFERENCES kin_function(uniprot),
+FOREIGN KEY(uniprot,item ) REFERENCES references_full(uniprot, reference_id)
 );
 
 
@@ -132,18 +133,22 @@ FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id),
 FOREIGN KEY(uniprot, subcell_aditional_text_refs) REFERENCES references_full(uniprot, reference_id)
 );
 
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+--- de aqui para abajo @@@
 -- kin_subcell_loc.csv
 CREATE TABLE subcell_location (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
 uniprot TEXT,
 subcell_location TEXT,
 subcell_refs INTEGER,
-FOREIGN KEY(uniprot, subcell_refs) REFERENCES references_full(uniprot, reference_id)
+FOREIGN KEY(uniprot, subcell_refs) REFERENCES references_full(uniprot, reference_id),
+FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id)
 );
 
 -- Kinase_Substrate_Dataset.csv
 CREATE TABLE kinase_substrate (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
 gene TEXT,
 kinase TEXT,
 kin_acc_id TEXT,
@@ -164,9 +169,9 @@ FOREIGN KEY (sub_acc_id) REFERENCES kinase_info(uniprot_id)
 
 -- kinase_modified_residues_references_ref_numbers.csv
 CREATE TABLE phosphosites_references (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
 uniprot_id TEXT,
 residue_position INTEGER,
 reference_id INTEGER,
-FOREIGN KEY (uniprot_id, residue_position) REFERENCES phosphosites (uniprot_id, residue_position)
+FOREIGN KEY (uniprot_id, residue_position) REFERENCES phosphosites (uniprot_id, residue_position),
+FOREIGN KEY(uniprot_id,reference_id ) REFERENCES references_full(uniprot, reference_id)
 );
