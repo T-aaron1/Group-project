@@ -6,12 +6,19 @@ import forms
 from flask import Response # for api: fasta , csv and so on
 from flask import jsonify
 from flask_wtf import CsrfProtect
-from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 import numpy as np
 import phosphoproteomics_script
 import sqlite3
+from random import random
+
+
+DATABASE = '/homes/dtg30/Desktop/group_proj_2/kinase_project.db'
+
+db = sqlite3.connect(DATABASE)
+c = db.cursor()
+
 
 #UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
 UPLOAD_FOLDER = '/homes/dtg30/Desktop/group_proj_2/'
@@ -47,9 +54,8 @@ def home():
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
         inhibitor = request.values['inhibitor']
-        print(inhibitor)
-        #print(secure_filename(file.filename))
-        filename = 'test.tsv' #!!! change this line
+        random_name = str(random()).split('.')[1] #random number
+        filename = random_name + '.tsv'
         session['tmp_upload_file'] = filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -98,10 +104,10 @@ def inhibitor_data(inhib_name):
 
 
 @app.route('/phosphoproteomics', methods = ['GET','POST'])
-def phosphoproteomics():  #~~~
+def phosphoproteomics():
     context = {}
     if request.method == 'POST':
-        tmp_file_name = session['tmp_upload_file'] # get something from request
+        tmp_file_name = session['tmp_upload_file'] # get name of the file
         session['tmp_upload_file'] = ''
         inhibitor = request.values['inh']
         fold_threshold = request.values['fc']
@@ -162,9 +168,17 @@ def fasta_protein(kin_name):
 
 @app.route('/kinase/gene/<kin_name>.fasta')
 def fasta_gene(kin_name):
-    if kin_name == '1': # modify: get list of kinases
-        sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
-        divide_each = 10  # modify: change size !!
+    query = "SELECT uniprot_id FROM kinase_info WHERE uniprot_id LIKE '{}'".format(kin_name)
+    print(query)
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    print(c.execute(query).fetchall())
+#    n_results = pd.read_sql_query(query, c).shape[0]
+    if n_results == 1 : # modify: get list of kinases
+        q_prot_seq = "SELECT prot_sequence FROM kinase_info WHERE uniprot_id LIKE '{}'".format('P31749')
+        text = pd.read_sql_query(q_prot_seq, db)
+        sequence = text.loc[0,'prot_sequence']
+        divide_each = 40  # modify: change size !!
         seq_size = len(sequence)
         list_range = range(0,seq_size,divide_each)
         tmp_text= ''

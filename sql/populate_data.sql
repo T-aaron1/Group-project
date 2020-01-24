@@ -78,10 +78,10 @@ SELECT COUNT(*) FROM reactions_refences;
 
 --x kinase_references.csv
 -- P31749	1	journal article	1991	Proc. Natl
-.separator "\t"
-.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kinase_references.csv references_full
+--  .separator "\t"
+-- .import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kinase_references.csv references_full
 
-SELECT COUNT(*) FROM references_full;
+-- SELECT COUNT(*) FROM references_full;
 
 
 --x kin_subcell_loc_text.csv
@@ -117,4 +117,3 @@ SELECT COUNT(*) FROM kinase_substrate;
 .import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kinase_modified_residues_references_ref_numbers.csv  phosphosites_references
 
 SELECT COUNT(*) FROM phosphosites_references;
-
