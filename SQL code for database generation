@@ -1,18 +1,73 @@
-# Table 1 - kinase list 
-CREATE TABLE kinase_list (
-  accession_number VARCHAR(300) NOT NULL,
-  gene_symbol VARCHAR(300) NOT NULL,
-  mass_in_da INT,
-  family VARCHAR(300) NOT NULL,
-  name_human VARCHAR(300) NOT NULL,
-  PRIMARY KEY (accession_number),
-  FOREIGN KEY (family) REFERENCES family(family_name)
-  );
-  
-  # Table 2 - Family list
-  CREATE TABLE family_list (
-  family_name VARCHAR(300) NOT NULL,
-  family_abbreviation VARCHAR(300) NOT NULL,
-  PRIMARY KEY (family_abbreviation),
-  FOREIGN KEY (family_abbreviation) REFERENCES kinase_list(family)
+
+------------------------------------------------------------------------------------------------------------------
+
+NOTE: Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table.
+
+Often this is the primary key field that we would like to be created automatically every time a new record is inserted
+
+
+CREATE TABLE KINASE (
+	uniprot_id varchar PRIMARY KEY AUTOINCREMENT,
+	gene_symbol varchar,
+	name_human varchar,
+	family varchar,
+	mass varchar,
+	full_protein_name varchar,
+	reverse_or_forward varchar,
+	chromasome varchar,
+	gemome_starts integer,
+	gemome_end integer,
+	prot_seq text,
+	gen_seq text,
+	ensemble_id varchar,
+	function text
 );
+
+CREATE TABLE Phosphosites (
+	phosposite_id varchar PRIMARY KEY AUTOINCREMENT,
+	Residue_Position varchar,
+	Modification text,
+	Type_Modification varchar,
+	Genome_begin integer,
+	Genome_end integer
+);
+
+CREATE TABLE Family (
+	family_abbreviation varchar PRIMARY KEY AUTOINCREMENT,
+	Residue_type varchar,
+	Full_family_name varchar
+);
+
+CREATE TABLE Isoforms (
+	Isoform_id varchar PRIMARY KEY AUTOINCREMENT,
+	Subcellular varchar,
+	Isoform_identifier varchar
+);
+
+CREATE TABLE Disease (
+	Disease_id varchar PRIMARY KEY AUTOINCREMENT,
+	Disease_Reference varchar,
+	Disease_Effect text,
+	Disease_description text
+);
+
+CREATE TABLE Subcellular_Location (
+	Subcellular_id varchar PRIMARY KEY AUTOINCREMENT,
+	Subcellular_Reference integer,
+	Additional_info text
+);
+
+CREATE TABLE References (
+	Reference_id blob PRIMARY KEY AUTOINCREMENT,
+	Publication_type text,
+	Publication_date text,
+	Publication_name text,
+	Publication_volume text,
+	Start_page integer,
+	End_page integer,
+	Publication_type varchar,
+	Authors text,
+	Pubmed_reference integer,
+	DOI varchar
+);
+

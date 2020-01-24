@@ -1,0 +1,6 @@
+Should we include isoforms of kinases within the database?
+
+We came across different values for genome start and end across both uniprot and enzemble and wasnt sure whether to include the values from one database or the other. 
+Can we justify coosing ensemble over uniprot because ensemble goves us the genomic sequence as a valid justification ovr uniprot??\
+
+- how to handle the uploaded file. Save it, and use the name as a session variable that is used then to get the name

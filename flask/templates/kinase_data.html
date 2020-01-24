@@ -1,0 +1,143 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+
+<div class='container-fluid'>
+  <div class='row'>
+    <nav class='col-md-2 bg-primary  sidebar'>
+      <ul class='nav flex-column text-light'>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-function">Function</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-diseases">Diseases</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-cell_location">Cellular location</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-prot_seq">Sequence</a></li>
+
+      </ul>
+
+    </nav>
+    <div id='content' class='col-md-10'>
+      <div  id='section-information'>
+		<h2>Information</h2>
+
+		<ul>
+		  <li>
+			Uniprot ID: {{context.kin_name}}
+		  </li>
+		  <li> Protein name:
+			<ul>
+			  <li>
+				{{context.full_protein_name}}
+			  </li>
+			  <li>
+				{{context.name_human}}
+			  </li>
+			</ul>
+		  </li>
+		  <li>
+			Family:  {{context.Family}}
+		  </li>
+		  <li>
+			Mass <strong>(Da)</strong>: {{context.mass}}
+		  </li>
+		</ul>
+      </div>
+
+      <hr/>
+
+	  <div id="section-genomic-information">
+		<h2 >Genomic location</h2>
+		<ul>
+		  <li>
+			Chromosome: {{context.chromosome }}
+		  </li>
+		  <li>
+			Reverse strand:  {{context.reverse }}
+		  </li>
+		  <li>
+			Ensembl ID:  {{context.ensembl_gene_id}}
+		  </li>
+		  <li>
+			Genomic location:
+			<ul>
+			  Start:  {{context.genome_starts}}
+			</ul>
+			<ul>
+			  Ends:  {{context.genome_ends}}
+			</ul>
+		  </li>
+		</ul>
+	  </div>
+
+      <hr/>
+	  <div id="section-function">
+		<h2 >Function</h2>
+		{%for item in context.section%}
+		<p>{{item}}</p>
+		{%endfor%}
+
+		<hr/>
+	  </div>
+
+	  <div id="section-diseases">
+		<h2 >Diseases</h2>
+		{%for item in context.disease%}
+		<p>{{item}}</p>
+		{%endfor%}
+	  </div>
+      <hr/>
+
+	  <div id="section-cell_location">
+		<h2 >Cellular location</h2>
+		{%for item in context.cellular_location%}
+		<p>{{item}}</p>
+		{%endfor%}
+	  </div>
+	  <hr/>
+
+	  <div id="section-phosphosites">
+		<h2 >Phosphosites</h2>
+		<table class="table">
+		  <tr>
+			<th>Residue Position</th>
+			<th>Type</th>
+			<th>By</th>
+			<th>Genom location (starts)</th>
+			<th>Genom location (ends)</th>
+		  </tr>
+		  {%for item in context.phosphosites%}
+		  <td></td>
+		  <td></td>
+		  <td></td>
+		  <td></td>
+		  <td></td>
+		  {%endfor%}
+		</table>
+		{%for item in context.cellular_location%}
+		<p>{{item}}</p>
+		{%endfor%}
+	  </div>
+	  <hr/>
+
+
+	  <div id="section-prot_seq">
+		<h2 >Protein sequence</h2>
+
+		<p>{{context.sequence}}</p>
+
+	  </div>
+	  <hr/>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+{%endblock%}
