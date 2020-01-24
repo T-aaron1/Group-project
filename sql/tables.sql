@@ -15,7 +15,6 @@ family_name TEXT
 
 
 -- kinase_general_information.csv
-
 CREATE TABLE kinase_info (
     uniprot_id TEXT PRIMARY KEY,
     full_prot_name TEXT,
@@ -61,13 +60,13 @@ FOREIGN KEY(uniprot_id) REFERENCES kinase_info(uniprot_id)
 -- diseases.csv
 CREATE TABLE diseases (
 uniprot TEXT,
-tmp_refs INTEGER,
+-- tmp_refs INTEGER,
 disease_name TEXT,
 effect_text TEXT,
 disease_description TEXT,
-FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id),
-FOREIGN KEY(uniprot,tmp_refs ) REFERENCES references_full(uniprot, reference_id)
+FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
 );
+
 
 -- kinase_function_uniprotxml.csv
 CREATE TABLE kin_function (
@@ -76,13 +75,7 @@ prot_function TEXT,
 FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
 );
 
--- kinase_function_refs_uniprotxml.csv
-CREATE TABLE function_references (
-uniprot TEXT,
-item INTEGER,
-FOREIGN KEY(uniprot) REFERENCES kin_function(uniprot),
-FOREIGN KEY(uniprot,item ) REFERENCES references_full(uniprot, reference_id)
-);
+
 
 
 -- kinase_reactions_uniprotxml.csv
@@ -94,33 +87,24 @@ PRIMARY KEY(uniprot, react_id),
 FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
 );
 
---
--- kinase_reactions_refs_uniprotxml.csv
-CREATE TABLE reactions_refences (
-ref_item INTEGER,
-uniprot TEXT,
-react_id INTEGER,
-FOREIGN KEY (uniprot, react_id) REFERENCES reactions(uniprot, react_id),
-FOREIGN KEY(uniprot,ref_item ) REFERENCES references_full(uniprot, reference_id)
-);
 
 
 -- kinase_references.csv
-CREATE TABLE references_full(
-uniprot TEXT,
-reference_id INTEGER,
-pub_type TEXT,
-pub_date TEXT,
-pub_name TEXT,
-pub_vol TEXT,
-pub_pages_first TEXT,
-pub_pages_last TEXT,
-pub_title TEXT,
-aut_text TEXT,
-pubmedid TEXT,
-doi TEXT,
-PRIMARY KEY(uniprot, reference_id)
-);
+-- CREATE TABLE references_full(
+-- uniprot TEXT,
+-- reference_id INTEGER,
+-- pub_type TEXT,
+-- pub_date TEXT,
+-- pub_name TEXT,
+-- pub_vol TEXT,
+-- pub_pages_first TEXT,
+-- pub_pages_last TEXT,
+-- pub_title TEXT,
+-- aut_text TEXT,
+-- pubmedid TEXT,
+-- doi TEXT,
+-- PRIMARY KEY(uniprot, reference_id)
+-- );
 
 
 
