@@ -111,10 +111,9 @@ FOREIGN KEY(uniprot) REFERENCES kinase_info(uniprot_id)
 -- kin_subcell_loc_text.csv
 CREATE TABLE subcell_location_text (
 uniprot TEXT,
-subcell_aditional_text_refs INTEGER,
+-- subcell_aditional_text_refs INTEGER,
 subcell_aditional_text TEXT,
-FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id),
-FOREIGN KEY(uniprot, subcell_aditional_text_refs) REFERENCES references_full(uniprot, reference_id)
+FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id)
 );
 
 
@@ -126,8 +125,7 @@ FOREIGN KEY(uniprot, subcell_aditional_text_refs) REFERENCES references_full(uni
 CREATE TABLE subcell_location (
 uniprot TEXT,
 subcell_location TEXT,
-subcell_refs INTEGER,
-FOREIGN KEY(uniprot, subcell_refs) REFERENCES references_full(uniprot, reference_id),
+-- subcell_refs INTEGER,
 FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id)
 );
 
@@ -152,10 +150,10 @@ FOREIGN KEY (sub_acc_id) REFERENCES kinase_info(uniprot_id)
 
 
 -- kinase_modified_residues_references_ref_numbers.csv
-CREATE TABLE phosphosites_references (
-uniprot_id TEXT,
-residue_position INTEGER,
-reference_id INTEGER,
-FOREIGN KEY (uniprot_id, residue_position) REFERENCES phosphosites (uniprot_id, residue_position),
-FOREIGN KEY(uniprot_id,reference_id ) REFERENCES references_full(uniprot, reference_id)
-);
+-- CREATE TABLE phosphosites_references (
+--  uniprot_id TEXT,
+--  residue_position INTEGER,
+-- reference_id INTEGER,
+--  --  FOREIGN KEY (uniprot_id, residue_position) REFERENCES phosphosites (uniprot_id, residue_position),
+--  FOREIGN KEY(uniprot_id,reference_id ) REFERENCES references_full(uniprot, reference_id)
+-- );
