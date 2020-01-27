@@ -14,6 +14,7 @@ import sqlite3
 from random import random
 import queries
 import divide_sequences
+import add_pubmed_link
 
 
 import pathlib
@@ -109,15 +110,26 @@ def kinase_data(kin_name):
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
         isoforms_list = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
         isoforms = ', '.join(isoforms_list)
-        function_list = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
+        
+        function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
+        function_list =[]
+        for function in function_list_tmp:
+            function_list.append(add_pubmed_link.pubmed_link(function))
+        
         # modify: add layers of information
         reactions_list = list(queries.select_gral(DATABASE, 'reaction_text', 'reactions', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
         cell_loc_list= list(queries.select_gral(DATABASE, 'subcell_location', 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
-        cell_loc_add_text_list = list(queries.select_gral(DATABASE, 'subcell_aditional_text', 'subcell_location_text', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_aditional_text'])
+        
+        cell_loc_add_text_list_tmp = list(queries.select_gral(DATABASE, 'subcell_aditional_text', 'subcell_location_text', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_aditional_text'])
+        cell_loc_add_text_list = []
+        for cell_loc in cell_loc_add_text_list_tmp:
+            cell_loc_add_text_list.append(add_pubmed_link.pubmed_link(cell_loc))
+        
         diseases = queries.select_gral(DATABASE, 'DISTINCT disease_name, effect_text, disease_description', 'diseases', 'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
         prot_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'prot_sequence'], 50,10)
         gene_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'genome_sequence'], 50, 10)
-        context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms, 'function_list': function_list,
+        context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms,
+                   'function_list': function_list,
                    'reactions_list': reactions_list, 'cell_loc_list': cell_loc_list,
                    'cell_loc_add_text_list': cell_loc_add_text_list,
                    'diseases': diseases,
