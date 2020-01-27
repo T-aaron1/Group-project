@@ -145,14 +145,21 @@
 	  <div id="section-prot_seq">
 	    <h2 >Protein sequence</h2>
 	    <p><a href="/kinase/{{context.kin_name}}.fasta">fasta</a></p>
-	    <p>{{context.gral_info.loc[0,'prot_sequence']}}</p>
+
+	    {%for line in context.prot_seq_list%}
+	    <pre>{{line|safe}}</pre>
+	    {%endfor%}
+
 
 	  </div>
 
 	  <div id="section-gene_seq">
 	    <h2 >Gene sequence</h2>
 	    <p><a href="/kinase/gene/{{context.kin_name}}.fasta">fasta</a></p>
-	    <p>{{context.gral_info.loc[0,'genome_sequence']}}</p>
+
+	    {%for line in context.gene_seq_list%}
+	    <pre>{{line | safe}}</pre>
+	    {%endfor%}
 
 	  </div>
 	  <hr/>

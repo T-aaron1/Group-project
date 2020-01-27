@@ -13,7 +13,7 @@ import phosphoproteomics_script
 import sqlite3
 from random import random
 import queries
-
+import divide_sequences
 
 
 import pathlib
@@ -115,10 +115,13 @@ def kinase_data(kin_name):
         cell_loc_list= list(queries.select_gral(DATABASE, 'subcell_location', 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
         cell_loc_add_text_list = list(queries.select_gral(DATABASE, 'subcell_aditional_text', 'subcell_location_text', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_aditional_text'])
         diseases = queries.select_gral(DATABASE, 'DISTINCT disease_name, effect_text, disease_description', 'diseases', 'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
+        prot_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'prot_sequence'], 50,10)
+        gene_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'genome_sequence'], 50, 10)
         context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms, 'function_list': function_list,
                    'reactions_list': reactions_list, 'cell_loc_list': cell_loc_list,
                    'cell_loc_add_text_list': cell_loc_add_text_list,
-                   'diseases': diseases}
+                   'diseases': diseases,
+                   'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list}
         return render_template('kinase_data.html', context = context)
     else:
         return 'not found'
