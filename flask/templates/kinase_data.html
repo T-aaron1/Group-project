@@ -142,27 +142,44 @@
 	    {%endfor%}
 	  </div>
 	  <hr/>
-	  <div id="section-prot_seq">
-	    <h2 >Protein sequence</h2>
-	    <p><a href="/kinase/{{context.kin_name}}.fasta">fasta</a></p>
-
-	    {%for line in context.prot_seq_list%}
-	    <pre>{{line|safe}}</pre>
-	    {%endfor%}
 
 
+	  <div id="section-sequences">
+	    <h2>Sequences</h2>
+	    
+	    <div class="row">
+	      <ul class="nav nav-tabs nav-justified pl-4">
+		<li> <a data-toggle="tab" class="btn btn-outline-primary" href="#section-prot_seq">Protein sequence</a>  </li>
+		<li><a href="#section-gene_seq" class="btn btn-outline-primary" data-toggle="tab">Gene sequence</a></li>
+	      </ul>
+	      <div class="ml-auto pr-4">
+		<a href="/kinase/{{context.kin_name}}.fasta" >Protein</a>
+		<a href="/kinase/gene/{{context.kin_name}}.fasta">Gene</a>
+	      </div>
+	    </div>
+	    
+	    <div class="tab-content">
+
+	      <div id="section-prot_seq" class="tab-pane in active  border border-primary">
+		
+		<div >
+		  {%for line in context.prot_seq_list%}
+		  <pre>{{line|safe}}</pre>
+		  {%endfor%}
+		</div>
+	      </div>
+
+	      <div id="section-gene_seq" class="tab-pane border border-primary">
+		
+
+		{%for line in context.gene_seq_list%}
+		<pre>{{line | safe}}</pre>
+		{%endfor%}
+
+	      </div>
+	      
+	    </div>
 	  </div>
-
-	  <div id="section-gene_seq">
-	    <h2 >Gene sequence</h2>
-	    <p><a href="/kinase/gene/{{context.kin_name}}.fasta">fasta</a></p>
-
-	    {%for line in context.gene_seq_list%}
-	    <pre>{{line | safe}}</pre>
-	    {%endfor%}
-
-	  </div>
-	  <hr/>
 
 
 
