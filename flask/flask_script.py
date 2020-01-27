@@ -49,21 +49,16 @@ def home():
     if request.method == 'POST' and search_form.validate_on_submit():
         requested_name = request.values['search_string']
         requested_name = requested_name.rstrip()
-        if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{}"'.format(requested_name)) : # modify: get list of kinases
-            url = '/kinase/' + requested_name
-            return redirect(url)
-        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info',  'name_human LIKE "{}"'.format(requested_name)) :
-            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'name_human LIKE "{}"'.format(requested_name)).iloc[0,0]
-            print(uniprot_id)
+        if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)) : # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id'] 
             url = '/kinase/' + uniprot_id
             return redirect(url)
-        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'prot_name', requested_name) : # modify: get list of kinases
-            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'prot_name LIKE "{}"'.format(requested_name)).iloc[0,0]
-            print(uniprot_id)
+        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)).loc[0,'uniprot_id']
             url = '/kinase/' + uniprot_id
             return redirect(url)
-        if queries.query_n_results(DATABASE, 'uniprot_id','kinase_info', 'prot_name', requested_name) == 0: # modify: get list of kinases
-            return render_template('home.html', context = context)
+        elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
+            return redirect(url_for('.kinase_search_result', search=requested_name))
 
 
 
@@ -100,7 +95,11 @@ def home():
 @app.route('/kinase/results')
 def kinase_search_result():
     # method: get , add filter
-    return render_template('kinase_search_results.html')
+    requested_name = request.values['search']
+    search_results = queries.select_gral(DATABASE, 'uniprot_id, name_human, chromosome, fasd_name, ensembl_gene_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))
+    context = {'search_results':search_results}
+    return render_template('kinase_search_results.html', context = context)
+
 
 @app.route('/kinase/<kin_name>')
 def kinase_data(kin_name):
