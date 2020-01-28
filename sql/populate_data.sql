@@ -117,3 +117,17 @@ SELECT COUNT(*) FROM kinase_substrate;
 .import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kinase_modified_residues_references_ref_numbers.csv  phosphosites_references
 
 SELECT COUNT(*) FROM phosphosites_references;
+
+
+
+
+
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/isoforms/kinase_gral_info.csv
+-- uniprot_id|full_prot_name|reverse|chromosome|start_gene_coord|genom_end_coord|sequence
+.mode csv
+.separator "|"
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/isoforms/kinase_gral_info.csv  isoforms_gral_info
+
+SELECT COUNT(*) FROM phosphosites_references;

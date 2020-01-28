@@ -1,6 +1,6 @@
 # lines to change signaled with "modify:   !!"
 
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 import forms
 #from flask_csv import send_csv
 from flask import Response # for api: fasta , csv and so on
@@ -84,8 +84,9 @@ def home():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         return redirect(url_for('phosphoproteomics',inh=inhibitor,fc=threshold_foldchange,pv=p_val_threshold, ), code = 307)
-
-    return render_template('home.html', context = context)
+    else:
+        flash('You were successfully logged in') # ~
+        return render_template('home.html', context = context)
 
 
 
@@ -107,8 +108,8 @@ def kinase_data(kin_name):
     if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info', "uniprot_id LIKE '{}'".format(kin_name)) : # modify: get list of kinases
         kin_name = kin_name
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
-        isoforms_list = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
-        isoforms = ', '.join(isoforms_list)
+        isoforms = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
+#        isoforms = ', '.join(isoforms_list)
 
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
@@ -183,6 +184,7 @@ def phosphoproteomics():
         context['pval_threshold'] = pval_threshold
     return render_template('phosphoproteomics.html', context = context)
 
+
 ### Documentation
 
 @app.route('/documentation/general')
@@ -211,7 +213,7 @@ def documentation_stats():
 @app.route('/kinase/<kin_name>.fasta')
 def fasta_protein(kin_name):
     if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format(kin_name)):
-        text = queries.select_gral(DATABASE, 'prot_sequence','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
+        text = queries.select_gral(DATABASE, 'prot_sequence, chromosome, reverse','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
         sequence = text.loc[0,'prot_sequence']
         divide_each = 40  # modify: change size !!
         seq_size = len(sequence)
@@ -220,9 +222,26 @@ def fasta_protein(kin_name):
         for i in list_range:
             tmp_text += sequence[i:i+divide_each] + '\n'
             seq_out = tmp_text.rstrip()
-            header = '> '+ kin_name + '| length: ' + str(seq_size) #modify: create header !!
+            header = '> '+ kin_name + ', length: ' + str(seq_size) + ', Chrom: ' + \
+            text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse']
             text_out = '\n'.join([header, seq_out])
         return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
+    elif queries.query_is_unique(DATABASE, 'uniprot_id', 'isoforms_info','uniprot_id  LIKE "{}"'.format(kin_name)) : # modify: get list of kinases
+        text = queries.select_gral(DATABASE, 'prot_sequence, chromosome, reverse','isoforms_info', 'uniprot_id  LIKE "{}"'.format( kin_name))
+        sequence = text.loc[0,'prot_sequence']
+        divide_each = 40  # modify: change size !!
+        seq_size = len(sequence)
+        list_range = range(0,seq_size,divide_each)
+        tmp_text= ''
+        for i in list_range:
+            tmp_text += sequence[i:i+divide_each] + '\n'
+            seq_out = tmp_text.rstrip()
+            header = '> '+ kin_name + ', length: ' + str(seq_size) + ', Chrom: ' + \
+            text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse']
+            text_out = '\n'.join([header, seq_out])
+        return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
     else:
         return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
@@ -246,6 +265,9 @@ def fasta_gene(kin_name):
             ', Ends: ' + str(text.loc[0,'genome_ends'])
             text_out = '\n'.join([header, seq_out])
         return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
+
+
     else:
         return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
