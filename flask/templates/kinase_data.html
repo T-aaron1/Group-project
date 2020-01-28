@@ -44,7 +44,7 @@
 		    Mass <strong>(Da)</strong>: {{context.gral_info.loc[0,'mass']}}
 		  </li>
 
-		  <li> Isoforms: {{context.isoforms}} </li>
+		  <li> Isoforms: {%for isof in context.isoforms%}<a href="/kinase/{{isof}}.fasta">{{isof}} </a> {%endfor%}</li>
 		</ul>
       </div>
 
@@ -181,9 +181,6 @@
 	    {%endfor%}
 	  </div>
 	  <hr/>
-
-
-
 
 
 	  <div id="section-sequences">
