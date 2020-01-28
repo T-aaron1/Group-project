@@ -6,22 +6,32 @@ import forms
 from flask import Response # for api: fasta , csv and so on
 from flask import jsonify
 from flask_wtf import CsrfProtect
-from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 import numpy as np
 import phosphoproteomics_script
+import sqlite3
+from random import random
+import queries
+import divide_sequences
+import add_pubmed_link
+
+
+import pathlib
+import re
+path = str(pathlib.Path(__file__).parent.absolute())
+DATABASE = re.sub(r'flask$','csv_tables/kinase_project.db',path)
+
 
 #UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
-UPLOAD_FOLDER = '/homes/ta317/Desktop'
-
+UPLOAD_FOLDER = '/homes/dtg30/Desktop/group_proj_2/'
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 csrf = CsrfProtect(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-#
+
 
 #### home
 @app.route('/', methods=['GET','POST'])
@@ -37,19 +47,39 @@ def home():
                'search_form': search_form}
 
     if request.method == 'POST' and search_form.validate_on_submit():
-        requested_uniprot = request.values['search_string']
-        # modify: if clause
-        url = '/kinase/' + requested_uniprot
+        requested_name = request.values['search_string']
+        requested_name = requested_name.rstrip()
+        if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)) : # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
+            url = '/kinase/' + uniprot_id
+            return redirect(url)
+        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)).loc[0,'uniprot_id']
+            url = '/kinase/' + uniprot_id
+            return redirect(url)
+        elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
+            return redirect(url_for('.kinase_search_result', search=requested_name))
+
+
+
+
+#        elif:
+
+        # modify:
+        #  - if name is equal to a uniprot identifier redirect to /kinase/uniprotid
+        # - else if requested_name correspond to one gene, redirect to the kinase/uniprotid
+        # - else if requested_name one name nor to one gene, make a less restrictive querry and redirect to kinase_search_results
+        url = '/kinase/' + requested_name
         print(url)
         return redirect(url)
+
     if request.method == 'POST' and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
         inhibitor = request.values['inhibitor']
-        print(inhibitor)
-        #print(secure_filename(file.filename))
-        filename = 'test.tsv' #!!! change this line
+        random_name = str(random()).split('.')[1] #random number
+        filename = random_name + '.tsv'
         session['tmp_upload_file'] = filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -60,19 +90,21 @@ def home():
 
 
 
-
 #### kinases
 
 
 @app.route('/kinase/results')
 def kinase_search_result():
     # method: get , add filter
-    return render_template('kinase_search_results.html')
+    requested_name = request.values['search']
+    search_results = queries.select_gral(DATABASE, 'uniprot_id, name_human, chromosome, fasd_name, ensembl_gene_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))
+    context = {'search_results':search_results}
+    return render_template('kinase_search_results.html', context = context)
+
 
 @app.route('/kinase/<kin_name>')
 def kinase_data(kin_name):
     # modify: method: post, add filter !!
-
     if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info', "uniprot_id LIKE '{}'".format(kin_name)) : # modify: get list of kinases
         kin_name = kin_name
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
@@ -108,10 +140,8 @@ def kinase_data(kin_name):
                    'diseases': diseases,
                    'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list,
                    'targets':targets, 'phosphosites':phosphosites}
-
-    try:
         return render_template('kinase_data.html', context = context)
-    except:
+    else:
         return 'not found'
 
 
@@ -134,27 +164,24 @@ def inhibitor_data(inhib_name):
 
 
 @app.route('/phosphoproteomics', methods = ['GET','POST'])
-def phosphoproteomics():  #~~~
+def phosphoproteomics():
     context = {}
     if request.method == 'POST':
-        tmp_file_name = session['tmp_upload_file'] # get something from request
+        tmp_file_name = session['tmp_upload_file'] # get name of the file
         session['tmp_upload_file'] = ''
         inhibitor = request.values['inh']
         fold_threshold = request.values['fc']
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
-        #modify : Query to get kinase substrate
         try:
             ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-            Z_score = phosphoproteomics_script.KSEA(ddf, kinase_substrate)
+#            tims_function = phosphoproteomics_script.name(ddf, ...) # modify
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold
-        context['non_identified'] = Z_score['non_identified']
-        context['score'] = Z_score['score']
     return render_template('phosphoproteomics.html', context = context)
 
 
@@ -214,6 +241,7 @@ def fasta_protein(kin_name):
             text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse']
             text_out = '\n'.join([header, seq_out])
         return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
     else:
         return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
@@ -221,39 +249,38 @@ def fasta_protein(kin_name):
 
 @app.route('/kinase/gene/<kin_name>.fasta')
 def fasta_gene(kin_name):
-    if kin_name == '1': # modify: get list of kinases
-        sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
-        divide_each = 10  # modify: change size !!
+    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format( kin_name)) : # modify: get list of kinases
+        text = queries.select_gral(DATABASE, 'chromosome, genome_sequence, reverse, ensembl_gene_id, genome_starts, genome_ends','kinase_info', 'uniprot_id  LIKE "{}"'.format( kin_name))
+        sequence = text.loc[0,'genome_sequence']
+        divide_each = 40  # modify: change size !!
         seq_size = len(sequence)
         list_range = range(0,seq_size,divide_each)
         tmp_text= ''
         for i in list_range:
             tmp_text += sequence[i:i+divide_each] + '\n'
             seq_out = tmp_text.rstrip()
-            header = '> '+ kin_name + '|' + str(seq_size) #modify: create header !!
+            header = '> '+ kin_name + ', length: ' + str(seq_size) + ', Chrom: ' + \
+            text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse'] + \
+            ', Ensembl ID: ' + str( text.loc[0,'ensembl_gene_id']) + ', Start: ' + str(text.loc[0,'genome_starts']) + \
+            ', Ends: ' + str(text.loc[0,'genome_ends'])
             text_out = '\n'.join([header, seq_out])
         return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
+
+
     else:
         return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
-
 
 # return
 # this returns json !!
 @app.route('/kinase/<kin_name>.json', methods=['GET'])
 def api_all(kin_name):
-    # modify: add a if/else handler to check if that prot exist in database
-    # modify: data should be retrieved from database. The following is just an example !!
-    # modify: output_dict is a list of dictionaries
-    arguments = request.args
-    # arguments are obtained as tupples
-    print(arguments)  # modify: get arguments, needs a handler, check minimum existent, filter output by arguments, ...
-    output_dict =     [{'id': 2,
-     'uniprot_accession': kin_name,
-     'info1': 'text1',
-     'info2': 'text2',
-     'info3': 'text3'}]
-    return jsonify(output_dict)
+    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id', kin_name) : # modify: get list of kinases
+        q_output = queries.select_gral(DATABASE, '*','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
+        output_dict = [q_output.to_dict('index')[0]]
+        return jsonify(output_dict)
+    else:
+        return ''
 
 
 if __name__ == '__main__':
