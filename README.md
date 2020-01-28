@@ -1,7 +1,7 @@
 # Group-project
 
 ## prev
-test
+
 ```
 mkdir group_proj 
 cd group_proj
@@ -19,7 +19,7 @@ add in that file any library we need to install
 - activate virtual environment
 ```  source bin/activate```
 - clone repository, inside src
-```  git clone (url) ```
+```  git clone -b name_of_branch (url) ```
 - install required packages
 ```  pip install --upgrade pip```
 ```  pip install -r requirements.txt ```
@@ -29,4 +29,4 @@ add in that file any library we need to install
 ```  python flask_script.py```
 
 
-hi
+
