@@ -1,3 +1,31 @@
+TEXTO = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+salida = []
+nr = 50
+ninr = 10
+counter = 10
+for i in range(0,len(TEXTO), nr):
+    subtexto = TEXTO[i:i+nr]
+    tmp_list =[]
+    for j in range(0,len(subtexto), ninr):
+        tmp_list.append(subtexto[j:j+ninr])
+    text_out = ' '.join(tmp_list)
+    l_index = []
+    for i in range(int(nr/ninr)):
+        l_index.append(str(counter + (ninr * i)).rjust(10))
+    salida.append(' '.join(l_index))
+    salida.append(text_out)
+    counter += nr
+
+
+
+
+
+
+
+
+
+#    -------------------------------
 import pandas as pd
 
 tsv_file = '~/Desktop/conrad.tsv'

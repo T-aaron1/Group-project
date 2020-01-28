@@ -1,6 +1,6 @@
 # lines to change signaled with "modify:   !!"
 
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 import forms
 #from flask_csv import send_csv
 from flask import Response # for api: fasta , csv and so on
@@ -12,12 +12,15 @@ import numpy as np
 import phosphoproteomics_script
 import sqlite3
 from random import random
+import queries
+import divide_sequences
+import add_pubmed_link
 
 
-DATABASE = '/homes/dtg30/Desktop/group_proj_2/kinase_project.db'
-
-db = sqlite3.connect(DATABASE)
-c = db.cursor()
+import pathlib
+import re
+path = str(pathlib.Path(__file__).parent.absolute())
+DATABASE = re.sub(r'flask$','csv_tables/kinase_project.db',path)
 
 
 #UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
@@ -28,7 +31,7 @@ app.secret_key = 'my_secret_key'
 csrf = CsrfProtect(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-#
+
 
 #### home
 @app.route('/', methods=['GET','POST'])
@@ -44,11 +47,32 @@ def home():
                'search_form': search_form}
 
     if request.method == 'POST' and search_form.validate_on_submit():
-        requested_uniprot = request.values['search_string']
-        # modify: if clause
-        url = '/kinase/' + requested_uniprot
+        requested_name = request.values['search_string']
+        requested_name = requested_name.rstrip()
+        if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)) : # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
+            url = '/kinase/' + uniprot_id
+            return redirect(url)
+        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)).loc[0,'uniprot_id']
+            url = '/kinase/' + uniprot_id
+            return redirect(url)
+        elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
+            return redirect(url_for('.kinase_search_result', search=requested_name))
+
+
+
+
+#        elif:
+
+        # modify:
+        #  - if name is equal to a uniprot identifier redirect to /kinase/uniprotid
+        # - else if requested_name correspond to one gene, redirect to the kinase/uniprotid
+        # - else if requested_name one name nor to one gene, make a less restrictive querry and redirect to kinase_search_results
+        url = '/kinase/' + requested_name
         print(url)
         return redirect(url)
+
     if request.method == 'POST' and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
@@ -60,7 +84,9 @@ def home():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         return redirect(url_for('phosphoproteomics',inh=inhibitor,fc=threshold_foldchange,pv=p_val_threshold, ), code = 307)
-    return render_template('home.html', context = context)
+    else:
+        flash('You were successfully logged in') # ~
+        return render_template('home.html', context = context)
 
 
 
@@ -70,18 +96,52 @@ def home():
 @app.route('/kinase/results')
 def kinase_search_result():
     # method: get , add filter
-    return render_template('kinase_search_results.html')
+    requested_name = request.values['search']
+    search_results = queries.select_gral(DATABASE, 'uniprot_id, name_human, chromosome, fasd_name, ensembl_gene_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))
+    context = {'search_results':search_results}
+    return render_template('kinase_search_results.html', context = context)
+
 
 @app.route('/kinase/<kin_name>')
 def kinase_data(kin_name):
     # modify: method: post, add filter !!
-    kin_name = kin_name
-    # modify: add layers of information
-    sql_retrieve = 'this is sql result'
-    context = {'kin_name':kin_name, 'sql': sql_retrieve}
-    try:
+    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info', "uniprot_id LIKE '{}'".format(kin_name)) : # modify: get list of kinases
+        kin_name = kin_name
+        gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
+        isoforms = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
+#        isoforms = ', '.join(isoforms_list)
+
+        function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
+        function_list =[]
+        for function in function_list_tmp:
+            function_list.append(add_pubmed_link.pubmed_link(function))
+
+        # modify: add layers of information
+        reactions_list = list(queries.select_gral(DATABASE, 'reaction_text', 'reactions', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
+        cell_loc_list= list(queries.select_gral(DATABASE, 'subcell_location', 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
+
+        targets = queries.select_gral(DATABASE, 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa', 'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
+
+        phosphosites = queries.select_gral(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', 'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+
+        cell_loc_add_text_list_tmp = list(queries.select_gral(DATABASE, 'subcell_aditional_text', 'subcell_location_text', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_aditional_text'])
+        cell_loc_add_text_list = []
+        for cell_loc in cell_loc_add_text_list_tmp:
+            cell_loc_add_text_list.append(add_pubmed_link.pubmed_link(cell_loc))
+
+        diseases = queries.select_gral(DATABASE, 'DISTINCT disease_name, effect_text, disease_description', 'diseases', 'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
+        prot_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'prot_sequence'], 50,10)
+        gene_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'genome_sequence'], 50, 10)
+
+        context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms,
+                   'function_list': function_list,
+                   'reactions_list': reactions_list, 'cell_loc_list': cell_loc_list,
+                   'cell_loc_add_text_list': cell_loc_add_text_list,
+                   'diseases': diseases,
+                   'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list,
+                   'targets':targets, 'phosphosites':phosphosites}
         return render_template('kinase_data.html', context = context)
-    except:
+    else:
         return 'not found'
 
 
@@ -124,6 +184,7 @@ def phosphoproteomics():
         context['pval_threshold'] = pval_threshold
     return render_template('phosphoproteomics.html', context = context)
 
+
 ### Documentation
 
 @app.route('/documentation/general')
@@ -151,32 +212,8 @@ def documentation_stats():
 
 @app.route('/kinase/<kin_name>.fasta')
 def fasta_protein(kin_name):
-#    if kin_name in   : kinase  list of the database
-    sequence = 'aoisjdoaisjdaoisdj' #modify: retrieve from database !! needs an if/elseto handle non existent
-    divide_each = 10  # modify: change size !!
-    seq_size = len(sequence)
-    list_range = range(0,seq_size,divide_each)
-    tmp_text= ''
-    for i in list_range:
-        tmp_text += sequence[i:i+divide_each] + '\n'
-        seq_out = tmp_text.rstrip()
-    header = '> '+ kin_name + '|' + str(seq_size) #modify: create header !!
-    text_out = '\n'.join([header, seq_out])
-    return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
-
-
-
-@app.route('/kinase/gene/<kin_name>.fasta')
-def fasta_gene(kin_name):
-    query = "SELECT uniprot_id FROM kinase_info WHERE uniprot_id LIKE '{}'".format(kin_name)
-    print(query)
-    db = sqlite3.connect(DATABASE)
-    c = db.cursor()
-    print(c.execute(query).fetchall())
-#    n_results = pd.read_sql_query(query, c).shape[0]
-    if n_results == 1 : # modify: get list of kinases
-        q_prot_seq = "SELECT prot_sequence FROM kinase_info WHERE uniprot_id LIKE '{}'".format('P31749')
-        text = pd.read_sql_query(q_prot_seq, db)
+    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format(kin_name)):
+        text = queries.select_gral(DATABASE, 'prot_sequence, chromosome, reverse','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
         sequence = text.loc[0,'prot_sequence']
         divide_each = 40  # modify: change size !!
         seq_size = len(sequence)
@@ -185,27 +222,65 @@ def fasta_gene(kin_name):
         for i in list_range:
             tmp_text += sequence[i:i+divide_each] + '\n'
             seq_out = tmp_text.rstrip()
-            header = '> '+ kin_name + '|' + str(seq_size) #modify: create header !!
+            header = '> '+ kin_name + ', length: ' + str(seq_size) + ', Chrom: ' + \
+            text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse']
             text_out = '\n'.join([header, seq_out])
         return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
+    elif queries.query_is_unique(DATABASE, 'uniprot_id', 'isoforms_info','uniprot_id  LIKE "{}"'.format(kin_name)) : # modify: get list of kinases
+        text = queries.select_gral(DATABASE, 'prot_sequence, chromosome, reverse','isoforms_info', 'uniprot_id  LIKE "{}"'.format( kin_name))
+        sequence = text.loc[0,'prot_sequence']
+        divide_each = 40  # modify: change size !!
+        seq_size = len(sequence)
+        list_range = range(0,seq_size,divide_each)
+        tmp_text= ''
+        for i in list_range:
+            tmp_text += sequence[i:i+divide_each] + '\n'
+            seq_out = tmp_text.rstrip()
+            header = '> '+ kin_name + ', length: ' + str(seq_size) + ', Chrom: ' + \
+            text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse']
+            text_out = '\n'.join([header, seq_out])
+        return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
+    else:
+        return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
+
+
+@app.route('/kinase/gene/<kin_name>.fasta')
+def fasta_gene(kin_name):
+    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format( kin_name)) : # modify: get list of kinases
+        text = queries.select_gral(DATABASE, 'chromosome, genome_sequence, reverse, ensembl_gene_id, genome_starts, genome_ends','kinase_info', 'uniprot_id  LIKE "{}"'.format( kin_name))
+        sequence = text.loc[0,'genome_sequence']
+        divide_each = 40  # modify: change size !!
+        seq_size = len(sequence)
+        list_range = range(0,seq_size,divide_each)
+        tmp_text= ''
+        for i in list_range:
+            tmp_text += sequence[i:i+divide_each] + '\n'
+            seq_out = tmp_text.rstrip()
+            header = '> '+ kin_name + ', length: ' + str(seq_size) + ', Chrom: ' + \
+            text.loc[0,'chromosome'] + ', Reverse: ' + text.loc[0,'reverse'] + \
+            ', Ensembl ID: ' + str( text.loc[0,'ensembl_gene_id']) + ', Start: ' + str(text.loc[0,'genome_starts']) + \
+            ', Ends: ' + str(text.loc[0,'genome_ends'])
+            text_out = '\n'.join([header, seq_out])
+        return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
+
+
+    else:
+        return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 # return
 # this returns json !!
 @app.route('/kinase/<kin_name>.json', methods=['GET'])
 def api_all(kin_name):
-    # modify: add a if/else handler to check if that prot exist in database
-    # modify: data should be retrieved from database. The following is just an example !!
-    # modify: output_dict is a list of dictionaries
-    arguments = request.args
-    # arguments are obtained as tupples
-    print(arguments)  # modify: get arguments, needs a handler, check minimum existent, filter output by arguments, ...
-    output_dict =     [{'id': 2,
-     'uniprot_accession': kin_name,
-     'info1': 'text1',
-     'info2': 'text2',
-     'info3': 'text3'}]
-    return jsonify(output_dict)
+    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id', kin_name) : # modify: get list of kinases
+        q_output = queries.select_gral(DATABASE, '*','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
+        output_dict = [q_output.to_dict('index')[0]]
+        return jsonify(output_dict)
+    else:
+        return ''
 
 
 if __name__ == '__main__':

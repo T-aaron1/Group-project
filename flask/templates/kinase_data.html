@@ -10,10 +10,11 @@
 	<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-function">Function</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-reactions">Reactions</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-diseases">Diseases</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-cell_location">Cellular location</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
-	<li class='nav-item'><a class='nav-link text-light' href="#section-prot_seq">Sequence</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-sequences">Sequences</a></li>
 
       </ul>
 
@@ -24,111 +25,200 @@
 
 		<ul>
 		  <li>
-			Uniprot ID: {{context.kin_name}}
+		    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong>
 		  </li>
-		  <li> Protein name:
-			<ul>
-			  <li>
-				{{context.full_protein_name}}
-			  </li>
-			  <li>
-				{{context.name_human}}
-			  </li>
-			</ul>
-		  </li>
-		  <li>
-			Family:  {{context.Family}}
+		  <li> Protein name: {{context.gral_info.loc[0,'prot_name']}}
+		    <ul>
+		      <li>
+				{{context.gral_info.loc[0,'full_prot_name']}}
+		      </li>
+		      <li>
+				{{context.gral_info.loc[0,'name_human']}}
+		      </li>
+		    </ul>
 		  </li>
 		  <li>
-			Mass <strong>(Da)</strong>: {{context.mass}}
+		    Family:  {{context.gral_info.loc[0,'fasd_name']}}
 		  </li>
+		  <li>
+		    Mass <strong>(Da)</strong>: {{context.gral_info.loc[0,'mass']}}
+		  </li>
+
+		  <li> Isoforms: {%for isof in context.isoforms%}<a href="/kinase/{{isof}}.fasta">{{isof}} </a> {%endfor%}</li>
 		</ul>
       </div>
 
       <hr/>
 
-	  <div id="section-genomic-information">
+      <div id="section-genomic-information">
 		<h2 >Genomic location</h2>
 		<ul>
 		  <li>
-			Chromosome: {{context.chromosome }}
+			Chromosome: {{context.gral_info.loc[0,'chromosome'] }}
 		  </li>
 		  <li>
-			Reverse strand:  {{context.reverse }}
+			Reverse strand:  {{context.gral_info.loc[0,'reverse'] }}
 		  </li>
 		  <li>
-			Ensembl ID:  {{context.ensembl_gene_id}}
+			Ensembl ID: <strong> <a href="https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g={{context.gral_info.loc[0,'ensembl_gene_id']}}"> {{context.gral_info.loc[0,'ensembl_gene_id']}} </a> </strong>
 		  </li>
 		  <li>
-			Genomic location:
+			Genomic location (<i>Ensembl</i>):
 			<ul>
-			  Start:  {{context.genome_starts}}
+			  Start:  {{context.gral_info.loc[0,'genome_starts']}}
 			</ul>
 			<ul>
-			  Ends:  {{context.genome_ends}}
+			  Ends:  {{context.gral_info.loc[0,'genome_ends']}}
 			</ul>
 		  </li>
 		</ul>
-	  </div>
+      </div>
 
       <hr/>
-	  <div id="section-function">
+      <div id="section-function">
 		<h2 >Function</h2>
-		{%for item in context.section%}
-		<p>{{item}}</p>
+		{%for item in context.function_list%}
+	    <p>{{item|safe}}</p>
 		{%endfor%}
 
-		<hr/>
+	    <hr/>
 	  </div>
+
+	  <div id="section-reactions">
+	    <h2>Reaction</h2>
+	    <ul>
+	      {%for reaction in context.reactions_list%}
+	      <li>{{reaction}}</li>
+	      {%endfor%}
+	    </ul>
+	  </div>
+	  <hr/>
 
 	  <div id="section-diseases">
-		<h2 >Diseases</h2>
-		{%for item in context.disease%}
-		<p>{{item}}</p>
-		{%endfor%}
+	    <h2 >Diseases</h2>
+	    <ul>
+	      {%for i in range(context.diseases.shape[0])%}
+	      <li> {{context.diseases.loc[i,'disease_name']}}</li>
+	      <p> {{context.diseases.loc[i,'effect_text']}} </p>
+	      <ul><li>
+			{{context.diseases.loc[i,'disease_description']}}
+	      </li></ul>
+	      <br/>
+	      {%endfor%}
+	    </ul>
 	  </div>
-      <hr/>
+	  <hr/>
 
 	  <div id="section-cell_location">
-		<h2 >Cellular location</h2>
-		{%for item in context.cellular_location%}
-		<p>{{item}}</p>
-		{%endfor%}
+	    <h2 >Cellular location</h2>
+	    <ul>
+	      {%for item in context.cell_loc_list%}
+	      <li>{{item}}</li>
+	      {%endfor%}
+	    </ul>
+	    {%for item in context.cell_loc_add_text_list%}
+	    <p>{{item | safe}}</p>
+	    {%endfor%}
 	  </div>
 	  <hr/>
 
 	  <div id="section-phosphosites">
-		<h2 >Phosphosites</h2>
-		<table class="table">
-		  <tr>
-			<th>Residue Position</th>
-			<th>Type</th>
-			<th>By</th>
-			<th>Genom location (starts)</th>
-			<th>Genom location (ends)</th>
-		  </tr>
-		  {%for item in context.phosphosites%}
-		  <td></td>
-		  <td></td>
-		  <td></td>
-		  <td></td>
-		  <td></td>
+	    <h2>Phosphosites</h2>
+
+	    <div class="row">
+	      <ul class="nav nav-tabs nav-justified pl-4">
+			<li> <a data-toggle="tab" class="btn btn-outline-primary" href="#section-phosphosites-own">Phosphosites</a>  </li>
+			<li><a href="#section-phosphosites-target" class="btn btn-outline-primary" data-toggle="tab">Target Phosphosites</a></li>
+	      </ul>
+
+	    </div>
+		<div class="tab-content">
+		  <div id="section-phosphosites-own" class="tab-pane in active">
+			<table class="table">
+			  <tr>
+				<th>Position</th>
+				<th>Modification</th>
+				<th>Modified by</th>
+				<th>Genomic location (starts)</th>
+				<th>Genomic location (ends)</th>
+			  </tr>
+			  {%for i in range(context.phosphosites.shape[0])%}
+			  <tr>
+				<td>{{context.phosphosites.loc[i,'residue_position']}}</td>
+				<td>{{context.phosphosites.loc[i,'modif']}}</td>
+				<td>{{context.phosphosites.loc[i,'type_modif']}}</td>
+				<td>{{context.phosphosites.loc[i,'genom_begin']}}</td>
+				<td>{{context.phosphosites.loc[i,'genom_end']}}</td>
+			  </tr>
+			  {%endfor%}
+			</table>
+		  </div>
+
+		  <div id="section-phosphosites-target" class="tab-pane border">
+			<table class="table">
+			  <tr>
+				<th>Uniprot ID</th>
+				<th>Gene</th>
+				<th>Modified residue</th>
+				<th>Residues</th>
+			  </tr>
+
+			  {%for i in range(context.targets.shape[0])%}
+			  <tr>
+				<td>{{context.targets.loc[i,'sub_acc_id']}}</td>
+				<td>{{context.targets.loc[i,'sub_gene']}}</td>
+				<td>{{context.targets.loc[i,'sub_mod_rsd']}}</td>
+				{%from '_macros.html' import sequence_7aa%}
+				<td>{{sequence_7aa(context.targets.loc[i,'site_7_aa'])}}</td>
+			  </tr>
+			  {%endfor%}
+		  </div>
+
+		  <div id="cel_location">
+	    </table>
+	    {%for item in context.cellular_location%}
+	    <p>{{item }}</p>
+	    {%endfor%}
+	  </div>
+	  <hr/>
+
+
+	  <div id="section-sequences">
+	    <h2>Sequences</h2>
+
+	    <div class="row">
+	      <ul class="nav nav-tabs nav-justified pl-4">
+		<li> <a data-toggle="tab" class="btn btn-outline-primary" href="#section-prot_seq">Protein sequence</a>  </li>
+		<li><a href="#section-gene_seq" class="btn btn-outline-primary" data-toggle="tab">Gene sequence</a></li>
+	      </ul>
+	      <div class="ml-auto pr-4">
+		<a href="/kinase/{{context.kin_name}}.fasta" >Protein</a>
+		<a href="/kinase/gene/{{context.kin_name}}.fasta">Gene</a>
+	      </div>
+	    </div>
+
+	    <div class="tab-content">
+
+	      <div id="section-prot_seq" class="tab-pane in active  border border-primary">
+
+		<div >
+		  {%for line in context.prot_seq_list%}
+		  <pre>{{line|safe}}</pre>
 		  {%endfor%}
-		</table>
-		{%for item in context.cellular_location%}
-		<p>{{item}}</p>
+		</div>
+	      </div>
+
+	      <div id="section-gene_seq" class="tab-pane border border-primary">
+
+
+		{%for line in context.gene_seq_list%}
+		<pre>{{line | safe}}</pre>
 		{%endfor%}
+
+	      </div>
+
+	    </div>
 	  </div>
-	  <hr/>
-
-
-	  <div id="section-prot_seq">
-		<h2 >Protein sequence</h2>
-
-		<p>{{context.sequence}}</p>
-
-	  </div>
-	  <hr/>
 
 
 
