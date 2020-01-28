@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+
+{%block head%}
+
+
+{%endblock%}
+
+{%block content%}
+
+<p>Number of results: {{context.search_results.shape[0]}} </p>
+
+<table class='table table-striped table-hover'>  
+  <thead class='thead-dark'>   
+    <tr>
+      <th>Uniprot ID</th>
+      <th>Uniprot Name</th>
+      <th>Chromosome</th>
+      <th>Family</th>
+      <th>Ensembl gene ID</th>
+    </tr>
+  </thead>
+
+  {%for i in range(context.search_results.shape[0])%}
+  <tr>
+    <td><a href="/kinase/{{context.search_results.loc[i,'uniprot_id']}}">{{context.search_results.loc[i,'uniprot_id'] }} </a> </td>
+    <td>{{context.search_results.loc[i,'name_human']}}</td>
+    <td>{{context.search_results.loc[i,'chromosome']}}</td>
+    <td>{{context.search_results.loc[i,'fasd_name']}}</td>
+    <td>{{context.search_results.loc[i,'ensembl_gene_id']}}</td>
+  </tr>
+  {%endfor%}
+
+</table>
+{%endblock%}
+
+<!-- aditional scripts -->
+
+{%block scripts%}
+
+
+
+{%endblock%}
+

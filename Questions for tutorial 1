@@ -1,0 +1,10 @@
+1. What do you mean by neighbouring sequence? (5 amino acids to the right and 5 to the left for example?) 
+
+2. The family ‘other’? When checking these kinases in uniprot we can see they belong to the ser/thr family, 
+should we change this or leave it as it is? (ubiquitin-like?), tyr family is not written as ‘other’. 
+
+3. Sites the kinases are known to phosphorylate? Cant find a site that shows this 
+
+4. What should we do with the uncorrected p-values in the sample file? should we leave them unadjusted and statistically analyse them 
+
+

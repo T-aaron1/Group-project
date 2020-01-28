@@ -1,0 +1,57 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+
+<p>{{context.sql}}</p>
+
+<div class="row justify-content-around">
+  <div class="col-md-6 bg-light round">
+	<p>Kinasessss</p>
+	<div>some text</div>
+  </div>
+  <div class="col-md-3 bg-light round">
+	<p>Inhibitors</p>
+  </div>
+</div>
+
+{% from '_macros.html' import render_form_field%}
+
+
+<br/>
+
+<div class="d-flex justify-content-center col-md-9 bg-light">
+
+  <form class="form-group col-md-9 round" method="POST" > <!-- align right -->
+	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+	{{render_form_field(context.search_form.search_string, placeholder='Uniprot identifier. Eg. "P31749"', class="form-control")}}
+	<br/>
+	<div class="text-center">
+      <input class="btn btn-outline-success" type="submit" value="Search"></input>
+	</div>
+  </form>
+
+</div>
+
+
+<br/>
+<div class="col-md-6 bg-light mb-2">
+  <p>Phosphoproteomics</p>
+
+  <p>Upload a ".tsv" file</p>
+  <p></p>
+
+
+  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
+
+	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+	<p>{{render_form_field(context.inhibitor_form.inhibitor)}}</p>
+	<p>{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p>
+	<p>{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p>
+	<p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
+	<input class="btn btn-primary" type="submit" value="Send"/>
+
+  </form>
+
+</div>
+{%endblock%}

@@ -1,0 +1,4 @@
+1. Do we retrieve all inhibitors or just FDA approved inhibitors?
+2. The kinases that have a family of 'other', should we leave this as it is or find the specific family names?
+(for example, when looking up one of the 'other' family kinases, Uniprot showed it belonged to the 'ubiquitin-like' family, should we replace 'other' with this or leave it as it is)
+(NOTE: check this issue. There's a link that relates to a site that contains that information https://github.com/T-aaron1/Group-project/issues/12)
