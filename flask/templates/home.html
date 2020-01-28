@@ -1,28 +1,31 @@
 {%extends 'base.html'%}
- <!-- begin aditional  -->
-    {%block head%}
-    <style>
-      .comffont {
-        font-family: 'Comfortaa', serif;
-      }
-    </style>
-    {%endblock%}
-    <!-- end aditional -->
+<!-- begin aditional  -->
+{%block head%}
+<style>
+ .comffont {
+     font-family: 'Comfortaa', serif;
+ }
+
+
+</style>
+
+
+{%endblock%}
+<!-- end aditional -->
 
 
 {%block content%}
 
-<p>{{context.sql}}</p>
 
 <body background="https://unsplash.com/photos/W2OVh2w2Kpo">
 </body>
 
 
 <div class="row justify-content-around">
-    <div class="jumbotron text-center">
-        <h1><p class="comffont">Protein Kinases</p></h1>
-        <h5><p class = "comffont"> A kinase is an enzyme that catalyzes the transfer of phosphate groups from high-energy, phosphate-donating molecules to specific substrates. This process is known as phosphorylation, where the substrate gains a phosphate group and the high-energy ATP molecule donates a phosphate group.</p></h5>
-    </div>
+  <div class="jumbotron text-center">
+    <h1><p class="comffont">Protein Kinases</p></h1>
+    <h5><p class = "comffont"> A kinase is an enzyme that catalyzes the transfer of phosphate groups from high-energy, phosphate-donating molecules to specific substrates. This process is known as phosphorylation, where the substrate gains a phosphate group and the high-energy ATP molecule donates a phosphate group.</p></h5>
+  </div>
 
 </div>
 
@@ -34,14 +37,25 @@
 
 <br/>
 <div class="row justify-content-around">
-<div class="d-flex justify-content-center col-md-6 bg-light">
+  <div class="d-flex justify-content-center col-md-6 bg-light">
 
-  <form class="form-group col-md-9 round" method="POST" > <!-- align right -->
-	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+	<form class="form-group col-md-9 round" method="POST" > <!-- align right -->
+	  <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
       <p><p class="comffont">Kinase search</p></p>
       {{render_form_field(context.search_form.search_string, placeholder='Uniprot identifier. Eg. "P31749"', class="form-control")}}
-	<br/>
-	<div class="text-center">
+	  <br/>
+	  <div class="text-center">
+
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul class="flashes">
+          {% for message in messages %}
+          <div class="message_flash">{{ message }}</div>
+          {% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+
       <input class="btn btn-outline-success" type="submit" value="Search"></input>
 	</div>
   </form>
