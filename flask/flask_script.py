@@ -50,7 +50,7 @@ def home():
         requested_name = request.values['search_string']
         requested_name = requested_name.rstrip()
         if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)) : # modify: get list of kinases
-            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id'] 
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
             url = '/kinase/' + uniprot_id
             return redirect(url)
         elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
@@ -109,30 +109,36 @@ def kinase_data(kin_name):
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
         isoforms_list = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
         isoforms = ', '.join(isoforms_list)
-        
+
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
         for function in function_list_tmp:
             function_list.append(add_pubmed_link.pubmed_link(function))
-        
+
         # modify: add layers of information
         reactions_list = list(queries.select_gral(DATABASE, 'reaction_text', 'reactions', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
         cell_loc_list= list(queries.select_gral(DATABASE, 'subcell_location', 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
-        
+
+        targets = queries.select_gral(DATABASE, 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa', 'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
+
+        phosphosites = queries.select_gral(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', 'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+
         cell_loc_add_text_list_tmp = list(queries.select_gral(DATABASE, 'subcell_aditional_text', 'subcell_location_text', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_aditional_text'])
         cell_loc_add_text_list = []
         for cell_loc in cell_loc_add_text_list_tmp:
             cell_loc_add_text_list.append(add_pubmed_link.pubmed_link(cell_loc))
-        
+
         diseases = queries.select_gral(DATABASE, 'DISTINCT disease_name, effect_text, disease_description', 'diseases', 'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
         prot_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'prot_sequence'], 50,10)
         gene_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'genome_sequence'], 50, 10)
+
         context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms,
                    'function_list': function_list,
                    'reactions_list': reactions_list, 'cell_loc_list': cell_loc_list,
                    'cell_loc_add_text_list': cell_loc_add_text_list,
                    'diseases': diseases,
-                   'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list}
+                   'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list,
+                   'targets':targets, 'phosphosites':phosphosites}
         return render_template('kinase_data.html', context = context)
     else:
         return 'not found'
@@ -205,7 +211,7 @@ def documentation_stats():
 @app.route('/kinase/<kin_name>.fasta')
 def fasta_protein(kin_name):
     if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format(kin_name)):
-        text = queries.select_gral(DATABASE, 'prot_sequence','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name)) 
+        text = queries.select_gral(DATABASE, 'prot_sequence','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
         sequence = text.loc[0,'prot_sequence']
         divide_each = 40  # modify: change size !!
         seq_size = len(sequence)

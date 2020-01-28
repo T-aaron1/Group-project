@@ -1,14 +1,19 @@
 {%macro render_form_field(field)%}
 <td>{{field.label}}
-<dd>{{field(**kwargs)|safe}}
+  <dd>{{field(**kwargs)|safe}} </dd>
 
-{%if field.errors%}
-<ul>
-{%for error in field.errors%}
-  <li>{{error}}</li>
-{%endfor%}
-</ul>
+  {%if field.errors%}
+  <ul>
+	{%for error in field.errors%}
+	<li>{{error}}</li>
+	{%endfor%}
+  </ul>
 
-{%endif%}
+  {%endif%}
 
-{%endmacro%}
+  {%endmacro%}
+
+
+  {%macro sequence_7aa(field)%}
+  {{field[0:7].replace("_","")}}<strong><span style="background-color:#00008B; color:white;"> {{field[7:8]}} <span></strong>{{field[8:].replace("_","")}}
+	{%endmacro%}
