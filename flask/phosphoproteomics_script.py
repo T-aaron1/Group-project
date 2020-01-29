@@ -2,6 +2,8 @@
 import os
 import pandas as pd
 import numpy as np
+from scipy.stats import norm
+
 
 def change_column_names(file_path, inhibitor): #!! change this, put in dif file
     df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
