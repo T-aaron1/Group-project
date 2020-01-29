@@ -168,12 +168,17 @@ def phosphoproteomics():
         try:
             ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-#            tims_function = phosphoproteomics_script.name(ddf, ...) # modify
+            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_info')
+            db = sqlite3.connect(DATABASE)
+            kin_substrate = pd.read_sql_query(query, db)
+            db.close()
+            Z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate ) # modify
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold
+
     return render_template('phosphoproteomics.html', context = context)
 
 
