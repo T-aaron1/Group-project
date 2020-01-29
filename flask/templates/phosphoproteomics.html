@@ -25,6 +25,7 @@
 <h2>Volcano plot</h2>
 <div id="graph_volcano"></div>
 
+
 <div>
 
 
@@ -49,6 +50,37 @@
 
 <h2>Z score </h2>
 <div id="Z_score"></div>
+
+
+
+<hr/>
+
+
+<div>
+
+
+  <p>Number of not identified phosphosites: {{context['non_identified_volcano']}}</p>
+  <table class="table">
+    <tr>
+      <th>Kinase</th>
+      <th>KSEA</th>
+      <th>P-value</th>
+    </tr>
+    {%for i in range(context.z_score_volcano.kinase|length)  %}
+    <tr>
+      <td>{{context.z_score_volcano.kinase[i]}}</td>
+      <td>{{context.z_score_volcano.ksea[i]}}</td>
+      <td>{{context.z_score_volcano.p_value[i]}}</td>
+    </tr>
+    {%endfor%}
+
+  </table>
+</div>
+
+
+<h2>Z score </h2>
+<div id="Z_score_volcano"></div>
+
 
 
 
@@ -222,6 +254,49 @@
 
  Plotly.newPlot('Z_score', data, layout);
 </script>
+
+
+
+
+
+
+
+<script>
+ var trace1 = {
+	 x: {{context.z_score_volcano.kinase|safe}},
+	 y: {{context.z_score_volcano.ksea}},
+	 type: 'bar',
+	 text: {{context.z_score_volcano.p_value}},
+	 marker: {
+		 color: {{context.z_score_volcano.colors|safe}}
+	 }
+ };
+
+ var data = [trace1];
+
+ var layout = {
+	 title: 'Relative Kinase activity score Z-score',
+	 font:{
+		 family: 'Raleway, sans-serif'
+	 },
+	 showlegend: false,
+	 xaxis: {
+		 tickangle: -45
+	 },
+	 yaxis: {
+		 title: {
+			 text: "Activity score",
+			 size: 20
+		 },
+		 zeroline: true,
+		 gridwidth: 2
+	 },
+	 bargap :0.05
+ };
+
+ Plotly.newPlot('Z_score_volcano', data, layout);
+</script>
+
 
 
 

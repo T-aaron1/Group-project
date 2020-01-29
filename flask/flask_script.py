@@ -166,23 +166,28 @@ def phosphoproteomics():
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
-        try:
-            ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
-            results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-            #df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
-            print(df_volcano)
-            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
-            db = sqlite3.connect(DATABASE)
-            kin_substrate = pd.read_sql_query(query, db)
-            db.close()
-            Z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # modify
-        except:
-            return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
+        #try:
+        ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
+        print(ddf)
+        results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
+        df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
+        print(df_volcano)
+        query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
+        db = sqlite3.connect(DATABASE)
+        kin_substrate = pd.read_sql_query(query, db)
+        db.close()
+        z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
+        z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
+
+#        except:
+#            return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold
-        context['non_identified'] = Z_score['non_identified']
-        context['z_score'] = Z_score['score']
+        context['non_identified'] = z_score['non_identified']
+        context['z_score'] = z_score['score']
+        context['non_identified_volcano'] = z_score_volcano['non_identified']
+        context['z_score_volcano'] = z_score_volcano['score']
 
     return render_template('phosphoproteomics.html', context = context)
 
