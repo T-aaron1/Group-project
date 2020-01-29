@@ -31,85 +31,89 @@
 
 
 
-{% from '_macros.html' import render_form_field%}
+  {% from '_macros.html' import render_form_field%}
 
 
 
-<br/>
-<div class="row justify-content-around">
-  <div class="d-flex justify-content-center col-md-6 bg-light">
+  <br/>
+  <div class="row justify-content-around">
+	<div class="d-flex justify-content-center col-md-6 bg-light">
 
-	<form class="form-group col-md-9 round" method="POST" > <!-- align right -->
-	  <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-      <p><p class="comffont">Kinase search</p></p>
-      {{render_form_field(context.search_form.search_string, placeholder='Uniprot identifier. Eg. "P31749"', class="form-control")}}
+	  <form class="form-group col-md-9 round" method="POST" > <!-- align right -->
+		<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+		<p><p class="comffont">Kinase search</p></p>
+		{{render_form_field(context.search_form.search_string, placeholder='Uniprot identifier. Eg. "P31749"', class="form-control")}}
+		<br/>
+		<div class="text-center">
+
+		  {% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		  <ul class="flashes">
+			{% for message in messages %}
+			<div class="message_flash">{{ message }}</div>
+			{% endfor %}
+		  </ul>
+		  {% endif %}
+		  {% endwith %}
+
+		  <input class="btn btn-outline-success" type="submit" value="Search"></input>
+		</div>
+	  </form>
+
 	  <br/>
-	  <div class="text-center">
 
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<ul class="flashes">
-          {% for message in messages %}
-          <div class="message_flash">{{ message }}</div>
-          {% endfor %}
-		</ul>
-		{% endif %}
-		{% endwith %}
 
-      <input class="btn btn-outline-success" type="submit" value="Search"></input>
+
 	</div>
-  </form>
 
-<br/>
+	<br/>
 
+	<div class="col-md-5 bg-light mb-2">
+      <p><p class="comffont">Phosphoproteomics Data Upload</p></p>
 
-
-</div>
-
-<br/>
-
-<div class="col-md-5 bg-light mb-2">
-    <p><p class="comffont">Phosphoproteomics Data Upload</p></p>
-
-    <p><small><p class="comffont">Upload a ".tsv" file</small></p></p>
-  <p></p>
+      <p><small><p class="comffont">Upload a ".tsv" file</small></p></p>
+	  <p></p>
 
 
-  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
+	  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
 
-	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-      <p><p class="comffont">{{render_form_field(context.inhibitor_form.inhibitor)}}</p></p>
-      <p><p class="comffont">{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p></p>
-      <p><p class="comffont">{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p></p>
-      <p><p class="comffont">{{render_form_field(context.uploadfile_form.uploaded_file)}}</p></p>
-	<input class="btn btn-outline-success" type="submit" value="Send"/>
+		<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+		<p><p class="comffont">{{render_form_field(context.inhibitor_form.inhibitor)}}</p></p>
+		<p><p class="comffont">{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p></p>
+		<p><p class="comffont">{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p></p>
+		<p><p class="comffont">{{render_form_field(context.uploadfile_form.uploaded_file)}}</p></p>
+		<input class="btn btn-outline-success" type="submit" value="Send"/>
 
-  </form>
+	  </form>
 
-</div>
-
-
+	</div>
 
 
-<br/>
+	<br/>
 
-<div class="col-md-5 bg-light mb-2">
-  <p>Phosphoproteomics Data Upload</p>
+	<div class="col-md-5 bg-light mb-2">
+	  <p>Phosphoproteomics Data Upload</p>
 
-    <p><small>Upload a ".tsv" file</small></p>
-  <p></p>
+      <p><small>Upload a ".tsv" file</small></p>
+	  <p></p>
 
 
-  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
+	  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
 
-	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-	<p>{{render_form_field(context.inhibitor_form.inhibitor)}}</p>
-	<p>{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p>
-	<p>{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p>
-	<p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
-	<input class="btn btn-outline-success" type="submit" value="Send"/>
+		<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+		<p>{{render_form_field(context.inhibitor_form.inhibitor)}}</p>
+		<p>{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p>
+		<p>{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p>
+		<p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
+		<input class="btn btn-outline-success" type="submit" value="Send"/>
 
   </form>
 
+
+
+
+
+
+  </iframe>
 </div>
 {%endblock%}
