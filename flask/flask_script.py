@@ -178,7 +178,7 @@ def phosphoproteomics():
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold
-        
+
     return render_template('phosphoproteomics.html', context = context)
 
 
