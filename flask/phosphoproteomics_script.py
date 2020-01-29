@@ -88,6 +88,8 @@ def KSEA(df, kinase_substrate):
     kinase_count_df['Kinase'] = kinase_count_df.index
     kinase_count_df.reset_index(drop=True, inplace=True)
     sig_kinase_count = kinase_count_df[kinase_count_df['P_value']<0.05]
-    output = {'score': sig_kinase_count[['Kinase', 'KSEA', 'P_value']], 'non_identified': non_identified}
+    kinase_count_dict={'kinase': list(sig_kinase_count['score'].loc[:,'Kinase']), 'KSEA' : list(sig_kinase_count['score'].loc[:,'KSEA']), 'P_value': list(sig_kinase_count['score'].loc[:,'P_value']) }
+
+    output = {'score': kinase_count_dict ,'non_identified': non_identified}
 
     return output
