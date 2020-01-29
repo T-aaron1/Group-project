@@ -47,10 +47,18 @@ def volcano(df, p_val_threshold, fold_threshold): #!! change this, put in dif fi
     out_dict['plot_layout'] = plot_layout
     return out_dict
 
+####
+
+def extract_above_threshold(df, volcano_results):
+    substrate = volcano_results['negfold_pval']['substrate'] + volcano_results['posfold_pval']['substrate']
+    print(len(substrate))
+    df_substrate = pd.DataFrame.from_dict({'Substrate':substrate})
+    df2 = df_substrate.join(df.set_index(['Substrate']), on=['Substrate'])
+    return df2
+
+#Substrate  control_mean          mean  fold_change   p-value    ctrlCV   treatCV
 
 #####
-# Tim function: the colum names are: Substrate  control_mean          mean  fold_change   p-value    ctrlCV   treatCV
-# shhould use the output of the 'change_column_names' function
 
 def KSEA(df, kinase_substrate):
     df.dropna(axis=1, how='all', inplace=True)
@@ -81,14 +89,20 @@ def KSEA(df, kinase_substrate):
     kinase_count_df['KSEA'] = (kinase_count_df['Log2Substrate_fold_change'] - mean_log2_FC *
                                kinase_count_df['sqrt_kinase']) / kinase_count_df['Standard_deviation']
 
+
     kinase_count_df['P_value'] = norm.sf(abs(kinase_count_df['KSEA'])) * 2
     non_identified = kinase_count_df.loc['', 'kinase_final']
+
     kinase_count_df.drop([''], axis=0, inplace=True)
-    kinase_count_df = kinase_count_df.sort_values(['P_value'], ascending=True)
+    kinase_count_df = kinase_count_df.sort_values(['KSEA'], ascending=True)
     kinase_count_df['Kinase'] = kinase_count_df.index
     kinase_count_df.reset_index(drop=True, inplace=True)
     sig_kinase_count = kinase_count_df[kinase_count_df['P_value']<0.05]
-    kinase_count_dict={'kinase': list(sig_kinase_count['score'].loc[:,'Kinase']), 'KSEA' : list(sig_kinase_count['score'].loc[:,'KSEA']), 'P_value': list(sig_kinase_count['score'].loc[:,'P_value']) }
+    colors = ["rgb(255,242,0)"]*sig_kinase_count[sig_kinase_count['KSEA']<0].shape[0] +  ["rgb(0,34,255)"]*sig_kinase_count[sig_kinase_count['KSEA']>=0].shape[0]
+    kinase_count_dict={'kinase': list(sig_kinase_count.loc[:,'Kinase']),
+                       'ksea' : list(sig_kinase_count.loc[:,'KSEA']),
+                       'p_value': list(sig_kinase_count.loc[:,'P_value']),
+                       'colors':colors}
 
     output = {'score': kinase_count_dict ,'non_identified': non_identified}
 
