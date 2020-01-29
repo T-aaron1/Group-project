@@ -30,6 +30,25 @@
 
 
 
+<p>Number of not identified phosphosites: {{context['non_identified']}}</p>
+  <table class="table">
+	<tr>
+	  <th>Kinase</th>
+	  <th>KSEA</th>
+	  <th>P-value</th>
+	</tr>
+	{%for i in range(context.z_score.shape[0])%}
+	<tr>
+	  <td>{{context.z_score.loc[i, 'Kinase']}}</td>
+	  <td>{{context.z_score.loc[i, 'KSEA']}}</td>
+	  <td>{{context.z_score.loc[i, 'P_value']}}</td>
+	</tr>
+	{%endfor%}
+
+  </table>
+</div>
+
+
 {%endblock%}
 
 
