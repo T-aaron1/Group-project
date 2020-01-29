@@ -163,11 +163,12 @@ FOREIGN KEY (sub_acc_id) REFERENCES kinase_info(uniprot_id)
 -- uniprot_id|full_prot_name|reverse|chromosome|start_gene_coord|genom_end_coord|sequence
 
 CREATE TABLE isoforms_info (
- uniprot_id TEXT,
+uniprot_id TEXT,
 full_prot_name TEXT,
 reverse TEXT,
 chromosome TEXT,
 start_gene_coord INT,
 genom_end_coord INT,
-prot_sequence TEXT
+prot_sequence TEXT,
+FOREIGN KEY(uniprot_id) REFERENCES  isoforms(isoforms)
 );

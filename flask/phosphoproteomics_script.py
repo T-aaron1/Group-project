@@ -1,12 +1,14 @@
-
 import os
 import pandas as pd
 import numpy as np
+from scipy.stats import norm
+
+
 
 def change_column_names(file_path, inhibitor): #!! change this, put in dif file
     df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
     os.remove(file_path)
-    inhibitor = inhibitor.rstrip() + '_'
+    inhibitor = inhibitor.upper().rstrip() + '_'
     col_names = df.columns
     for name in col_names:
         if inhibitor in name:

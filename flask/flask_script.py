@@ -22,9 +22,7 @@ import re
 path = str(pathlib.Path(__file__).parent.absolute())
 DATABASE = re.sub(r'flask$','csv_tables/kinase_project.db',path)
 
-
-#UPLOAD_FOLDER = '/home/daniel/Escritorio/uk/group_proj2/upload'
-UPLOAD_FOLDER = '/homes/dtg30/Desktop/group_proj_2/'
+UPLOAD_FOLDER = re.sub(r'flask$','csv_tables/',path)
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
@@ -46,7 +44,7 @@ def home():
                'threshold_pval_form':threshold_pval_form,
                'search_form': search_form}
 
-    if request.method == 'POST' and search_form.validate_on_submit():
+    if request.method == 'POST' and search_form.search_string.data and search_form.validate_on_submit():
         requested_name = request.values['search_string']
         requested_name = requested_name.rstrip()
         if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)) : # modify: get list of kinases
@@ -59,21 +57,17 @@ def home():
             return redirect(url)
         elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
             return redirect(url_for('.kinase_search_result', search=requested_name))
-
-
-
-
-#        elif:
-
+        else:
+            text_flash = "'"+ str(requested_name) + "'" + " not in our the database"
+            flash(text_flash)
+            return render_template('home.html', context = context)
         # modify:
         #  - if name is equal to a uniprot identifier redirect to /kinase/uniprotid
         # - else if requested_name correspond to one gene, redirect to the kinase/uniprotid
         # - else if requested_name one name nor to one gene, make a less restrictive querry and redirect to kinase_search_results
-        url = '/kinase/' + requested_name
-        print(url)
-        return redirect(url)
 
-    if request.method == 'POST' and uploadfile_form.validate_on_submit():
+    if request.method == 'POST' and uploadfile_form.uploaded_file.data and inhibitor_form.validate_on_submit() and threshold_foldchange_form.validate_on_submit() \
+       and threshold_pval_form.validate_on_submit() and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
@@ -83,10 +77,8 @@ def home():
         session['tmp_upload_file'] = filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        return redirect(url_for('phosphoproteomics',inh=inhibitor,fc=threshold_foldchange,pv=p_val_threshold, ), code = 307)
-    else:
-        flash('You were successfully logged in') # ~
-        return render_template('home.html', context = context)
+        return redirect(url_for('phosphoproteomics',inh=inhibitor,fc=threshold_foldchange,pv=p_val_threshold), code = 307)
+    return render_template('home.html', context = context)
 
 
 
@@ -173,15 +165,23 @@ def phosphoproteomics():
         fold_threshold = request.values['fc']
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
+
         try:
             ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-#            tims_function = phosphoproteomics_script.name(ddf, ...) # modify
+            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
+            db = sqlite3.connect(DATABASE)
+            kin_substrate = pd.read_sql_query(query, db)
+            db.close()
+            Z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate ) # modify
+
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold
+        context['non_identified'] = Z_score['non_identified']
+        context['z_score'] = Z_score['score']
     return render_template('phosphoproteomics.html', context = context)
 
 

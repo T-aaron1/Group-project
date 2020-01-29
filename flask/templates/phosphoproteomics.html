@@ -16,16 +16,39 @@
 
 {%block content%}
 
-
-<p>graphs, results</p>
-<p>possibly a pdf?</p>
-
+<!--
+	 <p>graphs, results</p>
+	 <p>possibly a pdf?</p>
+-->
 
 {%if context.get('volcano')%}
 <h2>Volcano plot</h2>
 <div id="graph_volcano"></div>
 
 {%endif%}
+
+
+<p>Number of not identified phosphosites: {{context['non_identified']}}</p>
+
+
+<div>
+
+  <table class="table">
+	<tr>
+	  <th>Kinase</th>
+	  <th>KSEA</th>
+	  <th>P-value</th>
+	</tr>
+	{%for i in range(context.z_score.shape[0])%}
+	<tr>
+	  <td>{{context.z_score.loc[i, 'Kinase']}}</td>
+	  <td>{{context.z_score.loc[i, 'KSEA']}}</td>
+	  <td>{{context.z_score.loc[i, 'P_value']}}</td>
+	</tr>
+	{%endfor%}
+
+  </table>
+</div>
 
 
 {%endblock%}
