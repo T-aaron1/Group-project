@@ -29,7 +29,6 @@
 {%endif%}
 
 
-<<<<<<< HEAD
 
 <p>Number of not identified phosphosites: {{context['non_identified']}}</p>
   <table class="table">
@@ -50,8 +49,7 @@
 </div>
 
 
-=======
->>>>>>> a4d378c53aef802f994abcff15616b6e233e01eb
+
 {%endblock%}
 
 
@@ -185,10 +183,10 @@
 
 
 var trace1 = {
-  x: [{{list(Z_score['score'].loc[:,'Kinase'])|safe}}],
-  y: [{{list(Z_score['score'].loc[:,'KSEA'])}}],
+  x: [{{list(context.z_score['score'].loc[:,'Kinase'])|safe}}],
+  y: [{{list(context.z_score['score'].loc[:,'KSEA'])}}],
   type: 'bar',
-  text: [{{list(Z_score['score'].loc[:,'P_value'])}}],
+  text: [{{list(context.z_score['score'].loc[:,'P_value'])}}],
   marker: {
     color: 'rgb(142,124,195)'
   }
