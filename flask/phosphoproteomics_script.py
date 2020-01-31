@@ -84,7 +84,6 @@ def KSEA(df, kinase_substrate):
     kinase_count = df['kinase_final'].value_counts()
     kinase_count_df = pd.DataFrame(kinase_count)
     kinase_count_df['sqrt_kinase'] = np.sqrt(kinase_count_df)
-    df.groupby('kinase_final')['Log2substrate_fold_change'].mean()
     kinase_count_df['Standard_deviation'] = np.std(df.Log2substrate_fold_change)
     kinase_count_df['Log2substrate_fold_change'] = df.groupby('kinase_final')['Log2substrate_fold_change'].mean()
     kinase_count_df['mean_log2(FC)'] = df['mean_log2(FC)'] = df["Log2substrate_fold_change"].mean()

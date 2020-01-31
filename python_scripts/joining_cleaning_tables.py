@@ -1,6 +1,24 @@
 import pandas as pd
 
 
+
+########## cleaning the kin_substrate_dataset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 OUTPUT_FILE = '~/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/kinase_general_information.csv'
 
 ######################
