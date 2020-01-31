@@ -1,13 +1,16 @@
 import retrieve_from_xml_uniprotapi as xmluniprot
 
-csvFile =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_list.csv'
-csvGralInfo =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_gral_info.csv'
-csvAltProt =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_alternative_names.csv'
-csvEnsembl =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_ensembl.csv'
-csvModResGral =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_modified_residues_gral_info.csv'
-csvModResRefs =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_modified_residues_references.csv'
+path = "/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/targets/"
 
-INFILE = open(csvFile, 'r')
+INCSVFILE =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/targets/substrates_list.csv'
+
+csvGralInfo = path + 'kinase_gral_info.csv'
+csvAltProt = path + 'kinase_alternative_names.csv'
+csvEnsembl = path + 'kinase_ensembl.csv'
+csvModResGral = path + 'kinase_modified_residues_gral_info.csv'
+csvModResRefs = path + 'kinase_modified_residues_references.csv'
+
+INFILE = open(INCSVFILE, 'r')
 
 OUT_GRALINFO = open(csvGralInfo,'w')
 OUT_ALTPROT = open(csvAltProt,'w')
@@ -28,16 +31,21 @@ OUT_MODRESREFS.write('uniprot_id|residue_position|ref_id|ref_type\n')
 
 # read headers
 print(INFILE.readline())
+uniprot_column = 0
+separator = ','
+
 # we want uniprot  [3]
 #Family,name,name_human,uniprot,mass
 #AGC_Ser/Thr,AKT1,AKT1_HUMAN,P31749,55.686
+# kinases/targets/substrates_list.csv
+#substrates
 
 # errors lists
 ## --  gral info
 error_list_get_gralinfo = []
 ## -- alternative names
 error_get_alternative_prot_names = []
-## -- ensembl ids 
+## -- ensembl ids
 error_list_get_ensembl_geneid = []
 ## -- modif residue information
 error_modres_references = []
@@ -46,8 +54,8 @@ counter = 1
 
 for line in INFILE:
     line = line.rstrip()
-    tmp_list = line.split(',')
-    uniprot = tmp_list[3]
+    tmp_list = line.split(separator)
+    uniprot = tmp_list[uniprot_column]
     print('------------------------------------------------------')
     print('----------------')
     print(counter)
@@ -59,7 +67,7 @@ for line in INFILE:
     try:
         gralinfo = xmluniprot.get_gralinfo(data)
         out = gralinfo + '\n'
-        OUT_GRALINFO.write(out) # write 
+        OUT_GRALINFO.write(out) # write
     except:
         error_list_get_gralinfo.append(uniprot)
         print('!! some info not found: get_gralinfo: '+ uniprot)
@@ -69,15 +77,15 @@ for line in INFILE:
         if (len(alt_prot) > 1):
             for entry in alt_prot:
                 out = entry + '\n'
-                OUT_ALTPROT.write(out) #write 
+                OUT_ALTPROT.write(out) #write
         else:
             out = ''.join(alt_prot) + '\n'
             OUT_ALTPROT.write(out) #write
     except:
         error_get_alternative_prot_names.append(uniprot)
         print('!! some info not found: get_alternative_prot_names: '+ uniprot)
-    ## -- ensembl ids 
-    try: 
+    ## -- ensembl ids
+    try:
         ensembl_id = xmluniprot.get_ensembl_geneid(data)
         if(len(ensembl_id) > 1):
             for entry in ensembl_id:
@@ -93,15 +101,15 @@ for line in INFILE:
     try:
         modifres_gralinfo = xmluniprot.modres_gral_info(data)
         for entry in modifres_gralinfo:
-            out = entry + '\n'    
+            out = entry + '\n'
             OUT_MODRESGRAL.write(out) #write
         ## modified residues references
         modres_refs = xmluniprot.modres_references(data)
-        if(len(modres_refs) > 1 ): 
+        if(len(modres_refs) > 1 ):
             for entry in modres_refs:
                 out = entry + '\n'
                 OUT_MODRESREFS.write(out) #write
-        else: 
+        else:
             out = ''.join(modres_refs) + '\n'
             OUT_MODRESREFS.write(out) #write
     except:
@@ -123,10 +131,10 @@ INFILE.close()
 
 # errors lists
 ## --  gral info
-error_list_get_gralinfo 
+error_list_get_gralinfo
 ## -- alternative names
-error_get_alternative_prot_names 
-## -- ensembl ids 
-error_list_get_ensembl_geneid 
+error_get_alternative_prot_names
+## -- ensembl ids
+error_list_get_ensembl_geneid
 ## -- modif residue information
 error_modres_references
