@@ -69,11 +69,26 @@ def KSEA(df, kinase_substrate):
     df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
     # get name and remove _human
     df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
+
+    print(df)
+
+    df = df[~(df['fold_change'] == 0)]
     df = df.dropna(axis=0)
+
+    df['Log2substrate_fold_change'] = np.log2(df.fold_change)
+
+    df['Log2substrate_fold_change'] = df['Log2substrate_fold_change'].replace([np.inf, -np.inf], np.nan)
+
+    df = df.dropna(axis=0)
+
+    # unique values
+    mean_log2_FC = df["Log2substrate_fold_change"].mean()
+    standard_deviation = np.std(df.Log2substrate_fold_change)
+
 
     kinase_substrate['substrate'] =  kinase_substrate['substrate'].str.split("_HUMAN", n=1, expand=True)[0]
     kinase_substrate['substrate'] +=  "_HUMAN"
-    print(kinase_substrate['substrate'])
+
 
     df = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
@@ -83,27 +98,38 @@ def KSEA(df, kinase_substrate):
                  on=['subst_name', 'subst_position'], rsuffix='_sub_acc')
 
     df['kinase_final'] = df[['kinase', 'kinase_sub_acc']].fillna('').sum(axis=1)
-    df = df[df.fold_change != 'inf']
-    df['Log2substrate_fold_change'] = np.log2(df.fold_change)
-    mean_log2_FC = df["Log2substrate_fold_change"].mean()
+    # kinase counts
     kinase_count = df['kinase_final'].value_counts()
     kinase_count_df = pd.DataFrame(kinase_count)
     kinase_count_df['sqrt_kinase'] = np.sqrt(kinase_count_df)
-    kinase_count_df['Standard_deviation'] = np.std(df.Log2substrate_fold_change)
-    kinase_count_df['Log2substrate_fold_change'] = df.groupby('kinase_final')['Log2substrate_fold_change'].mean()
-    kinase_count_df['mean_log2(FC)'] = df['mean_log2(FC)'] = df["Log2substrate_fold_change"].mean()
-    kinase_count_df['KSEA'] = (kinase_count_df['Log2substrate_fold_change'] - mean_log2_FC *
-                               kinase_count_df['sqrt_kinase']) / kinase_count_df['Standard_deviation']
 
 
-    kinase_count_df['P_value'] = norm.sf(abs(kinase_count_df['KSEA'])) * 2
+
+
+    #non identif
     non_identified = kinase_count_df.loc['', 'kinase_final']
-
     kinase_count_df.drop([''], axis=0, inplace=True)
-    kinase_count_df = kinase_count_df.sort_values(['KSEA'], ascending=True)
     kinase_count_df['Kinase'] = kinase_count_df.index
     kinase_count_df.reset_index(drop=True, inplace=True)
-    sig_kinase_count = kinase_count_df[kinase_count_df['P_value']<0.05]
+
+
+    # join this
+    tmp_df= pd.DataFrame(df.groupby('kinase_final')['Log2substrate_fold_change'].mean())
+    tmp_df['kinase_final'] =  tmp_df.index
+    tmp_df.reset_index(drop=True, inplace=True)
+    kinase_count_df = kinase_count_df.join(tmp_df.set_index(['kinase_final']), on=['Kinase'], rsuffix='_sub_acc')
+
+    kinase_count_df['KSEA'] = ((kinase_count_df['Log2substrate_fold_change'] - mean_log2_FC) *
+                               kinase_count_df['sqrt_kinase']) / standard_deviation
+
+
+    kinase_count_df['P_value'] = norm.sf(abs(kinase_count_df['KSEA']))
+
+
+    kinase_count_df = kinase_count_df.sort_values(['KSEA'], ascending=True)
+
+
+    sig_kinase_count = kinase_count_df[kinase_count_df['P_value'] < 0.05]
     colors = ["rgb(255,242,0)"]*sig_kinase_count[sig_kinase_count['KSEA']<0].shape[0] +  ["rgb(0,34,255)"]*sig_kinase_count[sig_kinase_count['KSEA']>=0].shape[0]
     kinase_count_dict={'kinase': list(sig_kinase_count.loc[:,'Kinase']),
                        'ksea' : list(sig_kinase_count.loc[:,'KSEA']),

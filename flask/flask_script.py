@@ -89,7 +89,8 @@ def home():
 def kinase_search_result():
     # method: get , add filter
     requested_name = request.values['search']
-    search_results = queries.select_gral(DATABASE, 'uniprot_id, name_human, chromosome, fasd_name, ensembl_gene_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))
+    search_results = queries.select_gral(DATABASE, 'uniprot_id, name_human, chromosome, fasd_name, ensembl_gene_id','kinase_info',\
+                                         'uniprot_id LIKE "%{0}%"'.format(requested_name))
     context = {'search_results':search_results}
     return render_template('kinase_search_results.html', context = context)
 
@@ -102,8 +103,8 @@ def kinase_data(kin_name):
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
         isoforms = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
 
-        # gral_info.loc[0,'full_prot_name']
-        inhibitors = queries.select_gral(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'full_prot_name']) )
+        # inhibitors
+        inhibitors = list(queries.select_gral(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'prot_name']) ).loc[:,'inn_name'])
         print(inhibitors)
 
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
@@ -135,7 +136,8 @@ def kinase_data(kin_name):
                    'cell_loc_add_text_list': cell_loc_add_text_list,
                    'diseases': diseases,
                    'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list,
-                   'targets':targets, 'phosphosites':phosphosites
+                   'targets':targets, 'phosphosites':phosphosites,
+                   'inhibitors':inhibitors
                    }
         return render_template('kinase_data.html', context = context)
     else:
@@ -206,28 +208,30 @@ def phosphoproteomics():
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
-        try:
-            ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
-            results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-            df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
+#        try:
+        ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
+        results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
+        df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
 
-            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, substrate', 'kinase_substrate')
-            db = sqlite3.connect(DATABASE)
-            kin_substrate = pd.read_sql_query(query, db)
-            db.close()
-            z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
-            z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
+        query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, substrate', 'kinase_substrate')
+        db = sqlite3.connect(DATABASE)
+        kin_substrate = pd.read_sql_query(query, db)
+        db.close()
+        z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
+        print(z_score)
+        z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
+        print(z_score_volcano)
 
-            context['volcano'] = results_volcano
-            context['fold_threshold'] = fold_threshold
-            context['pval_threshold'] = pval_threshold
-            context['non_identified'] = z_score['non_identified']
-            context['z_score'] = z_score['score']
-            context['non_identified_volcano'] = z_score_volcano['non_identified']
-            context['z_score_volcano'] = z_score_volcano['score']
+        context['volcano'] = results_volcano
+        context['fold_threshold'] = fold_threshold
+        context['pval_threshold'] = pval_threshold
+        context['non_identified'] = z_score['non_identified']
+        context['z_score'] = z_score['score']
+        context['non_identified_volcano'] = z_score_volcano['non_identified']
+        context['z_score_volcano'] = z_score_volcano['score']
 
-        except:
-            return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
+        #except:
+        #    return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
 
 
     return render_template('phosphoproteomics.html', context = context)

@@ -60,7 +60,7 @@
 	  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
 	    <ul>
 	      <li>
-		{{context.gral_info.loc[0,'name_human']}}
+			{{context.gral_info.loc[0,'name_human']}}
 	      </li>
 	    </ul>
 	  </li>
@@ -72,6 +72,8 @@
 	  </li>
 
 	  <li> Isoforms: {%for isof in context.isoforms%}<a href="/kinase/{{isof}}.fasta">{{isof}} </a> {%endfor%}</li>
+
+	  <li> Inhibitors: {%for inhib in context.inhibitors%} <a href="/inhibitors/"> {{inhib}} </a> {%endfor%}</li>
 	</ul>
       </div>
 
