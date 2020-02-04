@@ -218,6 +218,7 @@ def phosphoproteomics():
 
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
+
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold
