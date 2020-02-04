@@ -131,3 +131,10 @@ SELECT COUNT(*) FROM phosphosites_references;
 .import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/isoforms/kinase_gral_info.csv  isoforms_gral_info
 
 SELECT COUNT(*) FROM phosphosites_references;
+
+
+-- -- csv_tables/ncbi_chromosomes
+-- /Escritorio/uk/group_project/venv/src/Group-project/csv_tables/ncbi_chromosomes
+-- chr,ncbi_id
+.separator ','
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/ncbi_chromosomes ncbi_chrom_id 

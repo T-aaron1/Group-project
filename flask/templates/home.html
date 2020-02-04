@@ -89,31 +89,12 @@
 	</div>
 
 
-	<br/>
-
-	<div class="col-md-5 bg-light mb-2">
-	  <p>Phosphoproteomics Data Upload</p>
-
-      <p><small>Upload a ".tsv" file</small></p>
-	  <p></p>
-
-
-	  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
-
-		<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-		<p>{{render_form_field(context.inhibitor_form.inhibitor)}}</p>
-		<p>{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p>
-		<p>{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p>
-		<p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
-		<input class="btn btn-outline-success" type="submit" value="Send"/>
-
-  </form>
 
 
 
 
 
 
-  </iframe>
+
 </div>
 {%endblock%}

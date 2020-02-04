@@ -1,38 +1,39 @@
-def get_uniprot_data(accession):
+import requests
+from bs4 import BeautifulSoup
+
+
+
+def get_uniprot_data(accession_id):
     ''' get data from uniprot api. The data is in xml. This uses bs4 BeautifulSoup to parse it
-     for eg: https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749'''
-    text = 'https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession={}'.format(accession)
-    try:
-        import requests
-    except:
-        'requests package not installed. Run "pip install -r requirements"'
-    try:
-        from bs4 import BeautifulSoup
-    except:
-        print(' bs4 package not installed. Run "pip install -r requirements"')
+     for eg: https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749  OR
+     https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&taxid=9606&gene=BRCA1  
+     taxid 9606 is for human'''
+    text = 'https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&taxid=9606&gene={}'.format(accession_id)
     try:
         requested_xml = requests.get(text)
     except:
-        print('Problem with the following accession number: ' + accession)
+        print('Problem with the following accession number: ' + accession_id)
     bs_data = BeautifulSoup(requested_xml.content)
     return bs_data
 
 
 
-def get_gralinfo(bs_data):
+def get_gralinfo(bs_data, accession_id):
     ''' get general info from bs_data from get_uniprot_data
-        uniprot_id, full_prot_name,reverse, chromosome, start_gene_coord, genom_end_coord, sequence'''
-    sequence =  bs_data.gnentries.gnentry.sequence.text # sequence
+        uniprot_id, full_prot_name,reverse, chromosome, start_gene_coord, genom_end_coord, sequence,
+        added at the beginning the accession_id because the request can be done with the gene or the 
+        uniprot id and so on'''
+#    sequence =  bs_data.gnentries.gnentry.sequence.text # sequence
     uniprot_id = bs_data.gnentries.gnentry.accession.text # uniprot accession 
-    full_prot_name = bs_data.gnentries.gnentry.protein.recommendedname.fullname.text # full prot name
+#    full_prot_name = bs_data.gnentries.gnentry.protein.recommendedname.fullname.text # full prot name
     reverse = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].genomiclocation['reverse_strand'] # rev strand
-
     chromosome = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].genomiclocation['chromosome'] #chromosome
-    start_gene_coord = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].genomiclocation['start'] #start
-    genom_end_coord = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].genomiclocation['end'] #ends
-
-    text_list = [uniprot_id, full_prot_name,reverse, chromosome, start_gene_coord, genom_end_coord, sequence]
+#    start_gene_coord = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].genomiclocation['start'] #start
+#    genom_end_coord = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].genomiclocation['end'] #ends
+#    text_list = [accession_id, uniprot_id, full_prot_name,reverse, chromosome, start_gene_coord, genom_end_coord, sequence]
+    text_list = [accession_id, uniprot_id, reverse, chromosome]
     text_output = '|'.join(text_list)
+    return text_output
 
 
 # need to extract short name, some do not have short name     
