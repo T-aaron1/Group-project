@@ -67,16 +67,19 @@ def KSEA(df, kinase_substrate):
 
     df['subst_position'] = ''
     df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
+    # get name and remove _human
     df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
-    df['subst_name'] = df.substrate.str.split("_HUMAN", n=1, expand=True)[0]
-
     df = df.dropna(axis=0)
+
+    kinase_substrate['substrate'] =  kinase_substrate['substrate'].str.split("_HUMAN", n=1, expand=True)[0]
+    kinase_substrate['substrate'] +=  "_HUMAN"
+    print(kinase_substrate['substrate'])
 
     df = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
 
 
-    df = df.join(kinase_substrate[['kinase', 'sub_acc_id', 'sub_mod_rsd']].set_index(['sub_acc_id', 'sub_mod_rsd']),
+    df = df.join(kinase_substrate[['kinase', 'substrate', 'sub_mod_rsd']].set_index(['substrate', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'], rsuffix='_sub_acc')
 
     df['kinase_final'] = df[['kinase', 'kinase_sub_acc']].fillna('').sum(axis=1)

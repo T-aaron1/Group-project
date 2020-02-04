@@ -101,7 +101,10 @@ def kinase_data(kin_name):
         kin_name = kin_name
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
         isoforms = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
-#        isoforms = ', '.join(isoforms_list)
+
+        # gral_info.loc[0,'full_prot_name']
+        inhibitors = queries.select_gral(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'full_prot_name']) )
+        print(inhibitors)
 
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
@@ -151,12 +154,12 @@ def genome_viewer(uniprot_id):
     genom_browser_markers_list = []
     color = '0040FF'
     genom_browser_v = ''
-    
+
     if (gral_info.loc[0,'reverse']  == 'True'):
         for i in range(phosphosites.shape[0]):
             genom_browser_markers_list.append(str(phosphosites.loc[i,'genom_end']) +':' + \
             str(phosphosites.loc[i,'genom_begin']) + '|' + str(phosphosites.loc[i,'residue_position']) +' '+\
-            phosphosites.loc[i,'type_modif']+ '|' + color) 
+            phosphosites.loc[i,'type_modif']+ '|' + color)
         genom_browser_v = str(phosphosites['genom_end'].min()-20)  + ':' +  str(phosphosites['genom_begin'].max() +20)
     else:
         color = '0040FF'
@@ -205,27 +208,27 @@ def phosphoproteomics():
 
         try:
             ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
-
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
             df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
 
-            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
+            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, substrate', 'kinase_substrate')
             db = sqlite3.connect(DATABASE)
             kin_substrate = pd.read_sql_query(query, db)
             db.close()
             z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
             z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
 
+            context['volcano'] = results_volcano
+            context['fold_threshold'] = fold_threshold
+            context['pval_threshold'] = pval_threshold
+            context['non_identified'] = z_score['non_identified']
+            context['z_score'] = z_score['score']
+            context['non_identified_volcano'] = z_score_volcano['non_identified']
+            context['z_score_volcano'] = z_score_volcano['score']
+
         except:
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
 
-        context['volcano'] = results_volcano
-        context['fold_threshold'] = fold_threshold
-        context['pval_threshold'] = pval_threshold
-        context['non_identified'] = z_score['non_identified']
-        context['z_score'] = z_score['score']
-        context['non_identified_volcano'] = z_score_volcano['non_identified']
-        context['z_score_volcano'] = z_score_volcano['score']
 
     return render_template('phosphoproteomics.html', context = context)
 
