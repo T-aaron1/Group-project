@@ -1,6 +1,23 @@
 import pandas as pd
 
+#####################
+# inhibitors
 
+OUTPUT_FILE = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_table_unique_information.csv'
+
+inhib_gralinfo_csv = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Cleaned_inhibitors_table_information.csv'
+inhib_chemform_csv = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitors_inchikey_smiles_unique.csv'
+
+
+inhib_gralinfo = pd.read_csv(inhib_gralinfo_csv)
+inhib_chemform = pd.read_csv(inhib_chemform_csv)
+
+inhib_gralinfo.columns
+inhib_chemform.columns
+
+# INN_Name
+inhib_gralinfo = inhib_gralinfo.join(inhib_chemform.set_index(['INN_Name']), on = ['INN_Name'])
+inhib_gralinfo.to_csv(OUTPUT_FILE, index = False)
 
 ########## cleaning the kin_substrate_dataset
 data_csv =  '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/PSP&NetworKIN_Kinase_Substrate_Dataset_July2016.csv'

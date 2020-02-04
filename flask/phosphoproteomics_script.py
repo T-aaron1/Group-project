@@ -68,11 +68,13 @@ def KSEA(df, kinase_substrate):
     df['subst_position'] = ''
     df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
     df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
+    df['subst_name'] = df.substrate.str.split("_HUMAN", n=1, expand=True)[0]
 
     df = df.dropna(axis=0)
 
     df = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
+
 
     df = df.join(kinase_substrate[['kinase', 'sub_acc_id', 'sub_mod_rsd']].set_index(['sub_acc_id', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'], rsuffix='_sub_acc')

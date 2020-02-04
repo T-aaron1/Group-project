@@ -179,3 +179,54 @@ chr TEXT PRIMARY KEY,
 ncbi_id TEXT
 );
 
+
+--------------------------------------------------
+--------------------------------------------------
+-- inhibitors
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_table_unique_information.csv
+-- inn_name,phase,mw,image_url,canonical_smiles,inchikey
+CREATE TABLE inhibitors_gral_info (
+inn_name TEXT PRIMARY KEY,
+phase REAL,
+mw REAL,
+image_url TEXT ,
+canonical_smiles TEXT,
+inchikey TEXT
+);
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_synonims_table.csv
+-- inn_name,synonyms
+CREATE TABLE inhibitors_synonims (
+inn_name  TEXT,
+synonyms TEXT,
+FOREIGN KEY  (inn_name) REFERENCES inhibitors_gral_info(inn_name)
+);
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitor_kinase_families.csv
+-- inn_name,kinase_families
+CREATE TABLE inhibitors_kin_family(
+inn_name TEXT,
+kinase_families TEXT,
+FOREIGN KEY  (inn_name) REFERENCES inhibitors_gral_info(inn_name),
+FOREIGN KEY(kinase_families) REFERENCES families(family_abbreviation)
+);
+
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitors_pdbID.csv
+-- inn_name,pdbid
+CREATE TABLE inhibitors_pdbid (
+inn_name TEXT ,
+pdbid TEXT,
+FOREIGN KEY  (inn_name) REFERENCES inhibitors_gral_info(inn_name)
+);
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_target.csv
+-- inn_name,targets
+CREATE TABLE inhibitors_targets (
+inn_name TEXT,
+targets TEXT,
+FOREIGN KEY  (inn_name) REFERENCES inhibitors_gral_info(inn_name)
+);
