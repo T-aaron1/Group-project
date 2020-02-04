@@ -125,17 +125,54 @@ def kinase_data(kin_name):
         prot_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'prot_sequence'], 50,10)
         gene_seq_list = divide_sequences.divide_sequences(gral_info.loc[0,'genome_sequence'], 50, 10)
 
+
         context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms,
                    'function_list': function_list,
                    'reactions_list': reactions_list, 'cell_loc_list': cell_loc_list,
                    'cell_loc_add_text_list': cell_loc_add_text_list,
                    'diseases': diseases,
                    'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list,
-                   'targets':targets, 'phosphosites':phosphosites}
+                   'targets':targets, 'phosphosites':phosphosites
+                   }
         return render_template('kinase_data.html', context = context)
     else:
         return 'not found'
 
+# genome viewer
+
+
+@app.route('/genome_viewer/<uniprot_id>')
+def genome_viewer(uniprot_id):
+    phosphosites = queries.select_gral(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', 'phosphosites', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+
+    gral_info = queries.select_gral(DATABASE, 'uniprot_id,reverse,chromosome', 'kinase_info', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+    chromosome_ncbi = queries.select_gral(DATABASE, 'ncbi_id','ncbi_chrom_id','chr LIKE  "{}"'.format(gral_info.loc[0,'chromosome'])).loc[0,'ncbi_id']
+
+    genom_browser_markers_list = []
+    color = '0040FF'
+    genom_browser_v = ''
+    
+    if (gral_info.loc[0,'reverse']  == 'True'):
+        for i in range(phosphosites.shape[0]):
+            genom_browser_markers_list.append(str(phosphosites.loc[i,'genom_end']) +':' + \
+            str(phosphosites.loc[i,'genom_begin']) + '|' + str(phosphosites.loc[i,'residue_position']) +' '+\
+            phosphosites.loc[i,'type_modif']+ '|' + color) 
+        genom_browser_v = str(phosphosites['genom_end'].min()-20)  + ':' +  str(phosphosites['genom_begin'].max() +20)
+    else:
+        color = '0040FF'
+        for i in range(phosphosites.shape[0]):
+            genom_browser_markers_list.append(str(phosphosites.loc[i,'genom_begin']) +':' + \
+            str(phosphosites.loc[i,'genom_end']) + '|' + str(phosphosites.loc[i,'residue_position']) + '|' + color)
+        genom_browser_v = str(phosphosites['genom_begin'].min()-20) + ':' + str(phosphosites['genom_end'].max() +20)
+
+    genom_browser_markers = ','.join(genom_browser_markers_list)
+
+
+    genom_browser_src ="?embedded=true&id="+chromosome_ncbi+"&tracks=[key:sequence_track,name:T16507,display_name:Sequence,id:T16507,dbname:SADB,annots:NA000001672.2,ShowLabel:false,ColorGaps:false,shown:true,order:1][key:six_frames_translation,name:T11044,display_name:Six-frame translations,id:T11044,dbname:GenBank,annots:Six-frame translation,ShowOption:All,OrfThreshold:20,HighlightCodons:true,AltStart:false,shown:true,order:21][key:gene_model_track,name:T2000262,display_name:Genes\, NCBI Homo sapiens Annotation Release 105.20190906,id:T2000262,dbname:SADB,annots:NA000229419.1,Options:MergeAll,CDSProductFeats:false,NtRuler:true,AaRuler:true,HighlightMode:2,ShowLabel:true,shown:true,order:22]&assm_context=GCF_000001405.13&mk="+genom_browser_markers+"&v="+genom_browser_v+"&c=ffff99&select=gi|224589800-0017f72a-001844c0-010a-ff7f5665-NA000229419.1;&slim=0&appname=pkinases"
+
+
+    context = {'genom_browser_src':genom_browser_src}
+    return render_template('genome_viewer.html', context=context)
 
 
 #### inhibitors
@@ -166,21 +203,21 @@ def phosphoproteomics():
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
-        #try:
-        ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
-        print(ddf)
-        results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
-        df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
-        print(df_volcano)
-        query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
-        db = sqlite3.connect(DATABASE)
-        kin_substrate = pd.read_sql_query(query, db)
-        db.close()
-        z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
-        z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
+        try:
+            ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
 
-#        except:
-#            return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
+            results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
+            df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
+
+            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
+            db = sqlite3.connect(DATABASE)
+            kin_substrate = pd.read_sql_query(query, db)
+            db.close()
+            z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
+            z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
+
+        except:
+            return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold
         context['pval_threshold'] = pval_threshold

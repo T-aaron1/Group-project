@@ -172,3 +172,10 @@ genom_end_coord INT,
 prot_sequence TEXT,
 FOREIGN KEY(uniprot_id) REFERENCES  isoforms(isoforms)
 );
+
+-- csv_tables/ncbi_chromosomes
+CREATE TABLE ncbi_chrom_id (
+chr TEXT PRIMARY KEY,
+ncbi_id TEXT
+);
+
