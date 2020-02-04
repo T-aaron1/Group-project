@@ -38,7 +38,7 @@
         {%endif%}
 	<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-browsers">Browsers</a></li>
-	
+
 	<li class='nav-item'><a class='nav-link text-light' href="#section-sequences">Sequences</a></li>
 
       </ul>
@@ -55,11 +55,10 @@
 	  <li>
 	    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong>
 	  </li>
-	  <li> Protein name: {{context.gral_info.loc[0,'prot_name']}}
+	  <li> Protein name: {{context.gral_info.loc[0,'full_prot_name']}}
+	  </li>
+	  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
 	    <ul>
-	      <li>
-		{{context.gral_info.loc[0,'full_prot_name']}}
-	      </li>
 	      <li>
 		{{context.gral_info.loc[0,'name_human']}}
 	      </li>
@@ -164,7 +163,7 @@
 
       <div id="section-phosphosites">
 	<div>
-	  <h2>Phosphosites <sup> <button type="button" style="width:'10px'; height:'10px'" class="btn  btn-primary btn-xs rounded-circle" data-toggle="popover" title="Information" data-content="In Target Phosphosites, when clicking in Uniprot ID, Protvista is shown bellow"><strong>i</strong></button></sup></h2> 
+	  <h2>Phosphosites <sup> <button type="button" style="width:'10px'; height:'10px'" class="btn  btn-primary btn-xs rounded-circle" data-toggle="popover" title="Information" data-content="In Target Phosphosites, when clicking in Uniprot ID, Protvista is shown bellow"><strong>i</strong></button></sup></h2>
 	</div>
 
 	<div class="row">
@@ -198,7 +197,7 @@
 	    </table>
 	  </div>
 
-	  
+
 	  <div id="section-phosphosites-target" class="tab-pane border">
 	    <table class="table sortable">
 	      <thead>
@@ -225,18 +224,18 @@
 	  </div>
 	  <hr/>
 
-	  
+
 	  <div>
 	    <h2 id="protvista_target"></h2>
 	    <div id="protvista_uniprot_onclick">
-	      
+
 	    </div>
 	  </div>
-	  
+
 	  <hr/>
 
 	  <br/>
-	  
+
 	  <div id="section-browsers">
 	    <h2>Browser</h2>
 	    <br/>
@@ -244,14 +243,14 @@
 	    <div id="protvista_uniprot"></div>
 
 	    <br/>
-	    
+
 	    <h3>NCBI Genome Viewer</h3>
 	    <br/>
 	    <div>
 	      <iframe frameborder="0" height="400"  width="900" src="/genome_viewer/{{context.kin_name}}"></iframe>
 	    </div>
 	  </div>
-	  
+
 	  <br/>
 	  <hr/>
 	  <div id="section-sequences">
@@ -266,7 +265,7 @@
 		Fasta:
 		<a href="/kinase/{{context.kin_name}}.fasta" >Protein</a>
 		<a href="/kinase/gene/{{context.kin_name}}.fasta">Gene</a>
-		
+
 	      </div>
 	    </div>
 
@@ -305,7 +304,7 @@
   </div>
 
 
-  
+
   {%endblock%}
 
 
@@ -351,7 +350,7 @@
    });
   </script>
 
-  
+
   <link rel="stylesheet" href="https://drvic10k.github.io/bootstrap-sortable/Contents/bootstrap-sortable.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

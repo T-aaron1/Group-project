@@ -137,4 +137,43 @@ SELECT COUNT(*) FROM phosphosites_references;
 -- /Escritorio/uk/group_project/venv/src/Group-project/csv_tables/ncbi_chromosomes
 -- chr,ncbi_id
 .separator ','
-.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/ncbi_chromosomes ncbi_chrom_id 
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/ncbi_chromosomes ncbi_chrom_id
+
+
+
+
+--------------------------------------------------
+--------------------------------------------------
+-- inhibitors
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_table_unique_information.csv
+-- inn_name,phase,mw,image_url,canonical_smiles,inchikey
+.separator ','
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_table_unique_information.csv  inhibitors_gral_info
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_synonims_table.csv
+-- inn_name,synonyms
+.separator ','
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_synonims_table.csv inhibitors_synonims
+
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitor_kinase_families.csv
+-- inn_name,kinase_familie
+.separator ','
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitor_kinase_families.csv inhibitors_kin_family
+
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitors_pdbID.csv
+-- inn_name,pdbid
+.separator ','
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/Inhibitors_pdbID.csv inhibitors_pdbid
+
+
+
+-- /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_target.csv
+-- inn_name,targets
+.separator ','
+.import /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_target.csv inhibitors_targets
