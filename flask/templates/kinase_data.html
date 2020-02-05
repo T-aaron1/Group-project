@@ -1,27 +1,18 @@
 {%extends 'base.html'%}
 
-{%block head%}
-<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/projects/sviewer/js/sviewer.js"></script>
-<script src="http://ebi-uniprot.github.io/CDN/protvista/protvista.js"></script>
-<link href="http://ebi-uniprot.github.io/CDN/protvista/css/main.css" rel="stylesheet"/>
+{%block content%}
+<style xmlns="http://www.w3.org/1999/html">
+ .comffont {
+     font-family: 'Comfortaa', serif;
+ }
 
-
-<style>
 
 </style>
-{%endblock%}
-
-
-{%block content%}
-
-
 
 <div class='container-fluid'>
-  <div class='row'>
-
-    <!-- navbar begin -->
-    <nav class='col-bg-2  bg-primary  sidebar-100'>
-      <ul class='nav flex-column text-light'>
+  <div class='row comffont'>
+    <nav class='col-md-2 sidebar comffont' style="background-color: #025425;">
+      <ul class='nav flex-column text-light' style="background-color: #025425;">
 	<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
 	<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
         {%if context.function_list%}
@@ -37,16 +28,11 @@
 	<li class='nav-item'><a class='nav-link text-light' href="#section-cell_location">Cellular location</a></li>
         {%endif%}
 	<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
-	<li class='nav-item'><a class='nav-link text-light' href="#section-browsers">Browsers</a></li>
-
 	<li class='nav-item'><a class='nav-link text-light' href="#section-sequences">Sequences</a></li>
 
       </ul>
+
     </nav>
-    <!-- navbar ends -->
-
-
-    <!-- content begin -->
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
 	<h2>Information</h2>
@@ -55,10 +41,11 @@
 	  <li>
 	    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong>
 	  </li>
-	  <li> Protein name: {{context.gral_info.loc[0,'full_prot_name']}}
-	  </li>
-	  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
+	  <li> Protein name: {{context.gral_info.loc[0,'prot_name']}}
 	    <ul>
+	      <li>
+		{{context.gral_info.loc[0,'full_prot_name']}}
+	      </li>
 	      <li>
 		{{context.gral_info.loc[0,'name_human']}}
 	      </li>
@@ -147,112 +134,81 @@
       {%endif%}
 
       {%if context.cell_loc_list%}
-      <div id="section-cell_location">
-	<h2 >Cellular location</h2>
-	<ul>
-	  {%for item in context.cell_loc_list%}
-	  <li>{{item}}</li>
-	  {%endfor%}
-	</ul>
-	{%for item in context.cell_loc_add_text_list%}
-	<p>{{item | safe}}</p>
-	{%endfor%}
-      </div>
-      <hr/>
-      {%endif%}
-
-      <div id="section-phosphosites">
-	<div>
-	  <h2>Phosphosites <sup> <button type="button" style="width:'10px'; height:'10px'" class="btn  btn-primary btn-xs rounded-circle" data-toggle="popover" title="Information" data-content="In Target Phosphosites, when clicking in Uniprot ID, Protvista is shown bellow"><strong>i</strong></button></sup></h2>
-	</div>
-
-	<div class="row">
-	  <ul class="nav nav-tabs nav-justified pl-4">
-	    <li> <a data-toggle="tab" class="btn btn-outline-primary" href="#section-phosphosites-own">Phosphosites</a>  </li>
-	    <li><a href="#section-phosphosites-target" class="btn btn-outline-primary" data-toggle="tab">Target Phosphosites</a></li>
-	  </ul>
-
-	</div>
-	<div class="tab-content">
-	  <div id="section-phosphosites-own" class="tab-pane in active">
-	    <table class='table sortable'>
-	      <thead>
-		<tr>
-		  <th>Position</th>
-		  <th>Modification</th>
-		  <th>Modified by</th>
-		  <th>Genomic location (starts)</th>
-		  <th>Genomic location (ends)</th>
-		</tr>
-	      </thead>
-	      {%for i in range(context.phosphosites.shape[0])%}
-	      <tr>
-		<td>{{context.phosphosites.loc[i,'residue_position']}}</td>
-		<td>{{context.phosphosites.loc[i,'modif']}}</td>
-		<td>{{context.phosphosites.loc[i,'type_modif']}}</td>
-		<td>{{context.phosphosites.loc[i,'genom_begin']}}</td>
-		<td>{{context.phosphosites.loc[i,'genom_end']}}</td>
-	      </tr>
+	  <div id="section-cell_location">
+	    <h2 >Cellular location</h2>
+	    <ul>
+	      {%for item in context.cell_loc_list%}
+	      <li>{{item}}</li>
 	      {%endfor%}
-	    </table>
-	  </div>
-
-
-	  <div id="section-phosphosites-target" class="tab-pane border">
-	    <table class="table sortable">
-	      <thead>
-		<tr>
-		  <th>Uniprot ID </th>
-		  <th>Gene</th>
-		  <th>Modified residue</th>
-		  <th>Residues</th>
-		</tr>
-	      </thead>
-
-	      {%for i in range(context.targets.shape[0])%}
-	      <tr>
-		<td><form method="GET" action="">
-		  <input class="btn" type="button" name="My button" value="{{context.targets.loc[i,'sub_acc_id']}}" onClick="clic_protvista(this);">
-		</form></td>
-		<td>{{context.targets.loc[i,'sub_gene']}}</td>
-		<td>{{context.targets.loc[i,'sub_mod_rsd']}}</td>
-		{%from '_macros.html' import sequence_7aa%}
-		<td>{{sequence_7aa(context.targets.loc[i,'site_7_aa'])}}</td>
-	      </tr>
-	      {%endfor%}
-	    </table>
+	    </ul>
+	    {%for item in context.cell_loc_add_text_list%}
+	    <p>{{item | safe}}</p>
+	    {%endfor%}
 	  </div>
 	  <hr/>
+{%endif%}
 
+	  <div id="section-phosphosites">
+	    <h2>Phosphosites</h2>
 
-	  <div>
-	    <h2 id="protvista_target"></h2>
-	    <div id="protvista_uniprot_onclick">
+	    <div class="row">
+	      <ul class="nav nav-tabs nav-justified pl-4">
+			<li> <a data-toggle="tab" class="btn btn-outline-primary" href="#section-phosphosites-own">Phosphosites</a>  </li>
+			<li><a href="#section-phosphosites-target" class="btn btn-outline-primary" data-toggle="tab">Target Phosphosites</a></li>
+	      </ul>
 
 	    </div>
-	  </div>
+		<div class="tab-content">
+		  <div id="section-phosphosites-own" class="tab-pane in active">
+			<table class="table">
+			  <tr>
+				<th>Position</th>
+				<th>Modification</th>
+				<th>Modified by</th>
+				<th>Genomic location (starts)</th>
+				<th>Genomic location (ends)</th>
+			  </tr>
+			  {%for i in range(context.phosphosites.shape[0])%}
+			  <tr>
+				<td>{{context.phosphosites.loc[i,'residue_position']}}</td>
+				<td>{{context.phosphosites.loc[i,'modif']}}</td>
+				<td>{{context.phosphosites.loc[i,'type_modif']}}</td>
+				<td>{{context.phosphosites.loc[i,'genom_begin']}}</td>
+				<td>{{context.phosphosites.loc[i,'genom_end']}}</td>
+			  </tr>
+			  {%endfor%}
+			</table>
+		  </div>
 
+		  <div id="section-phosphosites-target" class="tab-pane border">
+			<table class="table">
+			  <tr>
+				<th>Uniprot ID</th>
+				<th>Gene</th>
+				<th>Modified residue</th>
+				<th>Residues</th>
+			  </tr>
+
+			  {%for i in range(context.targets.shape[0])%}
+			  <tr>
+				<td>{{context.targets.loc[i,'sub_acc_id']}}</td>
+				<td>{{context.targets.loc[i,'sub_gene']}}</td>
+				<td>{{context.targets.loc[i,'sub_mod_rsd']}}</td>
+				{%from '_macros.html' import sequence_7aa%}
+				<td>{{sequence_7aa(context.targets.loc[i,'site_7_aa'])}}</td>
+			  </tr>
+			  {%endfor%}
+		  </div>
+
+		  <div id="cel_location">
+	    </table>
+	    {%for item in context.cellular_location%}
+	    <p>{{item }}</p>
+	    {%endfor%}
+	  </div>
 	  <hr/>
 
-	  <br/>
 
-	  <div id="section-browsers">
-	    <h2>Browser</h2>
-	    <br/>
-	    <h3>Uniprot ProtVista</h3>
-	    <div id="protvista_uniprot"></div>
-
-	    <br/>
-
-	    <h3>NCBI Genome Viewer</h3>
-	    <br/>
-	    <div>
-	      <iframe frameborder="0" height="400"  width="900" src="/genome_viewer/{{context.kin_name}}"></iframe>
-	    </div>
-	  </div>
-
-	  <br/>
-	  <hr/>
 	  <div id="section-sequences">
 	    <h2>Sequences</h2>
 
@@ -262,10 +218,8 @@
 		<li><a href="#section-gene_seq" class="btn btn-outline-primary" data-toggle="tab">Gene sequence</a></li>
 	      </ul>
 	      <div class="ml-auto pr-4">
-		Fasta:
 		<a href="/kinase/{{context.kin_name}}.fasta" >Protein</a>
 		<a href="/kinase/gene/{{context.kin_name}}.fasta">Gene</a>
-
 	      </div>
 	    </div>
 
@@ -294,69 +248,12 @@
 
 
 
-	</div>
-
-	<!-- content ends -->
-
-
-      </div>
-    </div>
-  </div>
+</div>
 
 
 
-  {%endblock%}
+
+</div>
 
 
-  {%block scripts%}
-
-  <!-- jQuery Custom Scroller CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-  <script id="protvista_self_uniprot">
-   window.onload = function() {
-       var protvista_uniprot = document.getElementById('protvista_uniprot');
-       var ProtVista = require('ProtVista');
-       var instance = new ProtVista({
-	   el: protvista_uniprot,
-	   uniprotacc: '{{context.kin_name|safe}}',
-
-	   //These categories will **not** be rendered at all
-	   exclusions: [ 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS', 'MOLECULE_PROCESSING', 'PROTEOMICS']
-       });
-   }
-  </script>
-
-
-  <script language="JavaScript" id="protvista_target_onclick">
-   function clic_protvista(element)
-   {
-       var protvista_uniprot_onclick = document.getElementById('protvista_uniprot_onclick');
-       var ProtVista = require('ProtVista');
-       var instance = new ProtVista({
-	   el: protvista_uniprot_onclick,
-	   uniprotacc: element.value,
-	   //These categories will **not** be rendered at all
-	   exclusions: [ 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS', 'MOLECULE_PROCESSING', 'PROTEOMICS']
-       });
-       document.getElementById("protvista_target").innerHTML = 'Traget: ' + element.value ;
-   }
-  </script>
-
-
-  <script>
-   $(document).ready(function(){
-       $('[data-toggle="popover"]').popover();
-   });
-  </script>
-
-
-  <link rel="stylesheet" href="https://drvic10k.github.io/bootstrap-sortable/Contents/bootstrap-sortable.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.js"></script>
-  <script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js"></script>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-
-	{%endblock%}
+{%endblock%}
