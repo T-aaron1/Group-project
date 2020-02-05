@@ -66,18 +66,18 @@ def home():
         # - else if requested_name correspond to one gene, redirect to the kinase/uniprotid
         # - else if requested_name one name nor to one gene, make a less restrictive querry and redirect to kinase_search_results
 
-    if request.method == 'POST' and uploadfile_form.uploaded_file.data and inhibitor_form.validate_on_submit() and threshold_foldchange_form.validate_on_submit() \
+    if request.method == 'POST' and uploadfile_form.uploaded_file.data and  threshold_foldchange_form.validate_on_submit() \
        and threshold_pval_form.validate_on_submit() and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
-        inhibitor = request.values['inhibitor']
+
         random_name = str(random()).split('.')[1] #random number
         filename = random_name + '.tsv'
         session['tmp_upload_file'] = filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        return redirect(url_for('phosphoproteomics',inh=inhibitor,fc=threshold_foldchange,pv=p_val_threshold), code = 307)
+        return redirect(url_for('phosphoproteomics',fc=threshold_foldchange,pv=p_val_threshold), code = 307)
     return render_template('home.html', context = context)
 
 
@@ -105,7 +105,8 @@ def kinase_data(kin_name):
 
         # inhibitors
         inhibitors = list(queries.select_where(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'prot_name']) ).loc[:,'inn_name'])
-        print(inhibitors)
+
+
 
         function_list_tmp = list(queries.select_where(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
@@ -194,13 +195,25 @@ def inhibitor_data(inhib_name):
     gral_info = queries.select_where(DATABASE, '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
     targets = queries.select_where(DATABASE, 'inh.targets, kin.uniprot_id','inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',' inn_name LIKE "{}"'.format(inhib_name))
 
-    
-    #.loc[:,'targets']) ## add uniprot acc ID
     synonims = list(queries.select_where(DATABASE, 'synonyms','inhibitors_synonims',' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
     pdbid = list(queries.select_where(DATABASE, 'pdbid','inhibitors_pdbid',' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
     families = list(queries.select_where(DATABASE, 'kinase_families','inhibitors_kin_family',' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
     context = {'gral_info':gral_info, 'targets': targets, 'synonims':synonims, 'pdbid':pdbid, 'families':families}
     return render_template('inhibitor_data.html', context=context)
+
+
+@app.route('/inhibitor/basic_info/<inhib_name>')
+def inhibitor_basic_info(inhib_name):
+    # method: post, add filter
+    gral_info = queries.select_where(DATABASE, '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
+    targets = queries.select_where(DATABASE, 'inh.targets, kin.uniprot_id','inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',' inn_name LIKE "{}"'.format(inhib_name))
+
+    synonims = list(queries.select_where(DATABASE, 'synonyms','inhibitors_synonims',' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
+    pdbid = list(queries.select_where(DATABASE, 'pdbid','inhibitors_pdbid',' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
+    families = list(queries.select_where(DATABASE, 'kinase_families','inhibitors_kin_family',' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
+    context = {'gral_info':gral_info, 'targets': targets, 'synonims':synonims, 'pdbid':pdbid, 'families':families}
+    return render_template('inhibitor_data_information.html', context=context)
+
 
 
 ### phosphoproteomics
@@ -212,13 +225,13 @@ def phosphoproteomics():
     if request.method == 'POST':
         tmp_file_name = session['tmp_upload_file'] # get name of the file
         session['tmp_upload_file'] = ''
-        inhibitor = request.values['inh']
+
         fold_threshold = request.values['fc']
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
 #        try:
-        ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
+        ddf = phosphoproteomics_script.change_column_names(tmp_file_path)
         results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
         df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
 
@@ -227,9 +240,7 @@ def phosphoproteomics():
         kin_substrate = pd.read_sql_query(query, db)
         db.close()
         z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
-        print(z_score)
         z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
-        print(z_score_volcano)
 
         context['volcano'] = results_volcano
         context['fold_threshold'] = fold_threshold

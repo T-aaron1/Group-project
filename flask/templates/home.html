@@ -78,7 +78,7 @@
 	  <form name="sent_data" class="align-items-center" method="POST" enctype="multipart/form-data"  >
 
 		<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-		<p><p class="comffont">{{render_form_field(context.inhibitor_form.inhibitor)}}</p></p>
+
 		<p><p class="comffont">{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p></p>
 		<p><p class="comffont">{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p></p>
 		<p><p class="comffont">{{render_form_field(context.uploadfile_form.uploaded_file)}}</p></p>
