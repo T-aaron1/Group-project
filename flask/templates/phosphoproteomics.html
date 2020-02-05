@@ -15,22 +15,28 @@
 
 
 {%block content%}
+<style xmlns="http://www.w3.org/1999/html">
+ .comffont {
+     font-family: 'Comfortaa', serif;
+ }
 
+
+</style>
 <!--
 	 <p>graphs, results</p>
 	 <p>possibly a pdf?</p>
 -->
 
 {%if context.get('volcano')%}
-<h2>Volcano plot</h2>
+<h2><p class="comffont">Volcano plot</p></h2>
 <div id="graph_volcano"></div>
 
 
 <div>
 
 
-  <p>Number of not identified phosphosites: {{context['non_identified']}}</p>
-  <table class="table">
+  <p><p class="comffont">Number of non identified phosphosites: {{context['non_identified']}}</p>
+  <table class="table comffont">
     <tr>
       <th>Kinase</th>
       <th>KSEA</th>
@@ -48,7 +54,7 @@
 </div>
 
 
-<h2>Z score </h2>
+<h2><p class="comffont">Z score</p></h2>
 <div id="Z_score"></div>
 
 
@@ -59,7 +65,7 @@
 <div>
 
 
-  <p>Number of not identified phosphosites: {{context['non_identified_volcano']}}</p>
+  <p><p class="comffont"> Number of not identified phosphosites: {{context['non_identified_volcano']}}</p>
   <table class="table">
     <tr>
       <th>Kinase</th>
@@ -78,7 +84,7 @@
 </div>
 
 
-<h2>Z score </h2>
+<h2><p class="comffont">Z score</p></h2>
 <div id="Z_score_volcano"></div>
 
 
