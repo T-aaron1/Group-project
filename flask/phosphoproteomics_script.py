@@ -123,9 +123,7 @@ def KSEA(df, kinase_substrate):
     print("df3=============")
     print(kinase_count_df)
 
-
-
-
+    
     non_identified = kinase_count_df.loc['', 'kinase']
     kinase_count_df.drop([''], axis=0, inplace=True)
     kinase_count_df['Kinase'] = kinase_count_df.index
@@ -147,13 +145,16 @@ def KSEA(df, kinase_substrate):
 
     kinase_count_df = kinase_count_df.sort_values(['KSEA'], ascending=True)
 
+    kinase_count_df2 =  kinase_count_df.round(2)
 
-    sig_kinase_count = kinase_count_df[kinase_count_df['P_value'] < 1]
+    sig_kinase_count = kinase_count_df2[kinase_count_df2['P_value'] < 0.05]
+
     colors = ["rgb(255,242,0)"]*sig_kinase_count[sig_kinase_count['KSEA']<0].shape[0] +  ["rgb(0,34,255)"]*sig_kinase_count[sig_kinase_count['KSEA']>=0].shape[0]
     kinase_count_dict={'kinase': list(sig_kinase_count.loc[:,'Kinase']),
                        'ksea' : list(sig_kinase_count.loc[:,'KSEA']),
                        'p_value': list(sig_kinase_count.loc[:,'P_value']),
-                       'colors':colors}
+                       'colors':colors,
+                       }
 
     output = {'score': kinase_count_dict ,'non_identified': non_identified}
 
