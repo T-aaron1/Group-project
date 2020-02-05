@@ -12,21 +12,23 @@ def is_alpha_numeric(form, field):
     if not field.data.isalnum():
         raise ValidationError('Non alphanumeric characters are not allowed')
 
-
 class Search_string(FlaskForm):
     search_string = StringField('', validators=[DataRequired(), my_length_check, is_alpha_numeric ])
-
 
 class Inhibitor_used(FlaskForm):
     inhibitor = StringField('Used Inhibitor', validators=[DataRequired()])
 
-
-class Threshold_pval(FlaskForm):
-     threshold_pval = IntegerField('P-value Threshold')
-
-class Threshold_foldchange(FlaskForm):
-     threshold_foldchange = IntegerField('Foldchange Threshold')
-
-
 class UploadForm(FlaskForm):
+    threshold_pval = IntegerField('P-value Threshold')
+    threshold_foldchange = IntegerField('Foldchange Threshold')
     uploaded_file = FileField('', validators=[FileAllowed(['tsv'], 'Should be ".tsv"')])
+
+class Phosphosite(FlaskForm):
+    chromosome = StringField('Chromosome', validators=[DataRequired(), my_length_check, is_alpha_numeric ])
+    genomic_loc_start = IntegerField('Genomic location Start')
+    genomic_loc_end = IntegerField('Genomic Location End')
+
+class Inhibitors():
+    name = StringField('Inhibitor Name', validators=[DataRequired(), my_length_check, is_alpha_numeric ])
+
+
