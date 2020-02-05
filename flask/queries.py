@@ -3,12 +3,13 @@
 import sqlite3
 import pandas as pd
 
-def select_gral(DATABASE, select_text,from_table, where_data):
+def select_where(DATABASE, select_text,from_table, where_data):
     query = "SELECT {} FROM {} WHERE {}".format(select_text,from_table, where_data)
     db = sqlite3.connect(DATABASE)
     db_results = pd.read_sql_query(query, db)
     db.close()
     return  db_results
+
 
 def query_n_results(DATABASE, select_text,from_table, where_data):
     query = "SELECT COUNT({}) FROM {} WHERE {}".format(select_text,from_table, where_data)

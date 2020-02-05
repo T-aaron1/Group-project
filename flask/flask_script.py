@@ -235,6 +235,7 @@ def phosphoproteomics():
         results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
         df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
 
+
         query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, substrate', 'kinase_substrate')
         db = sqlite3.connect(DATABASE)
         kin_substrate = pd.read_sql_query(query, db)
@@ -249,7 +250,6 @@ def phosphoproteomics():
         context['z_score'] = z_score['score']
         context['non_identified_volcano'] = z_score_volcano['non_identified']
         context['z_score_volcano'] = z_score_volcano['score']
-
 
         #except:
         #    return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'

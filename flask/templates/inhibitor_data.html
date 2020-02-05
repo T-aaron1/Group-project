@@ -1,6 +1,59 @@
 {%extends 'base.html'%}
 
+{%block head%}
+
+<style>
+
+</style>
+{%endblock%}
+
+
 {%block content%}
 
-here the data we have on a particular inhibitor
+
+
+<div class='container-fluid'>
+  <div class='row'>
+
+    <!-- navbar begin -->
+    <nav class='col-bg-2  bg-primary  sidebar-100'>
+      <ul class='nav flex-column text-light'>
+		<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
+		<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
+		
+      </ul>
+    </nav>
+    <!-- navbar ends -->
+
+
+    <!-- content begin -->
+    <div id='content' class='col-md-10'>
+      <div  id='section-information'>
+	<h1>{{context.gral_info.inn_name}}</h1>
+	<h2>Information</h2>
+	<ul>
+	  <li>Phase: {{context.gral_info.phase}}</li>
+	  <li>Molecular weight (<strong>g/mol</strong>):  {{context.gral_info.mw}}</li>
+	</ul>
+      </div>
+
+      <div id="section-chem">
+	<ul>
+	  <li> Canonical smiles: {{context.gral_info.canonical_smiles}}	  </li>
+	  <li> Inchikey: {{context.gral_info.inchikey}}</li>
+	</ul>
+
+	<img src="http://{{context.gral_info.image_url}}" width="400" height="400">
+	
+      </div>
+      <div >
+	<p>Targets: {%for i in range(context.targets.shape[0])%} <a href="/kinase/{{context.targets.loc[i,'uniprot_id']}}"> {{context.targets.loc[i,'targets']}} </a> {%endfor%}</p>
+	<p>Synonims: {%for synonim in context.synonims%} {{synonim}} {%endfor%} </p>
+	<p>Protein Databank: {%for id in context.pdbid%} <a href="https://www.rcsb.org/structure/{{id}}">{{id}}</a>  {%endfor%}  </p>
+	<p>Affects the kinase families: {%for fam in context.families%} {{fam}} {%endfor%}   </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 {%endblock%}
