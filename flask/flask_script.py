@@ -78,6 +78,7 @@ def home():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         return redirect(url_for('phosphoproteomics',fc=threshold_foldchange,pv=p_val_threshold), code = 307)
+
     return render_template('home.html', context = context)
 
 
@@ -144,8 +145,10 @@ def kinase_data(kin_name):
     else:
         return 'not found'
 
-# genome viewer
 
+########################
+# genome viewer
+#
 
 @app.route('/genome_viewer/<uniprot_id>')
 def genome_viewer(uniprot_id):
@@ -179,6 +182,44 @@ def genome_viewer(uniprot_id):
 
     context = {'genom_browser_src':genom_browser_src}
     return render_template('genome_viewer.html', context=context)
+
+
+
+
+@app.route('/genome_viewer/<chromosome>')
+def genome_viewer_chrom(chromosome):
+    phosphosites = queries.select_where(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', 'phosphosites', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+
+    gral_info = queries.select_where(DATABASE, 'uniprot_id,reverse,chromosome', 'kinase_info', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+    chromosome_ncbi = queries.select_where(DATABASE, 'ncbi_id','ncbi_chrom_id','chr LIKE  "{}"'.format(gral_info.loc[0,'chromosome'])).loc[0,'ncbi_id']
+
+    genom_browser_markers_list = []
+    color = '0040FF'
+    genom_browser_v = ''
+
+    if (gral_info.loc[0,'reverse']  == 'True'):
+        for i in range(phosphosites.shape[0]):
+            genom_browser_markers_list.append(str(phosphosites.loc[i,'genom_end']) +':' + \
+            str(phosphosites.loc[i,'genom_begin']) + '|' + str(phosphosites.loc[i,'residue_position']) +' '+\
+            phosphosites.loc[i,'type_modif']+ '|' + color)
+        genom_browser_v = str(phosphosites['genom_end'].min()-20)  + ':' +  str(phosphosites['genom_begin'].max() +20)
+    else:
+        color = '0040FF'
+        for i in range(phosphosites.shape[0]):
+            genom_browser_markers_list.append(str(phosphosites.loc[i,'genom_begin']) +':' + \
+            str(phosphosites.loc[i,'genom_end']) + '|' + str(phosphosites.loc[i,'residue_position']) + '|' + color)
+        genom_browser_v = str(phosphosites['genom_begin'].min()-20) + ':' + str(phosphosites['genom_end'].max() +20)
+
+    genom_browser_markers = ','.join(genom_browser_markers_list)
+
+
+    genom_browser_src ="?embedded=true&id="+chromosome_ncbi+"&tracks=[key:sequence_track,name:T16507,display_name:Sequence,id:T16507,dbname:SADB,annots:NA000001672.2,ShowLabel:false,ColorGaps:false,shown:true,order:1][key:six_frames_translation,name:T11044,display_name:Six-frame translations,id:T11044,dbname:GenBank,annots:Six-frame translation,ShowOption:All,OrfThreshold:20,HighlightCodons:true,AltStart:false,shown:true,order:21][key:gene_model_track,name:T2000262,display_name:Genes\, NCBI Homo sapiens Annotation Release 105.20190906,id:T2000262,dbname:SADB,annots:NA000229419.1,Options:MergeAll,CDSProductFeats:false,NtRuler:true,AaRuler:true,HighlightMode:2,ShowLabel:true,shown:true,order:22]&assm_context=GCF_000001405.13&mk="+genom_browser_markers+"&v="+genom_browser_v+"&c=ffff99&select=gi|224589800-0017f72a-001844c0-010a-ff7f5665-NA000229419.1;&slim=0&appname=pkinases"
+
+
+    context = {'genom_browser_src':genom_browser_src}
+    return render_template('genome_viewer.html', context=context)
+
+
 
 
 #### inhibitors

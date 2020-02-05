@@ -18,7 +18,7 @@ uniprot_id prot_name name_human
 -- inhibitors
 inhibitors_gral_info --x
 inhibitors_kin_family --x
-inhibitors_pdbid   -- x  
+inhibitors_pdbid   -- x
 inhibitors_synonims -- x
 inhibitors_targets -- x
 
@@ -29,3 +29,15 @@ SELECT targets FROM inhibitors_targets WHERE inn_name LIKE "Afuresertib" JOIN ki
 
 
 SELECT inh.targets, kin.uniprot_id FROM inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets WHERE inn_name LIKE "Afuresertib" ;
+
+.schema
+
+ncbi_chrom_id ncbi_id
+
+chromosome  kinase_info
+
+SELECT ncbi.ncbi_id, kin.reverse, subst.genom_begin, subst.genom_end, kin.uniprot_id|| "("||subst.residue_position||")"
+  FROM kinase_info kin
+  LEFT JOIN ncbi_chrom_id ncbi ON kin.chromosome = ncbi.chr
+  LEFT JOIN phosphosites subst ON kin.uniprot_id = subst.uniprot_id
+  WHERE kin.chromosome LIKE "x" AND subst.genom_begin NOT NULL;
