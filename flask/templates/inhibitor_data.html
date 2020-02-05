@@ -20,23 +20,7 @@
       <ul class='nav flex-column text-light'>
 		<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
 		<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
-        {%if context.function_list%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-function">Function</a></li>
-        {%endif%}
-        {%if context.reactions_list%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-reactions">Reactions</a></li>
-        {%endif%}
-        {%if context.diseases.shape[0] > 1%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-diseases">Diseases</a></li>
-        {%endif%}
-        {%if context.cell_loc_list%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-cell_location">Cellular location</a></li>
-        {%endif%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
-		<li class='nav-item'><a class='nav-link text-light' href="#section-browsers">Browsers</a></li>
-
-		<li class='nav-item'><a class='nav-link text-light' href="#section-sequences">Sequences</a></li>
-
+		
       </ul>
     </nav>
     <!-- navbar ends -->
@@ -45,5 +29,31 @@
     <!-- content begin -->
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
-		<h2>Information</h2>
-	  </div>
+	<h1>{{context.gral_info.inn_name}}</h1>
+	<h2>Information</h2>
+	<ul>
+	  <li>Phase: {{context.gral_info.phase}}</li>
+	  <li>Molecular weight (<strong>g/mol</strong>):  {{context.gral_info.mw}}</li>
+	</ul>
+      </div>
+
+      <div id="section-chem">
+	<ul>
+	  <li> Canonical smiles: {{context.gral_info.canonical_smiles}}	  </li>
+	  <li> Inchikey: {{context.gral_info.inchikey}}</li>
+	</ul>
+
+	<img src="http://{{context.gral_info.image_url}}" width="400" height="400">
+	
+      </div>
+      <div >
+	<p>Targets: {%for i in range(context.targets.shape[0])%} <a href="/kinase/{{context.targets.loc[i,'uniprot_id']}}"> {{context.targets.loc[i,'targets']}} </a> {%endfor%}</p>
+	<p>Synonims: {%for synonim in context.synonims%} {{synonim}} {%endfor%} </p>
+	<p>Protein Databank: {%for id in context.pdbid%} <a href="https://www.rcsb.org/structure/{{id}}">{{id}}</a>  {%endfor%}  </p>
+	<p>Affects the kinase families: {%for fam in context.families%} {{fam}} {%endfor%}   </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

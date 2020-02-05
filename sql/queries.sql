@@ -13,3 +13,19 @@ SELECT uniprot_id, prot_name, name_human FROM kinase_info WHERE uniprot_id LIKE 
 
 uniprot_id prot_name name_human
 --
+
+
+-- inhibitors
+inhibitors_gral_info --x
+inhibitors_kin_family --x
+inhibitors_pdbid   -- x  
+inhibitors_synonims -- x
+inhibitors_targets -- x
+
+SELECT targets FROM inhibitors_targets WHERE inn_name LIKE "Afuresertib"
+
+
+SELECT targets FROM inhibitors_targets WHERE inn_name LIKE "Afuresertib" JOIN kinase_info.uniprot_id;
+
+
+SELECT inh.targets, kin.uniprot_id FROM inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets WHERE inn_name LIKE "Afuresertib" ;

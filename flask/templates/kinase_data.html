@@ -73,7 +73,7 @@
 
 	  <li> Isoforms: {%for isof in context.isoforms%}<a href="/kinase/{{isof}}.fasta">{{isof}} </a> {%endfor%}</li>
 
-	  <li> Inhibitors: {%for inhib in context.inhibitors%} <a href="/inhibitors/"> {{inhib}} </a> {%endfor%}</li>
+	  <li> Inhibitors: {%for inhib in context.inhibitors%} <a href="/inhibitor/{{inhib}}"> {{inhib}} </a> {%endfor%}</li>
 	</ul>
       </div>
 
@@ -304,7 +304,8 @@
       </div>
     </div>
   </div>
-
+</div>
+</div>
 
 
   {%endblock%}
@@ -341,7 +342,7 @@
 	   //These categories will **not** be rendered at all
 	   exclusions: [ 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS', 'MOLECULE_PROCESSING', 'PROTEOMICS']
        });
-       document.getElementById("protvista_target").innerHTML = 'Traget: ' + element.value ;
+       document.getElementById("protvista_target").innerHTML = 'Target: ' + element.value ;
    }
   </script>
 
