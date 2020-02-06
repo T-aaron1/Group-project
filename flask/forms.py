@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import StringField, IntegerField
+from wtforms import StringField, IntegerField, DecimalField
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
 
@@ -17,8 +17,8 @@ class Search_string(FlaskForm):
 
 
 class UploadForm(FlaskForm):
-    threshold_pval = IntegerField('P-value Threshold')
-    threshold_foldchange = IntegerField('Foldchange Threshold')
+    threshold_pval = DecimalField('Log10 P-value Threshold')
+    threshold_foldchange = DecimalField('Log2 Foldchange Threshold')
     uploaded_file = FileField('', validators=[FileAllowed(['tsv'], 'Should be ".tsv"')])
 
 class Phosphosite(FlaskForm):
@@ -27,6 +27,4 @@ class Phosphosite(FlaskForm):
     genomic_loc_end = IntegerField('Genomic Location End')
 
 class Inhibitors(FlaskForm):
-    inhibitor_name = StringField('Inhibitor Name', validators=[DataRequired(), my_length_check, is_alpha_numeric ])
-
-
+    inhibitor_name = StringField('', validators=[DataRequired(), my_length_check ])
