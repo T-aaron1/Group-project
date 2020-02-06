@@ -9,19 +9,16 @@
 
 
 {%block content%}
-<style xmlns="http://www.w3.org/1999/html">
- .comffont {
-     font-family: 'Comfortaa', serif;
- }
 
 
-</style>
+
 
 
 <div class='container-fluid'>
   <div class='row comffont'>
 
-    <!-- navbar begin -->
+    <!-- 
+
     <nav class='col-md-2 sidebar-100' style="background-color: #025425;">
       <ul class='nav flex-column text-light'>
 		<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
@@ -29,7 +26,8 @@
 		
       </ul>
     </nav>
-    <!-- navbar ends -->
+
+    -->
 
 
     <!-- content begin -->
@@ -54,12 +52,14 @@
       </div>
       <div >
 	<p>Targets: {%for i in range(context.targets.shape[0])%} <a href="/kinase/{{context.targets.loc[i,'uniprot_id']}}"> {{context.targets.loc[i,'targets']}} </a> {%endfor%}</p>
-	<p>Synonims: {%for synonim in context.synonims%} {{synonim}} {%endfor%} </p>
+	<p>Synonyms: {%for synonym in context.synonyms%} {{synonym}} {%endfor%} </p>
 	<p>Protein Databank: {%for id in context.pdbid%} <a href="https://www.rcsb.org/structure/{{id}}">{{id}}</a>  {%endfor%}  </p>
 	<p>Affects the kinase families: {%for fam in context.families%} {{fam}} {%endfor%}   </p>
       </div>
     </div>
   </div>
 </div>
+
+
 
 {%endblock%}

@@ -36,23 +36,30 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     search_form = forms.Search_string()
     uploadfile_form = forms.UploadForm()
-    inhibitor_form = forms.Inhibitor_used()
     phosphosite_form = forms.Phosphosite()
-    context = {'uploadfile_form': uploadfile_form, 'inhibitor_form': inhibitor_form,
-               'search_form': search_form, 'phosphosite_form': phosphosite_form}
+    inhibitor_form = forms.Inhibitors()
+    context = {'uploadfile_form': uploadfile_form, 
+               'search_form': search_form, 'phosphosite_form': phosphosite_form,
+               'inhibitor_form':inhibitor_form}
 
+    # kinase search form
     if request.method == 'POST' and search_form.search_string.data and search_form.validate_on_submit():
         requested_name = request.values['search_string']
         requested_name = requested_name.rstrip()
-        if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)) : # modify: get list of kinases
-            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
+        if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', \
+                                   'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)):
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info',\
+                                             'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
             url = '/kinase/' + uniprot_id
             return redirect(url)
-        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
-            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name)).loc[0,'uniprot_id']
+        elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', \
+                                     'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
+            uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', \
+                                             'uniprot_id LIKE "%{0}%"'.format(requested_name)).loc[0,'uniprot_id']
             url = '/kinase/' + uniprot_id
             return redirect(url)
-        elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
+        elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info',\
+                                     'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
             return redirect(url_for('.kinase_search_result', search=requested_name))
         else:
             text_flash = "'"+ str(requested_name) + "'" + " not in our the database"
@@ -63,11 +70,40 @@ def home():
         # - else if requested_name correspond to one gene, redirect to the kinase/uniprotid
         # - else if requested_name one name nor to one gene, make a less restrictive querry and redirect to kinase_search_results
 
-    if request.method == 'POST' and uploadfile_form.uploaded_file.data and uploadfile_form.validate_on_submit():
+
+    # inhibitors form
+    if request.method == 'POST' and inhibitor_form.data and inhibitor_form.validate_on_submit():
+        inhib_requested = request.values['inhibitor_name']
+        inhib_requested = inhib_requested.rstrip()
+        if queries.query_is_unique(DATABASE, 'inn_name','inhibitors_gral_info', \
+                                   'inn_name LIKE "{0}"'.format(inhib_requested)):
+            inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_gral_info',\
+                                             'inn_name LIKE "{0}"'.format(inhib_requested)).loc[0,'inn_name']
+            url = '/inhibitor/' + inn_name
+            return redirect(url)
+        elif queries.query_is_unique(DATABASE, 'inn_name','inhibitors_synonims', \
+                                     'synonyms LIKE "{0}"'.format(inhib_requested)): # modify: get list of kinases
+            inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_synonims', \
+                                     'synonyms LIKE "{0}"'.format(inhib_requested)).loc[0,'inn_name']
+            url = '/inhibitor/' + inn_name
+            return redirect(url)
+        elif queries.query_n_results(DATABASE,  'inn_name','inhibitors_gral_info',\
+                                             'inn_name LIKE "%{0}%"'.format(inhib_requested))>1: # modify: get list of kinases
+            return redirect(url_for('.inhibitor_search_result', search=inhib_requested))
+        else:
+            text_flash = "'"+ str(inhib_requested) + "'" + " not in our the database"
+            flash(text_flash)
+            return render_template('home.html', context = context)
+
+
+        pass
+
+        
+    # uploaded file form
+    if request.method == 'POST' and uploadfile_form.data and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
-        inhibitor = request.values['inhibitor']
         random_name = str(random()).split('.')[1] #random number
         filename = random_name + '.tsv'
         session['tmp_upload_file'] = filename
@@ -75,6 +111,8 @@ def home():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
         return redirect(url_for('phosphoproteomics',fc=threshold_foldchange,pv=p_val_threshold), code = 307)
+
+    
     return render_template('home.html', context = context)
 
 
@@ -98,7 +136,14 @@ def kinase_data(kin_name):
         kin_name = kin_name
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
         isoforms = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
-#        isoforms = ', '.join(isoforms_list)
+
+
+
+      # inhibitors
+        inhibitors = list(queries.select_gral(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'prot_name']) ).loc[:,'inn_name'])
+        print(inhibitors)
+
+
 
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
@@ -129,7 +174,8 @@ def kinase_data(kin_name):
                    'cell_loc_add_text_list': cell_loc_add_text_list,
                    'diseases': diseases,
                    'gene_seq_list':gene_seq_list, 'prot_seq_list': prot_seq_list,
-                   'targets':targets, 'phosphosites':phosphosites
+                   'targets':targets, 'phosphosites':phosphosites,
+                   'inhibitors': inhibitors
                    }
         return render_template('kinase_data.html', context = context)
     else:
@@ -178,10 +224,10 @@ def genome_viewer(uniprot_id):
 
 @app.route('/genome_viewer/<chromosome>')
 def genome_viewer_chrom(chromosome):
-    phosphosites = queries.select_where(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', 'phosphosites', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+    phosphosites = queries.select_gral(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', 'phosphosites', 'uniprot_id LIKE "{}"'.format(uniprot_id))
 
-    gral_info = queries.select_where(DATABASE, 'uniprot_id,reverse,chromosome', 'kinase_info', 'uniprot_id LIKE "{}"'.format(uniprot_id))
-    chromosome_ncbi = queries.select_where(DATABASE, 'ncbi_id','ncbi_chrom_id','chr LIKE  "{}"'.format(gral_info.loc[0,'chromosome'])).loc[0,'ncbi_id']
+    gral_info = queries.select_gral(DATABASE, 'uniprot_id,reverse,chromosome', 'kinase_info', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+    chromosome_ncbi = queries.select_gral(DATABASE, 'ncbi_id','ncbi_chrom_id','chr LIKE  "{}"'.format(gral_info.loc[0,'chromosome'])).loc[0,'ncbi_id']
 
     genom_browser_markers_list = []
     color = '0040FF'
@@ -223,7 +269,38 @@ def inhibitor_search_result():
 @app.route('/inhibitor/<inhib_name>')
 def inhibitor_data(inhib_name):
     # method: post, add filter
-    return render_template('inhibitor_data.html')
+    gral_info = queries.select_gral(DATABASE, '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
+    targets = queries.select_gral(DATABASE, 'inh.targets, kin.uniprot_id','inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',' inn_name LIKE "{}"'.format(inhib_name))
+
+
+    synonyms = list(queries.select_gral(DATABASE, 'synonyms','inhibitors_synonims',\
+                                         ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
+    pdbid = list(queries.select_gral(DATABASE, 'pdbid','inhibitors_pdbid',\
+                                      ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
+    families = list(queries.select_gral(DATABASE, 'kinase_families','inhibitors_kin_family',\
+                                         ' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
+    context = {'gral_info':gral_info, 'targets': targets, 'synonyms':synonyms, 'pdbid':pdbid, 'families':families}
+    return render_template('inhibitor_data.html', context=context)
+
+
+
+@app.route('/inhibitor/basic_info/<inhib_name>')
+def inhibitor_data_information_iframe(inhib_name):
+    # method: post, add filter
+    gral_info = queries.select_gral(DATABASE, '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
+    targets = queries.select_gral(DATABASE, 'inh.targets, kin.uniprot_id','inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',' inn_name LIKE "{}"'.format(inhib_name))
+
+
+    synonyms = list(queries.select_gral(DATABASE, 'synonyms','inhibitors_synonims',\
+                                         ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
+    pdbid = list(queries.select_gral(DATABASE, 'pdbid','inhibitors_pdbid',\
+                                      ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
+    families = list(queries.select_gral(DATABASE, 'kinase_families','inhibitors_kin_family',\
+                                         ' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
+    context = {'gral_info':gral_info, 'targets': targets, 'synonyms':synonyms, 'pdbid':pdbid, 'families':families}
+    return render_template('inhibitor_data_information.html', context=context)
+
+
 
 
 ### phosphoproteomics
@@ -235,34 +312,35 @@ def phosphoproteomics():
     if request.method == 'POST':
         tmp_file_name = session['tmp_upload_file'] # get name of the file
         session['tmp_upload_file'] = ''
-        inhibitor = request.values['inh']
         fold_threshold = request.values['fc']
         pval_threshold = request.values['pv']
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
         try:
-            ddf = phosphoproteomics_script.change_column_names(tmp_file_path, inhibitor)
+            ddf = phosphoproteomics_script.change_column_names(tmp_file_path)
 
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
             df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
-
-            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, sub_acc_id', 'kinase_substrate')
+        
+            query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, substrate', 'kinase_substrate')
             db = sqlite3.connect(DATABASE)
             kin_substrate = pd.read_sql_query(query, db)
             db.close()
             z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
             z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
 
+            context['volcano'] = results_volcano
+            context['fold_threshold'] = fold_threshold
+            context['pval_threshold'] = pval_threshold
+            context['non_identified'] = z_score['non_identified']
+            context['z_score'] = z_score['score']
+            context['non_identified_volcano'] = z_score_volcano['non_identified']
+            context['z_score_volcano'] = z_score_volcano['score']
+
         except:
+            os.remove(tmp_file_path)
             return 'Impossible to calculate, something wrong in the input values. <a href="/"> Go back </a>'
 
-        context['volcano'] = results_volcano
-        context['fold_threshold'] = fold_threshold
-        context['pval_threshold'] = pval_threshold
-        context['non_identified'] = z_score['non_identified']
-        context['z_score'] = z_score['score']
-        context['non_identified_volcano'] = z_score_volcano['non_identified']
-        context['z_score_volcano'] = z_score_volcano['score']
 
     return render_template('phosphoproteomics.html', context = context)
 
