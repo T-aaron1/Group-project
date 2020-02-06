@@ -1,18 +1,18 @@
 {%extends 'base.html'%}
 <!-- begin aditional  -->
 {%block head%}
-<style xmlns="http://www.w3.org/1999/html">
- .comffont {
-     font-family: 'Comfortaa', serif;
+
+<style>
+ .form-control:focus {
+     border-color: #025425;
+     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #025425;
  }
 
+ .btn-green {
+     background-color: #025425;
+     
+ }
 
-</style>
-<style>
-    .form-control:focus {
-        border-color: #025425;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #025425;
-    }
 </style>
 
 {%endblock%}
@@ -28,7 +28,7 @@
 <div class="row container-fluid justify-content-around comffont">
   <div class="text-center">
 
-      <h1> Protein Kinases</h1>
+    <h1> Protein Kinases</h1>
     <h5> A kinase is an enzyme that catalyzes the transfer of phosphate groups from high-energy, phosphate-donating molecules to specific substrates. This process is known as phosphorylation, where the substrate gains a phosphate group and the high-energy ATP molecule donates a phosphate group.</h5>
   </div>
 
@@ -42,53 +42,91 @@
 
 <br/>
 <div class="row justify-content-around comffont">
-  <div class="d-flex justify-content-center col-md-6 bg-light">
 
-	<form class="form-group col-md-9 round" method="POST" > <!-- align right -->
-	  <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-        <p><p> Kinase search</p></p>
-      {{render_form_field(context.search_form.search_string, placeholder='Uniprot identifier. Eg. "P31749"', class="form-control")}}
-	  <br/>
-	  <div class="text-center">
+  <!-- KINASES / INHIBITORS  begins  -->        
+  <div class="d-flex col-md-6 bg-light">
+    <div class="">
 
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<ul class="flashes">
-          {% for message in messages %}
-          <div class="message_flash">{{ message }}</div>
-          {% endfor %}
-		</ul>
-		{% endif %}
-		{% endwith %}
-      <input class="btn btn-success" style="background-color: #025425;" type="submit" value="Search"></input>
-            <i class="fa fa-search" title="Edit"></i>
-	</div>
-    </form>
-
-
-<br/>
-
-
-
-</div>
-
-<br/>
-
-<div class="col-md-5 bg-light mb-2">
-    <p><p>Phosphoproteomics Data Upload</p></p>
-
-    <p><small>Upload a ".tsv" file</small></p>
-  <p></p>
-
-
-  <form name="sent_data" class="align-items-center form-group col-md-6" method="POST" enctype="multipart/form-data"  >
-
+      <!-- KINASES begins  -->              
+      <form class="form-group col-md-9 round" method="POST" > <!-- align right -->
 	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
-      <p>{{render_form_field(context.inhibitor_form.inhibitor)}}</p>
-      <p>{{render_form_field(context.threshold_pval_form.threshold_pval)}}</p>
-      <p>{{render_form_field(context.threshold_foldchange_form.threshold_foldchange)}}</p>
+	<br/>
+	<h4> Kinase search</h4>
+	{{render_form_field(context.search_form.search_string, placeholder='Eg. "P31749"', class="form-control")}}
+	<br/>
+
+	<div>
+
+	  {% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	  <ul class="flashes">
+            {% for message in messages %}
+            <div class="message_flash">{{ message }}</div>
+            {% endfor %}
+	  </ul>
+	  {% endif %}
+	  {% endwith %}
+	  <input class="btn btn-success btn-green"  type="submit" value="Search"></input>
+          <i class="fa fa-search" title="Edit"></i>
+	</div>
+      </form>
+      <!-- KINASES ends  -->              
+      
+      <!-- INHIBITORS FORM begins  -->      
+      <form class="form-group col-md-9 round" method="POST" > 
+	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+	<br/>
+	<h4> Inhibitor </h4>
+	{{render_form_field(context.inhibitor_form.inhibitor_name, placeholder='Eg. Abemaciclib', class="form-control")}}
+	<br/>
+
+	<div>
+
+	  {% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	  <ul class="flashes">
+            {% for message in messages %}
+            <div class="message_flash">{{ message }}</div>
+            {% endfor %}
+	  </ul>
+	  {% endif %}
+	  {% endwith %}
+	  <input class="btn btn-success btn-green"  type="submit" value="Search"></input>
+          <i class="fa fa-search" title="Edit"></i>
+	</div>
+      </form>
+      <!-- INHIBITORS FORM ends  -->      
+      
+    </div>
+    <!-- KINASES / INHIBITORS FORM ends  -->      
+
+
+
+    
+
+
+    <br/>
+
+
+
+  </div>
+
+  <br/>
+
+  <div class="col-md-5 bg-light mb-2">
+    <br/>
+    <h4>Phosphoproteomics Data Upload</h4>
+    <br/>
+    <p>Thresholds for Volcano plot:</p>
+    <form name="sent_data" class="form-group col-md-6" method="POST" enctype="multipart/form-data"  >
+
+      <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+
+      <p>{{render_form_field(context.uploadfile_form.threshold_pval, class="form-control")}}</p>
+      <p>{{render_form_field(context.uploadfile_form.threshold_foldchange, class="form-control")}}</p>
       <p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
-	<input class="btn btn-success" style="background-color: #025425;" type="submit" value="Send"/>
+      <p><small>* Upload a ".tsv" file</small></p>
+      <input class="btn btn-success btn-green" type="submit" value="Send"/>
       <i class="fa fa-paper-plane" aria-hidden="true"></i>
 
   </form>
@@ -96,7 +134,7 @@
 </div>
 
 <br/>
-
+<br/>
 
 
 

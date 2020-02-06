@@ -9,13 +9,16 @@ from scipy.stats import norm
 def change_column_names(file_path): #!! change this, put in dif file
     df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
 
+    os.remove(file_path)
+    
     inhibitor = ''
     for name in df.columns:
         if ('fold_change' in name):
             inhibitor = name.split('_')[0]
+            break
 
 
-    os.remove(file_path)
+
     inhibitor = inhibitor.lower().rstrip() + '_'
 
     for name in df.columns:
@@ -36,8 +39,8 @@ def volcano(df, p_val_threshold, fold_threshold): #!! change this, put in dif fi
 
     df =df[~(np.isinf(np.abs(df.log_foldchange)))& ~(np.isinf(np.abs(df.log_pval))) & ~np.isnan(df.log_foldchange) & ~np.isnan(df.log_pval)]
 
-    pval_threshold = int(p_val_threshold)
-    fold_threshold = int(fold_threshold)
+    pval_threshold = float(p_val_threshold)
+    fold_threshold = float(fold_threshold)
     x_min = df['log_foldchange'].min()
     x_max = df['log_foldchange'].max()
     y_max = df['log_pval'].max()
@@ -103,7 +106,7 @@ def KSEA(df, kinase_substrate):
                  on=['subst_name', 'subst_position'])
 
 
-    df2 = df.join(kinase_substrate[['kinase', 'substrate', 'sub_mod_rsd']].set_index(['substrate', 'sub_mod_rsd']),
+    df2 = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
 
     print("df2@@@@@@@@@")
@@ -112,7 +115,6 @@ def KSEA(df, kinase_substrate):
     df = df1.append(df2)
     df.drop_duplicates(inplace=True)
 
-    df.to_csv('~/Desktop/bla.csv')
 
     df['kinase'] = df[['kinase']].fillna('')
     df.drop_duplicates(inplace=True)

@@ -15,46 +15,42 @@
 
 
 {%block content%}
-<style xmlns="http://www.w3.org/1999/html">
- .comffont {
-     font-family: 'Comfortaa', serif;
- }
 
-
-</style>
 <!--
-	 <p>graphs, results</p>
-	 <p>possibly a pdf?</p>
+     <p>graphs, results</p>
+     <p>possibly a pdf?</p>
 -->
 
-{%if context.get('volcano')%}
-<h2><p class="comffont">Volcano plot</p></h2>
-<div id="graph_volcano"></div>
+<!-- {%if context.get('volcano')%}  -->
+
+<br/>
 
 
 <div>
 
 
-  <p><p class="comffont">Number of non identified phosphosites: {{context['non_identified']}}</p>
-  <table class="table comffont">
-    <tr>
-      <th>Kinase</th>
-      <th>KSEA</th>
-      <th>P-value</th>
-    </tr>
-    {%for i in range(context.z_score.kinase|length)  %}
-    <tr>
-      <td>{{context.z_score.kinase[i]}}</td>
-      <td>{{context.z_score.ksea[i]}}</td>
-      <td>{{context.z_score.p_value[i]}}</td>
-    </tr>
-    {%endfor%}
+  <p class="comffont">Number of phosphosites without a matching kinase: {{context['non_identified']}}</p>
+  <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
+    <table class="table comffont">
+      <tr>
+	<th>Kinase</th>
+	<th>KSEA</th>
+	<th>P-value</th>
+      </tr>
+      {%for i in range(context.z_score.kinase|length)  %}
+      <tr>
+	<td>{{context.z_score.kinase[i]}}</td>
+	<td>{{context.z_score.ksea[i]}}</td>
+	<td>{{context.z_score.p_value[i]}}</td>
+      </tr>
+      {%endfor%}
 
-  </table>
+    </table>
 </div>
 
+<br/>
 
-<h2><p class="comffont">Z score</p></h2>
+<h2 class="comffont">Relative Kinase Activity</h2>
 <div id="Z_score"></div>
 
 
@@ -62,10 +58,24 @@
 <hr/>
 
 
+
+<br/>
+<h1 class="comffont">
+  Analysis for the phosphosites above the threshold in the Volcano plot
+</h1>
+
+
+<h2 class="comffont">Volcano plot</h2>
+<div id="graph_volcano"></div>
+
+
+
 <div>
 
 
-  <p><p class="comffont"> Number of not identified phosphosites: {{context['non_identified_volcano']}}</p>
+  <p class="comffont">Number of phosphosites without a matching kinase:  {{context['non_identified_volcano']}}</p>
+
+  <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
   <table class="table">
     <tr>
       <th>Kinase</th>
@@ -84,22 +94,24 @@
 </div>
 
 
-<h2><p class="comffont">Z score</p></h2>
+<h2><p class="comffont">Relative Kinase Activity</p></h2>
 <div id="Z_score_volcano"></div>
 
 
 
 
 
-{%endif%}
+<!-- {%endif%}  -->
 
 {%endblock%}
 
 
+<!-- ADDITIONAL SCRIPTS begins-->
+
 {%block scripts%}
 
 
-<script id="lines">
+<script id="plotly_volcano">
 
  var  trace1= {
      x: {{context.volcano.posfold_pval.foldchange}},
@@ -110,7 +122,7 @@
      text:{{context.volcano.posfold_pval.substrate| safe}},
      textposition: 'top center',
      textfont: {
-		 family:  'Times New Roman'
+	 family:  'Times New Roman'
      },
      textposition: 'bottom center',
      marker: {size:9, color:"blue"}
@@ -125,7 +137,7 @@
      text:{{context.volcano.negfold_pval.substrate| safe}},
      textposition: 'top center',
      textfont: {
-		 family:  'Times New Roman'
+	 family:  'Times New Roman'
      },
      textposition: 'bottom center',
      marker: {size:9, color:"red"}
@@ -139,7 +151,7 @@
      name: 'p+log2FC Not changed',
      text:{{context.volcano.above_pval.substrate| safe}},
      textfont: {
-		 family:  'Times New Roman'
+	 family:  'Times New Roman'
      },
      textposition: 'bottom center',
      marker: {size:8, color:"gray"}
@@ -149,72 +161,72 @@
 
  var layout = {
      title: {
-		 text:'Volcano plot',
-		 font: {
+	 text:'',
+	 font: {
              family: 'Courier New, monospace',
              size: 24
-		 },
-		 xref: 'paper',
-		 x: 0.05,
+	 },
+	 xref: 'paper',
+	 x: 0.05,
      },
      xaxis: {
-		 title: {
-             text: '-Log Fold Change',
+	 title: {
+             text: '-Log2 Fold Change',
              font: {
-				 family: 'Courier New, monospace',
-				 size: 18,
-				 color: '#140D0C'
+		 family: 'Courier New, monospace',
+		 size: 18,
+		 color: '#140D0C'
              }
-		 },
-		 range: [{{context.volcano.plot_layout.x_min - 1}},{{context.volcano.plot_layout.x_max  + 1}}]
+	 },
+	 range: [{{context.volcano.plot_layout.x_min - 1}},{{context.volcano.plot_layout.x_max  + 1}}]
      },
      yaxis: {
-		 title: {
-             text: '-Log P-value',
+	 title: {
+             text: '-Log10 P-value',
              font: {
-				 family: 'Courier New, monospace',
-				 size: 18,
-				 color: '#140D0C'
+		 family: 'Courier New, monospace',
+		 size: 18,
+		 color: '#140D0C'
              }
-		 },
-		 range:[0,{{context.volcano.plot_layout.y_max + 1}}]
+	 },
+	 range:[0,{{context.volcano.plot_layout.y_max + 1}}]
      },
      shapes: [
-		 {
-			 type: 'line',
-			 x0: -1000,
-			 y0: {{context.pval_threshold}},
-			 x1: 1000,
-			 y1: {{context.pval_threshold}},
-			 line: {
-				 color: 'gray',
-				 width: 1,
-				 dash:'dot'
-			 }
-		 },
-		 {
-			 type: 'line',
-			 x0: -{{context.fold_threshold}},
-			 y0: 0,
-			 x1: -{{context.fold_threshold}},
-			 y1: 1000,
-			 line: {
-				 color: 'gray',
-				 width: 1,
-				 dash:'dot'
-			 }
-		 },
-		 {
-			 type: 'line',
-			 x0: {{context.fold_threshold}},
-			 y0: 0,
-			 x1: {{context.fold_threshold}},
-			 y1: 1000,
-			 line: {
-				 color: 'gray',
-				 width: 1,
-				 dash:'dot'
-			 }
+	 {
+	     type: 'line',
+	     x0: -1000,
+	     y0: {{context.pval_threshold}},
+	     x1: 1000,
+	     y1: {{context.pval_threshold}},
+	     line: {
+		 color: 'gray',
+		 width: 1,
+		 dash:'dot'
+	     }
+	 },
+	 {
+	     type: 'line',
+	     x0: -{{context.fold_threshold}},
+	     y0: 0,
+	     x1: -{{context.fold_threshold}},
+	     y1: 1000,
+	     line: {
+		 color: 'gray',
+		 width: 1,
+		 dash:'dot'
+	     }
+	 },
+	 {
+	     type: 'line',
+	     x0: {{context.fold_threshold}},
+	     y0: 0,
+	     x1: {{context.fold_threshold}},
+	     y1: 1000,
+	     line: {
+		 color: 'gray',
+		 width: 1,
+		 dash:'dot'
+	     }
      }]
  };
 
@@ -227,35 +239,35 @@
 <script>
 
  var trace1 = {
-	 x: {{context.z_score.kinase|safe}},
-	 y: {{context.z_score.ksea}},
-	 type: 'bar',
-	 text: {{context.z_score.p_value}},
-	 marker: {
-		 color: {{context.z_score.colors|safe}}
-	 }
+     x: {{context.z_score.kinase|safe}},
+     y: {{context.z_score.ksea}},
+     type: 'bar',
+     text: {{context.z_score.p_value}},
+     marker: {
+	 color: {{context.z_score.colors|safe}}
+     }
  };
 
  var data = [trace1];
 
  var layout = {
-	 title: 'Relative Kinase activity score Z-score',
-	 font:{
-		 family: 'Raleway, sans-serif'
+     title: 'Relative Kinase activity score Z-score',
+     font:{
+	 family: 'Raleway, sans-serif'
+     },
+     showlegend: false,
+     xaxis: {
+	 tickangle: -45
+     },
+     yaxis: {
+	 title: {
+	     text: "Activity score",
+	     size: 20
 	 },
-	 showlegend: false,
-	 xaxis: {
-		 tickangle: -45
-	 },
-	 yaxis: {
-		 title: {
-			 text: "Activity score",
-			 size: 20
-		 },
-		 zeroline: true,
-		 gridwidth: 2
-	 },
-	 bargap :0.05
+	 zeroline: true,
+	 gridwidth: 2
+     },
+     bargap :0.05
  };
 
  Plotly.newPlot('Z_score', data, layout);
@@ -269,35 +281,35 @@
 
 <script>
  var trace1 = {
-	 x: {{context.z_score_volcano.kinase|safe}},
-	 y: {{context.z_score_volcano.ksea}},
-	 type: 'bar',
-	 text: {{context.z_score_volcano.p_value}},
-	 marker: {
-		 color: {{context.z_score_volcano.colors|safe}}
-	 }
+     x: {{context.z_score_volcano.kinase|safe}},
+     y: {{context.z_score_volcano.ksea}},
+     type: 'bar',
+     text: {{context.z_score_volcano.p_value}},
+     marker: {
+	 color: {{context.z_score_volcano.colors|safe}}
+     }
  };
 
  var data = [trace1];
 
  var layout = {
-	 title: 'Relative Kinase activity score Z-score',
-	 font:{
-		 family: 'Raleway, sans-serif'
+     title: 'Relative Kinase activity score Z-score',
+     font:{
+	 family: 'Raleway, sans-serif'
+     },
+     showlegend: false,
+     xaxis: {
+	 tickangle: -45
+     },
+     yaxis: {
+	 title: {
+	     text: "Activity score",
+	     size: 20
 	 },
-	 showlegend: false,
-	 xaxis: {
-		 tickangle: -45
-	 },
-	 yaxis: {
-		 title: {
-			 text: "Activity score",
-			 size: 20
-		 },
-		 zeroline: true,
-		 gridwidth: 2
-	 },
-	 bargap :0.05
+	 zeroline: true,
+	 gridwidth: 2
+     },
+     bargap :0.05
  };
 
  Plotly.newPlot('Z_score_volcano', data, layout);
@@ -305,7 +317,6 @@
 
 
 
-
-
-
 {%endblock%}
+
+<!-- ADDITIONAL SCRIPTS ends-->

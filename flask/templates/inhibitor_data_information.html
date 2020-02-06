@@ -17,7 +17,7 @@
 		  <li> Phase: {{context.gral_info.phase}}</li>
 		  <li> Molecular weight (<strong>g/mol</strong>):  {{context.gral_info.mw}}</li>
 		  <li> Targets: {%for i in range(context.targets.shape[0])%} <a href="/kinase/{{context.targets.loc[i,'uniprot_id']}}"> {{context.targets.loc[i,'targets']}} </a> {%endfor%}</li>
-		  <li>Synonims: {%for synonim in context.synonims%} {{synonim}} {%endfor%} </li>
+		  <li>Synonyms: {%for synonym in context.synonyms%} {{synonym}} {%endfor%} </li>
 		  <li>Protein Databank: {%for id in context.pdbid%} <a href="https://www.rcsb.org/structure/{{id}}">{{id}}</a>  {%endfor%}  </li>
 		  <li>Affects the kinase families: {%for fam in context.families%} {{fam}} {%endfor%}   </li>
       </div>

@@ -18,18 +18,11 @@
 
 </style>
 
+
 {%endblock%}
 
 
 {%block content%}
-<style xmlns="http://www.w3.org/1999/html">
- .comffont {
-     font-family: 'Comfortaa', serif;
- }
-
-
-</style>
-
 
 
 
@@ -67,6 +60,7 @@
     <!-- content begin -->
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
+	<br/>
 		<h2>Information</h2>
 
 		<ul>
@@ -92,17 +86,20 @@
 		  <li> Isoforms: {%for isof in context.isoforms%}<a href="/kinase/{{isof}}.fasta">{{isof}} </a> {%endfor%}</li>
 
 		  <li>
-			Inhibitors:
+		    Inhibitors:
+
 			{%for inhib in context.inhibitors%}
 			<a href="/inhibitor/{{inhib}}"> {{inhib}} </a>
 
-			<!-- Button trigger modal -->
+<!-- MODAL begins -->
+	<!-- Button trigger modal -->
 			<button type="button" class="info_btn" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
 			  <sup> <strong>i</strong></sup>
 			</button>
 
 			<!-- Modal -->
-			<div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog" aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
+			<div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
+			     aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 				  <div class="modal-header">
@@ -117,7 +114,7 @@
 			</div>
 		  </div>
 		</div>
-
+<!-- MODAL ends -->
 
 		{%endfor%}
 
@@ -216,7 +213,10 @@
 
       <div id="section-phosphosites">
 		<div>
-		  <h2>Phosphosites  <button type="button" style="width:'10px'; height:'10px'"  class="info_btn" data-toggle="popover" title="Information" data-content="In Target Phosphosites, when clicking in Uniprot ID, Protvista is shown bellow"> <sup> <strong>i</strong></button></sup></h2>
+		  <h2>Phosphosites  <button type="button" style="width:'10px'; height:'10px'"  class="info_btn" data-toggle="popover" title="Information" data-content="In Target Phosphosites, when clicking in Uniprot ID, Protvista is shown bellow">
+		    <sup> <strong>i</strong></sup>
+		  </button>
+		  </h2>
 		</div>
 
 		<div class="row">
@@ -423,5 +423,9 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <!-- sortable -->
+
+
+
+
 
 {%endblock%}
