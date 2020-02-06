@@ -50,14 +50,12 @@ def home():
                                    'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)):
             uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info',\
                                              'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
-            url = '/kinase/' + uniprot_id
-            return redirect(url)
+            return redirect(url_for('kinase_data',kin_name= uniprot_id))
         elif queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info', \
                                      'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
             uniprot_id = queries.select_gral(DATABASE, 'uniprot_id','kinase_info', \
                                              'uniprot_id LIKE "%{0}%"'.format(requested_name)).loc[0,'uniprot_id']
-            url = '/kinase/' + uniprot_id
-            return redirect(url)
+            return redirect(url_for('kinase_data',kin_name= uniprot_id))
         elif queries.query_n_results(DATABASE, 'uniprot_id','kinase_info',\
                                      'uniprot_id LIKE "%{0}%"'.format(requested_name))>1: # modify: get list of kinases
             return redirect(url_for('.kinase_search_result', search=requested_name))
@@ -79,26 +77,22 @@ def home():
                                    'inn_name LIKE "{0}"'.format(inhib_requested)):
             inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_gral_info',\
                                              'inn_name LIKE "{0}"'.format(inhib_requested)).loc[0,'inn_name']
-            url = '/inhibitor/' + inn_name
-            return redirect(url)
+            return redirect(url_for('inhibitor_data',inhib_name= inn_name))
         elif queries.query_is_unique(DATABASE, 'inn_name','inhibitors_synonims', \
                                      'synonyms LIKE "{0}"'.format(inhib_requested)): # modify: get list of kinases
             inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_synonims', \
                                      'synonyms LIKE "{0}"'.format(inhib_requested)).loc[0,'inn_name']
-            url = '/inhibitor/' + inn_name
-            return redirect(url)
+            return redirect(url_for('inhibitor_data',inhib_name= inn_name))
         if queries.query_is_unique(DATABASE, 'inn_name','inhibitors_gral_info', \
                                    'inn_name LIKE "%{0}%"'.format(inhib_requested)):
             inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_gral_info',\
                                              'inn_name LIKE "%{0}%"'.format(inhib_requested)).loc[0,'inn_name']
-            url = '/inhibitor/' + inn_name
-            return redirect(url)
+            return redirect(url_for('inhibitor_data',inhib_name= inn_name))
         elif queries.query_is_unique(DATABASE, 'inn_name','inhibitors_synonims', \
                                      'synonyms LIKE "%{0}%"'.format(inhib_requested)): # modify: get list of kinases
             inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_synonims', \
                                      'synonyms LIKE "%{0}%"'.format(inhib_requested)).loc[0,'inn_name']
-            url = '/inhibitor/' + inn_name
-            return redirect(url)
+            return redirect(url_for('inhibitor_data',inhib_name= inn_name))
         elif queries.query_n_results(DATABASE,  'inn_name','inhibitors_gral_info',\
                                      'inn_name LIKE "%{0}%"'.format(inhib_requested))>1: # modify: get list of kinases
             return redirect(url_for('.inhibitor_search_result', search=inhib_requested,type='inn'))
@@ -152,7 +146,7 @@ def kinase_data(kin_name):
 
       # inhibitors
         inhibitors = list(queries.select_gral(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'prot_name']) ).loc[:,'inn_name'])
-        print(inhibitors)
+
 
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
@@ -330,8 +324,8 @@ def phosphoproteomics():
     if request.method == 'POST':
         tmp_file_name = session['tmp_upload_file'] # get name of the file
         session['tmp_upload_file'] = ''
-        fold_threshold = request.values['fc']
-        pval_threshold = request.values['pv']
+        fold_threshold = request.values['fc'] # get fold change threshold
+        pval_threshold = request.values['pv'] # get pvalue change threshold
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
         try:
@@ -446,9 +440,6 @@ def fasta_gene(kin_name):
             ', Ends: ' + str(text.loc[0,'genome_ends'])
             text_out = '\n'.join([header, seq_out])
         return text_out, 200, {'Content-Type': 'text/plain; charset=utf-8'}
-
-
-
     else:
         return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
@@ -456,10 +447,80 @@ def fasta_gene(kin_name):
 # this returns json !!
 @app.route('/kinase/<kin_name>.json', methods=['GET'])
 def api_all(kin_name):
-    if queries.query_is_unique(DATABASE, 'uniprot_id', 'kinase_info','uniprot_id', kin_name) : # modify: get list of kinases
-        q_output = queries.select_gral(DATABASE, '*','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
-        output_dict = [q_output.to_dict('index')[0]]
+    requested_columns = request.args.get('columns','')
+    requested_columns = requested_columns.rstrip().lower()
+    if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info',\
+                                   'uniprot_id LIKE "{0}"'.format(kin_name)):
+        requested_columns_list = requested_columns.split(',')
+        if (('all' in requested_columns) or (requested_columns == '')):
+            gral_info = queries.select_gral(DATABASE, '*','kinase_info', \
+                                            'uniprot_id LIKE "{0}" '.format(kin_name))
+            isoforms = queries.select_gral(DATABASE, 'kin.isoform, iso.prot_sequence',\
+                                           'isoforms kin LEFT JOIN isoforms_info iso ON kin.isoform = iso.uniprot_id', \
+                                           'kin.uniprot LIKE "{}"'.format(kin_name)) 
+            inhibitors = queries.select_gral(DATABASE,\
+                                                  'inh.inn_name, inhinfo.phase, inhinfo.mw, inhinfo.canonical_smiles, inhinfo.inchikey' ,\
+                                                  'kinase_info kin  INNER JOIN inhibitors_targets inh ON kin.prot_name = inh.targets INNER JOIN inhibitors_gral_info inhinfo ON inh.inn_name = inhinfo.inn_name',\
+                                                  'kin.uniprot_id LIKE "{}"'.format(kin_name))
+            reactions_list = list(queries.select_gral(DATABASE, 'reaction_text', 'reactions',\
+                                                      'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
+            cell_loc_list= list(queries.select_gral(DATABASE, 'DISTINCT subcell_location',\
+                                                    'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
+            diseases = queries.select_gral(DATABASE,\
+                                           'DISTINCT disease_name, effect_text, disease_description', 'diseases',\
+                                           'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
+            targets = queries.select_gral(DATABASE, 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa',\
+                                          'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
+            phosphosites = queries.select_gral(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', \
+                                               'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+        
+            output_dict = {'general_info':gral_info.to_dict('index')[0],
+                           'isoforms': isoforms.to_dict('index'), 'inhibitors': inhibitors.to_dict('index'),
+                           'reactions':reactions_list, 'cell_loc': cell_loc_list,
+                           'diseases':diseases.to_dict('index'), 'targets':targets.to_dict('index'),
+                           'phosphosites': phosphosites.to_dict('index')}
+        else:
+            output_dict = {}
+            for column  in requested_columns_list:
+                if ('info' in column):
+                    gral_info = queries.select_gral(DATABASE, '*','kinase_info', \
+                                                    'uniprot_id LIKE "{0}" '.format(kin_name))
+                    output_dict['general_info'] = gral_info.to_dict('index')[0]
+                elif ('isoforms' in column):
+                    isoforms = queries.select_gral(DATABASE, 'kin.isoform, iso.prot_sequence',\
+                                                   'isoforms kin LEFT JOIN isoforms_info iso ON kin.isoform = iso.uniprot_id', \
+                                                   'kin.uniprot LIKE "{}"'.format(kin_name)) 
+                    output_dict['isoforms'] = isoforms.to_dict('index')
+                elif ('inhibitors' in column):
+                    inhibitors = queries.select_gral(DATABASE,\
+                                                     'inh.inn_name, inhinfo.phase, inhinfo.mw, inhinfo.canonical_smiles, inhinfo.inchikey' ,\
+                                                     'kinase_info kin  INNER JOIN inhibitors_targets inh ON kin.prot_name = inh.targets INNER JOIN inhibitors_gral_info inhinfo ON inh.inn_name = inhinfo.inn_name',\
+                                                     'kin.uniprot_id LIKE "{}"'.format(kin_name))
+                    output_dict['inhibitors'] = inhibitors.to_dict('index')
+                elif ('reactions' in column):
+                    reactions_list = list(queries.select_gral(DATABASE, 'reaction_text', 'reactions',\
+                                                              'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
+                    output_dict['reactions'] = reactions_list
+                elif ('cell_loc' in column):
+                    cell_loc_list = list(queries.select_gral(DATABASE, 'DISTINCT subcell_location',\
+                                                             'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
+                    output_dict['cell_loc'] = cell_loc_list
+                elif ('diseases' in column):
+                    diseases = queries.select_gral(DATABASE,\
+                                                   'DISTINCT disease_name, effect_text, disease_description', 'diseases',\
+                                                   'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
+                    output_dict['diseases'] = diseases.to_dict('index')
+                elif ('phosphosites_self' in column):
+                    phosphosites = queries.select_gral(DATABASE, 'residue_position, modif, type_modif, genom_begin, genom_end', \
+                                                       'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+                    output_dict['phosphosites_self'] = phosphosites.to_dict('index')
+                elif ('phosphosites_targets' in column):
+                    targets = queries.select_gral(DATABASE, 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa',\
+                                                  'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
+                    output_dict['phosphosites_targets'] = targets.to_dict('index')
         return jsonify(output_dict)
+    
+
     else:
         return ''
 
