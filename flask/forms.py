@@ -27,6 +27,6 @@ class Phosphosite(FlaskForm):
     genomic_loc_end = IntegerField('Genomic Location End')
 
 class Inhibitors(FlaskForm):
-    inhibitor_name = StringField('', validators=[DataRequired(), my_length_check, is_alpha_numeric ])
+    inhibitor_name = StringField('', validators=[DataRequired(), my_length_check ])
 
 

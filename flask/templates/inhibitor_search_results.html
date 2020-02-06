@@ -2,5 +2,27 @@
 
 {%block content%}
 
-here a table of results of inhibitors
+
+<p>Number of results: {{context.search_results.shape[0]}} </p>
+
+<table class='table table-bordered sortable'>  
+  <thead class='thead-light'>   
+    <tr>
+      <th>Name</th>
+      <th>Phase</th>
+      <th>Molecular Weight</th>
+    </tr>
+  </thead>
+
+  {%for i in range(context.search_results.shape[0])%}
+  <tr>
+    <td><a href="/inhibitor/{{context.search_results.loc[i,'inn_name']}}">{{context.search_results.loc[i,'inn_name'] }} </a> </td>
+    <td>{{context.search_results.loc[i,'phase']}}</td>
+    <td>{{context.search_results.loc[i,'mw']}}</td>
+  </tr>
+  {%endfor%}
+
+</table>
+
+
 {%endblock%}
