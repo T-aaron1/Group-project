@@ -161,7 +161,7 @@ def kinase_data(kin_name):
 
         # modify: add layers of information
         reactions_list = list(queries.select_gral(DATABASE, 'reaction_text', 'reactions', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
-        cell_loc_list= list(queries.select_gral(DATABASE, 'subcell_location', 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
+        cell_loc_list= list(queries.select_gral(DATABASE, 'DISTINCT subcell_location', 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
 
         targets = queries.select_gral(DATABASE, 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa', 'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
 
@@ -335,8 +335,10 @@ def phosphoproteomics():
         tmp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], tmp_file_name)
 
         try:
-            ddf = phosphoproteomics_script.change_column_names(tmp_file_path)
-
+            output = phosphoproteomics_script.change_column_names(tmp_file_path)
+            inhibitor = output['inhibitor']
+            ddf = output['df']
+            
             results_volcano = phosphoproteomics_script.volcano(ddf,pval_threshold, fold_threshold )
             df_volcano = phosphoproteomics_script.extract_above_threshold(ddf, results_volcano)
         
@@ -347,6 +349,7 @@ def phosphoproteomics():
             z_score = phosphoproteomics_script.KSEA(ddf, kin_substrate) # for all
             z_score_volcano = phosphoproteomics_script.KSEA(df_volcano, kin_substrate) # just for the ones that are above threshold in volcano plot
 
+            context['inhibitor'] = inhibitor.replace('_','').upper()
             context['volcano'] = results_volcano
             context['fold_threshold'] = fold_threshold
             context['pval_threshold'] = pval_threshold

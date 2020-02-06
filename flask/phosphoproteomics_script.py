@@ -27,7 +27,10 @@ def change_column_names(file_path): #!! change this, put in dif file
         if inhibitor in name.lower():
             df.rename(columns = {name: name.lower().replace(inhibitor,'')}, inplace = True)
     df.dropna(axis= 1, how='all', inplace = True)
-    return df
+
+    output = {'df':df, 'inhibitor':inhibitor}
+    
+    return output
 
 #df instead of file_path...
 def volcano(df, p_val_threshold, fold_threshold): #!! change this, put in dif file
@@ -100,13 +103,10 @@ def KSEA(df, kinase_substrate):
     kinase_substrate['substrate'] =  kinase_substrate['substrate'].str.split("_HUMAN", n=1, expand=True)[0]
     kinase_substrate['substrate'] +=  "_HUMAN"
 
-
-
     df1 = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
 
-
-    df2 = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
+    df2 = df.join(kinase_substrate[['kinase', 'substrate', 'sub_mod_rsd']].set_index(['substrate', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
 
     print("df2@@@@@@@@@")
@@ -118,6 +118,7 @@ def KSEA(df, kinase_substrate):
 
     df['kinase'] = df[['kinase']].fillna('')
     df.drop_duplicates(inplace=True)
+    
     kinase_count = df['kinase'].value_counts()
     kinase_count_df = pd.DataFrame(kinase_count)
     kinase_count_df['sqrt_kinase'] = np.sqrt(kinase_count_df)

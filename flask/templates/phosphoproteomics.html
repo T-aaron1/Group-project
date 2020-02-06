@@ -28,7 +28,14 @@
 
 <div>
 
-
+  <h1>Used inhibitor: {{context.inhibitor}}</h1>
+  <h3>Useful information: </h3>
+  <ul>
+    <li><a href="https://www.ebi.ac.uk/chembl/g/#search_results/compounds/query={{context.inhibitor}}">Chembl</a></li>
+    <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{context.inhibitor}}[Title]+AND+(%22clinical+trial+phase+i%22[Filter]+OR+%22clinical+trial+phase+ii%22[Filter]+OR+%22clinical+trial+phase+iii%22[Filter]+OR+%22clinical+trial+phase+iv%22[Filter])">NCBI clinical trial </a></li>
+  </ul>
+  <hr/>
+  <br/>
   <p class="comffont">Number of phosphosites without a matching kinase: {{context['non_identified']}}</p>
   <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
     <table class="table comffont">
