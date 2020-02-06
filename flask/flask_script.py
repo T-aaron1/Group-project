@@ -63,7 +63,7 @@ def home():
             return redirect(url_for('.kinase_search_result', search=requested_name))
         else:
             text_flash = "'"+ str(requested_name) + "'" + " not in our the database"
-            flash(text_flash)
+            flash(text_flash, 'kinase')
             return render_template('home.html', context = context)
         # modify:
         #  - if name is equal to a uniprot identifier redirect to /kinase/uniprotid
@@ -87,20 +87,33 @@ def home():
                                      'synonyms LIKE "{0}"'.format(inhib_requested)).loc[0,'inn_name']
             url = '/inhibitor/' + inn_name
             return redirect(url)
+        if queries.query_is_unique(DATABASE, 'inn_name','inhibitors_gral_info', \
+                                   'inn_name LIKE "%{0}%"'.format(inhib_requested)):
+            inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_gral_info',\
+                                             'inn_name LIKE "%{0}%"'.format(inhib_requested)).loc[0,'inn_name']
+            url = '/inhibitor/' + inn_name
+            return redirect(url)
+        elif queries.query_is_unique(DATABASE, 'inn_name','inhibitors_synonims', \
+                                     'synonyms LIKE "%{0}%"'.format(inhib_requested)): # modify: get list of kinases
+            inn_name = queries.select_gral(DATABASE, 'inn_name','inhibitors_synonims', \
+                                     'synonyms LIKE "%{0}%"'.format(inhib_requested)).loc[0,'inn_name']
+            url = '/inhibitor/' + inn_name
+            return redirect(url)
         elif queries.query_n_results(DATABASE,  'inn_name','inhibitors_gral_info',\
-                                             'inn_name LIKE "%{0}%"'.format(inhib_requested))>1: # modify: get list of kinases
-            return redirect(url_for('.inhibitor_search_result', search=inhib_requested))
+                                     'inn_name LIKE "%{0}%"'.format(inhib_requested))>1: # modify: get list of kinases
+            return redirect(url_for('.inhibitor_search_result', search=inhib_requested,type='inn'))
+        elif queries.query_n_results(DATABASE,  'inn_name','inhibitors_synonims', \
+                                     'synonyms LIKE "%{0}%"'.format(inhib_requested))>1: # modify: get list of kinases
+            return redirect(url_for('.inhibitor_search_result', search=inhib_requested,type='syn'))
+
         else:
             text_flash = "'"+ str(inhib_requested) + "'" + " not in our the database"
-            flash(text_flash)
+            flash(text_flash, 'inhibitor')
             return render_template('home.html', context = context)
 
 
-        pass
-
-        
     # uploaded file form
-    if request.method == 'POST' and uploadfile_form.data and uploadfile_form.validate_on_submit():
+    if request.method == 'POST' and uploadfile_form.uploaded_file.data and uploadfile_form.validate_on_submit():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
@@ -137,13 +150,9 @@ def kinase_data(kin_name):
         gral_info = queries.select_gral(DATABASE, '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
         isoforms = list(queries.select_gral(DATABASE, 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
 
-
-
       # inhibitors
         inhibitors = list(queries.select_gral(DATABASE,'inn_name' ,'inhibitors_targets', 'targets LIKE "{}"'.format(gral_info.loc[0,'prot_name']) ).loc[:,'inn_name'])
         print(inhibitors)
-
-
 
         function_list_tmp = list(queries.select_gral(DATABASE, 'prot_function', 'kin_function', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'prot_function'])
         function_list =[]
@@ -264,7 +273,16 @@ def genome_viewer_chrom(chromosome):
 @app.route('/inhibitor/search')
 def inhibitor_search_result():
     # method: get, add filter
-    return render_template('inhibitor_search_results.html')
+    requested_name = request.values['search']
+    requested_type = request.values['type']
+    if (requested_type == 'inn'):
+        search_results = queries.select_gral(DATABASE,  'inn_name, phase, mw','inhibitors_gral_info',\
+                                     'inn_name LIKE "%{0}%"'.format(requested_name))
+    elif (requested_type == 'syn'):
+        search_results = queries.select_gral(DATABASE,  'inn_name, phase, mw','inhibitors_synonims', \
+                                     'synonyms LIKE "%{0}%"'.format(requested_name))
+    context = {'search_results': search_results}
+    return  render_template('inhibitor_search_results.html', context = context)
 
 @app.route('/inhibitor/<inhib_name>')
 def inhibitor_data(inhib_name):

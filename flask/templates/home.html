@@ -57,7 +57,7 @@
 
 	<div>
 
-	  {% with messages = get_flashed_messages() %}
+	  {% with messages = get_flashed_messages(category_filter=['kinase']) %}
 	  {% if messages %}
 	  <ul class="flashes">
             {% for message in messages %}
@@ -82,7 +82,7 @@
 
 	<div>
 
-	  {% with messages = get_flashed_messages() %}
+	  {% with messages = get_flashed_messages(category_filter =['inhibitor']) %}
 	  {% if messages %}
 	  <ul class="flashes">
             {% for message in messages %}
