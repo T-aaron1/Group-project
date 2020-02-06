@@ -228,6 +228,12 @@
 		</div>
 		<div class="tab-content">
 		  <div id="section-phosphosites-own" class="tab-pane in active">
+
+		    {%if context.phosphosites.shape[0] == 0%}
+		    <br/>
+		    <p>No phosphosites found in {{context.kin_name}} </p>
+		    
+		    {%else%}
 			<table class='table sortable'>
 			  <thead>
 				<tr>
@@ -248,11 +254,20 @@
 			  </tr>
 			  {%endfor%}
 			</table>
+			{%endif%}
+			
 		  </div>
 
 
 		  <div id="section-phosphosites-target" class="tab-pane border">
-			<table class="table sortable">
+
+		    {%if context.targets.shape[0] == 0%}
+		    <br/>
+		    <p>No target phosphosites found for {{context.kin_name}} </p>
+		    
+		    {%else%}
+
+		    <table class="table sortable">
 			  <thead>
 				<tr>
 				  <th>Uniprot ID </th>
@@ -273,7 +288,8 @@
 				<td>{{sequence_7aa(context.targets.loc[i,'site_7_aa'])}}</td>
 			  </tr>
 			  {%endfor%}
-			</table>
+		    </table>
+		    {%endif%}
 		  </div>
 		  <hr/>
 

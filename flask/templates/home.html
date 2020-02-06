@@ -13,7 +13,14 @@
      
  }
 
+
+
+
 </style>
+
+
+
+
 
 {%endblock%}
 <!-- end aditional -->
@@ -28,6 +35,7 @@
 <div class="row container-fluid justify-content-around comffont">
   <div class="text-center">
 
+    <br/>
     <h1> Protein Kinases</h1>
     <h5> A kinase is an enzyme that catalyzes the transfer of phosphate groups from high-energy, phosphate-donating molecules to specific substrates. This process is known as phosphorylation, where the substrate gains a phosphate group and the high-energy ATP molecule donates a phosphate group.</h5>
   </div>
@@ -116,6 +124,35 @@
   <div class="col-md-5 bg-light mb-2">
     <br/>
     <h4>Phosphoproteomics Data Upload</h4>
+    <!-- MODAL begins -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success btn-green btn-sm" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
+       <strong>More info</strong>
+    </button>
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
+	 aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <h5 class="modal-title" id="exampleModalLongTitle">Phosphoproteomics analysis</h5>
+	    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	  </div>
+	  <div class="modal-body">
+	    This analysis is based in the 
+	    
+	    
+	  </div>
+	</div>
+      </div>
+    </div>
+    <!-- MODAL ends -->
+
+    
     <br/>
     <p>Thresholds for Volcano plot:</p>
     <form name="sent_data" class="form-group col-md-6" method="POST" enctype="multipart/form-data"  >
