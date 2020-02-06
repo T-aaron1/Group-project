@@ -1,3 +1,27 @@
+#######################################################
+# unique targets
+
+INCSVFILE =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/PSP&NetworKIN_Kinase_Substrate_Dataset_July2016.csv'
+import pandas as pd
+
+data = pd.read_csv(INCSVFILE)
+data.columns
+
+data_networkin = data[data['source'] == 'NetworKIN']
+data.shape
+data_networkin.shape
+targets = data_networkin.sub_gene.drop_duplicates()
+targets.shape
+#'kinase', 'kin_acc_id', 'gene', 'kin_organism', 'substrate','sub_gene_id', 'sub_acc_id',
+#'sub_gene', 'sub_organism', 'sub_mod_rsd', 'site_grp_id', 'site_7_aa', 'networkin_score', 'source
+
+targets.to_csv("/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/targets2/substrates_targets_networkin.csv", index=False)
+
+#######################################################
+
+
+
+
 TEXTO = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
 salida = []

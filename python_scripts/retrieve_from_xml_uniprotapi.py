@@ -9,6 +9,7 @@ def get_uniprot_data(accession_id):
      https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&taxid=9606&gene=BRCA1  
      taxid 9606 is for human'''
     text = 'https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&taxid=9606&gene={}'.format(accession_id)
+
     try:
         requested_xml = requests.get(text)
     except:
@@ -36,7 +37,7 @@ def get_gralinfo(bs_data, accession_id):
     return text_output
 
 
-# need to extract short name, some do not have short name     
+# need to extract short name, some do not have short name
 def get_alternative_prot_names(bs_data):
     ''' get alternative prot name from bs_data from get_uniprot_data,
         returns a list'''
@@ -50,7 +51,7 @@ def get_alternative_prot_names(bs_data):
         text_output = '|'.join(text_list)
         tmp_alternatives.append(text_output)
     return tmp_alternatives
-    
+
 #<alternativeName><fullName>Protein kinase B alpha</fullName><shortName>PKB alpha</shortName></alternativeName><alternativeName><fullName>Protein kinase B</fullName><shortName>PKB</shortName>
 
 
@@ -61,7 +62,7 @@ def get_alternative_prot_names(bs_data):
 def get_ensembl_geneid(bs_data):
     ''' get ensembl gene id name from bs_data from get_uniprot_data,
         returns a list'''
-    uniprot_id = bs_data.gnentries.gnentry.accession.text # uniprot accession 
+    uniprot_id = bs_data.gnentries.gnentry.accession.text # uniprot accession
     genes_ids = []
     genes = bs_data.gnentries.gnentry.findAll('gncoordinate')
     for gene in genes:
@@ -101,46 +102,46 @@ def modres_gral_info(bs_data):
     mod_res_list = data_modif_res(bs_data)
     uniprot_id = bs_data.gnentries.gnentry.accession.text
     tmp_list = []
-    
+
     for mod_res_item in mod_res_list:
-        
+
         residue_position = str(mod_res_item.findAll('ns2:position')[0]['position']) # position
         type_modif = mod_res_item.findAll('ns2:description')[0].text # type of modif
-        
+
         genom_begin = str(mod_res_item.findAll('ns2:begin')[0]['position']) #genom_beg_pos
         genom_end = str(mod_res_item.findAll('ns2:end')[0]['position']) #genom_end_pos
-        
+
         text_list = [uniprot_id, residue_position, type_modif, genom_begin, genom_end]
         text_row = '|'.join(text_list)
-        
+
         tmp_list.append(text_row)
-        
+
     return tmp_list
 
 
 
 def modres_references(bs_data):
-    ''' References of Modified residues: residue_position, id,type 
+    ''' References of Modified residues: residue_position, id,type
        Columns separated by "|"
        Returns a list. '''
     uniprot_id = bs_data.gnentries.gnentry.accession.text
     mod_res_list = data_modif_res(bs_data)
     tmp_main_list = []
-    
+
     for mod_res_item in mod_res_list:
         residue_position = mod_res_item.findAll('ns2:position')[0]['position'] # position
-        
+
         references = mod_res_item.findAll('ns2:dbreference') # position of modif residue
         tmp_ref_list = []
         for reference in references:
             tmp_tup = (reference['id'],reference['type']) # (ref_id,ref_type)
             tmp_ref_list.append(tmp_tup)
-        
+
         for item in tmp_ref_list:
             text_list = [uniprot_id, residue_position, item[0], item[1]]
             text_output = '|'.join(text_list)
             tmp_main_list.append(text_output)
-    
+
     return tmp_main_list
 
 #data_modif_res = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].findAll('feature')
