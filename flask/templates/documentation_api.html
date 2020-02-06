@@ -1,8 +1,38 @@
 {%extends 'base.html'%}
 
 {%block content%}
+<h1>Services</h1>
+<ul>
+  <li>Kinase protein sequences (.fasta), eg: <a href={{url_for('fasta_protein',kin_name ='P31749' )}}>'P31749' </a> </li>
+  <li>Kinase DNA sequences (.fasta), eg: <a href={{url_for('fasta_gene',kin_name ='P31749' )}}> 'P31749' </a></li>
+  <li>Kinase information (.json) <a href={{url_for('api_all', kin_name = 'P31749', columns ="all" )}}>'P31749'</a></li>
+</ul>
 
-<p>Documentation of API</p>
-<p> How to use the api<p>
+<p>The three services need the Uniprot Accession ID</p>
+
+<h2> Json service
+</h2>
+<p> For the Json service, use the following paramenters to get the required information:</p>
+<ul>
+  <li>'all': returns all the information listed bellow</li>
+  <li>'info': returns chromosome, Ensembl ID, Kinase Family, Full Protein Name, Genomic Sequence, Protein Sequence, Genomic location (start and end), Mass(Da), Gene name and Uniprot ID </li>
+  <li>'isoforms': returns the list of isoforms, and , if possible, also the protein sequence</li>
+  <li>'inhibitors': returns the Phase, Molecular Weight (mw), InchiKey, inhibitor name (inn_name) and the canonical Smiles</li>
+  <li>'reactions': returns the list of reactions</li>
+  <li>'cell_loc': returns a list of subcellular locations in which the protein has been registered </li>
+  <li>'diseases': returns the disease description, name and effect </li>
+  <li>'phosphosites_self': returns the genomic location (begin, end), residue position, modification type, and if aviablable, the kinases that target that position</li>
+  <li>'phosphosites_targets': returns the modified residue (residue and position), the substrate gene, substrate accession Uniprot ID, and a window of +- 7 residues</li>
+</ul>
+
+<h2>Egs:</h2>
+<ul>
+  <li><a href={{url_for('fasta_gene',kin_name ='P31749' )}}> {{url_for('fasta_gene',kin_name ='P31749' )}} </a></li>
+  <li><a href={{url_for('fasta_gene',kin_name ='P31749' )}}>{{url_for('fasta_gene',kin_name ='P31749' )}}  </a></li>
+  <li><a href={{url_for('api_all', kin_name = 'P31749', columns ="all" )}}>{{url_for('api_all', kin_name = 'P31749', columns ="all" )}}</a></li>
+  <li><a href={{url_for('api_all', kin_name = 'P31749', columns ="diseases" )}}>{{url_for('api_all', kin_name = 'P31749', columns ="diseases" )}}</a></li>
+  <li><a href={{url_for('api_all', kin_name = 'P31749', columns ="inhibitors,cell_loc,inhibitors" )}}>{{url_for('api_all', kin_name = 'P31749', columns ='')}} inhibitors,cell_loc,inhibitors</a></li>
+</ul>
+
 
 {%endblock%}
