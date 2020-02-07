@@ -65,7 +65,7 @@
 
 		<ul>
 		  <li>
-		    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong> <sup><a href={{url_for('fasta_protein',kin_name =context.kin_name )}}>protein</a></sup> <sup><a href={{url_for('fasta_gene',kin_name =context.kin_name )}}>gene</a></sup>  <sup><a href={{url_for('api_all', kin_name = context.kin_name, columns ="all" )}}>json</a></sup> 
+		    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong> <sup><a href={{url_for('fasta_protein',kin_name =context.kin_name )}}>protein</a></sup> <sup><a href={{url_for('fasta_gene',kin_name =context.kin_name )}}>gene</a></sup>  <sup><a href={{url_for('kinase_json', kin_name = context.kin_name, columns ="all" )}}>json</a></sup> 
 		  </li>
 		  <li> Protein name: {{context.gral_info.loc[0,'full_prot_name']}}
 		  </li>

@@ -33,7 +33,8 @@
     <!-- content begin -->
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
-	<h1>{{context.gral_info.inn_name}}</h1>
+	<br/>
+	<h1>{{context.gral_info.inn_name}} <sup><a href={{url_for('inhibitor_json', inhib_name = context.gral_info.inn_name, columns='all')}}>json</a></sup></h1>
 	<h2>Information</h2>
 	<ul>
 	  <li>Phase: {{context.gral_info.phase}}</li>
