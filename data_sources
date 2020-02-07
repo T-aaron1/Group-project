@@ -1,6 +1,11 @@
 
 uniprot
 
+- https://www.uniprot.org/docs/pkinfam
+list of kinases, uniprot ids, and kinase family
+
+
+
  - https://www.uniprot.org/uniprot/P31749.xml
 uniprotid , protein function
 associated diseases: disease _name|effect_text|disease_description
