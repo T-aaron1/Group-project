@@ -1,5 +1,56 @@
+
+uniprot
+
+ - https://www.uniprot.org/uniprot/P31749.xml
+uniprotid , protein function
+associated diseases: disease _name|effect_text|disease_description
+isoforms: tmp_iso_id
+reactions: reaction
+subcellular location: subcell_location, orgenelles and additional information
+
+
+
+- https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749
+
+full_protein_name|is in in the reverse strand|chromosome| protein sequence
+alternative names: name|short
+ensembl_gene_id
+phosphosites in the protein itself: residue_position|type_modif|genom_begin|genom_end
+
+
+
+
+
+ensembl api
+https://rest.ensembl.org/sequence/id/
+uniprot|ensembl_id|genome_starts|genome_ends|genome_sequence
+
+
+pkidb
+inhibitor name,kinase_families,BrandName, pdbid,synonyms,phase,mw,image_url,canonical_smiles,inchikey,targets, chemblID
+
+
+phosphosite plus
+kinase substrate interaction: uniprot id for the kinases and substrates, modified position in the substrate, neighboring sequence (+-7 aa)
+
+
+
+
+
+
+
+
+
+-------------------------------------------
+----------- ignore anything below this line ---------
 Information retrieved from:
-  
+
+
+
+
+
+
+
   Kinases:
     - kinase list (kinase_list.csv)
     https://www.uniprot.org/docs/pkinfam
