@@ -1,18 +1,22 @@
 {%extends 'base.html'%}
 
 {%block content%}
+
+<br/>
 <h1>Services</h1>
 <ul>
-  <li>Kinase protein sequences (.fasta), eg: <a href={{url_for('fasta_protein',kin_name ='P31749' )}}>'P31749' </a> </li>
-  <li>Kinase DNA sequences (.fasta), eg: <a href={{url_for('fasta_gene',kin_name ='P31749' )}}> 'P31749' </a></li>
-  <li>Kinase information (.json) <a href={{url_for('api_all', kin_name = 'P31749', columns ="all" )}}>'P31749'</a></li>
+  <li>Kinase protein sequences (.fasta). Eg: <a href={{url_for('fasta_protein',kin_name ='P31749' )}}>'P31749' </a> </li>
+  <li>Kinase DNA sequences (.fasta). Eg: <a href={{url_for('fasta_gene',kin_name ='P31749' )}}> 'P31749' </a></li>
+  <li>Kinase information (.json). Eg: <a href={{url_for('kinase_json', kin_name = 'P31749', columns ="all" )}}>'P31749'</a></li>
+  <li>Inhibitors information (.json). Eg:  <a href={{url_for('inhibitor_json', inhib_name = 'Abemaciclib', columns='all')}}>'Abemaciclib'</a></li>
+
 </ul>
 
-<p>The three services need the Uniprot Accession ID</p>
+<p><em>* For the kinases information, the three services need the Uniprot Accession ID</em></p>
 
-<h2> Json service
-</h2>
-<p> For the Json service, use the following paramenters to get the required information:</p>
+<hr/>
+<h2> Kinases Json service</h2>
+<p> Modify the parameter 'columns' in the url ({{url_for('kinase_json', kin_name = 'UNIPROT_ID', columns='REQUIRED_INFORMATION')}}) to get the required information:</p>
 <ul>
   <li>'all': returns all the information listed bellow</li>
   <li>'info': returns chromosome, Ensembl ID, Kinase Family, Full Protein Name, Genomic Sequence, Protein Sequence, Genomic location (start and end), Mass(Da), Gene name and Uniprot ID </li>
@@ -25,14 +29,38 @@
   <li>'phosphosites_targets': returns the modified residue (residue and position), the substrate gene, substrate accession Uniprot ID, and a window of +- 7 residues</li>
 </ul>
 
-<h2>Egs:</h2>
+<h3>Egs:</h3>
 <ul>
   <li><a href={{url_for('fasta_gene',kin_name ='P31749' )}}> {{url_for('fasta_gene',kin_name ='P31749' )}} </a></li>
   <li><a href={{url_for('fasta_gene',kin_name ='P31749' )}}>{{url_for('fasta_gene',kin_name ='P31749' )}}  </a></li>
-  <li><a href={{url_for('api_all', kin_name = 'P31749', columns ="all" )}}>{{url_for('api_all', kin_name = 'P31749', columns ="all" )}}</a></li>
-  <li><a href={{url_for('api_all', kin_name = 'P31749', columns ="diseases" )}}>{{url_for('api_all', kin_name = 'P31749', columns ="diseases" )}}</a></li>
-  <li><a href={{url_for('api_all', kin_name = 'P31749', columns ="inhibitors,cell_loc,inhibitors" )}}>{{url_for('api_all', kin_name = 'P31749', columns ='')}} inhibitors,cell_loc,inhibitors</a></li>
+  <li><a href={{url_for('kinase_json', kin_name = 'P31749', columns ="all" )}}>{{url_for('kinase_json', kin_name = 'P31749', columns ="all" )}}</a></li>
+  <li><a href={{url_for('kinase_json', kin_name = 'P31749', columns ="diseases" )}}>{{url_for('kinase_json', kin_name = 'P31749', columns ="diseases" )}}</a></li>
+  <li><a href={{url_for('kinase_json', kin_name = 'P31749', columns ="inhibitors,cell_loc,inhibitors" )}}>{{url_for('kinase_json', kin_name = 'P31749', columns ='')}}inhibitors,cell_loc,inhibitors</a></li>
 </ul>
+
+
+
+<hr/>
+<h2> Inhibitors Json service</h2>
+<p> Modify the parameter 'columns' in the url ({{url_for('inhibitor_json', inhib_name = 'NAME_OF_INHIBITOR', columns='REQUIRED_INFORMATION')}}) to get the required information:</p>
+<ul>
+  <li>'all': returns all the information listed bellow</li>
+  <li>'info': returns the inhibitor name,  canonical structure, inchikey, molecular weight (Da), and phase</li>
+  <li>'targets': returns a list of target kinases and its uniprot ids</li>
+  <li>'synonyms': returns synonyms for that particular inhibitor</li>
+  <li>'pbid': Returns the Protein Databank ID for information related to the interaction between the inhibitor and a Kinase</li>
+  <li>'families': returns a list of subcellular locations in which the protein has been registered </li>
+</ul>
+
+<h3>Egs:</h3>
+<ul>
+  <li><a href={{url_for('inhibitor_json', inhib_name = 'abemaciclib', columns='all')}}> {{url_for('inhibitor_json', inhib_name = 'abemaciclib', columns='all')}}</a></li>
+  <li><a href={{url_for('inhibitor_json', inhib_name = 'abemaciclib', columns='info')}}> {{url_for('inhibitor_json', inhib_name = 'abemaciclib', columns='info')}}</a></li>
+  <li><a href={{url_for('inhibitor_json', inhib_name = 'abemaciclib', columns='info,synonyms,families')}}> {{url_for('inhibitor_json', inhib_name = 'abemaciclib', columns='')}}info,synonyms,families</a></li>
+</ul>
+
+
+
 
 
 {%endblock%}

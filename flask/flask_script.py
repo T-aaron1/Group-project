@@ -281,8 +281,11 @@ def inhibitor_search_result():
 @app.route('/inhibitor/<inhib_name>')
 def inhibitor_data(inhib_name):
     # method: post, add filter
-    gral_info = queries.select_gral(DATABASE, '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
-    targets = queries.select_gral(DATABASE, 'inh.targets, kin.uniprot_id','inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',' inn_name LIKE "{}"'.format(inhib_name))
+    gral_info = queries.select_gral(DATABASE, '*','inhibitors_gral_info',\
+                                    ' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
+    targets = queries.select_gral(DATABASE, 'inh.targets, kin.uniprot_id',\
+                                  'inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',\
+                                  ' inn_name LIKE "{}"'.format(inhib_name))
 
 
     synonyms = list(queries.select_gral(DATABASE, 'synonyms','inhibitors_synonims',\
@@ -443,10 +446,10 @@ def fasta_gene(kin_name):
     else:
         return '', 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
-# return
+
 # this returns json !!
 @app.route('/kinase/<kin_name>.json', methods=['GET'])
-def api_all(kin_name):
+def kinase_json(kin_name):
     requested_columns = request.args.get('columns','')
     requested_columns = requested_columns.rstrip().lower()
     if queries.query_is_unique(DATABASE, 'uniprot_id','kinase_info',\
@@ -524,6 +527,65 @@ def api_all(kin_name):
     else:
         return ''
 
+## inhibitors json api
+@app.route('/inhibitor/<inhib_name>.json', methods=['GET'])
+def inhibitor_json(inhib_name):
+    requested_columns = request.args.get('columns','')
+    requested_columns = requested_columns.rstrip().lower()
+    if queries.query_is_unique(DATABASE, 'inn_name','inhibitors_gral_info', \
+                               'inn_name LIKE "{0}"'.format(inhib_name)):
+        requested_columns_list = requested_columns.split(',')
+        if (('all' in requested_columns) or (requested_columns == '')):
+
+            gral_info = queries.select_gral(DATABASE, 'inn_name, phase,mw, image_url, canonical_smiles, inchikey',\
+                                            'inhibitors_gral_info',\
+                                            ' inn_name LIKE "{}"'.format(inhib_name))
+            targets = queries.select_gral(DATABASE, 'inh.targets, kin.uniprot_id',\
+                                      'inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',\
+                                      ' inn_name LIKE "{}"'.format(inhib_name))
+            synonyms_list = list(queries.select_gral(DATABASE, 'synonyms','inhibitors_synonims',\
+                                                 ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
+            pdbid_list = list(queries.select_gral(DATABASE, 'pdbid','inhibitors_pdbid',\
+                                              ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
+            families_list = list(queries.select_gral(DATABASE, 'kinase_families','inhibitors_kin_family',\
+                                                 ' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
+        
+            output_dict = {'general_info':gral_info.to_dict('index')[0],
+                           'targets':targets.to_dict('index'),
+                           'synonyms':synonyms_list, 'Protein_databank_id':pdbid_list,
+                           'families':families_list
+                            }
+            return jsonify(output_dict)
+        else:
+            output_dict = {}
+            for column  in requested_columns_list:
+                if ('info' in column):
+                    gral_info = queries.select_gral(DATABASE, 'inn_name, phase,mw, image_url, canonical_smiles, inchikey',\
+                                                    'inhibitors_gral_info',\
+                                                    ' inn_name LIKE "{}"'.format(inhib_name))
+                    output_dict['general_info'] = gral_info.to_dict('index')[0]
+                elif ('targets' in column):
+                    targets = queries.select_gral(DATABASE, 'inh.targets, kin.uniprot_id',\
+                          'inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',\
+                          ' inn_name LIKE "{}"'.format(inhib_name))
+                    output_dict['targets'] = targets.to_dict('index')
+                elif ('synonyms' in column):
+                    synonyms_list = list(queries.select_gral(DATABASE, 'synonyms','inhibitors_synonims',\
+                                     ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
+                    output_dict['synonyms'] = synonyms_list
+                elif ('pbid' in column):
+                    pdbid_list = list(queries.select_gral(DATABASE, 'pdbid','inhibitors_pdbid',\
+                                  ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
+                    output_dict['Protein_databank_id'] = pdbid_list
+                elif ('families' in column):
+                    families_list = list(queries.select_gral(DATABASE, 'kinase_families','inhibitors_kin_family',\
+                                     ' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
+                    output_dict['families'] = families_list
+            return jsonify(output_dict)
+    else:
+        return ''
+
+    
 
 if __name__ == '__main__':
     app.run(debug=True, port = 8000)
