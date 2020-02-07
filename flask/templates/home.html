@@ -126,31 +126,6 @@
     <h4>Phosphoproteomics Data Upload</h4>
     <!-- MODAL begins -->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success btn-green btn-sm" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
-       <strong>More info</strong>
-    </button>
-
-    
-    <!-- Modal -->
-    <div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
-	 aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-	<div class="modal-content">
-	  <div class="modal-header">
-	    <h5 class="modal-title" id="exampleModalLongTitle">Phosphoproteomics analysis</h5>
-	    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	      <span aria-hidden="true">&times;</span>
-	    </button>
-	  </div>
-	  <div class="modal-body">
-	    This analysis is based in the 
-	    
-	    
-	  </div>
-	</div>
-      </div>
-    </div>
-    <!-- MODAL ends -->
 
     
     <br/>
@@ -166,7 +141,47 @@
       <input class="btn btn-success btn-green" type="submit" value="Send"/>
       <i class="fa fa-paper-plane" aria-hidden="true"></i>
 
-  </form>
+    </form>
+
+    <button type="button" class="btn btn-success btn-green btn-sm" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
+      <strong>More info</strong>
+    </button>
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
+	 aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <h5 class="modal-title" id="exampleModalLongTitle">Phosphoproteomics analysis</h5>
+	    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	  </div>
+	  <div class="modal-body">
+	    <p>Our site is able to accept and process quantitative phosphoproteomics data in a tab-separated values
+	      file format (.tsv) only. The desired phosphoproteomics dataset to be uploaded on our site must be
+	      structured in a specific format. An example of an acceptable .tsv file structure is shown below:</p> 
+	    <div class="text-center">
+	      <img alt="uploaded file header" width="420" src="/static/img/uploaded_header.png"/>
+	      <p><small><em>*Adequate column header is important. As shown, the name of the used inhibitor should be included in the header.</em></small></p>
+	    </div>
+	    <p>Using a KSEA (Kinase Substrate Enrichment Analysis) formula (<a href="https://academic.oup.com/bioinformatics/article/33/21/3489/3892392">Wiredja <em>et al.</em>, 2017</a>),  our site is able to computationally
+	      infer the relative kinase activity from quantitative phosphoproteomics data & have it summarised
+	      graphically. Scores are generated for each kinase according to the relative hyper-phosphorylation
+	      or dephosphorylation of the majority of its substrates. With this score we are able to determine
+	      the overall activity for each kinase relative to the control and obtain statistical P-values from
+	      the uploaded file to create interactive graphical analysis of the dataset. </p>
+
+	    
+	    
+	    
+	  </div>
+	</div>
+      </div>
+    </div>
+    <!-- MODAL ends -->
 
 </div>
 
