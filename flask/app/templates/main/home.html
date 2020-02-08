@@ -104,7 +104,34 @@
 	</div>
       </form>
       <!-- INHIBITORS FORM ends  -->      
-      
+
+      <!-- PHOSPHOSITE FORM begins  -->      
+      <form class="form-group col-md-9 round" method="POST" > 
+	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
+	<br/>
+	<h4> Phosphosite Search</h4>
+	{{render_form_field(context.phosphosite_form.chromosome, placeholder='Eg. "14","x" ', class="form-control")}}
+	{{render_form_field(context.phosphosite_form.genomic_loc_start, placeholder='Eg. "104770758"', class="form-control")}}
+	{{render_form_field(context.phosphosite_form.genomic_loc_end, placeholder='Eg. "104770760"', class="form-control")}}
+	<br/>
+
+	<div>
+
+	  {% with messages = get_flashed_messages(category_filter =['inhibitor']) %}
+	  {% if messages %}
+	  <ul class="flashes">
+            {% for message in messages %}
+            <div class="message_flash">{{ message }}</div>
+            {% endfor %}
+	  </ul>
+	  {% endif %}
+	  {% endwith %}
+	  <input class="btn btn-success btn-green"  type="submit" value="Search"></input>
+          <i class="fa fa-search" title="Edit"></i>
+	</div>
+      </form>
+      <!-- INHIBITORS FORM ends  -->      
+
     </div>
     <!-- KINASES / INHIBITORS FORM ends  -->      
 
@@ -164,7 +191,7 @@
 	      file format (.tsv) only. The file can contain more than one inhibitor. The desired phosphoproteomics dataset to be uploaded on our site must be
 	      structured in a specific format. An example of an acceptable .tsv file structure is shown below:</p> 
 	    <div class="text-center">
-	      <img alt="uploaded file header" width="420" src="/static/img/uploaded_header.png"/>
+	      <img alt="uploaded file header" width="420" src={{url_for('static', filename ='img/uploaded_header.png')}}/>
 	      <p><small><em>*Adequate column header is important. As shown, the name of the used inhibitor(s) should be included in the header.</em></small></p>
 
 

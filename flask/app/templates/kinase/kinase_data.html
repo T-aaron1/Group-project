@@ -9,10 +9,10 @@
 <style>
 
  .info_btn{
-	 background-color:white;
-	 color:blue;
-	 border:none;
-	 text-decoration: none;
+     background-color:white;
+     color:blue;
+     border:none;
+     text-decoration: none;
  }
 
 
@@ -33,24 +33,24 @@
     <!-- navbar begin -->
     <nav class='col-md-2 sidebar-100 comffont' style="background-color: #025425;">
       <ul class='nav flex-column text-light'>
-		<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
-		<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
         {%if context.function_list%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-function">Function</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-function">Function</a></li>
         {%endif%}
         {%if context.reactions_list%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-reactions">Reactions</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-reactions">Reactions</a></li>
         {%endif%}
         {%if context.diseases.shape[0] > 1%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-diseases">Diseases</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-diseases">Diseases</a></li>
         {%endif%}
         {%if context.cell_loc_list%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-cell_location">Cellular location</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-cell_location">Cellular location</a></li>
         {%endif%}
-		<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
-		<li class='nav-item'><a class='nav-link text-light' href="#section-browsers">Browsers</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-phosphosites">Phosphosites</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-browsers">Browsers</a></li>
 
-		<li class='nav-item'><a class='nav-link text-light' href="#section-sequences">Sequences</a></li>
+	<li class='nav-item'><a class='nav-link text-light' href="#section-sequences">Sequences</a></li>
 
       </ul>
     </nav>
@@ -61,68 +61,68 @@
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
 	<br/>
-		<h2>Information</h2>
+	<h2>Information</h2>
 
-		<ul>
-		  <li>
-		    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong> <sup><a href={{url_for('fasta_protein',kin_name =context.kin_name )}}>protein</a></sup> <sup><a href={{url_for('fasta_gene',kin_name =context.kin_name )}}>gene</a></sup>  <sup><a href={{url_for('kinase_json', kin_name = context.kin_name, columns ="all" )}}>json</a></sup> 
-		  </li>
-		  <li> Protein name: {{context.gral_info.loc[0,'full_prot_name']}}
-		  </li>
-		  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
-		    <ul>
-		      <li>
-			{{context.gral_info.loc[0,'name_human']}}
-		      </li>
-		    </ul>
-		  </li>
-		  <li>
-		    Family:  {{context.gral_info.loc[0,'fasd_name']}}
-		  </li>
-		  <li>
-		    Mass <strong>(Da)</strong>: {{context.gral_info.loc[0,'mass']}}
-		  </li>
+	<ul>
+	  <li>
+	    Uniprot ID: <strong> <a href="https://www.uniprot.org/uniprot/{{context.kin_name}}">{{context.kin_name}} </a> </strong> <sup><a href={{url_for('kinase.fasta_protein',kin_name =context.kin_name )}}>protein</a></sup> <sup><a href={{url_for('kinase.fasta_gene',kin_name =context.kin_name )}}>gene</a></sup>  <sup><a href={{url_for('kinase.kinase_json', kin_name = context.kin_name, columns ="all" )}}>json</a></sup> 
+	  </li>
+	  <li> Protein name: {{context.gral_info.loc[0,'full_prot_name']}}
+	  </li>
+	  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
+	    <ul>
+	      <li>
+		{{context.gral_info.loc[0,'name_human']}}
+	      </li>
+	    </ul>
+	  </li>
+	  <li>
+	    Family:  {{context.gral_info.loc[0,'fasd_name']}}
+	  </li>
+	  <li>
+	    Mass <strong>(Da)</strong>: {{context.gral_info.loc[0,'mass']}}
+	  </li>
 
-		  <li> Isoforms: {%for isof in context.isoforms%}<a href={{url_for('fasta_protein',kin_name =isof )}}>{{isof}} </a> {%endfor%}</li>
+	  <li> Isoforms: {%for isof in context.isoforms%}<a href={{url_for('kinase.fasta_protein',kin_name =isof )}}>{{isof}} </a> {%endfor%}</li>
 
-		  <li>
-		    Inhibitors:
+	  <li>
+	    Inhibitors:
 
-		    {%for inhib in context.inhibitors%}
-		    <a href={{url_for('inhibitor_data',inhib_name = inhib )}}> {{inhib}} </a>
+	    {%for inhib in context.inhibitors%}
+	    <a href={{url_for('inhibitor.inhibitor_data',inhib_name = inhib )}}> {{inhib}} </a>
 
-		    <!-- MODAL begins -->
-		    <!-- Button trigger modal -->
-		    <button type="button" class="info_btn" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
-		      <sup> <strong>i</strong></sup>
+	    <!-- MODAL begins -->
+	    <!-- Button trigger modal -->
+	    <button type="button" class="info_btn" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
+	      <sup> <strong>i</strong></sup>
+	    </button>
+
+	    <!-- Modal -->
+	    <div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
+		 aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
+	      <div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <h5 class="modal-title" id="exampleModalLongTitle">{{inhib}}</h5>
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
 		    </button>
+		  </div>
+		  <div class="modal-body">
+		    <iframe src="/inhibitor/basic_info/{{inhib}}" frameborder="0" width="450" height="200"></iframe>
+		  </div>
+		</div>
+	      </div>
+	    </div>
+	    <!-- MODAL ends -->
 
-		    <!-- Modal -->
-		    <div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
-			 aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
-		      <div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-			  <div class="modal-header">
-			    <h5 class="modal-title" id="exampleModalLongTitle">{{inhib}}</h5>
-			    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			      <span aria-hidden="true">&times;</span>
-			    </button>
-			  </div>
-			  <div class="modal-body">
-			    <iframe src="/inhibitor/basic_info/{{inhib}}" frameborder="0" width="450" height="200"></iframe>
-			  </div>
-			</div>
-		      </div>
-		    </div>
-		    <!-- MODAL ends -->
-
-		    {%endfor%}
+	    {%endfor%}
 
 
 
 
-		  </li>
-		</ul>
+	  </li>
+	</ul>
       </div>
 
       <hr/>
@@ -320,7 +320,8 @@
 	    <h3>NCBI Genome Viewer</h3>
 	    <br/>
 	    <div>
-	      <iframe frameborder="0" height="400"  width="900" src="/genome_viewer/{{context.kin_name}}"></iframe>
+	      <iframe frameborder="0" height="400"  width="900" src={{url_for('kinase.genome_viewer', uniprot_id=context.kin_name)}}></iframe>
+	      {{url_for('kinase.genome_viewer', uniprot_id=context.kin_name)}}
 	    </div>
 	  </div>
 
@@ -336,8 +337,8 @@
 	      </ul>
 	      <div class="ml-auto pr-4">
 		Fasta:
-		<a href={{url_for('fasta_protein',kin_name =context.kin_name )}} >Protein</a>
-		<a href={{url_for('fasta_gene',kin_name =context.kin_name )}}>Gene</a>
+		<a href={{url_for('kinase.fasta_protein',kin_name =context.kin_name )}} >Protein</a>
+		<a href={{url_for('kinase.fasta_gene',kin_name =context.kin_name )}}>Gene</a>
 
 	      </div>
 	    </div>

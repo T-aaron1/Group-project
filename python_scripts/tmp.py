@@ -1,3 +1,58 @@
+####
+# tests join vs append in panda's data frames
+import pandas as pd
+
+df1 = df = pd.DataFrame({"a":[1, 2, 3, 4], 
+                         "b":[5, 6, 7, 8]}) 
+  
+# Creating the Second Dataframe using dictionary 
+df2 = pd.DataFrame({"a":[1, 2, 3], 
+                    "b":[5, 6, 7]}) 
+
+df3 = pd.DataFrame({"a":[3,2,1], 
+                    "b":[7,6,5]}) 
+
+
+# Print df1 
+print(df1, "\n") 
+
+
+
+# Print df2 
+df2
+
+ddf = df1.append(df2)
+ddf.drop_duplicates()
+
+ddf2 = df1.append(df3)
+ddf2.drop_duplicates()
+
+ddf3 = df1.append(df2, ignore_index = True)
+ddf3.drop_duplicates()
+
+ddf.drop_duplicates()
+ddf2.drop_duplicates()
+ddf3.drop_duplicates()
+
+
+
+
+# Importing pandas as pd 
+import pandas as pd 
+
+# Creating the first Dataframe using dictionary 
+df1 = pd.DataFrame({"a":[1, 2, 3, 4], 
+					"b":[5, 6, 7, 8]}) 
+
+# Creating the Second Dataframe using dictionary 
+df2 = pd.DataFrame({"a":[1, 2, 3], 
+					"c":[1, 5, 4]}) 
+
+# for appending df2 at the end of df1 
+df.append(df2, ignore_index = True) 
+
+
+
 #######################################################
 # unique targets
 
