@@ -1,0 +1,27 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #025425;">
+  <a href="/" class="navbar-brand"><img src={{url_for('static', filename ='img/logo.png')}} height="80" width="90"></a>
+  <a href="/" class="navbar-brand"><p class="comffont">pkinase</p></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_content">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar_content">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active dropdown">
+        <a class="nav-link dopdown-toggle" data-toggle="dropdown" href="/documentation/general"><p class="comffont">Documentation</p></a>
+	<div class="dropdown-menu">
+          <a class="dropdown-item" href="/documentation/general"><p class="comffont">General</p></a>
+          <a class="dropdown-item" href="/documentation/api"><p class="comffont">API</p></a>
+          <a class="dropdown-item" href="/documentation/stats"><p class="comffont">Statistics</p></a>
+	</div>
+      </li>
+    </ul>
+  </div>
+
+
+
+</nav>
+
+

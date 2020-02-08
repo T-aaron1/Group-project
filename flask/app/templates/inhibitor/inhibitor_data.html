@@ -19,13 +19,13 @@
 
     <!-- 
 
-    <nav class='col-md-2 sidebar-100' style="background-color: #025425;">
-      <ul class='nav flex-column text-light'>
-		<li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
-		<li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
-		
-      </ul>
-    </nav>
+	 <nav class='col-md-2 sidebar-100' style="background-color: #025425;">
+	 <ul class='nav flex-column text-light'>
+	 <li class='nav-item'><a class='nav-link text-light' href="#section-information">General information</a></li>
+	 <li class='nav-item'><a class='nav-link text-light' href="#section-genomic-information">Genomic location</a></li>
+	 
+	 </ul>
+	 </nav>
 
     -->
 
@@ -34,7 +34,7 @@
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
 	<br/>
-	<h1>{{context.gral_info.inn_name}} <sup><a href={{url_for('inhibitor_json', inhib_name = context.gral_info.inn_name, columns='all')}}>json</a></sup></h1>
+	<h1>{{context.gral_info.inn_name}} <sup><a href={{url_for('inhibitor.inhibitor_json', inhib_name = context.gral_info.inn_name, columns='all')}}>json</a></sup></h1>
 	<h2>Information</h2>
 	<ul>
 	  <li>Phase: {{context.gral_info.phase}}</li>
