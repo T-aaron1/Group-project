@@ -1,7 +1,7 @@
 import sqlite3
-sqlite3.connect('DraftKinaseDB.db') # Define connection to sqlite3 server
+sqlite3.connect('final_version_kinase.db') # Define connection to sqlite3 server
 
-conn = sqlite3.connect('DraftKinaseDB.db')  # You can create a new database by changing the name within the quotes
+conn = sqlite3.connect('final_version_kinase.db')  # You can create a new database by changing the name within the quotes
 c = conn.cursor() # The database will be saved in the location where your 'py' (python script) file is saved
 
 # To make database, make the tables first
@@ -21,6 +21,10 @@ c.execute('''CREATE TABLE FAMILY
 # create ISOFORM table
 c.execute('''CREATE TABLE ISOFORM
             ([isoform_uniprot] VARCHAR PRIMARY KEY, [tmp_iso_id] VARCHAR)''')
+
+# Create table - ISOFORM_ADDITIONAL_INFORMATION
+c.execute('''CREATE TABLE ISOFORM_ADDITIONAL_INFORMATION
+             ([isoform_additional_info_uniprot_id] VARCHAR PRIMARY KEY, [full_prot_name] VARCHAR, [reverse] TEXT, [chromosome] INTEGER, [start_gene_coord] INTEGER, [genom_end_coord] INTEGER, [prot_sequence] VARCHAR)''')
 
 # create DISEASE table
 c.execute('''CREATE TABLE DISEASE
@@ -45,5 +49,25 @@ c.execute('''CREATE TABLE SUBCELLULAR_LOCATION
 # create SUBCELLULAR_ADDITIONAL_TEXT table
 c.execute('''CREATE TABLE SUBCELLULAR_ADDITIONAL_TEXT 
             ([subcellular_additional_text_uniprot_id] VARCHAR PRIMARY KEY, [subcellular_aditional_text] TEXT)''')
+
+# create INHIBITOR_GENERAL_INFORMATION table
+c.execute('''CREATE TABLE INHIBITOR_GENERAL_INFORMATION 
+            ([inn_name] TEXT PRIMARY KEY, [phase] INTEGER, [mw] FLOAT, [image_url] VARCHAR, [cannonical_smiles] VARCHAR, [inchikey] VARCHAR)''')
+
+# create INHIBITOR_KINASE_FAMILY table
+c.execute('''CREATE TABLE INHIBITOR_KINASE_FAMILY
+            ([inn_name] VARCHAR, [kinase_families] VARCHAR)''')
+
+# create INHIBITOR_PDBID table
+c.execute('''CREATE TABLE INHIBITOR_PDBID
+            ([inn_name] VARCHAR, [pdbid] VARCHAR)''')
+
+# create INHIBITOR_SYNONYMS table
+c.execute('''CREATE TABLE INHIBITOR_SYNONYMS
+            ([inn_name] VARCHAR, [synonyms] VARCHAR)''')
+
+# create INHIBITOR_TARGETS table
+c.execute('''CREATE TABLE INHIBITOR_TARGETS
+            ([inn_name] VARCHAR, [targets] VARCHAR)''')
 
 conn.commit()
