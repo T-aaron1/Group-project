@@ -16,269 +16,121 @@
 
 {%block content%}
 
-<!--
-     <p>graphs, results</p>
-     <p>possibly a pdf?</p>
--->
 
-<!-- {%if context.get('volcano')%}  -->
 
 <br/>
 
+<!-- TABS begins -->
 
-<div>
+  {%for key in context.results.keys()%}
 
-  <h1>Used inhibitor: {{context.inhibitor}}</h1>
-  <h3>Useful information: </h3>
-  <ul>
-    <li><a href="https://www.ebi.ac.uk/chembl/g/#search_results/compounds/query={{context.inhibitor}}">Chembl</a></li>
-    <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{context.inhibitor}}[Title]+AND+(%22clinical+trial+phase+i%22[Filter]+OR+%22clinical+trial+phase+ii%22[Filter]+OR+%22clinical+trial+phase+iii%22[Filter]+OR+%22clinical+trial+phase+iv%22[Filter])">NCBI clinical trial </a></li>
-  </ul>
-  <hr/>
-  <br/>
-  <p class="comffont">Number of phosphosites without a matching kinase: {{context['non_identified']}}</p>
-  <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
+<button class="btn btn-outline-primary">
+  <a  href="#inhibitor-data-{{key}}" 
+      data-toggle="tab">
+    {{key|upper}}
+  </a>
+</button>
+
+{% endfor %}
+
+
+<!-- TABS ends -->
+
+
+<div >
+  <!-- TAB-CONTENT begins -->
+  {%for key in context.results.keys()%}
+  <div>
+    <h1 id="inhibitor-data-{{key}}">Used inhibitor: {{key|upper}}</h1>
+
+
+
+
+    <h3>Useful information: </h3>
+    <ul>
+      <li><a href="https://www.ebi.ac.uk/chembl/g/#search_results/compounds/query={{key}}">Chembl</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{key}}[Title]+AND+(%22clinical+trial+phase+i%22[Filter]+OR+%22clinical+trial+phase+ii%22[Filter]+OR+%22clinical+trial+phase+iii%22[Filter]+OR+%22clinical+trial+phase+iv%22[Filter])">NCBI clinical trial </a></li>
+    </ul>
+    <hr/>
+    <br/>
+
+
+    <p class="comffont">Number of phosphosites without a matching kinase: {{context.results.get(key)['non_identified']}}</p>
+    <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
     <table class="table comffont">
       <tr>
 	<th>Kinase</th>
 	<th>KSEA</th>
 	<th>P-value</th>
       </tr>
-      {%for i in range(context.z_score.kinase|length)  %}
+      {%for i in range(context.results.get(key).z_score.kinase|length)  %}
       <tr>
-	<td>{{context.z_score.kinase[i]}}</td>
-	<td>{{context.z_score.ksea[i]}}</td>
-	<td>{{context.z_score.p_value[i]}}</td>
+	<td>{{context.results.get(key).z_score.kinase[i]}}</td>
+	<td>{{context.results.get(key).z_score.ksea[i]}}</td>
+	<td>{{context.results.get(key).z_score.p_value[i]}}</td>
       </tr>
       {%endfor%}
 
     </table>
-</div>
-
-<br/>
-
-<h2 class="comffont">Relative Kinase Activity</h2>
-<div id="Z_score"></div>
 
 
+    <br/>
 
-<hr/>
-
-
-
-<br/>
-<h1 class="comffont">
-  Analysis for the phosphosites above the threshold in the Volcano plot
-</h1>
-
-
-<h2 class="comffont">Volcano plot</h2>
-<div id="graph_volcano"></div>
-
-
-
-<div>
-
-
-  <p class="comffont">Number of phosphosites without a matching kinase:  {{context['non_identified_volcano']}}</p>
-
-  <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
-  <table class="table">
-    <tr>
-      <th>Kinase</th>
-      <th>KSEA</th>
-      <th>P-value</th>
-    </tr>
-    {%for i in range(context.z_score_volcano.kinase|length)  %}
-    <tr>
-      <td>{{context.z_score_volcano.kinase[i]}}</td>
-      <td>{{context.z_score_volcano.ksea[i]}}</td>
-      <td>{{context.z_score_volcano.p_value[i]}}</td>
-    </tr>
-    {%endfor%}
-
-  </table>
-</div>
-
-
-<h2><p class="comffont">Relative Kinase Activity</p></h2>
-<div id="Z_score_volcano"></div>
+    
+    
+    <h2 class="comffont">Relative Kinase Activity</h2>
+    <div id="graph_z_score_{{key}}"></div>
 
 
 
 
+    
 
-<!-- {%endif%}  -->
+    <br/>
+    <h1 class="comffont">
+      Analysis for the phosphosites above the threshold in the Volcano plot
+    </h1>
+    
+    <h2 class="comffont">Volcano plot</h2>
+    <div id="graph_volcano_{{key}}"></div>
 
-{%endblock%}
-
-
-<!-- ADDITIONAL SCRIPTS begins-->
-
-{%block scripts%}
-
-
-<script id="plotly_volcano">
-
- var  trace1= {
-     x: {{context.volcano.posfold_pval.foldchange}},
-     y:  {{context.volcano.posfold_pval.pval}},
-     mode: 'markers',
-     type: 'scatter',
-     name: 'p+log2FC increase',
-     text:{{context.volcano.posfold_pval.substrate| safe}},
-     textposition: 'top center',
-     textfont: {
-	 family:  'Times New Roman'
-     },
-     textposition: 'bottom center',
-     marker: {size:9, color:"blue"}
- };
-
- var trace2 = {
-     x: {{context.volcano.negfold_pval.foldchange}},
-     y:  {{context.volcano.negfold_pval.pval}},
-     mode: 'markers',
-     type: 'scatter',
-     name: 'p+log2FC decrease',
-     text:{{context.volcano.negfold_pval.substrate| safe}},
-     textposition: 'top center',
-     textfont: {
-	 family:  'Times New Roman'
-     },
-     textposition: 'bottom center',
-     marker: {size:9, color:"red"}
- };
- var trace3 = {
-     x: {{context.volcano.above_pval.foldchange}},
-     y:  {{context.volcano.above_pval.pval}},
-     mode: 'markers',
-     opacity: 0.5,
-     type: 'scatter',
-     name: 'p+log2FC Not changed',
-     text:{{context.volcano.above_pval.substrate| safe}},
-     textfont: {
-	 family:  'Times New Roman'
-     },
-     textposition: 'bottom center',
-     marker: {size:8, color:"gray"}
- };
-
- var data = [trace1, trace2, trace3];
-
- var layout = {
-     title: {
-	 text:'',
-	 font: {
-             family: 'Courier New, monospace',
-             size: 24
-	 },
-	 xref: 'paper',
-	 x: 0.05,
-     },
-     xaxis: {
-	 title: {
-             text: '-Log2 Fold Change',
-             font: {
-		 family: 'Courier New, monospace',
-		 size: 18,
-		 color: '#140D0C'
-             }
-	 },
-	 range: [{{context.volcano.plot_layout.x_min - 1}},{{context.volcano.plot_layout.x_max  + 1}}]
-     },
-     yaxis: {
-	 title: {
-             text: '-Log10 P-value',
-             font: {
-		 family: 'Courier New, monospace',
-		 size: 18,
-		 color: '#140D0C'
-             }
-	 },
-	 range:[0,{{context.volcano.plot_layout.y_max + 1}}]
-     },
-     shapes: [
-	 {
-	     type: 'line',
-	     x0: -1000,
-	     y0: {{context.pval_threshold}},
-	     x1: 1000,
-	     y1: {{context.pval_threshold}},
-	     line: {
-		 color: 'gray',
-		 width: 1,
-		 dash:'dot'
-	     }
-	 },
-	 {
-	     type: 'line',
-	     x0: -{{context.fold_threshold}},
-	     y0: 0,
-	     x1: -{{context.fold_threshold}},
-	     y1: 1000,
-	     line: {
-		 color: 'gray',
-		 width: 1,
-		 dash:'dot'
-	     }
-	 },
-	 {
-	     type: 'line',
-	     x0: {{context.fold_threshold}},
-	     y0: 0,
-	     x1: {{context.fold_threshold}},
-	     y1: 1000,
-	     line: {
-		 color: 'gray',
-		 width: 1,
-		 dash:'dot'
-	     }
-     }]
- };
-
- Plotly.newPlot('graph_volcano', data, layout);
-
-</script>
+    <div>
 
 
+      <p class="comffont">Number of phosphosites without a matching kinase:  {{context.results.get(key)['non_identified_volcano']}}</p>
+      {%if context.results.get(key).z_score_volcano.kinase|length == 0 %}
+      <p>No matching kinase found</p>
+      {%else%}
+      <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
+      <table class="table">
+	<tr>
+	  <th>Kinase</th>
+	  <th>KSEA</th>
+	  <th>P-value</th>
+	</tr>
+	{%for i in range(context.results.get(key).z_score_volcano.kinase|length)  %}
+	<tr>
+	  <td>{{context.results.get(key).z_score_volcano.kinase[i]}}</td>
+	  <td>{{context.results.get(key).z_score_volcano.ksea[i]}}</td>
+	  <td>{{context.results.get(key).z_score_volcano.p_value[i]}}</td>
+	</tr>
+	{%endfor%}
 
-<script>
+      </table>
 
- var trace1 = {
-     x: {{context.z_score.kinase|safe}},
-     y: {{context.z_score.ksea}},
-     type: 'bar',
-     text: {{context.z_score.p_value}},
-     marker: {
-	 color: {{context.z_score.colors|safe}}
-     }
- };
 
- var data = [trace1];
+    </div>
 
- var layout = {
-     title: 'Relative Kinase activity score Z-score',
-     font:{
-	 family: 'Raleway, sans-serif'
-     },
-     showlegend: false,
-     xaxis: {
-	 tickangle: -45
-     },
-     yaxis: {
-	 title: {
-	     text: "Activity score",
-	     size: 20
-	 },
-	 zeroline: true,
-	 gridwidth: 2
-     },
-     bargap :0.05
- };
 
- Plotly.newPlot('Z_score', data, layout);
-</script>
+    <h2><p class="comffont">Relative Kinase Activity</p></h2>
+    <div id="graph_z_score_volcano_{{key}}"></div>
+
+    {%endif%}
+    <hr/>
+  </div>
+
+  {% endfor %}
+  {%endblock%}
 
 
 
@@ -286,44 +138,224 @@
 
 
 
-<script>
- var trace1 = {
-     x: {{context.z_score_volcano.kinase|safe}},
-     y: {{context.z_score_volcano.ksea}},
-     type: 'bar',
-     text: {{context.z_score_volcano.p_value}},
-     marker: {
-	 color: {{context.z_score_volcano.colors|safe}}
-     }
- };
-
- var data = [trace1];
-
- var layout = {
-     title: 'Relative Kinase activity score Z-score',
-     font:{
-	 family: 'Raleway, sans-serif'
-     },
-     showlegend: false,
-     xaxis: {
-	 tickangle: -45
-     },
-     yaxis: {
-	 title: {
-	     text: "Activity score",
-	     size: 20
-	 },
-	 zeroline: true,
-	 gridwidth: 2
-     },
-     bargap :0.05
- };
-
- Plotly.newPlot('Z_score_volcano', data, layout);
-</script>
 
 
 
-{%endblock%}
 
-<!-- ADDITIONAL SCRIPTS ends-->
+
+  <!-- ADDITIONAL SCRIPTS starts-->
+
+
+
+  {%block scripts%}
+  
+  {%for key in context.results.keys()%}
+
+
+
+  <script id="plotly_volcano">
+
+   var  trace1= {
+       x: {{context.results.get(key).volcano.posfold_pval.foldchange}},
+       y:  {{context.results.get(key).volcano.posfold_pval.pval}},
+       mode: 'markers',
+       type: 'scatter',
+       name: 'p+log2FC increase',
+       text:{{context.results.get(key).volcano.posfold_pval.substrate| safe}},
+       textposition: 'top center',
+       textfont: {
+	   family:  'Times New Roman'
+       },
+       textposition: 'bottom center',
+       marker: {size:9, color:"blue"}
+   };
+
+   var trace2 = {
+       x: {{context.results.get(key).volcano.negfold_pval.foldchange}},
+       y:  {{context.results.get(key).volcano.negfold_pval.pval}},
+       mode: 'markers',
+       type: 'scatter',
+       name: 'p+log2FC decrease',
+       text:{{context.results.get(key).volcano.negfold_pval.substrate| safe}},
+       textposition: 'top center',
+       textfont: {
+	   family:  'Times New Roman'
+       },
+       textposition: 'bottom center',
+       marker: {size:9, color:"red"}
+   };
+   var trace3 = {
+       x: {{context.results.get(key).volcano.above_pval.foldchange}},
+       y:  {{context.results.get(key).volcano.above_pval.pval}},
+       mode: 'markers',
+       opacity: 0.5,
+       type: 'scatter',
+       name: 'p+log2FC Not changed',
+       text:{{context.results.get(key).volcano.above_pval.substrate| safe}},
+       textfont: {
+	   family:  'Times New Roman'
+       },
+       textposition: 'bottom center',
+       marker: {size:8, color:"gray"}
+   };
+
+   var data = [trace1, trace2, trace3];
+
+   var layout = {
+       title: {
+	   text:'',
+	   font: {
+               family: 'Courier New, monospace',
+               size: 24
+	   },
+	   xref: 'paper',
+	   x: 0.05,
+       },
+       xaxis: {
+	   title: {
+               text: '-Log2 Fold Change',
+               font: {
+		   family: 'Courier New, monospace',
+		   size: 18,
+		   color: '#140D0C'
+               }
+	   },
+	   range: [{{context.results.get(key).volcano.plot_layout.x_min - 1}},{{context.results.get(key).volcano.plot_layout.x_max  + 1}}]
+       },
+       yaxis: {
+	   title: {
+               text: '-Log10 P-value',
+               font: {
+		   family: 'Courier New, monospace',
+		   size: 18,
+		   color: '#140D0C'
+               }
+	   },
+	   range:[0,{{context.results.get(key).volcano.plot_layout.y_max + 1}}]
+       },
+       shapes: [
+	   {
+	       type: 'line',
+	       x0: -1000,
+	       y0: {{context.results.get(key).pval_threshold}},
+	       x1: 1000,
+	       y1: {{context.results.get(key).pval_threshold}},
+	       line: {
+		   color: 'gray',
+		   width: 1,
+		   dash:'dot'
+	       }
+	   },
+	   {
+	       type: 'line',
+	       x0: -{{context.results.get(key).fold_threshold}},
+	       y0: 0,
+	       x1: -{{context.results.get(key).fold_threshold}},
+	       y1: 1000,
+	       line: {
+		   color: 'gray',
+		   width: 1,
+		   dash:'dot'
+	       }
+	   },
+	   {
+	       type: 'line',
+	       x0: {{context.results.get(key).fold_threshold}},
+	       y0: 0,
+	       x1: {{context.results.get(key).fold_threshold}},
+	       y1: 1000,
+	       line: {
+		   color: 'gray',
+		   width: 1,
+		   dash:'dot'
+	       }
+       }]
+   };
+
+   Plotly.newPlot('graph_volcano_{{key}}', data, layout);
+
+  </script>
+
+
+
+
+  <script>
+
+   var trace1 = {
+       x: {{context.results.get(key).z_score.kinase|safe}},
+       y: {{context.results.get(key).z_score.ksea}},
+       type: 'bar',
+       text: {{context.results.get(key).z_score.p_value}},
+       marker: {
+	   color: {{context.results.get(key).z_score.colors|safe}}
+       }
+   };
+
+   var data = [trace1];
+
+   var layout = {
+       title: 'Relative Kinase activity score Z-score',
+       font:{
+	   family: 'Raleway, sans-serif'
+       },
+       showlegend: false,
+       xaxis: {
+	   tickangle: -45
+       },
+       yaxis: {
+	   title: {
+	       text: "Activity score",
+	       size: 20
+	   },
+	   zeroline: true,
+	   gridwidth: 2
+       },
+       bargap :0.05
+   };
+
+   Plotly.newPlot('graph_z_score_{{key}}', data, layout);
+  </script>
+
+
+
+  <script>
+   var trace1 = {
+       x: {{context.results.get(key).z_score_volcano.kinase|safe}},
+       y: {{context.results.get(key).z_score_volcano.ksea}},
+       type: 'bar',
+       text: {{context.results.get(key).z_score_volcano.p_value}},
+       marker: {
+	   color: {{context.results.get(key).z_score_volcano.colors|safe}}
+       }
+   };
+
+   var data = [trace1];
+
+   var layout = {
+       title: 'Relative Kinase activity score Z-score',
+       font:{
+	   family: 'Raleway, sans-serif'
+       },
+       showlegend: false,
+       xaxis: {
+	   tickangle: -45
+       },
+       yaxis: {
+	   title: {
+	       text: "Activity score",
+	       size: 20
+	   },
+	   zeroline: true,
+	   gridwidth: 2
+       },
+       bargap :0.05
+   };
+
+   Plotly.newPlot('graph_z_score_volcano_{{key}}', data, layout);
+  </script>
+
+
+
+  {% endfor %}
+  {%endblock%}
+  <!-- ADDITIONAL SCRIPTS ends-->

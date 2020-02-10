@@ -9,89 +9,38 @@ import numpy as np
 import re
 import os
 
-file=(r'C:\Users\Timot\Downloads\mux.tsv')
+#r'C:\Users\Timot\Downloads\mux.tsv'
 
-def file_handle(tmp_file):
-    df = pd.DataFrame(pd.read_csv(tmp_file, sep='\t'))
-    
+file=('~/Escritorio/mux.tsv')
+
+def file_handle(file):
+    ''' reads phosphoproteomics data, returns a dictionary with two entries: substrate-position and
+        another entry that contains the foldchange information for the inhibitors. Each inhibitor dataframe is
+        inside a dictionary with the name of the inhibitor. This output is to be used as input of other functions
+        for phosphoproteomics analysis.
+    '''
+    df = pd.DataFrame(pd.read_csv(file, sep='\t'))
     #os.remove(file_path)
-    
     df.columns = map(str.lower, df.columns)
-    
     #drop rows and columns with no value
     df.dropna(axis=1, how='all', inplace=True)
     df.dropna(axis=0, how='all', inplace=True)
-    #substrate  control_mean          mean  fold_change   p-value    ctrlCV   treatCV
-
-
-
     #split substrate column into name and position 
     df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
     df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
-
-    #creating a new dataframe with control_mean, substrate position and substrate name
-
-
-    #control_subst = df(['subst_name','subst_position'])
-    #df.drop(['subst_name','subst_position','control_mean'], axis=1, inplace=True)
-
-
-
+    substrate = df[['subst_name','subst_position']]
     #extracting unique inhibitor name 
-    inhibitors = []
+    inhibitors_list = []
+    inhibitors_dict={}
     for name in df.columns:
         if ('fold_change' in name):
                 inhibitor = name.rsplit('_')[0]
                 inhibitor = inhibitor.lower().rstrip()
-                inhibitors.append(inhibitor)
-    #print (inhibitors)
-     
-    inhibitors_dict={}
-    for i in range(len(inhibitors)):
-        X=df.filter(regex= inhibitors[i])
-        
-        inhibitors_dict[inhibitors[i]]= X
-    
-    df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
-    df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
-
-    control_subst = df[['subst_name','subst_position','control_mean']]
- 
-    #needs to iteratie over the dictionary and change the column header value of each inhibitor in inhibitor_dict 
-    for j in range(len(inhibitors_dict)):
-        for name in df.columns:
-            df.rename(columns = {name: name.lower()}, inplace = True)
-        for name in df.columns:
-            if inhibitors in name.lower():
-                df.rename(columns = {name: name.lower().replace(inhibitors,'')}, inplace = True)
-                df.dropna(axis= 1, how='all', inplace = True)
-    
-    
-    data_dict ={'control_subst': control_subst, 'inhibitors_dict' :inhibitors_dict }
-    
-    
-    
-    
-    
-    
-    
-    return data_dict
-
-
-# In[17]:
-
-
-file_handle(file)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+                inhibitors_list.append(inhibitor)
+    for i in range(len(inhibitors_list)):
+        tmp_inhib_df=df.filter(regex= inhibitors_list[i])
+        inhibitor = inhibitors_list[i] + '_'
+        tmp_inhib_df.columns = [inh.replace(inhibitor,'') for inh in tmp_inhib_df.columns]
+        inhibitors_dict[inhibitors_list[i]]= tmp_inhib_df
+    output ={'substrate': substrate, 'inhibitors_dict' :inhibitors_dict }
+    return output

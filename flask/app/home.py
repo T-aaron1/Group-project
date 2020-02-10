@@ -113,13 +113,14 @@ def home():
         file = request.files['uploaded_file']
         p_val_threshold = request.values['threshold_pval']
         threshold_foldchange = request.values['threshold_foldchange']
+        threshold_cv_treatment = request.values['cv_treatment_threshold']
         random_name = str(random()).split('.')[1] #random number
         filename = random_name + '.tsv'
         session['tmp_upload_file'] = filename
         file.save(os.path.join(main_blueprint.config['UPLOAD_FOLDER'], filename))
         file_path = os.path.join(main_blueprint.config['UPLOAD_FOLDER'], filename)
 
-        return redirect(url_for('phosphoproteomics.phosphoproteomics',fc=threshold_foldchange,pv=p_val_threshold), code = 307)
+        return redirect(url_for('phosphoproteomics.phosphoproteomics',fc=threshold_foldchange,pv=p_val_threshold, cvt=threshold_cv_treatment), code = 307)
 
     
     return render_template('home.html', context = context)
