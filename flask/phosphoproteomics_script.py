@@ -5,45 +5,61 @@ from scipy.stats import norm
 
 
 
-
-def change_column_names(file_path): #!! change this, put in dif file
+def file_handle(file_path):
+    ''' reads phosphoproteomics data, returns a dictionary with two entries: substrate-position and
+        another entry that contains the foldchange information for the inhibitors. Each inhibitor dataframe is
+        inside a dictionary with the name of the inhibitor. This output is to be used as input of other functions
+        for phosphoproteomics analysis.
+    '''
     df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
-
     os.remove(file_path)
-    
-    inhibitor = ''
+    df.columns = map(str.lower, df.columns)
+    #drop rows and columns with no value
+    df.dropna(axis=1, how='all', inplace=True)
+    df.dropna(axis=0, how='all', inplace=True)
+    #split substrate column into name and position 
+    df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
+    df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
+    substrate = df[['substrate','subst_name','subst_position']] # only those columns
+    #extracting unique inhibitor name 
+    inhibitors_list = []
+    inhibitors_dict={}
     for name in df.columns:
         if ('fold_change' in name):
-            inhibitor = name.split('_')[0]
-            break
+                inhibitor = name.rsplit('_')[0]
+                inhibitor = inhibitor.lower().rstrip()
+                inhibitors_list.append(inhibitor)
+    for i in range(len(inhibitors_list)):
+        tmp_inhib_df=df.filter(regex= inhibitors_list[i])
+        inhibitor = inhibitors_list[i] + '_'
+        tmp_inhib_df.columns = [inh.replace(inhibitor,'') for inh in tmp_inhib_df.columns]
+        if 'treatcv' in tmp_inhib_df.columns :
+            inhibitors_dict[inhibitors_list[i]]= tmp_inhib_df[['fold_change', 'p-value','treatcv']] # only those columns
+        else:
+            inhibitors_dict[inhibitors_list[i]]= tmp_inhib_df[['fold_change', 'p-value']] # only those columns
 
-
-
-    inhibitor = inhibitor.lower().rstrip() + '_'
-
-    for name in df.columns:
-        df.rename(columns = {name: name.lower()}, inplace = True)
-    for name in df.columns:
-        if inhibitor in name.lower():
-            df.rename(columns = {name: name.lower().replace(inhibitor,'')}, inplace = True)
-    df.dropna(axis= 1, how='all', inplace = True)
-
-    output = {'df':df, 'inhibitor':inhibitor}
-    
+    output ={'substrate': substrate, 'inhibitors_dict' :inhibitors_dict }
     return output
 
+
 #df instead of file_path...
-def volcano(df, p_val_threshold, fold_threshold): #!! change this, put in dif file
+def volcano(df, p_val_threshold, fold_threshold, cv_threshold): #!! change this, put in dif file
+    pval_threshold = float(p_val_threshold)
+    fold_threshold = float(fold_threshold)
+    cv_threshold = float(cv_threshold)
+    
+    if 'treatcv' in df.columns :
+        df = df[df['treatcv'] < cv_threshold ]
+
+        
     list_nulls = list(df[df.fold_change.isnull()].substrate)
-    list_control_zero = list(df[df.control_mean == 0].substrate)
-    df = df[(df.fold_change.notnull()) & (df.control_mean != 0) & (df.fold_change != 0)]
+    df = df[(df.fold_change.notnull()) &  (df.fold_change != 0)]
     df['log_foldchange'] = np.log2(df['fold_change'])
     df['log_pval'] = -np.log10(df['p-value'])
 
     df =df[~(np.isinf(np.abs(df.log_foldchange)))& ~(np.isinf(np.abs(df.log_pval))) & ~np.isnan(df.log_foldchange) & ~np.isnan(df.log_pval)]
 
-    pval_threshold = float(p_val_threshold)
-    fold_threshold = float(fold_threshold)
+
     x_min = df['log_foldchange'].min()
     x_max = df['log_foldchange'].max()
     y_max = df['log_pval'].max()
@@ -84,13 +100,10 @@ def KSEA(df, kinase_substrate):
     # get name and remove _human
     df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
 
-
-
     df = df[~(df['fold_change'] == 0)]
     df = df.dropna(axis=0)
 
     df['Log2substrate_fold_change'] = np.log2(df.fold_change)
-
     df['Log2substrate_fold_change'] = df['Log2substrate_fold_change'].replace([np.inf, -np.inf], np.nan)
 
     df = df.dropna(axis=0)
@@ -98,7 +111,6 @@ def KSEA(df, kinase_substrate):
     # unique values
     mean_log2_FC = df["Log2substrate_fold_change"].mean()
     standard_deviation = np.std(df.Log2substrate_fold_change)
-
 
     kinase_substrate['substrate'] =  kinase_substrate['substrate'].str.split("_HUMAN", n=1, expand=True)[0]
     kinase_substrate['substrate'] +=  "_HUMAN"
@@ -109,12 +121,8 @@ def KSEA(df, kinase_substrate):
     df2 = df.join(kinase_substrate[['kinase', 'substrate', 'sub_mod_rsd']].set_index(['substrate', 'sub_mod_rsd']),
                  on=['subst_name', 'subst_position'])
 
-    print("df2@@@@@@@@@")
-    print(df2)
-
     df = df1.append(df2)
     df.drop_duplicates(inplace=True)
-
 
     df['kinase'] = df[['kinase']].fillna('')
     df.drop_duplicates(inplace=True)
@@ -132,7 +140,6 @@ def KSEA(df, kinase_substrate):
     kinase_count_df['Kinase'] = kinase_count_df.index
     kinase_count_df.reset_index(drop=True, inplace=True)
 
-
     # join this
     tmp_df= pd.DataFrame(df.groupby('kinase')['Log2substrate_fold_change'].mean())
     tmp_df['kinase'] =  tmp_df.index
@@ -142,17 +149,14 @@ def KSEA(df, kinase_substrate):
     kinase_count_df['KSEA'] = ((kinase_count_df['Log2substrate_fold_change'] - mean_log2_FC) *
                                kinase_count_df['sqrt_kinase']) / standard_deviation
 
-
     kinase_count_df['P_value'] = norm.sf(abs(kinase_count_df['KSEA']))
-
-
     kinase_count_df = kinase_count_df.sort_values(['KSEA'], ascending=True)
-
     kinase_count_df2 =  kinase_count_df.round(2)
-
     sig_kinase_count = kinase_count_df2[kinase_count_df2['P_value'] < 0.05]
 
-    colors = ["rgb(255,242,0)"]*sig_kinase_count[sig_kinase_count['KSEA']<0].shape[0] +  ["rgb(0,34,255)"]*sig_kinase_count[sig_kinase_count['KSEA']>=0].shape[0]
+    colors = ["rgb(255,242,0)"]*sig_kinase_count[sig_kinase_count['KSEA']<0].shape[0] + \
+        ["rgb(0,34,255)"]*sig_kinase_count[sig_kinase_count['KSEA']>=0].shape[0]
+
     kinase_count_dict={'kinase': list(sig_kinase_count.loc[:,'Kinase']),
                        'ksea' : list(sig_kinase_count.loc[:,'KSEA']),
                        'p_value': list(sig_kinase_count.loc[:,'P_value']),
