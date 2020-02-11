@@ -46,6 +46,8 @@ def kinase_data(kin_name):
     if queries.query_is_unique(kinase_blueprint.config['DATABASE'], 'uniprot_id', 'kinase_info', "uniprot_id LIKE '{}'".format(kin_name)) : # modify: get list of kinases
         kin_name = kin_name
         gral_info = queries.select_gral(kinase_blueprint.config['DATABASE'], '*', 'kinase_info', 'uniprot_id LIKE "{}"'.format(kin_name))
+        alternative_names = queries.select_gral(kinase_blueprint.config['DATABASE'], 'name, short','kinase_alternative_names' ,'uniprot_id LIKE "{}"'.format(kin_name))
+        
         isoforms = list(queries.select_gral(kinase_blueprint.config['DATABASE'], 'isoform', 'isoforms', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'isoform'])
 
       # inhibitors
@@ -76,7 +78,7 @@ def kinase_data(kin_name):
 
 
         context = {'kin_name':kin_name, 'gral_info': gral_info, 'isoforms': isoforms,
-                   'function_list': function_list,
+                   'alternative_names':alternative_names,'function_list': function_list,
                    'reactions_list': reactions_list, 'cell_loc_list': cell_loc_list,
                    'cell_loc_add_text_list': cell_loc_add_text_list,
                    'diseases': diseases,

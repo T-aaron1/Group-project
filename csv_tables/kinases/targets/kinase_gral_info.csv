@@ -1,4 +1,4 @@
-uniprot_id|full_prot_name|reverse|chromosome|start_gene_coord|genom_end_coord|sequence
+uniprot_id|reverse|chromosome
 P05198|false|14
 Q9UQL6|true|17
 P61978|true|9

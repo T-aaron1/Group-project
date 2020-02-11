@@ -69,6 +69,12 @@
 	  </li>
 	  <li> Protein name: {{context.gral_info.loc[0,'full_prot_name']}}
 	  </li>
+	  <li>Alternative names:
+	    <ul>{%for i in range(context.alternative_names.shape[0])%}
+	      <li>{{context.alternative_names.loc[i,'name']}}
+		{%if context.alternative_names.loc[i,'short']%} ({{context.alternative_names.loc[i,'short']}}) {%endif%}</li>
+	      {%endfor%}
+	    </ul></li>
 	  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
 	    <ul>
 	      <li>
@@ -213,7 +219,7 @@
 
       <div id="section-phosphosites">
 	<div>
-	  <h2>Phosphosites <button type="button" style="width:'10px'; height:'10px'"  class="info_btn" data-toggle="popover" title="Information" data-content="In the tab 'Phosphosites  in {{context.kin_name}}', are shown the phosphosites of the protein itself. In the 'Target Phosphosites' tab, are shown the phosphosites that the kinase phosphorilates; when clicking in Uniprot ID, Protvista is shown bellow.">
+	  <h2>Phosphosites <button type="button" style="width:'10px'; height:'10px'"  class="info_btn" data-toggle="popover" title="Information" data-content="The 'Phosphosites  in {{context.kin_name}}' tab shows the phosphosites of the protein itself. The 'Target Phosphosites' tab shows the  phosphosites that are phosphorilated by  {{context.kin_name}}. The  protein features viewer (Protvista) can be shown below by clicking on Uniprot ID.">
 	    <sup> <strong>i</strong></sup>
 	  </button>
 	  </h2>
@@ -294,16 +300,18 @@
 	  <hr/>
 
 
-	  <div>
+	  <div id="phosphosites-target-div-onclick">
+	    <a href="javascript:closeit()" > <span id="protvista_target_close" class="close"></span> </a>
 	    <h2 id="protvista_target"></h2>
 	    <div id="protvista_uniprot_onclick">
 
 	    </div>
+	    <br/>
 	  </div>
 
 	  <hr/>
 
-	  <br/>
+
 
 	  <div id="section-browsers">
 	    <h2>Browser  <button type="button" style="width:'10px'; height:'10px'"  class="info_btn" data-toggle="popover" title="Information" data-content="This section shows the phosphosites located in {{context.kin_name}}, by its positions in the protein and its positions in the gene.">
@@ -321,7 +329,7 @@
 	    <br/>
 	    <div>
 	      <iframe frameborder="0" height="400"  width="900" src={{url_for('kinase.genome_viewer', uniprot_id=context.kin_name)}}></iframe>
-	      {{url_for('kinase.genome_viewer', uniprot_id=context.kin_name)}}
+
 	    </div>
 	  </div>
 
@@ -400,6 +408,7 @@
  }
 </script>
 
+<!-- for the target phosphosites section -->
 
 <script language="JavaScript" id="protvista_target_onclick">
  function clic_protvista(element)
@@ -413,7 +422,17 @@
 	 exclusions: [ 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS', 'MOLECULE_PROCESSING', 'PROTEOMICS']
      });
      document.getElementById("protvista_target").innerHTML = 'Target: ' + element.value ;
+     document.getElementById("protvista_target_close").innerHTML = '&times';
+     document.getElementById('phosphosites-target-div-onclick').setAttribute("style", "display:inherit");
  }
+</script>
+
+
+<!-- close the target Phosphosite section -->
+<script> 
+ function closeit(){ 
+     document.getElementById('phosphosites-target-div-onclick').setAttribute("style", "display:none");
+ } 
 </script>
 
 
@@ -433,10 +452,6 @@
      $('#myInput').trigger('focus')
  })
 </script>
-
-
-
-<!-- sortable -->
 
 
 

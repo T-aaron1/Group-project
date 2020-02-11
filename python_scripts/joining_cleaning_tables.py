@@ -1,5 +1,42 @@
 import pandas as pd
 
+
+### to include phosphosites in phosphosites tables
+# remove the ones that are already there
+import pandas as pd
+import sqlite3
+
+INFILE_CSV = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info.csv"
+
+OUTPUT_FILE = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered.csv"
+
+data = pd.read_csv(INFILE_CSV, sep='|')
+
+DATABASE = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinase_project.db"
+db = sqlite3.connect(DATABASE)
+db_results = pd.read_sql_query("SELECT * FROM phosphosites", db)
+db.close()
+
+uniprot_ids = db_results.uniprot_id.unique()
+
+data.columns
+data_filtered = data[~data.uniprot_id.isin(uniprot_ids)]
+data_filtered.to_csv(OUTPUT_FILE, index=False)
+
+
+
+
+
+#####################
+#
+import pandas as pd
+INFILE_CSV = "~/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc.csv"
+data = pd.read_csv(INFILE_CSV)
+data.shape[0]
+data.drop_duplicates().shape[0]
+data2 = data.drop_duplicates()
+data2.to_csv("~/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc_nodupl.csv", index=False)
+
 #####################
 # inhibitors
 
