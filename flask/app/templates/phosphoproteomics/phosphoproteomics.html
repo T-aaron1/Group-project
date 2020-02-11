@@ -5,6 +5,12 @@
 <!-- begin head -->
 {%block head%}
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+<!-- MDBootstrap Datatables  -->
+<link href={{url_for('static',filename='css/datatables.min.css')}} rel="stylesheet">
+
 <!-- plotly js -->
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 
@@ -57,12 +63,14 @@
 
     <p class="comffont">Number of phosphosites without a matching kinase: {{context.results.get(key)['non_identified']}}</p>
     <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
-    <table class="table comffont">
+    <table id='KSEA-all-{{key}}' class='table table-striped table-bordered table-sm'>
+      <thead >   
       <tr>
 	<th>Kinase</th>
 	<th>KSEA</th>
 	<th>P-value</th>
       </tr>
+      </thead>
       {%for i in range(context.results.get(key).z_score.kinase|length)  %}
       <tr>
 	<td>{{context.results.get(key).z_score.kinase[i]}}</td>
@@ -102,12 +110,14 @@
       <p>No matching kinase found</p>
       {%else%}
       <h2  class="comffont"> Kinases for which p-val < 0.05</h2>
-      <table class="table">
+      <table  id='KSEA-volcano-{{key}}' class='table table-striped table-bordered table-sm'>
+	<thead >   
 	<tr>
 	  <th>Kinase</th>
 	  <th>KSEA</th>
 	  <th>P-value</th>
 	</tr>
+	</thead>
 	{%for i in range(context.results.get(key).z_score_volcano.kinase|length)  %}
 	<tr>
 	  <td>{{context.results.get(key).z_score_volcano.kinase[i]}}</td>
@@ -148,11 +158,33 @@
 
 
   {%block scripts%}
+
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src={{url_for('static',filename='js/mdb.min.js')}}></script>
+  <!-- MDBootstrap Datatables  -->
+  <script type="text/javascript" src={{url_for('static',filename='js/datatables.min.js')}}></script>
+
   
   {%for key in context.results.keys()%}
 
+  <!-- to add nice behavior to the tables -->
+  <script>
+   $(document).ready(function () {
+       $('#KSEA-all-{{key}}').DataTable();
+       $('.dataTables_length').addClass('bs-select');
+   });
+  </script>
 
+  <!-- to add nice behavior to the tables -->
+  <script>
+   $(document).ready(function () {
+       $('#KSEA-volcano-{{key}}').DataTable();
+       $('.dataTables_length').addClass('bs-select');
+   });
+  </script>
 
+  <!-- to add plotly volcano plot -->
   <script id="plotly_volcano">
 
    var  trace1= {
@@ -278,8 +310,8 @@
 
 
 
-
-  <script>
+  <!-- to add plotly z-score all data -->
+  <script id="plotly-zscore-all-data">
 
    var trace1 = {
        x: {{context.results.get(key).z_score.kinase|safe}},
@@ -317,8 +349,8 @@
   </script>
 
 
-
-  <script>
+<!-- graph zscore with volcano results -->
+  <script id="zscore-for-volcano-results">
    var trace1 = {
        x: {{context.results.get(key).z_score_volcano.kinase|safe}},
        y: {{context.results.get(key).z_score_volcano.ksea}},
@@ -356,6 +388,13 @@
 
 
 
+  
+
   {% endfor %}
+
+  
+ 
+
+  
   {%endblock%}
   <!-- ADDITIONAL SCRIPTS ends-->

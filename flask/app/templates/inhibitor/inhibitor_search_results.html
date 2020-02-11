@@ -1,13 +1,25 @@
 {%extends 'base.html'%}
 
+
+{%block head%}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+<!-- MDBootstrap Datatables  -->
+<link href={{url_for('static',filename='css/datatables.min.css')}} rel="stylesheet">
+
+{%endblock%}
+
+
 {%block content%}
 
 <br/>
 
 <p>Number of results: {{context.search_results.shape[0]}} </p>
 
-<table class='table table-bordered sortable'>  
-  <thead class='thead-light'>   
+<table id="results_table" class='table table-striped table-bordered table-sm'>
+  <thead >   
     <tr>
       <th>Name</th>
       <th>Phase</th>
@@ -25,5 +37,23 @@
 
 </table>
 
+
+{%endblock%}
+
+
+{%block scripts%}
+
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src={{url_for('static',filename='js/mdb.min.js')}}></script>
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src={{url_for('static',filename='js/datatables.min.js')}}></script>
+
+<script>
+ $(document).ready(function () {
+     $('#results_table').DataTable();
+     $('.dataTables_length').addClass('bs-select');
+ });
+</script>
 
 {%endblock%}
