@@ -65,7 +65,6 @@ def phosphoproteomics():
               'z_score': z_score['score'], 'non_identified_volcano':z_score_volcano['non_identified'],
               'z_score_volcano': z_score_volcano['score']
             }
-            print (results_dict)
         context['results'] = results_dict
 
 #        except:

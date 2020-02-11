@@ -30,6 +30,10 @@ SELECT COUNT(*) FROM isoforms;
 .separator ","
 .import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/phosphosite_table.csv phosphosites
 
+-- /home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered.csv
+-- uniprot_id,residue_position,modif,type,genom_begin,genom_end
+.separator ","
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered.csv  phosphosites
 
 SELECT COUNT(*) FROM phosphosites;
 
