@@ -66,6 +66,7 @@ def phosphoproteomics():
               'z_score_volcano': z_score_volcano['score']
             }
         context['results'] = results_dict
+        context['n_results'] = len(results_dict.keys())
 
 #        except:
 #            os.remove(tmp_file_path)
