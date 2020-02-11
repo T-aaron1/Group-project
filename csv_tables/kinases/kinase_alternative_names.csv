@@ -41,11 +41,7 @@ Q9NRM7|Serine/threonine-protein kinase kpm|
 Q9NRM7|Large tumor suppressor homolog 2|
 Q9NRM7|Warts-like kinase|
 Q9Y2H9|Syntrophin-associated serine/threonine-protein kinase|
-
-
-
 Q96GX5|Microtubule-associated serine/threonine-protein kinase-likeMAST-L|MAST-L
-
 Q16512|Protease-activated kinase 1PAK-1|PAK-1
 Q16512|Protein kinase C-like 1|
 Q16512|Protein kinase C-like PKN|
@@ -57,15 +53,9 @@ Q16513|Protein kinase C-like 2|
 Q16513|PKN gamma|
 Q6P5Z2|Protein kinase PKN-beta|
 Q6P5Z2|Protein-kinase C-related kinase 3|
-
-
-
-
-
 Q05655|Tyrosine-protein kinase PRKCD|
 Q05655|nPKC-delta|
 Q02156|nPKC-epsilon|
-
 P24723|PKC-L|
 P24723|nPKC-eta|
 P41743|nPKC-iota|
@@ -75,7 +65,6 @@ Q05513|nPKC-zeta|
 Q13976|cGMP-dependent protein kinase IcGKI|cGKI
 Q13237|cGMP-dependent protein kinase IIcGKII|cGKII
 P51817|Protein kinase PKX1|
-
 Q13464|Renal carcinoma antigen NY-REN-35|
 Q13464|Rho-associated, coiled-coil-containing protein kinase 1|
 Q13464|Rho-associated, coiled-coil-containing protein kinase IROCK-I|ROCK-I
@@ -136,12 +125,7 @@ Q8IU85|CaM kinase I deltaCaM kinase IDCaM-KI deltaCaMKI deltaCaMKID|CaM kinase I
 Q8IU85|CaMKI-like protein kinaseCKLiK|CKLiK
 Q96NX5|CaM kinase I gammaCaM kinase IGCaM-KI gammaCaMKI gammaCaMKIG|CaM kinase IG
 Q96NX5|CaMK-like CREB kinase IIICLICK III|CLICK III
-
-
-
-
 Q16566|CaM kinase-GR|
-
 O14936|Protein lin-2 homolog|
 O14936|Calcium/calmodulin-dependent serine protein kinase|
 O14757|CHK1 checkpoint homolog|
@@ -150,7 +134,6 @@ O14757|Checkpoint kinase-1|
 O96017|CHK2 checkpoint homolog|
 O96017|Cds1 homologHucds1hCds1|Hucds1
 O96017|Checkpoint kinase 2|
-
 Q9UIK4|DAP-kinase-related protein 1DRP-1|DRP-1
 O43293|DAP-like kinaseDlk|Dlk
 O43293|MYPT1 kinase|
@@ -170,7 +153,6 @@ P57058|B19|
 O60229|Huntingtin-associated protein-interacting protein|
 O60229|Protein Duo|
 O60229|Serine/threonine-protein kinase with Dbl- and pleckstrin homology domain|
-
 Q16644|Chromosome 3p kinase3pK|3pK
 Q8IW41|p38-regulated/activated protein kinasePRAK|PRAK
 Q9P0L2|MAP/microtubule affinity-regulating kinase 1|
@@ -193,7 +175,6 @@ Q9BUB5|MAP kinase signal-integrating kinase 1Mnk1MAPK signal-integrating kinase 
 Q9HBH9|MAP kinase signal-integrating kinase 2MAPK signal-integrating kinase 2Mnk2|MAPK signal-integrating kinase 2
 Q15746|Telokin|
 Q15746|Kinase-related proteinKRP|KRP
-
 Q32MK0|Cardiac-MyBP-C-associated Ca/CaM kinaseCardiac-MLCK|Cardiac-MLCK
 Q86YV6|Sugen kinase 85SgK085|SgK085
 Q8IY84|NIM1 serine/threonine-protein kinase|
@@ -203,14 +184,11 @@ Q9H093|Omphalocele kinase 2|
 Q9H093|SNF1/AMP kinase-related kinaseSNARK|SNARK
 Q5VST9|Obscurin-RhoGEF|
 Q5VST9|Obscurin-myosin light chain kinaseObscurin-MLCK|Obscurin-MLCK
-
 Q16816|Phosphorylase kinase subunit gamma-1|
 Q16816|Serine/threonine-protein kinase PHKG1|
 P15735|PSK-C3|
 P15735|Phosphorylase kinase subunit gamma-2|
-
 Q9P1W9|Pim-2h|
-
 Q6P2M8|CaM kinase I betaCaM kinase IBCaM-KI betaCaMKI-beta|CaM kinase IB
 Q6P2M8|Pregnancy up-regulated non-ubiquitously-expressed CaM kinase|
 Q13131|Acetyl-CoA carboxylase kinaseACACA kinase|ACACA kinase
@@ -242,12 +220,10 @@ Q15831|Liver kinase B1LKB1hLKB1|LKB1
 Q15831|Renal carcinoma antigen NY-REN-19|
 Q9UEE5|DAP kinase-related apoptosis-inducing protein kinase 1|
 O94768|DAP kinase-related apoptosis-inducing protein kinase 2|
-
 Q8N2I9|Sugen kinase 495SgK495|SgK495
 Q8N2I9|SINK-homologous serine/threonine-protein kinase|
 Q96RU8|G-protein-coupled receptor-induced gene 2 proteinGIG-2|GIG-2
 Q96RU8|SKIP1|
-
 Q96RU7|p65-interacting inhibitor of NF-kappa-B|
 Q96RU7|SINK|
 Q96RU7|Neuronal cell death-inducible putative kinase|
@@ -265,12 +241,7 @@ Q8WZ42|Connectin|
 P48729|CK1|
 Q8N752|CK1|
 P48730|Tau-protein kinase CSNK1D|
-
-
-
-
 Q5TCY1|Brain-derived tau kinase|
-
 Q99986|Vaccinia-related kinase 1|
 Q86Y07|Vaccinia-related kinase 2|
 Q8IV63|Serine/threonine-protein pseudokinase VRK3|
@@ -348,7 +319,6 @@ P50750|Tat-associated kinase complex catalytic subunit|
 Q92772|Protein kinase p56 KKIAMRE|
 Q92772|Serine/threonine-protein kinase KKIAMRE|
 Q8IVW4|Serine/threonine-protein kinase NKIAMRE|
-
 O76039|Serine/threonine-protein kinase 9|
 P49759|CDC-like kinase 1|
 P49760|CDC-like kinase 2|
@@ -359,17 +329,13 @@ Q13627|HP86|
 Q13627|Protein kinase minibrain homologhMNBMNBH|hMNB
 Q9Y463|Minibrain-related kinase|
 Q9Y463|Mirk protein kinase|
-
 O43781|Regulatory erythroid kinaseREDK|REDK
-
 P49840|Serine/threonine-protein kinase GSK3A|
 P49841|Serine/threonine-protein kinase GSK3B|
 Q86Z02|Nuclear body-associated kinase 2|
-
 Q9H422|Androgen receptor-interacting nuclear protein kinaseANPK|ANPK
 Q9H422|Fas-interacting serine/threonine-protein kinaseFIST|FIST
 Q9H422|Homolog of protein kinase YAK1|
-
 Q9UPZ9|Intestinal cell kinasehICK|hICK
 Q9UPZ9|Laryngeal cancer kinase 2LCK2|LCK2
 Q9UPZ9|MAK-related kinaseMRK|MRK
@@ -536,9 +502,6 @@ Q8N4C8|Misshapen/NIK-related kinase|
 Q8N4C8|MAPK/ERK kinase kinase kinase 6MEK kinase kinase 6MEKKK 6|MEK kinase kinase 6
 Q8N4C8|GCK family kinase MiNK|
 Q8N4C8|Mitogen-activated protein kinase kinase kinase kinase 6|
-
-
-
 O95747|Oxidative stress-responsive 1 protein|
 Q13153|Alpha-PAK|
 Q13153|p21-activated kinase 1PAK-1|PAK-1
@@ -600,7 +563,6 @@ Q9H2K8|Dendritic cell-derived protein kinase|
 Q9H2K8|Kinase from chicken homolog AhKFC-A|hKFC-A
 Q9H2K8|Jun kinase-inhibitory kinase|
 Q9H2K8|Thousand and one amino acid protein 3|
-
 Q04771|Activin receptor type IACTR-I|ACTR-I
 Q04771|TGF-B superfamily receptor type ITSR-I|TSR-I
 Q04771|Activin receptor-like kinase 2ALK-2|ALK-2
@@ -624,7 +586,6 @@ P10398|Proto-oncogene A-Raf-1|
 P10398|Proto-oncogene Pks|
 P36894|Activin receptor-like kinase 3ALK-3|ALK-3
 P36894|Serine/threonine-protein kinase receptor R5SKR5|SKR5
-
 Q13873|Bone morphogenetic protein receptor type IIBMP type II receptorBMPR-II|BMP type II receptor
 P15056|Proto-oncogene B-Raf|
 P15056|p94|
@@ -633,14 +594,8 @@ Q13418|ILK-1|
 Q13418|ILK-2|
 Q13418|59 kDa serine/threonine-protein kinase|
 Q13418|p59ILK|
-
-
 Q9Y616|IL-1 receptor-associated kinase MIRAK-M|IRAK-M
 Q9NWZ3|Renal carcinoma antigen NY-REN-64|
-
-
-
-
 Q5S007|Dardarin|
 P04049|Raf-1|
 P04049|Proto-oncogene c-RAFcRaf|cRaf
@@ -714,7 +669,6 @@ P21709|Tyrosine-protein kinase receptor EPH|
 P21709|EPH tyrosine kinase|
 P21709|Erythropoietin-producing hepatoma receptor|
 P21709|EPH tyrosine kinase 1|
-
 P29317|Epithelial cell kinase|
 P29317|Tyrosine-protein kinase receptor ECK|
 P29320|Tyrosine-protein kinase receptor ETK1Eph-like tyrosine kinase 1|Eph-like tyrosine kinase 1
@@ -774,8 +728,6 @@ P11362|N-sam|
 P11362|Proto-oncogene c-Fgr|
 P21802|K-samKGFR|KGFR
 P21802|Keratinocyte growth factor receptor|
-
-
 P09769|p58-Fgr|
 P09769|p55-Fgr|
 P09769|p58c-Fgr|
@@ -804,7 +756,6 @@ P08631|p61Hck|
 P08631|Hemopoietic cell kinase|
 P08631|p59-HCK/p60-HCK|
 P08069|Insulin-like growth factor I receptorIGF-I receptor|IGF-I receptor
-
 P14616|IR-related receptor|
 Q08881|T-cell-specific kinase|
 Q08881|Tyrosine-protein kinase Lyk|
@@ -903,28 +854,23 @@ P08922|Receptor tyrosine kinase c-ros oncogene 1|
 P08922|c-Ros receptor tyrosine kinase|
 P08922|Proto-oncogene c-Ros|
 P08922|Proto-oncogene c-Ros-1|
-
 P12931|Proto-oncogene c-Src|
 P12931|pp60c-srcp60-Src|p60-Src
-
 Q6J9G0|Novel oncogene with kinase domain|
 Q6J9G0|Protein PK-unique|
 Q6J9G0|Serine/threonine/tyrosine kinase 1|
 P43405|Spleen tyrosine kinase|
 P43405|p72-Syk|
-
 Q02763|Tyrosine kinase with Ig and EGF homology domains-2|
 Q02763|Tunica interna endothelial cell kinase|
 Q02763|Tyrosine-protein kinase receptor TIE-2hTIE2|hTIE2
 Q02763|Tyrosine-protein kinase receptor TEK|
 Q02763|p140 TEK|
 Q02763|Endothelial tyrosine kinase|
-
 Q13470|CD38 negative kinase 1|
 Q07912|Tyrosine kinase non-receptor protein 2|
 P42681|Resting lymphocyte kinase|
 P42681|Protein-tyrosine kinase 4|
-
 Q06418|Tyrosine-protein kinase DTK|
 Q06418|Tyrosine-protein kinase BYK|
 Q06418|Tyrosine-protein kinase SKY|
@@ -947,7 +893,6 @@ Q9UQB9|Aurora/IPL1-related kinase 3ARK-3Aurora-related kinase 3|ARK-3
 Q9UQB9|Aurora/IPL1/Eg2 protein 2|
 Q9UQB9|Serine/threonine-protein kinase 13|
 Q9UQB9|Serine/threonine-protein kinase aurora-C|
-
 O43683|BUB1A|
 O60566|MAD3/BUB1-related protein kinasehBUBR1|hBUBR1
 O60566|Mitotic checkpoint kinase MAD3L|
@@ -955,13 +900,10 @@ O60566|Protein SSK1|
 Q8N5S9|CaM-kinase IV kinase|
 Q8N5S9|Calcium/calmodulin-dependent protein kinase kinase alphaCaM-KK alphaCaM-kinase kinase alphaCaMKK alpha|CaM-KK alpha
 Q96RR4|Calcium/calmodulin-dependent protein kinase kinase betaCaM-KK betaCaM-kinase kinase betaCaMKK beta|CaM-KK beta
-
 O15111|Transcription factor 16TCF-16|TCF-16
 O15111|Nuclear factor NF-kappa-B inhibitor kinase alphaNFKBIKA|NFKBIKA
 O15111|Conserved helix-loop-helix ubiquitous kinase|
 O15111|I-kappa-B kinase 1IKK1|IKK1
-
-
 Q8NEV1|Casein kinase II alpha 1 polypeptide pseudogene|
 Q6XUX3|Sugen kinase 496SgK496|SgK496
 Q6XUX3|Dusty protein kinaseDusty PK|Dusty PK
@@ -987,17 +929,14 @@ O75460|Ire1-alphaIRE1a|IRE1a
 Q76MJ5|Ire1-betaIRE1b|IRE1b
 Q76MJ5|Inositol-requiring protein 2hIRE2p|hIRE2p
 Q76MJ5|Endoplasmic reticulum-to-nucleus signaling 2|
-
 Q8TF76|Germ cell-specific gene 2 protein|
 Q8TF76|Haploid germ cell-specific nuclear protein kinase|
 Q8TF76|H-haspin|
 O14920|Nuclear factor NF-kappa-B inhibitor kinase betaNFKBIKB|NFKBIKB
 O14920|I-kappa-B kinase 2IKK2|IKK2
 Q14164|Inducible I kappa-B kinaseIKK-i|IKK-i
-
 P00540|Oocyte maturation factor mos|
 P00540|Proto-oncogene c-Mos|
-
 Q9NSY0|Transformation-related gene 16 proteinTRG-16|TRG-16
 Q58A45|PAB1P-dependent poly(A)-specific ribonuclease|
 Q58A45|Poly(A)-nuclease deadenylation complex subunit 3PAN deadenylation complex subunit 3|PAN deadenylation complex subunit 3
@@ -1038,7 +977,6 @@ Q05823|Ribonuclease LRNase L|RNase L
 Q96S38|52 kDa ribosomal protein S6 kinase|
 Q96S38|SPHK1-binding protein|
 Q96S38|Ribosomal S6 kinase-like protein with two PSK domains 118 kDa protein|
-
 Q52WX2|SH3-binding kinase 1|
 P0C263|SH3-binding domain kinase family member 2|
 P0C263|Sugen kinase 69SgK069|SgK069
@@ -1069,7 +1007,6 @@ Q8TDR2|PDLIM1-interacting kinase 1|
 Q9NRP7|Fused homolog|
 Q8NE28|Sugen kinase 071|
 Q8NE28|Serine/threonine kinase-like domain-containing protein 1|
-
 Q9UHD2|NF-kappa-B-activating kinase|
 Q9UHD2|T2K|
 Q9UHD2|TANK-binding kinase 1|
@@ -1110,8 +1047,6 @@ Q9BYP7|Protein kinase lysine-deficient 3|
 Q9BYP7|Protein kinase with no lysine 3|
 Q96J92|Protein kinase lysine-deficient 4|
 Q96J92|Protein kinase with no lysine 4|
-
-
 Q8NI60|Chaperone activity of bc1 complex-likeChaperone-ABC1-like|Chaperone-ABC1-like
 Q8NI60|Coenzyme Q protein 8A|
 Q8NI60|aarF domain-containing protein kinase 3|
@@ -1126,7 +1061,6 @@ Q9BX84|Melastatin-related TRP cation channel 6|
 Q9BX84|Channel kinase 2|
 Q96QT4|Long transient receptor potential channel 7LTrpC-7LTrpC7|LTrpC-7
 Q96QT4|Channel-kinase 1|
-
 O14874|Branched-chain alpha-ketoacid dehydrogenase kinaseBCKD-kinaseBCKDHKIN|BCKD-kinase
 Q15118|Pyruvate dehydrogenase kinase isoform 1PDH kinase 1|PDH kinase 1
 Q15119|Pyruvate dehydrogenase kinase isoform 2PDH kinase 2PDKII|PDH kinase 2

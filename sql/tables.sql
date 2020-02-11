@@ -21,8 +21,8 @@ CREATE TABLE kinase_info (
     reverse TEXT,
     chromosome TEXT,
     prot_sequence TEXT,
-    family TEXT,
-    prot_name TEXT,
+    family TEXT, -- segundo cambio ñ
+    gene TEXT,  -- primer cambio ñ
     name_human TEXT,
     mass INTEGER,
     ensembl_gene_id TEXT,
@@ -230,3 +230,15 @@ inn_name TEXT,
 targets TEXT,
 FOREIGN KEY  (inn_name) REFERENCES inhibitors_gral_info(inn_name)
 );
+
+
+
+-- Group-project/csv_tables/kinases/kinase_alternative_names.csv
+CREATE TABLE kinase_alternative_names (
+uniprot_id TEXT,
+name TEXT,
+short TEXT,
+FOREIGN KEY(uniprot_id)  REFERENCES kinase_info(uniprot_id)
+);
+
+

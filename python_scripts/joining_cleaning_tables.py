@@ -1,5 +1,16 @@
 import pandas as pd
 
+
+#####################
+#
+import pandas as pd
+INFILE_CSV = "~/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc.csv"
+data = pd.read_csv(INFILE_CSV)
+data.shape[0]
+data.drop_duplicates().shape[0]
+data2 = data.drop_duplicates()
+data2.to_csv("~/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kin_subcell_loc_nodupl.csv", index=False)
+
 #####################
 # inhibitors
 

@@ -177,3 +177,9 @@ SELECT COUNT(*) FROM phosphosites_references;
 -- inn_name,targets
 .separator ','
 .import /homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/inhibitors/cleaned/inhibitors_target.csv inhibitors_targets
+
+--/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinase_alternative_names.csv
+-- uniprot_id|name|short
+.mode csv
+.separator "|"
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinase_alternative_names.csv  kinase_alternative_names
