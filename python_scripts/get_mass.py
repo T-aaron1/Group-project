@@ -1,3 +1,5 @@
+# python3
+'''short script to get kinase mass from Uniprot API'''
 import requests
 
 INFILE= open('/homes/dtg30/Desktop/group_proj/venv/src/Group-project/kinase_list.csv','r')

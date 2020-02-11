@@ -1,11 +1,15 @@
 def divide_sequences(text_sequence, nr, ninr):
+    '''Used to produce to split the protein/gene sequences. 
+       It returns a string where each row contains n (nr) letters, divided 
+       by pieces of n (nir) letters, each nir separated by 1 blank space
+    '''
     out_text_list = []
-    counter = ninr
+    counter = ninr 
     for i in range(0,len(text_sequence), nr):
-        subtexto = text_sequence[i:i+nr]
+        subtext = text_sequence[i:i+nr]
         tmp_list =[]
-        for j in range(0,len(subtexto), ninr):
-            tmp_list.append(subtexto[j:j+ninr])
+        for j in range(0,len(subtext), ninr):
+            tmp_list.append(subtext[j:j+ninr])
         text_out = ' '.join(tmp_list)
         l_index = []
         for i in range(int(nr/ninr)):

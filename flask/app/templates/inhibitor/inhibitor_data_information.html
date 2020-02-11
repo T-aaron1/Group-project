@@ -2,24 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
   </head>
   <body>
-
+    <!-- this page shows some minimal information of the inhibitor -->
+    <!-- it is used in kinase_data.html as an pop up modal -->
 
     <!-- content begins -->
 
     <div id='content' class='col-md-10'>
       <div  id='section-information'>
-		<ul>
-		  <li> Phase: {{context.gral_info.phase}}</li>
-		  <li> Molecular weight (<strong>g/mol</strong>):  {{context.gral_info.mw}}</li>
-		  <li> Targets: {%for i in range(context.targets.shape[0])%} <a href="/kinase/{{context.targets.loc[i,'uniprot_id']}}"> {{context.targets.loc[i,'targets']}} </a> {%endfor%}</li>
-		  <li>Synonyms: {%for synonym in context.synonyms%} {{synonym}} {%endfor%} </li>
-		  <li>Protein Databank: {%for id in context.pdbid%} <a href="https://www.rcsb.org/structure/{{id}}">{{id}}</a>  {%endfor%}  </li>
-		  <li>Affects the kinase families: {%for fam in context.families%} {{fam}} {%endfor%}   </li>
+	<ul>
+	  <li> Phase: {{context.gral_info.phase}}</li>
+	  <li> Molecular weight (<strong>g/mol</strong>):  {{context.gral_info.mw}}</li>
+	  <li> Targets: {%for i in range(context.targets.shape[0])%} <a href="/kinase/{{context.targets.loc[i,'uniprot_id']}}"> {{context.targets.loc[i,'targets']}} </a> {%endfor%}</li>
+	  <li>Synonyms: {%for synonym in context.synonyms%} {{synonym}} {%endfor%} </li>
+	  <li>Protein Databank: {%for id in context.pdbid%} <a href="https://www.rcsb.org/structure/{{id}}">{{id}}</a>  {%endfor%}  </li>
+	  <li>Affects the kinase families: {%for fam in context.families%} {{fam}} {%endfor%}   </li>
       </div>
     </div>
 

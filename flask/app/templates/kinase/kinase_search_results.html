@@ -1,19 +1,25 @@
 {%extends 'base.html'%}
 
+
 {%block head%}
+<!-- ADDITIONAL HEAD starts -->
 
-<style>
+<!-- the next two links allow the table to have some extra behavior, like search and sort capabilities -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<!-- MDBootstrap Datatables  -->
+<link href={{url_for('static',filename='css/datatables.min.css')}} rel="stylesheet">
 
-</style>
-
+<!-- ADDITIONAL HEAD ends -->
 
 {%endblock%}
 
 {%block content%}
+<!-- CONTENT begins -->
+<br/>
 
-<p>Number of results: {{context.search_results.shape[0]}} </p>
-
-<table class='table table-bordered sortable'>  
+<!-- table with search results -->
+<table id="results_table" class='table table-striped table-bordered table-sm'>  
   <thead class='thead-light'>   
     <tr>
       <th>Uniprot ID</th>
@@ -35,21 +41,31 @@
   {%endfor%}
 
 </table>
+
+<!-- CONTENT ends -->
 {%endblock%}
 
-<!-- aditional scripts -->
+
 
 {%block scripts%}
 
+<!-- ADDITIONAL SCRIPTS starts -->
 
-<link rel="stylesheet" href="https://drvic10k.github.io/bootstrap-sortable/Contents/bootstrap-sortable.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.js"></script>
-<script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js"></script>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<!-- the next two links allow the table to have some extra behavior, like search and sort capabilities -->
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src={{url_for('static',filename='js/mdb.min.js')}}></script>
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src={{url_for('static',filename='js/datatables.min.js')}}></script>
+
+<!-- this script allows the table to have those nice features: search, sort, ... -->
+<script>
+ $(document).ready(function () {
+     $('#results_table').DataTable();
+     $('.dataTables_length').addClass('bs-select');
+ });
+</script>
 
 
-
+<!-- ADDITIONAL SCRIPTS ends -->
 {%endblock%}
 

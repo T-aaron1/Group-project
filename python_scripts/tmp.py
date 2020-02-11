@@ -1,3 +1,5 @@
+''' This is a file to make tests, to learn how to particular things'''
+
 ####
 # tests join vs append in panda's data frames
 import pandas as pd

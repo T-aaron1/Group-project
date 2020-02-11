@@ -36,6 +36,7 @@ ncbi_chrom_id ncbi_id
 
 chromosome  kinase_info
 
+
 SELECT ncbi.ncbi_id, kin.reverse, subst.genom_begin, subst.genom_end, kin.uniprot_id|| "("||subst.residue_position||")"
   FROM kinase_info kin
   LEFT JOIN ncbi_chrom_id ncbi ON kin.chromosome = ncbi.chr

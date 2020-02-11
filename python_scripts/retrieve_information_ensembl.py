@@ -1,4 +1,10 @@
+# python 3
 import requests
+
+
+''' This script gets information from Ensembl api, it was used to get genomic start-end coordinates
+    and also to get dna sequence. Ensembl ID used were obtained first from Uniprot
+'''
 
 direction = '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/'
 file_csv = 'kinase_ensembl.csv'
