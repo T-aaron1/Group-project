@@ -1,3 +1,8 @@
+'''
+scripts used to join and clean some csv files
+short scripts to handle particular things
+'''
+
 import pandas as pd
 
 

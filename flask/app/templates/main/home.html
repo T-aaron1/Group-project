@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
-<!-- begin aditional  -->
+
 {%block head%}
+<!-- ADDITIONAL HEAD starts -->
 
 <style>
  .form-control:focus {
@@ -13,28 +14,26 @@
      
  }
 
-
-
-
 </style>
 
 
 
 
 
+<!-- ADDITIONAL HEAD ends -->
 {%endblock%}
-<!-- end aditional -->
+
 
 
 {%block content%}
-
+<!-- CONTENT begins -->
 
 
 
 
 <div class="row container-fluid justify-content-around comffont">
   <div class="text-center">
-
+    <!-- header of the page -->
     <br/>
     <h1> Protein Kinases</h1>
     <h5> pkinase is a comprehensive Kinase search engine platform integrating Kinase data to allow users to search Kinases, their phosphosites and their associated inhibitors</h5>
@@ -105,6 +104,8 @@
       </form>
       <!-- INHIBITORS FORM ends  -->      
 
+      <!-- KINASES / INHIBITORS FORM ends  -->
+      
       <!-- PHOSPHOSITE FORM begins  -->      
       <form class="form-group col-md-9 round" method="POST" > 
 	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
@@ -130,10 +131,11 @@
           <i class="fa fa-search" title="Edit"></i>
 	</div>
       </form>
-      <!-- INHIBITORS FORM ends  -->      
+      <!-- PHOSPHOSITE FORM ends  -->  
+
 
     </div>
-    <!-- KINASES / INHIBITORS FORM ends  -->      
+
 
 
 
@@ -151,10 +153,8 @@
   <div class="col-md-5 bg-light mb-2">
     <br/>
     <h4>Phosphoproteomics Data Upload</h4>
-    <!-- MODAL begins -->
-    <!-- Button trigger modal -->
 
-    
+    <!-- FORM for phosphoproteomics analysis begins -->
     <br/>
     <p>Thresholds for Volcano plot:</p>
     <form name="sent_data" class="form-group col-md-6" method="POST" enctype="multipart/form-data"  >
@@ -171,13 +171,16 @@
       <i class="fa fa-paper-plane" aria-hidden="true"></i>
 
     </form>
+    <!-- FORM for phosphoproteomics analysis ends -->    
 
+    <!-- MODAL for phosphoproteomics explanation begins -->
+    <!-- BUTTON for MODAL for phosphoproteomics explanation begins -->
     <button type="button" class="btn btn-success btn-green btn-sm" data-toggle="modal" data-target="#inhib_modal_{{inhib}}">
       <strong>More info</strong>
     </button>
 
     
-    <!-- Modal -->
+    <!-- MODAL body -->
     <div class="modal fade" id="inhib_modal_{{inhib}}" tabindex="-1" role="dialog"
 	 aria-labelledby="inhib_modal_{{inhib}}Title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -190,32 +193,30 @@
 	  </div>
 	  <div class="modal-body">
 	    <p>Our site is able to accept and process quantitative phosphoproteomics data in a tab-separated values
-	      file format (.tsv) only. The file can contain more than one inhibitor. The desired phosphoproteomics dataset to be uploaded on our site must be
-	      structured in a specific format. An example of an acceptable .tsv file structure is shown below:</p> 
+	      file format (.tsv) only. The file can contain more than one inhibitor. The desired phosphoproteomics
+	      dataset to be uploaded on our site must be structured in a specific format.
+	      An example of an acceptable .tsv file structure is shown below:</p> 
 	    <div class="text-center">
 	      <img alt="uploaded file header" width="420" src={{url_for('static', filename ='img/uploaded_header.png')}}/>
-	      <p><small><em>*Adequate column header is important. As shown, the name of the used inhibitor(s) should be included in the header.</em></small></p>
-
-
-	    
-	    
-	    
+	      <p><small><em>*Adequate column header is important. As shown, the name of the used inhibitor(s)
+		should be included in the header.</em></small></p>
+	      
+	    </div>
 	  </div>
 	</div>
       </div>
+      <!-- MODAL for phosphoproteomics explanation ends -->
+
     </div>
-    <!-- MODAL ends -->
 
-</div>
-
-<br/>
-<br/>
+    <br/>
+    <br/>
 
 
 
-<br/>
+    <br/>
 
 
 
-
+    <!-- CONTENT ends -->
 {%endblock%}

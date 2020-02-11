@@ -1,14 +1,18 @@
 {%extends 'base.html'%}
 
 {%block head%}
+<!-- ADDITIONAL HEAD starts -->
+
+<!-- ncbi genome Viewer for gene features-->
 <script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/projects/sviewer/js/sviewer.js"></script>
+<!-- EBI prot vista, for protein features -->
 <script src="http://ebi-uniprot.github.io/CDN/protvista/protvista.js"></script>
 <link href="http://ebi-uniprot.github.io/CDN/protvista/css/main.css" rel="stylesheet"/>
 
 
+<!-- the next two links allow the table to have some extra behavior, like search and sort capabilities -->
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-
 <!-- MDBootstrap Datatables  -->
 <link href={{url_for('static',filename='css/datatables.min.css')}} rel="stylesheet">
 
@@ -22,15 +26,14 @@
      text-decoration: none;
  }
 
-
 </style>
 
-
+<!-- ADDITIONAL HEAD ends -->
 {%endblock%}
 
 
 {%block content%}
-
+<!-- CONTENT begins -->
 
 
 
@@ -326,12 +329,13 @@
 	    </button>
 	    </h2>
 	    <br/>
+	    <!-- protein feature Viewer, from Uniprot -->
 	    <h3>Uniprot ProtVista 
 	    </h3>
 	    <div id="protvista_uniprot"></div>
 
 	    <br/>
-
+	    <!-- NCBI genome viewer -->
 	    <h3>NCBI Genome Viewer</h3>
 	    <br/>
 	    <div>
@@ -344,7 +348,7 @@
 	  <hr/>
 	  <div id="section-sequences">
 	    <h2>Sequences</h2>
-
+	    <!-- protein / gene sequences, displayed in different tabs -->
 	    <div class="row">
 	      <ul class="nav nav-tabs nav-justified pl-4">
 		<li> <a data-toggle="tab" class="btn btn-outline-primary" href="#section-prot_seq">Protein sequence</a>  </li>
@@ -361,7 +365,7 @@
 	    <div class="tab-content">
 
 	      <div id="section-prot_seq" class="tab-pane in active  border border-primary">
-
+		<!-- protein  sequences, displayed in different tabs -->
 		<div >
 		  {%for line in context.prot_seq_list%}
 		  <pre>{{line|safe}}</pre>
@@ -371,7 +375,7 @@
 
 	      <div id="section-gene_seq" class="tab-pane border border-primary">
 
-
+		<!-- gene sequences, displayed in different tabs -->
 		{%for line in context.gene_seq_list%}
 		<pre>{{line | safe}}</pre>
 		{%endfor%}
@@ -385,8 +389,6 @@
 
 	</div>
 
-	<!-- content ends -->
-
 
       </div>
     </div>
@@ -394,13 +396,14 @@
 </div>
 </div>
 
-
+<!-- CONTENT ends -->
 {%endblock%}
 
 
 {%block scripts%}
+<!-- SCRIPTS begins -->
 
-
+<!-- PROTVISTA FOR THE PROTEIN ITSELF  -->
 <script id="protvista_self_uniprot">
  window.onload = function() {
      var protvista_uniprot = document.getElementById('protvista_uniprot');
@@ -416,7 +419,7 @@
 </script>
 
 <!-- for the target phosphosites section -->
-
+<!-- adds protvista and a <div> that displays that information -->
 <script language="JavaScript" id="protvista_target_onclick">
  function clic_protvista(element)
  {
@@ -429,13 +432,14 @@
 	 exclusions: [ 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS', 'MOLECULE_PROCESSING', 'PROTEOMICS']
      });
      document.getElementById("protvista_target").innerHTML = 'Target: ' + element.value ;
+     // button to close the <div>
      document.getElementById("protvista_target_close").innerHTML = '&times';
      document.getElementById('phosphosites-target-div-onclick').setAttribute("style", "display:inherit");
  }
 </script>
 
 
-<!-- close the target Phosphosite section -->
+<!-- CLOSE THE TARGET PHOSPHOSITE SECTION -->
 <script> 
  function closeit(){ 
      document.getElementById('phosphosites-target-div-onclick').setAttribute("style", "display:none");
@@ -443,8 +447,7 @@
 </script>
 
 
-<!-- popover -->
-
+<!-- Start all popovers -->
 <script >
  $(function () {
      $('[data-toggle="popover"]').popover()
@@ -453,7 +456,7 @@
 
 
 
-<!-- modals -->
+<!-- Generate modals -->
 <script>
  $('#myModal').on('shown.bs.modal', function () {
      $('#myInput').trigger('focus')
@@ -461,12 +464,13 @@
 </script>
 
 
-
+<!-- the next two links allow the table to have some extra behavior, like search and sort capabilities -->
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src={{url_for('static',filename='js/mdb.min.js')}}></script>
 <!-- MDBootstrap Datatables  -->
 <script type="text/javascript" src={{url_for('static',filename='js/datatables.min.js')}}></script>
 
+<!-- script to add nice features to the table -->
 <script>
  $(document).ready(function () {
      $('#table-phosphosite-self').DataTable();
@@ -474,6 +478,7 @@
  });
 </script>
 
+<!-- script to add nice features to the table -->
 <script>
  $(document).ready(function () {
      $('#table-phosphosites-targets').DataTable();
@@ -482,5 +487,5 @@
 </script>
 
 
-
+<!-- SCRIPTS ends -->
 {%endblock%}

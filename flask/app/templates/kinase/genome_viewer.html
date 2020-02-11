@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
+    <!-- this page is used inside kinase_data.html as an <iframe/> -->
     <title>Embedded Sequence Viewer with parameters</title>
     <script src="http://ebi-uniprot.github.io/CDN/protvista/protvista.js"></script>
     <link href="http://ebi-uniprot.github.io/CDN/protvista/css/main.css" rel="stylesheet"/>
@@ -11,6 +12,7 @@
   <body>
 
     <div id="sviewer_xdz3f" class="SeqViewerApp" data-autoload>
+      <!-- href is passed from flask (genome_viewer(uniprot_id) function) -->
       <a href='{{context.genom_browser_src}}'></a>
     </div>
 

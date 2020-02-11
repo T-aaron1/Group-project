@@ -1,6 +1,12 @@
 import re
 
 def pubmed_link(text):
+    '''This function is used to modify the text of some sections in the kinase 
+       data (like function and cellular location), which sometimes contain 
+       data from Pubmed publication. It adds an <a></a> (link) element so that
+       the html text contains hyperlinks to the actual Pubmed reference. The
+       function is used inside flask scripts.
+    '''
     pmid = re.findall('(?<=PubMed:)[0-9]+', text)
     list_without_pmid = re.split('(?<=PubMed:)[0-9]+', text)
     text_out = list_without_pmid[0]

@@ -1,3 +1,4 @@
+# first script for the phosphoproteomics analysis, latter included in a phosphoproteomics script
 def KSEA(df, kinase_substrate):
 
     df.dropna(axis= 1, how='all', inplace = True)

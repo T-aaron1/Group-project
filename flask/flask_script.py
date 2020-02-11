@@ -1,9 +1,5 @@
-# lines to change signaled with "modify:   !!"
-
-
 from flask import Flask, Blueprint, render_template, redirect, request, url_for, session, flash
 import forms
-#from flask_csv import send_csv
 from flask import Response # for api: fasta , csv and so on
 from flask import jsonify
 from flask_wtf import CsrfProtect
@@ -29,7 +25,9 @@ path = str(pathlib.Path(__file__).parent.absolute())
 DATABASE = re.sub(r'flask$','csv_tables/kinase_project.db',path)
 
 
+# folder where uploaded files are going to be temporarily saved
 UPLOAD_FOLDER = re.sub(r'flask$','csv_tables/',path)
+
 
 app = Flask(__name__, static_folder = './static')
 app.secret_key = 'my_secret_key'
@@ -38,7 +36,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DATABASE'] = DATABASE
 
 
-
+# registering bluprints
 app.register_blueprint(main_blueprint)
 app.register_blueprint(genome_browser_blueprint)
 app.register_blueprint(kinase_blueprint)

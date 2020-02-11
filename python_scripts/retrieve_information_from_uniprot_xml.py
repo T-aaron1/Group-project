@@ -1,5 +1,9 @@
 # python3
-
+'''
+This script was used to extract information from uniprot api, for eg: https://www.uniprot.org/uniprot/P31749.xml.
+ Functions are defined lower. Libraries: bs4 (BeautifulSoup) and requests are needed.
+ The name of the function is related to the information it extracts.
+'''
 #####################################################################
 #
 
@@ -155,6 +159,7 @@ def get_uniprot_data(accession):
 #OUTFILE_FUNCTION_REFS = open(file_kinase_function_refs, 'w')
 
 def get_prot_function(bs_data, OUTFILE_FUNCTION, OUTFILE_FUNCTION_REFS):
+    '''Used to get protein function texts. Uses the output of  get_uniprot_data() function'''
     prot_function_refs_list = []
     for comment in data.findAll('comment') :
         uniprot = data.uniprot.entry.findAll('accession')[0].text
@@ -179,7 +184,7 @@ def get_prot_function(bs_data, OUTFILE_FUNCTION, OUTFILE_FUNCTION_REFS):
 #OUTFILE_FUNCTION_REFS.close()
 #OUTFILE_FUNCTION.close()
 
-# several
+
 ###########################################
 ## diseases
 
@@ -188,6 +193,7 @@ def get_prot_function(bs_data, OUTFILE_FUNCTION, OUTFILE_FUNCTION_REFS):
 #OUTFILE_DISEASES = open(file_kinase_diseases, 'w')
 
 def get_diseases(bs_data, OUTFILE):
+    '''Get associated diseases. Uses the output of  get_uniprot_data() function'''
     diseases_list = []
     for comment in data.findAll('comment') :
         uniprot = data.uniprot.entry.findAll('accession')[0].text
@@ -235,6 +241,7 @@ def get_diseases(bs_data, OUTFILE):
 # OUTFILE_kinase_isoforms = open(file_kinase_isoforms, 'w')
 
 def get_kinase_isoforms(bs_data, OUTFILE):
+    '''Get isoforms names. Uses the output of  get_uniprot_data() function'''
     for comment in data.findAll('comment') :
         uniprot = data.uniprot.entry.findAll('accession')[0].text
         if comment['type'] == 'alternative products':
@@ -262,6 +269,7 @@ def get_kinase_isoforms(bs_data, OUTFILE):
 
 
 def get_reactions(bs_data, OUTFILE, OUTFILE_REFS):
+    '''get reaction formulas. Uses the output of  get_uniprot_data() function'''
     counter = 1
     reaction_text_refs_list = []
     reaction_list = data.findAll('reaction')
@@ -302,6 +310,7 @@ def get_reactions(bs_data, OUTFILE, OUTFILE_REFS):
 # OUTFILE_kinase_references = open(file_kinase_references, 'w')
 
 def get_full_references(bs_data, OUTFILE):
+    '''Get the complete references used in uniprot for the particular kinase. Uses the output of  get_uniprot_data() function'''
     for reference in data.findAll('reference'):
         uniprot = data.uniprot.entry.findAll('accession')[0].text
         reference_id = reference['key']
@@ -371,6 +380,7 @@ def get_full_references(bs_data, OUTFILE):
 # OUTFILE_kinase_subcell_loc_text = open(file_kinase_subcell_loc_text, 'w')
 
 def get_subcell_loc(bs_data, OUTFILE, OUTFILE_TEXT):
+    '''Get subcellular location. Uses the output of  get_uniprot_data() function'''
     for comment in data.findAll('comment') :
         uniprot = data.uniprot.entry.findAll('accession')[0].text
         if comment['type'] == 'subcellular location':

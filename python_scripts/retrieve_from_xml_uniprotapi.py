@@ -143,12 +143,3 @@ def modres_references(bs_data):
             tmp_main_list.append(text_output)
 
     return tmp_main_list
-
-#data_modif_res = bs_data.gnentries.gnentry.findAll('gncoordinate')[0].findAll('feature')
-#for entry in data_modif_res:
-#    if entry['type'] == 'modified residue': #only mod res
-#        if 'hospho' in entry.findAll('ns2:description')[0].text: #description is phosphosomething
-#           print(entry.findAll('ns2:description')[0].text) # what is mod. needs to order this
-#            print(entry.findAll('ns2:position')[0]['position']) # position of modification
-#            print(entry.findAll('ns2:evidence')[0].findAll('ns2:dbreference')[0]['id']) #needs a loop #pubmedid
-#            print(entry.findAll('ns2:evidence')[0].findAll('ns2:dbreference')[0]['type'])#needs a loop #pubmed

@@ -1,4 +1,13 @@
+# python3
 import retrieve_from_xml_uniprotapi as xmluniprot
+
+'''This script was used to extract information from Uniprot API, 
+     for eg: https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&accession=P31749 and:
+     https://www.ebi.ac.uk/proteins/api/coordinates?offset=0&size=100&taxid=9606&gene=BRCA1 . 
+    Libraries bs4 and requestes are needed. The name of the functions are related to the kind of 
+    information extracted. Functions have small parragraph that explain what they are doing type: "help(function_name)",
+    to get that information.
+'''
 
 #/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinase_list.csv
 #/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/substrates_list.csv
@@ -6,10 +15,11 @@ import retrieve_from_xml_uniprotapi as xmluniprot
 # /home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinases/
 ###   gene_names.csv
 
-
+#input file
 csvFile =  '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinases/gene_names.csv'
+INCSVFILE =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/targets/substrates_list.csv'
 
-
+# output files
 path = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinases/'
 csvGralInfo = path + 'kinase_gral_info.csv'
 csvAltProt =  path + 'kinase_alternative_names.csv'
@@ -18,14 +28,7 @@ csvModResGral =  path + 'kinase_modified_residues_gral_info.csv'
 csvModResRefs =  path + 'kinase_modified_residues_references.csv'
 
 
-INCSVFILE =  '/homes/dtg30/Desktop/group_proj/venv/src/Group-project/csv_tables/kinases/targets/substrates_list.csv'
-
-csvGralInfo = path + 'kinase_gral_info.csv'
-csvAltProt = path + 'kinase_alternative_names.csv'
-csvEnsembl = path + 'kinase_ensembl.csv'
-csvModResGral = path + 'kinase_modified_residues_gral_info.csv'
-csvModResRefs = path + 'kinase_modified_residues_references.csv'
-
+# open all files
 INFILE = open(INCSVFILE, 'r')
 
 OUT_GRALINFO = open(csvGralInfo,'w')
@@ -35,7 +38,7 @@ OUT_MODRESGRAL = open(csvModResGral,'w')
 OUT_MODRESREFS = open(csvModResRefs,'w')
 
 
-# writing headers on output files
+# write headers on output files
 OUT_GRALINFO.write('id_in|uniprot_id|full_prot_name|reverse|chromosome|start_gene_coord|genom_end_coord|sequence\n')
 OUT_ALTPROT.write('uniprot_id|name|short\n')
 OUT_ENSEMBL.write('uniprot_id|ensembl_gene_id|ensembl_transcript_id|ensembl_translation_id\n')
@@ -68,6 +71,7 @@ error_modres_references = []
 
 counter = 1
 
+# for loop to request and extract particular information 
 for line in INFILE:
     line = line.rstrip()
     tmp_list = line.split(separator)
