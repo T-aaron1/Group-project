@@ -37,8 +37,35 @@ ncbi_chrom_id ncbi_id
 chromosome  kinase_info
 
 
+
+SELECT kin.*,basic.chromosome, basic.gene,basic.reverse  FROM kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id WHERE kin.uniprot_id LIKE "P31749";
+
+SELECT subs.sub_acc_id, subs.site_7_aa,subs.sub_mod_rsd,basic.gene AS sub_gene, basic.chromosome,
+unip.genom_begin ||':'||unip.genom_end
+FROM kinase_substrate subs
+LEFT JOIN basic_info basic ON basic.uniprot_id = subs.sub_acc_id
+LEFT JOIN uniprot_phosphosites unip ON unip.uniprot_id = subs.sub_acc_id AND unip.residue_position = SUBSTR(subs.sub_mod_rsd,2)
+WHERE kin_acc_id LIKE 'P31749'; 
+
+kinase_substrate subs LEFT JOIN basic_info basic ON basic.uniprot_id = subs.sub_acc_id LEFT JOIN uniprot_phosphosites unip ON unip.uniprot_id = subs.sub_acc_id AND unip.residue_position = SUBSTR(subs.sub_mod_rsd,2)
+
+SELECT kin.prot_sequence,basic.chromosome, basic.reverse
+FROM kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id
+
+SELECT basick.prot_name AS kinase, basicsub.gene AS sub_gene, subs.sub_mod_rsd, basicsub.prot_name AS substrate
+FROM kinase_substrate subs
+LEFT JOIN basic_info basick ON subs.kin_acc_id = basick.uniprot_id
+LEFT JOIN  basic_info basicsub ON subs.sub_acc_id = basicsub.uniprot_id;
+
 SELECT ncbi.ncbi_id, kin.reverse, subst.genom_begin, subst.genom_end, kin.uniprot_id|| "("||subst.residue_position||")"
   FROM kinase_info kin
   LEFT JOIN ncbi_chrom_id ncbi ON kin.chromosome = ncbi.chr
   LEFT JOIN phosphosites subst ON kin.uniprot_id = subst.uniprot_id
   WHERE kin.chromosome LIKE "x" AND subst.genom_begin NOT NULL;
+
+
+SELECT basic.reverse, upho.* FROM
+uniprot_phosphosites upho
+LEFT JOIN basic_info basic ON basic.uniprot_id = upho.uniprot_id
+WHERE basic.chromosome LIKE 1 AND upho.genom_begin > 100 AND upho.genom_end <2000000;
+

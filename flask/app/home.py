@@ -47,10 +47,12 @@ def home():
         requested_name = requested_name.rstrip()
 
         # IF: requested value is unique redirect to info for that particular kinase (kinase_data.html)
-        if queries.query_is_unique(main_blueprint.config['DATABASE'], 'uniprot_id','kinase_info', \
-                                   'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)):
-            uniprot_id = queries.select_gral(main_blueprint.config['DATABASE'], 'uniprot_id','kinase_info',\
-                                             'uniprot_id LIKE "{0}" OR name_human LIKE "{0}" OR prot_name LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
+        if queries.query_is_unique(main_blueprint.config['DATABASE'], 'kin.uniprot_id',\
+                                   'kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id',\
+                                   'kin.uniprot_id LIKE "{0}" OR kin.name_human LIKE "{0}" OR basic.gene LIKE "{0}"'.format(requested_name)):
+            uniprot_id = queries.select_gral(main_blueprint.config['DATABASE'], 'kin.uniprot_id',\
+                                  'kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id',\
+                                  'kin.uniprot_id LIKE "{0}" OR kin.name_human LIKE "{0}" OR basic.gene LIKE "{0}"'.format(requested_name)).loc[0,'uniprot_id']
             return redirect(url_for('kinase.kinase_data',kin_name= uniprot_id))
         elif queries.query_is_unique(main_blueprint.config['DATABASE'], 'uniprot_id','kinase_info', \
                                      'uniprot_id LIKE "%{0}%"'.format(requested_name)): # modify: get list of kinases
@@ -72,7 +74,7 @@ def home():
 
     # INHIBITORS FORM
     # validate on submit, assure that contains data
-    if request.method == 'POST' and inhibitor_form.data and inhibitor_form.validate_on_submit():
+    if request.method == 'POST' and inhibitor_form.inhibitor_name.data and inhibitor_form.validate_on_submit():
 
         # get values from FORM
         inhib_requested = request.values['inhibitor_name']
@@ -118,8 +120,19 @@ def home():
 
     # PHOSPHOSITE FORM:
     if request.method == 'POST' and phosphosite_form.chromosome.data and phosphosite_form.validate_on_submit():
+        # extract values from the FORM
         chrom_requested = request.values['chromosome']
-        chrom_requested = chrom_requested.rstrip()
+        genome_start = int(request.values['genomic_loc_start'])
+        genome_ends = int(request.values['genomic_loc_end'])
+
+        if (genome_ends <= genome_start):
+          flash('start should be < than end point','genomic_location')
+          return render_template('home.html', context = context)
+
+        # get chromosome number and ncbi chromosome id
+        chrom_number,crhom_ncbi = chrom_requested.split(',')
+
+        return redirect(url_for('genomic_browser.genome_viewer_chrom',chromosome=chrom_number,ncbi=crhom_ncbi,gnm_start=genome_start, gnm_end=genome_ends), code = 307)
 
 
     # UPLOADED FILE FORM:

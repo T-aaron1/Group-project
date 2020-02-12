@@ -111,14 +111,14 @@
 	<input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
 	<br/>
 	<h4> Phosphosite Search</h4>
-	{{render_form_field(context.phosphosite_form.chromosome, placeholder='Eg. "14","x" ', class="form-control")}}
+	{{render_form_field(context.phosphosite_form.chromosome)}}
 	{{render_form_field(context.phosphosite_form.genomic_loc_start, placeholder='Eg. "104770758"', class="form-control")}}
 	{{render_form_field(context.phosphosite_form.genomic_loc_end, placeholder='Eg. "104770760"', class="form-control")}}
 	<br/>
 
 	<div>
 
-	  {% with messages = get_flashed_messages(category_filter =['inhibitor']) %}
+	  {% with messages = get_flashed_messages(category_filter =['genomic_location']) %}
 	  {% if messages %}
 	  <ul class="flashes">
             {% for message in messages %}

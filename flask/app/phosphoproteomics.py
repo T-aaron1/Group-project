@@ -43,7 +43,8 @@ def phosphoproteomics():
         output = phosphoproteomics_script.file_handle(tmp_file_path)
         substrate  = output['substrate']
 
-        query = "SELECT {} FROM {}".format('kinase, sub_gene, sub_mod_rsd, substrate', 'kinase_substrate')
+        query = "SELECT {} FROM {}".format('basick.prot_name AS kinase, basicsub.gene AS sub_gene, subs.sub_mod_rsd, basicsub.prot_name AS substrate', \
+                                           'kinase_substrate subs LEFT JOIN basic_info basick ON subs.kin_acc_id = basick.uniprot_id LEFT JOIN  basic_info basicsub ON subs.sub_acc_id = basicsub.uniprot_id')
         db = sqlite3.connect(phosphoproteomics_blueprint.config['DATABASE'])
         kin_substrate = pd.read_sql_query(query, db)
         db.close()

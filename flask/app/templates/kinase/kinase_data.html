@@ -85,7 +85,7 @@
 		{%if context.alternative_names.loc[i,'short']%} ({{context.alternative_names.loc[i,'short']}}) {%endif%}</li>
 	      {%endfor%}
 	    </ul></li>
-	  <li> Gene: {{context.gral_info.loc[0,'prot_name']}}
+	  <li> Gene: {{context.gral_info.loc[0,'gene']}}
 	    <ul>
 	      <li>
 		{{context.gral_info.loc[0,'name_human']}}
@@ -93,7 +93,7 @@
 	    </ul>
 	  </li>
 	  <li>
-	    Family:  {{context.gral_info.loc[0,'fasd_name']}}
+	    Family:  {{context.gral_info.loc[0,'family']}}
 	  </li>
 	  <li>
 	    Mass <strong>(Da)</strong>: {{context.gral_info.loc[0,'mass']}}
@@ -290,6 +290,7 @@
 		  <th>Gene</th>
 		  <th>Modified residue</th>
 		  <th>Residues</th>
+		  <th>Chromosome:coordinate</th>
 		</tr>
 	      </thead>
 
@@ -301,7 +302,8 @@
 		<td>{{context.targets.loc[i,'sub_gene']}}</td>
 		<td>{{context.targets.loc[i,'sub_mod_rsd']}}</td>
 		{%from '_macros.html' import sequence_7aa%}
-		<td>{{sequence_7aa(context.targets.loc[i,'site_7_aa'])}}</td>
+		<td><small>{{sequence_7aa(context.targets.loc[i,'site_7_aa'])}}</small></td>
+		<td>{{context.targets.loc[i,'coordinate']|replace('None','')}}</td>
 	      </tr>
 	      {%endfor%}
 	    </table>

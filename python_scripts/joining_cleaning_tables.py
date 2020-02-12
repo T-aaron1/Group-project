@@ -6,20 +6,103 @@ short scripts to handle particular things
 import pandas as pd
 
 
+#### to remove columns and split files to create general_basic_info table
+import pandas as pd
+# uniprot_id,full_prot_name,reverse,chromosome,sequence,Family,name,name_human,mass,
+#ensembl_gene_id,genome_starts,genome_ends,genome_sequence
+INFILE_KINASES = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinase_general_information.csv'
+INFILE_TARGET_gral = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_gral_info.csv'
+PHOSPLUS = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/Kinase_Substrate_Dataset.csv'
+OUTPUT_FILE_BASICINFO = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/general_information_basic.csv'
+OUTPUT_FILE_KININFO = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/kinase_general_kin_information.csv' 
+
+phosplus = pd.read_csv(PHOSPLUS)
+infilekin = pd.read_csv(INFILE_KINASES)
+infilekin.columns
+phosplus.columns
+
+target_chrrev = pd.read_csv(INFILE_TARGET_gral, sep='|')
+
+basic_info = infilekin[['uniprot_id','reverse','chromosome', 'name']]
+gral_kininfo = infilekin.drop(columns = ['reverse','chromosome', 'name'])
+
+phosplus.drop(columns = ['sub_gene_id', 'site_grp_id'], inplace=True) 
+phosplus.drop(columns = ['prot_domain', 'in_vivo_rxn','in_vitro_rxn'], inplace=True)
+# whole columns
+#['gene', 'kinase', 'kin_acc_id',
+#'substrate', 'sub_acc_id', 'sub_gene',
+#       'sub_mod_rsd', 'site_7_aa'],
+
+#wanted 
+#['gene', 'kinase', 'kin_acc_id',
+#'substrate', 'sub_acc_id', 'sub_gene',
+#: uniprot_id, gene, phosphositeplusname  ... need to add reverse, chromosome from target_chrrev
+phosplus.columns
+
+df1 = phosplus[['gene', 'kinase', 'kin_acc_id']]
+df2 = phosplus[['substrate', 'sub_acc_id', 'sub_gene']]
+df1.rename(columns = {'kin_acc_id':'uniprot_id', 'kinase':'phosphplus_name'}, inplace=True)
+df2.rename(columns = {'substrate':'phosphplus_name', 'sub_acc_id':'uniprot_id', 'sub_gene':'gene'}, inplace=True)
+
+df_combined = df1.append(df2)
+df_combined.drop_duplicates(inplace=True)
+df_combined.columns
+target_chrrev.columns
+df_combined_chrev = df_combined.join(target_chrrev.set_index('uniprot_id'), on=['uniprot_id'])
+df_combined_chrev.columns
+# combine with basic_info
+basic_info.columns
+basic_info.rename(columns={'name':'gene'}, inplace=True)
+
+lista_ya = list(basic_info['uniprot_id'])
+
+basic_info.columns
+basic_info_phplus = basic_info.join(df_combined_chrev[['phosphplus_name', 'uniprot_id']].set_index('uniprot_id'), on =['uniprot_id'])
+
+df_comb_chrev_notused = df_combined_chrev[~df_combined_chrev.uniprot_id.isin(lista_ya)]
+
+basic_info_combined = basic_info_phplus.append(df_comb_chrev_notused)
+basic_info_combined.columns
+basic_info_combined.shape[0]
+basic_info_combined.rename(columns={ 'phosphplus_name':'prot_name'}, inplace=True)
+#think this is what I wanted.. prot_name not used for the queries, but needed for the analysis as substrate
+basic_info_combined.columns
+
+
+#wanted2:
+#'kin_acc_id',
+#'sub_acc_id',
+#       'sub_mod_rsd', 'site_7_aa'],
+# need to add genomic location... but with a join in sql, not in the table
+phosplus.columns
+phosphosites = phosplus[['kin_acc_id','sub_acc_id','sub_mod_rsd', 'site_7_aa']]
+phosphosites.columns
+'kin_acc_id', 'sub_acc_id', 'sub_mod_rsd', 'site_7_aa'
+
+gral_kininfo.columns
+phosphosites.columns
+basic_info_combined.columns
+
+path = '/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/'
+gral_kininfo.to_csv(path+'kin_gral_info_updated.csv', index=False)
+phosphosites.to_csv(path+'kin_phosphosites_updated.csv', index=False)
+basic_info_combined.to_csv(path+'kin_basic_info_updated.csv', index=False)
+
+
 ### to include phosphosites in phosphosites tables
 # remove the ones that are already there
 import pandas as pd
 import sqlite3
 
-INFILE_CSV = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info.csv"
+INFILE_CSV = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_2.csv"
 
-OUTPUT_FILE = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered.csv"
+OUTPUT_FILE = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered2.csv"
 
 data = pd.read_csv(INFILE_CSV, sep='|')
 
 DATABASE = "/home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinase_project.db"
 db = sqlite3.connect(DATABASE)
-db_results = pd.read_sql_query("SELECT * FROM phosphosites", db)
+db_results = pd.read_sql_query("SELECT * FROM uniprot_phosphosites", db)
 db.close()
 
 uniprot_ids = db_results.uniprot_id.unique()

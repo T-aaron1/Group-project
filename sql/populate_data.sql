@@ -8,12 +8,6 @@
 SELECT COUNT(*) FROM kinase_info;
 SELECT * FROM families;
 
---x kinase_general_information.csv
-.separator ","
-.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/kinase_general_information.csv kinase_info
-
-
-SELECT COUNT(*) FROM kinase_info;
 
 
 
@@ -25,17 +19,29 @@ SELECT COUNT(*) FROM kinase_info;
 SELECT COUNT(*) FROM isoforms;
 
 
---x phosphosite_table.csv
+
+--x kinase_general_information.csv
+-- new
+-- kin_gral_info_updated.csv
+-- uniprot_id,full_prot_name,sequence,family,name_human,mass,ensembl_gene_id,genome_starts,genome_ends,genome_sequence
+.separator ","
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/kinases/kin_gral_info_updated.csv kinase_info
+
+
+SELECT COUNT(*) FROM kinase_info;
+-- new
+-- kin_phosphosites_updated.csv 
+-- prev:: phosphosite_table.csv
 -- uniprot_id,residue_position,Modif,type_modif,genom_begin,genom_end
 .separator ","
-.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/phosphosite_table.csv phosphosites
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/kinases/phosphosite_table.csv  uniprot_phosphosites
 
 -- /home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered.csv
 -- uniprot_id,residue_position,modif,type,genom_begin,genom_end
-.separator ","
-.import /home/daniel/Escritorio/uk/group_project/venv/src/Group-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered.csv  phosphosites
+.separator "|"
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/kinases/targets/kinase_modified_residues_gral_info_filtered2.csv  uniprot_phosphosites
 
-SELECT COUNT(*) FROM phosphosites;
+SELECT COUNT(*) FROM uniprot_phosphosites;
 
 
 
@@ -106,14 +112,22 @@ SELECT COUNT(*) FROM subcell_location_text;
 SELECT COUNT(*) FROM subcell_location;
 
 
---x Kinase_Substrate_Dataset.csv
--- EIF2AK1,HRI,Q9BQI3,eIF2-alpha,1965,P05198,EIF2S1,S52,447635,MILLsELsRRRIRsI,S1, ,X
+-- new
+-- kin_phosphosites_updated.csv
+--previous: Kinase_Substrate_Dataset.csv
+--previous: EIF2AK1,HRI,Q9BQI3,eIF2-alpha,1965,P05198,EIF2S1,S52,447635,MILLsELsRRRIRsI,S1, ,X
 .separator ","
-.import /homes/dtg30/Desktop/group_proj/venv/src/Group\-project/csv_tables/kinases/Kinase_Substrate_Dataset.csv  kinase_substrate
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/kinases/kin_phosphosites_updated.csv  kinase_substrate 
 
 SELECT COUNT(*) FROM kinase_substrate;
 
+-- new
+-- kin_basic_info_updated.csv
+--chromosome,gene,prot_name,reverse,uniprot_id
+.separator ","
+.import /home/daniel/Escritorio/uk/group_project/venv/src/Group\-project/csv_tables/kinases/kin_basic_info_updated.csv basic_info
 
+SELECT COUNT(*) FROM basic_info;
 
 -- kinase_modified_residues_references_ref_numbers.csv
 -- P31749,450,73

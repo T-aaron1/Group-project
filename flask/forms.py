@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import StringField, IntegerField, DecimalField
+from wtforms import StringField, IntegerField, DecimalField, SelectField
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
 
@@ -9,10 +9,6 @@ def my_length_check(form, field):
     if len(field.data) < 2:
         raise ValidationError('Search string must be larger than 1 character')
 
-# valid if length of input string equals 1 , used for chromosome
-def length_one(form, field):
-    if len(field.data) == 1:
-        raise ValidationError('Search string must be larger than 1 character')
     
 # valid if string contains only alphanumeric values
 def is_alpha_numeric(form, field):
@@ -42,7 +38,15 @@ class UploadForm(FlaskForm):
 
 # FORM: used for the chromosome coordinate search for phosphosites
 class Phosphosite(FlaskForm):
-    chromosome = StringField('Chromosome', validators=[DataRequired(), my_length_check, is_alpha_numeric,length_one ])
-    genomic_loc_start = IntegerField('Genomic location Start')
-    genomic_loc_end = IntegerField('Genomic Location End')
+    chromosome = SelectField('Chromosome', \
+                             choices = [('1,NC_000001.11','1'), ('2,NC_000002.12','2'), ('3,NC_000003.12','3'),\
+                                        ('4,NC_000004.12','4'), ('5,NC_000005.10','5'), ('6,NC_000006.12','6'),\
+                                        ('7,NC_000007.14','7'), ('8,NC_000008.11','8'), ('9,NC_000009.12','9'), \
+                                        ('10,NC_000010.11','10'), ('11,NC_000011.10','11'), ('12,NC_000012.12','12'), \
+                                        ('13,NC_000013.11','13'), ('14,NC_000014.9','14'), ('15,NC_000015.10','15'),\
+                                        ('16,NC_000016.10','16'), ('17,NC_000017.11','17'), ('18,NC_000018.10','18'),\
+                                        ('19,NC_000019.10','19'), ('20,NC_000020.11','20'), ('21,NC_000021.9','21'),\
+                                        ('22,NC_000022.11','22'), ('X,NC_000023.11','X'), ('Y,NC_000024.10','Y')])
+    genomic_loc_start = IntegerField('Genomic location Start', validators = [DataRequired(),is_positive])
+    genomic_loc_end = IntegerField('Genomic Location End', validators = [DataRequired(),is_positive])
 
