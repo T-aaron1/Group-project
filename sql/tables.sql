@@ -13,26 +13,61 @@ family_name TEXT
 );
 
 
-
--- kinase_general_information.csv
-CREATE TABLE kinase_info (
-    uniprot_id TEXT PRIMARY KEY,
-    full_prot_name TEXT,
-    reverse TEXT,
-    chromosome TEXT,
-    prot_sequence TEXT,
-    family TEXT, -- segundo cambio ñ
-    gene TEXT,  -- primer cambio ñ
-    name_human TEXT,
-    mass INTEGER,
-    ensembl_gene_id TEXT,
-    genome_starts INTEGER,
-    genome_ends INTEGER,
-    genome_sequence TEXT,
-    FOREIGN KEY(family) REFERENCES families(family_abbreviation)
+-- phosphosite_table.csv
+CREATE TABLE uniprot_phosphosites (
+uniprot_id TEXT,
+residue_position INTEGER,
+modif TEXT,
+type_modif TEXT,
+genom_begin INTEGER,
+genom_end  INTEGER,
+FOREIGN KEY(uniprot_id) REFERENCES kinase_info(uniprot_id)
 );
 
 
+-- nuevo
+-- kin_gral_info_updated.csv
+CREATE TABLE kinase_info (
+uniprot_id TEXT PRIMARY KEY,
+full_prot_name TEXT,
+prot_sequence TEXT,
+family TEXT,
+name_human TEXT,
+mass INTEGER,ensembl_gene_id TEXT,
+genome_starts INTEGER,genome_ends INTEGER,genome_sequence TEXT,
+    FOREIGN KEY(family) REFERENCES families(family_abbreviation),
+FOREIGN KEY(uniprot_id) REFERENCES basic_info(uniprot_id)
+);
+
+
+-- nuevo
+-- kin_phosphosites_updated.csv 
+CREATE TABLE kinase_substrate (
+kin_acc_id TEXT,
+sub_acc_id TEXT,
+sub_mod_rsd TEXT,
+site_7_aa TEXT,
+FOREIGN KEY(kin_acc_id) REFERENCES basic_info(uniprot_id),
+FOREIGN KEY(sub_acc_id) REFERENCES basic_info(uniprot_id)
+);
+
+--nuevo
+-- kin_basic_info_updated.csv
+CREATE TABLE basic_info (
+chromosome TEXT,
+gene TEXT,
+prot_name TEXT,
+reverse TEXT,
+uniprot_id TEXT
+);
+
+
+
+
+uniprot_id ,
+gene TEXT,  -- primer cambio ñ
+reverse ,
+chromosome , 
 
 
 -- kinase_isoforms_uniprotxml.csv
@@ -43,16 +78,6 @@ FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id)
 );
 
 
--- phosphosite_table.csv
-CREATE TABLE phosphosites (
-uniprot_id TEXT,
-residue_position INTEGER,
-modif TEXT,
-type_modif TEXT,
-genom_begin INTEGER,
-genom_end  INTEGER,
-FOREIGN KEY(uniprot_id) REFERENCES kinase_info(uniprot_id)
-);
 
 
 -- uniprot|tmp_refs|disease_id|disease_name|effect_text|disease_description
@@ -129,23 +154,6 @@ subcell_location TEXT,
 FOREIGN KEY(uniprot)  REFERENCES kinase_info(uniprot_id)
 );
 
--- Kinase_Substrate_Dataset.csv
-CREATE TABLE kinase_substrate (
-gene TEXT,
-kinase TEXT,
-kin_acc_id TEXT,
-substrate TEXT,
-sub_gene_id INTEGER,
-sub_acc_id TEXT,
-sub_gene TEXT,
-sub_mod_rsd TEXT,
-site_grp_id INTEGER,
-site_7_aa TEXT,
-prot_domain TEXT,
-in_vivo_rxn TEXT,
-in_vitro_rxn TEXT,
-FOREIGN KEY (sub_acc_id) REFERENCES kinase_info(uniprot_id)
-);
 
 
 
@@ -240,5 +248,6 @@ name TEXT,
 short TEXT,
 FOREIGN KEY(uniprot_id)  REFERENCES kinase_info(uniprot_id)
 );
+
 
 

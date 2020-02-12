@@ -56,8 +56,8 @@ def inhibitor_data(inhib_name):
     # get required information from the database
     gral_info = queries.select_gral(inhibitor_blueprint.config['DATABASE'], '*','inhibitors_gral_info',\
                                     ' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
-    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, kin.uniprot_id',\
-                                  'inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',\
+    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, basic.uniprot_id',\
+                                  'inhibitors_targets inh LEFT JOIN  basic_info basic ON basic.gene = inh.targets',\
                                   ' inn_name LIKE "{}"'.format(inhib_name))
     synonyms = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'synonyms','inhibitors_synonims',\
                                          ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
@@ -81,7 +81,9 @@ def inhibitor_data_information_iframe(inhib_name):
 
     # get information from the database
     gral_info = queries.select_gral(inhibitor_blueprint.config['DATABASE'], '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
-    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, kin.uniprot_id','inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',' inn_name LIKE "{}"'.format(inhib_name))
+    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, basic.uniprot_id',\
+                                  'inhibitors_targets inh LEFT JOIN basic_info basic ON basic.prot_name = inh.targets',\
+                                  ' inn_name LIKE "{}"'.format(inhib_name))
     synonyms = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'synonyms','inhibitors_synonims',\
                                          ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
     pdbid = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'pdbid','inhibitors_pdbid',\
@@ -116,8 +118,8 @@ def inhibitor_json(inhib_name):
             gral_info = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inn_name, phase,mw, image_url, canonical_smiles, inchikey',\
                                             'inhibitors_gral_info',\
                                             ' inn_name LIKE "{}"'.format(inhib_name))
-            targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, kin.uniprot_id',\
-                                      'inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',\
+            targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets,  basic.uniprot_id',\
+                                      'inhibitors_targets inh LEFT JOIN basic_info basic ON basic.prot_name = inh.targets',\
                                       ' inn_name LIKE "{}"'.format(inhib_name))
             synonyms_list = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'synonyms','inhibitors_synonims',\
                                                  ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
@@ -147,8 +149,8 @@ def inhibitor_json(inhib_name):
                     output_dict['general_info'] = gral_info.to_dict('index')[0]
                     
                 elif ('targets' in column):
-                    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, kin.uniprot_id',\
-                          'inhibitors_targets inh LEFT JOIN kinase_info kin ON kin.prot_name = inh.targets',\
+                    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, basic.uniprot_id',\
+                          'inhibitors_targets inh LEFT JOIN basic_info basic ON basic.prot_name = inh.targets',\
                           ' inn_name LIKE "{}"'.format(inhib_name))
                     output_dict['targets'] = targets.to_dict('index')
                     

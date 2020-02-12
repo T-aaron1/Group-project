@@ -1,0 +1,141 @@
+{%extends 'base.html'%}
+
+{%block head%}
+<!-- ADDITIONAL HEAD starts -->
+
+
+
+<!-- the next two links allow the table to have some extra behavior, like search and sort capabilities -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<!-- MDBootstrap Datatables  -->
+<link href={{url_for('static',filename='css/datatables.min.css')}} rel="stylesheet">
+
+<!-- ncbi genome Viewer for gene features-->
+<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/projects/sviewer/js/sviewer.js"></script>
+<!-- EBI prot vista, for protein features -->
+<script src="http://ebi-uniprot.github.io/CDN/protvista/protvista.js"></script>
+<link href="http://ebi-uniprot.github.io/CDN/protvista/css/main.css" rel="stylesheet"/>
+
+
+
+
+
+<!-- ADDITIONAL HEAD ends -->
+{%endblock%}
+
+
+{%block content%}
+<!-- CONTENT begins -->
+
+
+
+<br/>
+<div class="text-center">
+  <iframe width="1000" height="250" frameborder="0" src={{url_for('genomic_browser.genome_viewer_ncbi',chromosome=context.chromosome_number, ncbi=context.requested_chrom_ncbi ,gnm_start=context.region_begin, gnm_end=context.region_end )}}></iframe>
+
+  
+</div>
+<br/>
+
+<br/>
+<div>
+  {%if context.phosphosites.shape[0] == 0%}
+  <br/>
+  <p>No phosphosites found in Chromosome: <strong>{{context.chromosome_number}}</strong> en requested region: <strong>{{context.region_begin}}-{{context.region_end}}</strong> </p>
+
+  {%else%}
+  <table id="table-phosphosites" class='table table-striped table-bordered table-sm'>
+    <thead>
+      <tr>
+	<th>Uniprot ID</th>
+	<th>Position</th>
+	<th>Modification</th>
+	<th>Modified by</th>
+	<th>Genomic location (starts)</th>
+	<th>Genomic location (ends)</th>
+      </tr>
+    </thead>
+    {%for i in range(context.phosphosites.shape[0])%}
+    <tr>
+      <td><input class="btn" type="button" name="My button" value="{{context.phosphosites.loc[i,'uniprot_id']}}" onClick="clic_protvista(this);"> </td>
+      <td>{{context.phosphosites.loc[i,'residue_position']}}</td>
+      <td>{{context.phosphosites.loc[i,'modif']}}</td>
+      <td>{{context.phosphosites.loc[i,'type_modif']}}</td>
+      <td>{{context.phosphosites.loc[i,'genom_begin']}}</td>
+      <td>{{context.phosphosites.loc[i,'genom_end']}}</td>
+    </tr>
+    {%endfor%}
+  </table>
+  {%endif%}
+
+</div>
+
+
+
+
+<div id="phosphosites-target-div-onclick" class="text-center">
+  <a href="javascript:closeit()" > <span id="protvista_target_close" class="close"></span> </a>
+  <h2 id="protvista_target"></h2>
+  <div id="protvista_uniprot_onclick">
+
+  </div>
+  <br/>
+</div>
+
+
+
+<!-- CONTENT ends -->
+{%endblock%}
+
+
+{%block scripts%}
+<!-- SCRIPTS begins -->
+
+<!-- for the target phosphosites section -->
+<!-- adds protvista and a <div> that displays that information -->
+<script language="JavaScript" id="protvista_target_onclick">
+ function clic_protvista(element)
+ {
+     var protvista_uniprot_onclick = document.getElementById('protvista_uniprot_onclick');
+     var ProtVista = require('ProtVista');
+     var instance = new ProtVista({
+	 el: protvista_uniprot_onclick,
+	 uniprotacc: element.value,
+	 //These categories will **not** be rendered at all
+	 exclusions: [ 'STRUCTURAL', 'TOPOLOGY', 'MUTAGENESIS', 'MOLECULE_PROCESSING', 'PROTEOMICS']
+     });
+     document.getElementById("protvista_target").innerHTML = 'Target: ' + element.value ;
+     // button to close the <div>
+     document.getElementById("protvista_target_close").innerHTML = '&times';
+     document.getElementById('phosphosites-target-div-onclick').setAttribute("style", "display:inherit");
+ }
+</script>
+
+
+<!-- CLOSE THE TARGET PHOSPHOSITE SECTION -->
+<script> 
+ function closeit(){ 
+     document.getElementById('phosphosites-target-div-onclick').setAttribute("style", "display:none");
+ } 
+</script>
+
+
+
+<!-- the next two links allow the table to have some extra behavior, like search and sort capabilities -->
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src={{url_for('static',filename='js/mdb.min.js')}}></script>
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src={{url_for('static',filename='js/datatables.min.js')}}></script>
+
+<!-- script to add nice features to the table -->
+<script>
+ $(document).ready(function () {
+     $('#table-phosphosites').DataTable();
+     $('.dataTables_length').addClass('bs-select');
+ });
+</script>
+
+
+<!-- SCRIPTS ends -->
+{%endblock%}

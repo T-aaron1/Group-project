@@ -38,7 +38,10 @@ def kinase_search_result():
     requested_name = request.values['search']
 
     # get results for the search
-    search_results = queries.select_gral(kinase_blueprint.config['DATABASE'], 'uniprot_id, name_human, chromosome, fasd_name, ensembl_gene_id','kinase_info', 'uniprot_id LIKE "%{0}%"'.format(requested_name))
+    search_results = queries.select_gral(kinase_blueprint.config['DATABASE'],\
+                                         'kin.uniprot_id, kin.name_human, basic.chromosome, kin.family, kin.ensembl_gene_id',\
+                                         'kinase_info kin LEFT JOIN basic_info basic ON  basic.uniprot_id = kin.uniprot_id',\
+                                         'kin.uniprot_id LIKE "%{0}%"'.format(requested_name))
     
     context = {'search_results':search_results}
 
@@ -54,8 +57,9 @@ def kinase_data(kin_name):
                                "uniprot_id LIKE '{}'".format(kin_name)) :
         # get information for that particular kinase stored in the database
         kin_name = kin_name
-        gral_info = queries.select_gral(kinase_blueprint.config['DATABASE'], '*', 'kinase_info',\
-                                        'uniprot_id LIKE "{}"'.format(kin_name))
+        gral_info = queries.select_gral(kinase_blueprint.config['DATABASE'], 'kin.*,basic.chromosome, basic.gene,basic.reverse',\
+                                        'kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id',\
+                                        'kin.uniprot_id LIKE "{}"'.format(kin_name))
         alternative_names = queries.select_gral(kinase_blueprint.config['DATABASE'], 'name, short',\
                                                 'kinase_alternative_names' ,'uniprot_id LIKE "{}"'.format(kin_name))
         
@@ -65,7 +69,7 @@ def kinase_data(kin_name):
          # inhibitors affecting that kinase
         inhibitors = list(queries.select_gral(kinase_blueprint.config['DATABASE'],\
                                               'inn_name' ,'inhibitors_targets', \
-                                              'targets LIKE "{}"'.format(gral_info.loc[0,'prot_name']) ).loc[:,'inn_name'])
+                                              'targets LIKE "{}"'.format(gral_info.loc[0,'gene']) ).loc[:,'inn_name'])
 
         # kinase function, text needs to be modified to add hyperlinks to referenced pubmed 
         function_list_tmp = list(queries.select_gral(kinase_blueprint.config['DATABASE'], \
@@ -81,12 +85,15 @@ def kinase_data(kin_name):
                                                 'subcell_location', 'uniprot LIKE "{}"'.format(kin_name)).loc[:,'subcell_location'])
 
         targets = queries.select_gral(kinase_blueprint.config['DATABASE'], \
-                                      'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa', 'kinase_substrate', \
-                                      'kin_acc_id LIKE "{}"'.format(kin_name))
+                                      
+                                      'subs.sub_acc_id, subs.site_7_aa,subs.sub_mod_rsd,basic.gene AS sub_gene, (basic.chromosome||":"||unip.genom_begin ||"-"||unip.genom_end) AS coordinate',
+                                      #sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa', 'kinase_substrate', \
+                                      'kinase_substrate subs LEFT JOIN basic_info basic ON basic.uniprot_id = subs.sub_acc_id LEFT JOIN uniprot_phosphosites unip ON unip.uniprot_id = subs.sub_acc_id AND unip.residue_position = SUBSTR(subs.sub_mod_rsd,2)',\
+                                      'subs.kin_acc_id LIKE "{}"'.format(kin_name))
 
         phosphosites = queries.select_gral(kinase_blueprint.config['DATABASE'], \
                                            'residue_position, modif, type_modif, genom_begin, genom_end', \
-                                           'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+                                           'uniprot_phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
 
         # needs to be modified, since the text can contain pubmed references
         cell_loc_add_text_list_tmp = list(queries.select_gral(kinase_blueprint.config['DATABASE'],\
@@ -132,11 +139,11 @@ def genome_viewer(uniprot_id):
     # get phosphosites
     phosphosites = queries.select_gral(kinase_blueprint.config['DATABASE'], \
                                        'residue_position, modif, type_modif, genom_begin, genom_end', \
-                                       'phosphosites', 'uniprot_id LIKE "{}"'.format(uniprot_id))
+                                       'uniprot_phosphosites', 'uniprot_id LIKE "{}"'.format(uniprot_id))
     # and 
-    gral_info = queries.select_gral(kinase_blueprint.config['DATABASE'], 'kin.reverse, ncbi.ncbi_id',\
-                                    'kinase_info kin LEFT JOIN ncbi_chrom_id ncbi ON ncbi.chr = kin.chromosome',\
-                                    'kin.uniprot_id LIKE "{}"'.format(uniprot_id))
+    gral_info = queries.select_gral(kinase_blueprint.config['DATABASE'], 'basic.reverse, ncbi.ncbi_id',\
+                                    'basic_info basic LEFT JOIN ncbi_chrom_id ncbi ON ncbi.chr = basic.chromosome',\
+                                    'basic.uniprot_id LIKE "{}"'.format(uniprot_id))
     chromosome_ncbi = gral_info.loc[0,'ncbi_id']
 
     genom_browser_markers_list = []
@@ -179,9 +186,15 @@ def genome_viewer(uniprot_id):
 def fasta_protein(kin_name):
     '''displays protein sequence in fasta format'''
     # check if requested kinase exists in the database and is unique
-    if queries.query_is_unique(kinase_blueprint.config['DATABASE'], 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format(kin_name)):
+    if queries.query_is_unique(kinase_blueprint.config['DATABASE'], \
+                               'kin.uniprot_id',\
+                               'kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id',\
+                               'kin.uniprot_id  LIKE "{}"'.format(kin_name)):
         # get information from database
-        text = queries.select_gral(kinase_blueprint.config['DATABASE'], 'prot_sequence, chromosome, reverse','kinase_info', 'uniprot_id  LIKE "{}"'.format(kin_name))
+        text = queries.select_gral(kinase_blueprint.config['DATABASE'], \
+                                   'kin.uniprot_id, kin.prot_sequence, basic.chromosome, basic.reverse',\
+                                   'kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id',\
+                                   'kin.uniprot_id  LIKE "{}"'.format(kin_name))
         sequence = text.loc[0,'prot_sequence']
         divide_each = 40  # size of each row
         seq_size = len(sequence)
@@ -231,7 +244,10 @@ def fasta_gene(kin_name):
     # check if requested kinase exists in the database and is unique
     if queries.query_is_unique(kinase_blueprint.config['DATABASE'], 'uniprot_id', 'kinase_info','uniprot_id  LIKE "{}"'.format( kin_name)) :
         # get information from database        
-        text = queries.select_gral(kinase_blueprint.config['DATABASE'], 'chromosome, genome_sequence, reverse, ensembl_gene_id, genome_starts, genome_ends','kinase_info', 'uniprot_id  LIKE "{}"'.format( kin_name))
+        text = queries.select_gral(kinase_blueprint.config['DATABASE'],\
+                                   'basic.chromosome, kin.genome_sequence, basic.reverse, kin.ensembl_gene_id, kin.genome_starts, kin.genome_ends',\
+                                   'kinase_info kin LEFT JOIN basic_info basic ON basic.uniprot_id = kin.uniprot_id ', \
+                                   'kin.uniprot_id  LIKE "{}"'.format( kin_name))
         sequence = text.loc[0,'genome_sequence']
         divide_each = 40  # size of each row
         seq_size = len(sequence)
@@ -278,8 +294,8 @@ def kinase_json(kin_name):
                                            'kin.uniprot LIKE "{}"'.format(kin_name)) 
             inhibitors = queries.select_gral(kinase_blueprint.config['DATABASE'],\
                                                   'inh.inn_name, inhinfo.phase, inhinfo.mw, inhinfo.canonical_smiles, inhinfo.inchikey' ,\
-                                                  'kinase_info kin  INNER JOIN inhibitors_targets inh ON kin.prot_name = inh.targets INNER JOIN inhibitors_gral_info inhinfo ON inh.inn_name = inhinfo.inn_name',\
-                                                  'kin.uniprot_id LIKE "{}"'.format(kin_name))
+                                                   'basic_info basic INNER JOIN inhibitors_targets inh ON basic.gene = inh.targets INNER JOIN inhibitors_gral_info inhinfo ON inh.inn_name = inhinfo.inn_name',\
+                                                  'basic.uniprot_id LIKE "{}"'.format(kin_name))
             reactions_list = list(queries.select_gral(kinase_blueprint.config['DATABASE'], 'reaction_text', 'reactions',\
                                                       'uniprot LIKE "{}"'.format(kin_name)).loc[:,'reaction_text'])
             cell_loc_list= list(queries.select_gral(kinase_blueprint.config['DATABASE'], 'DISTINCT subcell_location',\
@@ -287,10 +303,10 @@ def kinase_json(kin_name):
             diseases = queries.select_gral(kinase_blueprint.config['DATABASE'],\
                                            'DISTINCT disease_name, effect_text, disease_description', 'diseases',\
                                            'uniprot LIKE "{}" AND disease_name NOT LIKE "" ORDER BY disease_name'.format(kin_name))
-            targets = queries.select_gral(kinase_blueprint.config['DATABASE'], 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa',\
+            targets = queries.select_gral(kinase_blueprint.config['DATABASE'], 'sub_acc_id, sub_mod_rsd, site_7_aa',\
                                           'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
             phosphosites = queries.select_gral(kinase_blueprint.config['DATABASE'], 'residue_position, modif, type_modif, genom_begin, genom_end', \
-                                               'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+                                               'uniprot_phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
             # generate dictionary containg all the information
             output_dict = {'general_info':gral_info.to_dict('index')[0],
                            'isoforms': isoforms.to_dict('index'), 'inhibitors': inhibitors.to_dict('index'),
@@ -316,8 +332,8 @@ def kinase_json(kin_name):
                 elif ('inhibitors' in column):
                     inhibitors = queries.select_gral(kinase_blueprint.config['DATABASE'],\
                                                      'inh.inn_name, inhinfo.phase, inhinfo.mw, inhinfo.canonical_smiles, inhinfo.inchikey' ,\
-                                                     'kinase_info kin  INNER JOIN inhibitors_targets inh ON kin.prot_name = inh.targets INNER JOIN inhibitors_gral_info inhinfo ON inh.inn_name = inhinfo.inn_name',\
-                                                     'kin.uniprot_id LIKE "{}"'.format(kin_name))
+                                                     'basic_info basic  INNER JOIN inhibitors_targets inh ON basic.gene = inh.targets INNER JOIN inhibitors_gral_info inhinfo ON inh.inn_name = inhinfo.inn_name',\
+                                                     'basic.uniprot_id LIKE "{}"'.format(kin_name))
                     output_dict['inhibitors'] = inhibitors.to_dict('index')
 
                 elif ('reactions' in column):
@@ -338,11 +354,11 @@ def kinase_json(kin_name):
 
                 elif ('phosphosites_self' in column):
                     phosphosites = queries.select_gral(kinase_blueprint.config['DATABASE'], 'residue_position, modif, type_modif, genom_begin, genom_end', \
-                                                       'phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
+                                                       'uniprot_phosphosites', 'uniprot_id LIKE "{}"'.format(kin_name))
                     output_dict['phosphosites_self'] = phosphosites.to_dict('index')
 
                 elif ('phosphosites_targets' in column):
-                    targets = queries.select_gral(kinase_blueprint.config['DATABASE'], 'sub_acc_id, sub_gene, sub_mod_rsd, site_7_aa',\
+                    targets = queries.select_gral(kinase_blueprint.config['DATABASE'], 'sub_acc_id,  sub_mod_rsd, site_7_aa',\
                                                   'kinase_substrate', 'kin_acc_id LIKE "{}"'.format(kin_name))
                     output_dict['phosphosites_targets'] = targets.to_dict('index')
         # return json of the dictionary that contains the required information
