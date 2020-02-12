@@ -14,6 +14,8 @@
      
  }
 
+
+
 </style>
 
 
@@ -161,7 +163,7 @@
 
       <input name="csrf_token" type="hidden" value="{{csrf_token()}}"/>
 
-      <p>{{render_form_field(context.uploadfile_form.threshold_pval, class="form-control")}}</p>
+      <p>{{render_form_field(context.uploadfile_form.threshold_pval, class="form-control")}}</p>       
       <p>{{render_form_field(context.uploadfile_form.threshold_foldchange, class="form-control")}}</p>
       <p>{{render_form_field(context.uploadfile_form.cv_treatment_threshold, class="form-control")}}</p>
       <p>{{render_form_field(context.uploadfile_form.uploaded_file)}}</p>
@@ -221,4 +223,19 @@
 
 
     <!-- CONTENT ends -->
-{%endblock%}
+    {%endblock%}
+
+
+    {%block scripts%}
+    <!-- SCRIPTS begins -->
+    
+    <!-- Start all popovers -->
+    <script >
+     $(function () {
+	 $('[data-toggle="popover"]').popover()
+     })
+    </script>
+
+    <!-- SCRIPTS ends -->
+    {%endblock%}
+

@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<h2>Phosphoproteomics analysis</h2>
+
+  <p>The Pkinase Phosphoproteomic analysis tool allows the user to upload a file in the .tsv file format and have visual and statistical analysis performed on the dataset. A volcano plot is produced using the parameters which the user selects , creating 3 areas of the graph defined by colour and position above and below the threshold which can be seen clearly. The volcano plot is calculation by plotting the mean log2 fold change against log10 P-value of all the substrates in the sample. </p>
+   <p> Using the KSEA (Kinase Substrate Enrichment Analysis) formula allows our site computationally to infer relative kinase activity from quantitative phosphoproteomics data & have it summarised graphically. Scores are generated for each kinase according to the relative hyper-phosphorylation or dephosphorylation of the majority of its substrates. With this score we are able to determine the overall activity for each kinase relative to the control and obtain statistical P-values from the uploaded file to create interactive graphical analysis of the dataset.</p>
+
+{%endblock%}

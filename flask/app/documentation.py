@@ -24,16 +24,11 @@ documentation_blueprint = Blueprint(
 
 ### Documentation
 
-@documentation_blueprint.route('/general')
+@documentation_blueprint.route('/phosphoproteomics')
 def documentation_general():
-    return render_template('documentation_general.html')
+    return render_template('documentation_phosphoproteomics.html')
 
 @documentation_blueprint.route('/api')
 def documentation_api():
     return render_template('documentation_api.html')
-
-@documentation_blueprint.route('/stats')
-def documentation_stats():
-    x = [1,2,3]
-    return render_template('documentation_stats.html', x = x, y = x)
 

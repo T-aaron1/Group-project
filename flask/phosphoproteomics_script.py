@@ -5,15 +5,16 @@ from scipy.stats import norm
 
 
 
-def file_handle(file_path):
+def file_handle(file_path, kinase_substrate):
     ''' reads phosphoproteomics data, returns a dictionary with two entries: substrate-position and
         another entry that contains the foldchange information for the inhibitors. Each inhibitor dataframe is
         inside a dictionary with the name of the inhibitor. This output is to be used as input of other functions
-        for phosphoproteomics analysis.
+        for phosphoproteomics analysis. Substrate dataframe includes associated kinase.
     '''
     df = pd.DataFrame(pd.read_csv(file_path, sep='\t'))
     os.remove(file_path)
     df.columns = map(str.lower, df.columns)
+
 
     #drop rows and columns with no value
     df.dropna(axis=1, how='all', inplace=True)
@@ -22,7 +23,7 @@ def file_handle(file_path):
     #split substrate column into name and position 
     df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
     df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
-    substrate = df[['substrate','subst_name','subst_position']] # only those columns
+
 
     #extracting unique inhibitor name 
     inhibitors_list = []
@@ -45,8 +46,32 @@ def file_handle(file_path):
         else:
             inhibitors_dict[inhibitors_list[i]]= tmp_inhib_df[['fold_change', 'p-value']] # only those columns
 
+
+    # needed cause the results of this function are used for the volcano plot and this function
+    # is used with those results, which were already the output of a first runof this function
+    kinase_substrate['substrate'] =  kinase_substrate['substrate'].str.split("_HUMAN", n=1, expand=True)[0]
+    kinase_substrate['substrate'] +=  "_HUMAN"
+
+    # GET KINASE
+    # extract kinase name
+    #  1- using the substrate gene name (sub_gene)
+    df1 = df.join(kinase_substrate[['kinase','sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
+                 on=['subst_name', 'subst_position'])
+
+    #  2- if not found, try with the substrate name (prot)
+    df2 = df1[df1.kinase.isna()]
+    df2.drop(columns=['kinase'], inplace = True)
+    df2 = df2.join(kinase_substrate[['kinase','substrate', 'sub_mod_rsd']].set_index(['substrate', 'sub_mod_rsd']),
+                 on=['subst_name', 'subst_position'])
+
+    # 3 -append the two Dataframes and remove duplicates
+    df = df1.append(df2)
+    df['kinase'] = df['kinase'].fillna('')
+    df.drop_duplicates(inplace=True)
+    substrate = df[['substrate','subst_name','subst_position','kinase']] # only those columns
+            
     # return 2 dictionaries: substrate (name,position) and a dictionary containing inhibitors data frames
-    output ={'substrate': substrate, 'inhibitors_dict' :inhibitors_dict }
+    output ={'substrate': substrate, 'inhibitors_dict':inhibitors_dict }
     return output
 
 
@@ -113,16 +138,13 @@ def extract_above_threshold(df, volcano_results):
 
 #####
 
-def KSEA(df, kinase_substrate):
+def KSEA(df):
     '''This function returns the  Kinase-Substrate Enrichment Analysis. Formula can be found in:
        https://academic.oup.com/bioinformatics/article/33/21/3489/3892392.
     '''
     # remove all empty columns
     df.dropna(axis=1, how='all', inplace=True)
-
     # get substrate position and substrate name
-    df['subst_position'] = df.substrate.str.split("(", n=1, expand=True)[1].str.replace(")", "")
-    df['subst_name'] = df.substrate.str.split("(", n=1, expand=True)[0]
 
     # remove values equal to 0
     df = df[~(df['fold_change'] == 0)]
@@ -138,25 +160,6 @@ def KSEA(df, kinase_substrate):
     mean_log2_FC = df["Log2substrate_fold_change"].mean()
     standard_deviation = np.std(df.Log2substrate_fold_change)
 
-    # needed cause the results of this function are used for the volcano plot and this function
-    # is used with those results, which were already the output of a first runof this function
-    kinase_substrate['substrate'] =  kinase_substrate['substrate'].str.split("_HUMAN", n=1, expand=True)[0]
-    kinase_substrate['substrate'] +=  "_HUMAN"
-
-    # GET KINASE
-    # extract kinase name
-    #  1- using the substrate gene name (sub_gene)
-    df1 = df.join(kinase_substrate[['kinase', 'sub_gene', 'sub_mod_rsd']].set_index(['sub_gene', 'sub_mod_rsd']),
-                 on=['subst_name', 'subst_position'])
-    #ñ
-    #  2- if not found, try with the substrate name (prot)
-    df2 = df.join(kinase_substrate[['kinase', 'substrate', 'sub_mod_rsd']].set_index(['substrate', 'sub_mod_rsd']),
-                 on=['subst_name', 'subst_position'])
-
-    # 3 -append the two Dataframes and remove duplicates
-    df = df1.append(df2)
-    df['kinase'] = df[['kinase']].fillna('')
-    df.drop_duplicates(inplace=True)
 
     # get KSEA values for the formula
     # count number of not identified (not containing a kinase)
@@ -164,9 +167,6 @@ def KSEA(df, kinase_substrate):
     kinase_count = df['kinase'].value_counts()
     kinase_count_df = pd.DataFrame(kinase_count)
     kinase_count_df['sqrt_kinase'] = np.sqrt(kinase_count_df)
-
-    print("df3=============")
-    print(kinase_count_df)
 
     # get the number of not identified phosphosites, and remove it from the dataframe
     non_identified = kinase_count_df.loc['', 'kinase']
@@ -184,7 +184,7 @@ def KSEA(df, kinase_substrate):
     # get the KSEA
     kinase_count_df['KSEA'] = ((kinase_count_df['Log2substrate_fold_change'] - mean_log2_FC) *
                                kinase_count_df['sqrt_kinase']) / standard_deviation
-
+    
     # get p-values for Z-score (normal(0,1)), sort, round and filter significant values
     kinase_count_df['P_value'] = norm.sf(abs(kinase_count_df['KSEA']))
     kinase_count_df = kinase_count_df.sort_values(['KSEA'], ascending=True)

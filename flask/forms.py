@@ -20,6 +20,7 @@ def is_positive(form, field):
     if field.data <= 0:
         raise ValidationError('0 or negative values are not allowed')
 
+    
 # FORM: used for the kinases    
 class Search_string(FlaskForm):
     search_string = StringField('', validators=[DataRequired(), my_length_check, is_alpha_numeric ])
@@ -31,9 +32,9 @@ class Inhibitors(FlaskForm):
 # FORM: used for the uploaded file for the
 #       phosphoproteomics analysis
 class UploadForm(FlaskForm):
-    threshold_pval = DecimalField('Log10 P-value Threshold', validators = [DataRequired(),is_positive])
-    threshold_foldchange = DecimalField('Log2 Foldchange Threshold', validators = [DataRequired(),is_positive])
-    cv_treatment_threshold = DecimalField('CV treatment Threshold', validators = [DataRequired(),is_positive])
+    threshold_pval = DecimalField('-Log10 P-value Threshold (>0)', validators = [DataRequired(),is_positive])
+    threshold_foldchange = DecimalField('Log2 Foldchange Threshold  (>0)', validators = [DataRequired(),is_positive])
+    cv_treatment_threshold = DecimalField('CV treatment Threshold  (>0)', validators = [is_positive,DataRequired()])
     uploaded_file = FileField('', validators=[FileAllowed(['tsv'], 'Should be ".tsv"')])
 
 # FORM: used for the chromosome coordinate search for phosphosites
