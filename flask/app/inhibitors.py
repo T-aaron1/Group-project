@@ -73,17 +73,15 @@ def inhibitor_data_information_iframe(inhib_name):
 
     # get information from the database
     gral_info = queries.select_gral(inhibitor_blueprint.config['DATABASE'], '*','inhibitors_gral_info',' inn_name LIKE "{}"'.format(inhib_name)).loc[0,:]
-    targets = queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, basic.uniprot_id',\
+    targets = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'inh.targets, basic.uniprot_id',\
                                   'inhibitors_targets inh LEFT JOIN basic_info basic ON basic.prot_name = inh.targets',\
-                                  ' inn_name LIKE "{}"'.format(inhib_name))
+                                  ' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'targets'])
     synonyms = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'synonyms','inhibitors_synonims',\
                                          ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'synonyms'])
-    pdbid = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'pdbid','inhibitors_pdbid',\
-                                      ' inn_name LIKE "{}"'.format(inhib_name)).loc[:, 'pdbid'])
     families = list(queries.select_gral(inhibitor_blueprint.config['DATABASE'], 'kinase_families','inhibitors_kin_family',\
                                          ' inn_name LIKE "{}"'.format(inhib_name)).loc[:,'kinase_families'])
 
-    context = {'gral_info':gral_info, 'targets': targets, 'synonyms':synonyms, 'pdbid':pdbid, 'families':families}
+    context = {'gral_info':gral_info, 'targets': ', '.join(targets), 'synonyms': ', '.join(synonyms),  'families': ', '.join(families)}
 
     return render_template('inhibitor_data_information.html', context=context)
 
