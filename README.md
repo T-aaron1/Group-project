@@ -28,5 +28,6 @@ add in that file any library we need to install
 - go to flask directory
 ```  python flask_script.py```
 
-
+# Web application
+http://test-env-1.a52w5zpuqi.us-east-2.elasticbeanstalk.com/
 
